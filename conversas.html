@@ -3,11 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mensagens — UPR</title>
+<title>Conversas — UPR</title>
 <meta name="description" content="Como funcionam as conversas privadas e os grupos: cifra no aparelho, grupos com chave própria e o que o provedor consegue ver.">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/css/base.css">
 <link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/app.css">
 <script src="assets/js/site.js" defer></script>
 <script src="assets/js/scenes.js" defer></script>
 </head>
@@ -34,7 +35,7 @@
       <a href="por-dentro.html">Por dentro</a>
       <a href="identidade.html">Identidade</a>
       <a href="seguranca.html">Segurança</a>
-      <a href="mensagens.html" aria-current="page">Mensagens</a>
+      <a href="conversas.html" aria-current="page">Conversas</a>
       <a href="diario.html">Diário</a>
       <a href="chamadas.html">Chamadas</a>
       <a href="confianca.html">Confiança</a>
@@ -60,7 +61,7 @@
   <section class="section section--tight">
     <div class="wrap">
       <p class="kicker">Capítulo 2</p>
-      <h1>Mensagens</h1>
+      <h1>Conversas</h1>
       <p class="lead">
         Conversas de uma pessoa para outra e conversas em grupo. A ideia é parecida com a
         de um aplicativo de mensagens comum — mas o conteúdo é trancado no seu aparelho,
@@ -246,6 +247,55 @@
         Um grupo não é “uma conversa com muita gente”. É uma <strong>conta nova</strong>,
         com chave própria, que também assina o que passa por ela.
       </p>
+
+      <div class="chat-wrap" style="margin-top:1.5rem">
+        <div class="app" style="max-width:720px">
+          <a class="chat__head hotspot" href="por-dentro.html#grupo" style="text-decoration:none;color:inherit">
+            <span class="avatar avatar--g">BB</span>
+            <span style="flex:1;min-width:0">
+              <span class="chat__name">Banda do bairro</span>
+              <span class="chat__status">grupo · 47 membros · 3 online</span>
+            </span>
+            <span class="tag tag--group">chave do grupo</span>
+          </a>
+
+          <div class="chat" style="height:min(430px,58vh)">
+            <div class="chat__body">
+              <span class="msg msg--system">Ana entrou no grupo · aprovada por 3 membros</span>
+
+              <a class="msg hotspot" href="por-dentro.html#mensagem" style="text-decoration:none;color:inherit">
+                <strong>Caio:</strong> levo o cabo e a caixa de som
+                <span class="msg__meta">19:04 · cifrada</span>
+              </a>
+
+              <a class="msg msg--out hotspot" href="por-dentro.html#mensagem" style="text-decoration:none">
+                combinado. chego 15h pra montar
+                <span class="msg__meta">19:05 ✓✓</span>
+              </a>
+
+              <span class="msg msg--system">🔑 chave do grupo trocada (versão 2) — Ana saiu</span>
+
+              <a class="msg hotspot" href="por-dentro.html#mensagem" style="text-decoration:none;color:inherit">
+                <strong>Duda:</strong> e o repertório, muda alguma coisa?
+                <span class="msg__meta">19:12 · cifrada</span>
+              </a>
+
+              <a class="msg msg--out hotspot" href="por-dentro.html#mensagem" style="text-decoration:none">
+                só a ordem. manda o setlist novo no grupo
+                <span class="msg__meta">19:13 ✓✓</span>
+              </a>
+            </div>
+
+            <div class="chat__composer">
+              <a class="chat__input hotspot" href="por-dentro.html#mensagem" style="text-decoration:none">Escrever uma mensagem…</a>
+              <span class="chat__send" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12 20 4l-6 16-3-6-7-2Z"></path></svg>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
 
       <div class="scene" data-scene data-duration="11500">
         <div class="scene__art">
@@ -489,7 +539,7 @@
           <li><a href="por-dentro.html">Por dentro</a></li>
           <li><a href="identidade.html">Identidade</a></li>
           <li><a href="seguranca.html">Segurança</a></li>
-          <li><a href="mensagens.html">Mensagens</a></li>
+          <li><a href="conversas.html">Conversas</a></li>
           <li><a href="diario.html">Diário</a></li>
         </ul>
       </div>

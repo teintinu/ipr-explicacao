@@ -43,11 +43,10 @@ python3 -m http.server 8080
 ```
 .
 ├── index.html          demonstração do feed, com elementos clicáveis
-├── conversa.html       demonstração da tela de conversas
 ├── por-dentro.html     sete animações dos bastidores (post, grupo, provedor…)
 ├── identidade.html     verificador de identidade, certificadora e gov.br
 ├── seguranca.html      cofre, ordem judicial, recibos, menores
-├── mensagens.html      conversas, grupos, chaves
+├── conversas.html      conversas privadas, grupos, chaves (com exemplo de grupo)
 ├── diario.html         posts, comentários anônimos, jogo, lives, cortes
 ├── chamadas.html       topologia, gravação, fila de fala
 ├── confianca.html      remoção e conselhos de confiança

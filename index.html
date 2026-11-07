@@ -35,7 +35,7 @@
       <a href="por-dentro.html">Por dentro</a>
       <a href="identidade.html">Identidade</a>
       <a href="seguranca.html">Segurança</a>
-      <a href="mensagens.html">Mensagens</a>
+      <a href="conversas.html">Conversas</a>
       <a href="diario.html">Diário</a>
       <a href="chamadas.html">Chamadas</a>
       <a href="confianca.html">Confiança</a>
@@ -114,7 +114,7 @@
             Buscar contas, grupos ou assuntos
           </span>
           <span class="app__actions">
-            <a class="app__icon" href="conversa.html" aria-label="Abrir conversas (2 não lidas)">
+            <a class="app__icon" href="conversas.html" aria-label="Abrir conversas (2 não lidas)">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.6 9.6 0 0 1-3.2-.6L3 21l1.7-4.9A8.3 8.3 0 0 1 3.6 11.5a8.4 8.4 0 0 1 9-8.4 8.4 8.4 0 0 1 8.4 8.4Z"></path>
               </svg>
@@ -259,7 +259,7 @@
           <span class="legend__num">5</span>
           <span><strong>Aprovação de membro</strong><span>Pedido, votação e entrada registrada.</span></span>
         </a>
-        <a class="legend__item" href="conversa.html">
+        <a class="legend__item" href="conversas.html">
           <span class="legend__num">6</span>
           <span><strong>Conversas</strong><span>Abra a tela de mensagens e clique numa bolha.</span></span>
         </a>
@@ -281,45 +281,40 @@
       <p class="kicker">Conversas</p>
       <h2 style="margin-top:.2rem">E a tela onde você fala.</h2>
       <p class="lead">
-        As bolhas saem trancadas do seu aparelho e só abrem no do destinatário. Clique no
-        cabeçalho ou numa bolha para ver o caminho.
+        Uma conversa entre duas pessoas: as bolhas saem trancadas do seu aparelho e só abrem
+        no aparelho de quem recebe.
       </p>
 
       <div class="chat-wrap">
-        <div class="app" style="max-width:720px">
-          <a class="chat__head hotspot" href="por-dentro.html#grupo" style="text-decoration:none;color:inherit">
-            <span class="avatar avatar--g">BB</span>
+        <div class="app" style="max-width:620px">
+          <a class="chat__head hotspot" href="por-dentro.html#mensagem" style="text-decoration:none;color:inherit">
+            <span class="avatar avatar--a">AN</span>
             <span style="flex:1;min-width:0">
-              <span class="chat__name">Banda do bairro</span>
-              <span class="chat__status">grupo · 47 membros · 3 online</span>
+              <span class="chat__name">Ana</span>
+              <span class="chat__status">online · cifrada de ponta a ponta</span>
             </span>
-            <span class="tag tag--group">chave do grupo</span>
           </a>
 
-          <div class="chat" style="height:min(500px,62vh)">
+          <div class="chat" style="height:min(420px,56vh)">
             <div class="chat__body">
-              <span class="msg msg--system">Ana entrou no grupo · aprovada por 3 membros</span>
-
               <a class="msg hotspot" href="por-dentro.html#mensagem" style="text-decoration:none;color:inherit">
-                <strong>Caio:</strong> levo o cabo e a caixa de som
+                <strong>Ana:</strong> conseguiu ver o vídeo que te mandei?
                 <span class="msg__meta">19:04 · cifrada</span>
               </a>
 
               <a class="msg msg--out hotspot" href="por-dentro.html#mensagem" style="text-decoration:none">
-                combinado. chego 15h pra montar
+                vi. o trecho dos 10% é o que mais me pegou
                 <span class="msg__meta">19:05 ✓✓</span>
               </a>
 
-              <span class="msg msg--system">🔑 chave do grupo trocada (versão 2) — Ana saiu</span>
-
               <a class="msg hotspot" href="por-dentro.html#mensagem" style="text-decoration:none;color:inherit">
-                <strong>Duda:</strong> e o repertório, muda alguma coisa?
-                <span class="msg__meta">19:12 · cifrada</span>
+                <strong>Ana:</strong> mandei pro meu irmão também, ele jurou que era verdade
+                <span class="msg__meta">19:06 · cifrada</span>
               </a>
 
               <a class="msg msg--out hotspot" href="por-dentro.html#mensagem" style="text-decoration:none">
-                só a ordem. manda o setlist novo no grupo
-                <span class="msg__meta">19:13 ✓✓</span>
+                manda o link de onde ele tirou isso
+                <span class="msg__meta">19:07 ✓✓</span>
               </a>
             </div>
 
@@ -332,7 +327,7 @@
           </div>
         </div>
 
-        <a class="note" href="conversa.html">
+        <a class="note" href="conversas.html">
           <svg class="note__zig" viewBox="0 0 52 26" aria-hidden="true" focusable="false">
             <path d="M51 13 H44 L37 3 L30 23 L23 3 L16 13 H11" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"></path>
             <path d="M18 6 L10 13 L18 20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -342,21 +337,21 @@
       </div>
 
       <div class="legend" style="margin-top:1.6rem">
-        <a class="legend__item" href="por-dentro.html#grupo">
+        <a class="legend__item" href="por-dentro.html#mensagem">
           <span class="legend__num">1</span>
-          <span><strong>Cabeçalho do grupo</strong><span>O grupo tem chave e assinatura próprias.</span></span>
+          <span><strong>Cabeçalho do contato</strong><span>Conversa entre duas pessoas: não há lista de membros.</span></span>
         </a>
         <a class="legend__item" href="por-dentro.html#mensagem">
           <span class="legend__num">2</span>
-          <span><strong>Bolha de mensagem</strong><span>Trancada aqui, aberta só no destino.</span></span>
+          <span><strong>Bolha de mensagem</strong><span>Trancada aqui, aberta só no aparelho dela.</span></span>
         </a>
         <a class="legend__item" href="por-dentro.html#mensagem">
           <span class="legend__num">3</span>
-          <span><strong>“chave trocada”</strong><span>Quem sai não lê o que vem depois.</span></span>
+          <span><strong>“cifrada”</strong><span>O provedor vê um embrulho fechado, não o texto.</span></span>
         </a>
-        <a class="legend__item" href="conversa.html">
+        <a class="legend__item" href="conversas.html">
           <span class="legend__num">4</span>
-          <span><strong>Tela inteira</strong><span>Abra a conversa e clique à vontade.</span></span>
+          <span><strong>Tela inteira</strong><span>O capítulo de conversas, com o exemplo em grupo.</span></span>
         </a>
       </div>
     </div>
@@ -381,7 +376,7 @@
           <span class="card__more">Entender →</span>
         </a>
 
-        <a class="card reveal" href="mensagens.html">
+        <a class="card reveal" href="conversas.html">
           <div class="card__icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.6 9.6 0 0 1-3.2-.6L3 21l1.7-4.9A8.3 8.3 0 0 1 3.6 11.5a8.4 8.4 0 0 1 9-8.4 8.4 8.4 0 0 1 8.4 8.4Z"></path>
@@ -482,7 +477,7 @@
           <li><a href="por-dentro.html">Por dentro</a></li>
           <li><a href="identidade.html">Identidade</a></li>
           <li><a href="seguranca.html">Segurança</a></li>
-          <li><a href="mensagens.html">Mensagens</a></li>
+          <li><a href="conversas.html">Conversas</a></li>
           <li><a href="diario.html">Diário</a></li>
         </ul>
       </div>
