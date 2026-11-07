@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Segurança e privacidade — IPR</title>
+<meta name="description" content="Como a rede protege sua identidade sem garantir impunidade: duas camadas, cartórios, cofres com várias chaves e recibos lacrados.">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<script src="assets/js/site.js" defer></script>
+<script src="assets/js/scenes.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="brand" href="index.html" aria-label="IPR — página inicial">
+      <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+        <rect width="32" height="32" rx="9" fill="currentColor" opacity=".1"></rect>
+        <circle cx="16" cy="16" r="3.7" fill="currentColor"></circle>
+        <circle cx="7.5" cy="8.5" r="2" fill="currentColor" opacity=".6"></circle>
+        <circle cx="24.5" cy="8.5" r="2" fill="currentColor" opacity=".6"></circle>
+        <circle cx="7.5" cy="23.5" r="2" fill="currentColor" opacity=".6"></circle>
+        <circle cx="24.5" cy="23.5" r="2" fill="currentColor" opacity=".6"></circle>
+        <path d="M9.2 9.7 13.4 13.2M22.8 9.7 18.6 13.2M9.2 22.3 13.4 18.8M22.8 22.3 18.6 18.8" stroke="currentColor" stroke-width="1.3" opacity=".45"></path>
+      </svg>
+      <span>IPR<span class="brand__sub">a rede explicada</span></span>
+    </a>
+
+    <nav class="nav" id="menu-principal" aria-label="Navegação principal" data-open="false">
+      <a href="index.html">Início</a>
+      <a href="seguranca.html" aria-current="page">Segurança</a>
+      <a href="mensagens.html">Mensagens</a>
+      <a href="diario.html">Diário</a>
+      <a href="chamadas.html">Chamadas</a>
+      <a href="provedores.html">Provedores</a>
+      <a href="perguntas.html">Perguntas</a>
+    </nav>
+
+    <div class="header-actions">
+      <button type="button" class="icon-btn" data-theme-toggle aria-label="Alternar tema">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+          <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path>
+        </svg>
+      </button>
+      <button type="button" class="icon-btn nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menu">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="conteudo">
+  <section class="section section--tight">
+    <div class="wrap">
+      <p class="kicker">Capítulo 1</p>
+      <h1>Segurança e privacidade</h1>
+      <p class="lead">
+        A pergunta central deste capítulo é simples de fazer e difícil de responder:
+        <strong>como uma conta pode ser anônima sem que o crime fique impune?</strong>
+      </p>
+
+      <div class="tldr mt-3">
+        <h2>Resumo em cinco linhas</h2>
+        <ul>
+          <li>A <strong>pessoa</strong> e a <strong>conta</strong> ficam separadas. A rede vê a conta; só o cartório vê a pessoa.</li>
+          <li>O cartório assina um comprovante <strong>sem saber qual conta</strong> ele autoriza — por isso nem o cartório consegue ligar os pontos sozinho.</li>
+          <li>O vínculo fica num <strong>cofre trancado com várias chaves</strong>. Uma chave só não abre nada.</li>
+          <li>Abrir o cofre devolve <strong>um número</strong>, não um nome. Chegar até a pessoa exige uma segunda etapa, num outro lugar.</li>
+          <li>Toda abertura gera um <strong>recibo lacrado</strong>: dá para provar que aconteceu, sem revelar para quem.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DUAS CAMADAS ============ -->
+  <section class="section section--tight" id="camadas">
+    <div class="wrap">
+      <h2>Duas camadas: a pessoa e a conta</h2>
+      <p class="lead">
+        A maior parte dos problemas de privacidade nasce de misturar essas duas coisas no
+        mesmo lugar. Aqui elas vivem separadas por uma parede.
+      </p>
+
+      <div class="scene" data-scene data-duration="9000">
+        <div class="scene__art">
+          <svg viewBox="0 0 860 300" role="img" aria-label="A pessoa fica atrás de uma parede; a conta aparece do lado público; um envelope lacrado liga as duas.">
+            <defs>
+              <marker id="ar1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0 L10 5 L0 10 z" fill="var(--line-strong)"></path>
+              </marker>
+            </defs>
+
+            <rect x="40" y="70" width="200" height="130" rx="16" class="node node--warn ghost"></rect>
+            <text x="140" y="60" text-anchor="middle" class="lbl-sm ghost">só o cartório vê</text>
+
+            <g data-at="0">
+              <rect x="40" y="70" width="200" height="130" rx="16" class="node node--warn"></rect>
+              <text x="140" y="105" text-anchor="middle" class="lbl">Pessoa</text>
+              <text x="140" y="128" text-anchor="middle" class="lbl-sm">Maria Silva</text>
+              <text x="140" y="148" text-anchor="middle" class="lbl-mono">CPF 000.000.000-00</text>
+              <text x="140" y="172" text-anchor="middle" class="lbl-sm">nascida em 1994</text>
+            </g>
+
+            <rect x="620" y="70" width="200" height="130" rx="16" class="node ghost"></rect>
+            <text x="720" y="60" text-anchor="middle" class="lbl-sm ghost">todos veem</text>
+
+            <g data-at="1600">
+              <rect x="620" y="70" width="200" height="130" rx="16" class="node node--brand"></rect>
+              <text x="720" y="105" text-anchor="middle" class="lbl">Conta</text>
+              <text x="720" y="130" text-anchor="middle" class="lbl-sm">@noite.clara</text>
+              <text x="720" y="152" text-anchor="middle" class="lbl-mono">chave pública</text>
+              <text x="720" y="172" text-anchor="middle" class="lbl-sm">posts e mensagens</text>
+            </g>
+
+            <g data-at="3200">
+              <path d="M440 60 v190" stroke="var(--line-strong)" stroke-width="2" stroke-dasharray="8 7"></path>
+              <text x="440" y="270" text-anchor="middle" class="lbl-sm">parede</text>
+            </g>
+
+            <g data-at="4800">
+              <path class="edge edge--brand" d="M250 135 H 610" marker-end="url(#ar1)"></path>
+              <rect x="360" y="108" width="160" height="54" rx="12" class="node node--accent"></rect>
+              <text x="440" y="132" text-anchor="middle" class="lbl-sm">envelope lacrado</text>
+              <text x="440" y="149" text-anchor="middle" class="lbl-mono">(o vínculo)</text>
+            </g>
+          </svg>
+        </div>
+        <div class="scene__body">
+          <ol class="scene-caps">
+            <li data-at="0"><b>1.</b> No cartório, a pessoa existe com nome e documento. É o único lugar que guarda isso.</li>
+            <li data-at="1600"><b>2.</b> Na rede, existe só uma conta com apelido e chave. Nenhum dado civil.</li>
+            <li data-at="3200"><b>3.</b> Entre as duas há uma parede. A conta não “aponta” para a pessoa em lugar nenhum.</li>
+            <li data-at="4800"><b>4.</b> O que liga as duas é um envelope lacrado, guardado num cofre. Ele existe — mas não pode ser lido por quem passa.</li>
+          </ol>
+        </div>
+        <div class="scene__ctl">
+          <button type="button" data-act="toggle">Pausar</button>
+          <button type="button" data-act="replay">Recomeçar</button>
+          <span class="scene__hint">Clique num passo para ir até ele</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CARTÓRIO ============ -->
+  <section class="section section--tight" id="cartorio">
+    <div class="wrap">
+      <h2>O cartório: quem confere que você existe</h2>
+
+      <div class="prose">
+        <p>
+          A rede não tem como saber se um CPF é real. Quem sabe disso é um órgão público —
+          no Brasil, a Receita Federal. O projeto resolve isso do jeito antigo: com
+          <strong>cartórios credenciados</strong>.
+        </p>
+        <p>
+          A
+          <button type="button" class="term" data-tip="Autoridade Registradora (AR). Instituição privada credenciada que vê seu documento e atesta que ele é válido. Não guarda suas conversas nem seus posts." data-more="glossario.html#autoridade-registradora">autoridade registradora</button>
+          vê seu documento e confirma:
+        </p>
+        <ul>
+          <li>o documento existe e é válido;</li>
+          <li>você é quem diz ser;</li>
+          <li>se você é pessoa física, jurídica, ou estrangeiro com passaporte.</li>
+        </ul>
+        <p>
+          Ela <strong>não</strong> recebe suas mensagens, não sabe o que você publica e não
+          controla sua conta. Só guarda um registro de identidade.
+        </p>
+        <p>
+          Já a
+          <button type="button" class="term" data-tip="Autoridade Certificadora. É a raiz de confiança: mantém a lista assinada de quais cartórios são legítimos. Se um cartório for cassado, ele sai dessa lista." data-more="glossario.html#autoridade-certificadora">autoridade certificadora</button>
+          é o cartório central: ela não atende pessoas, ela credencia os cartórios. Mantém
+          uma lista assinada de quais são legítimos — parecido com a lista de sites seguros
+          que o seu navegador confia.
+        </p>
+      </div>
+
+      <div class="callout callout--info">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M12 11v5"></path>
+          <circle cx="12" cy="7.8" r=".9" fill="currentColor" stroke="none"></circle>
+        </svg>
+        <div>
+          <span class="callout__title">Por que não guardar tudo num lugar só?</span>
+          <p class="mb-0">
+            Porque esse lugar viraria o alvo perfeito: um vazamento, uma intimidação ou um
+            funcionário curioso e todo mundo perderia o anonimato de uma vez. Tudo neste
+            capítulo existe para evitar esse único ponto.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ COFRE ============ -->
+  <section class="section section--tight" id="cofre">
+    <div class="wrap">
+      <h2>O cofre com cinco chaves</h2>
+
+      <div class="prose">
+        <p>
+          Existe uma técnica chamada
+          <button type="button" class="term" data-tip="Limiar (threshold). Um segredo é dividido em pedaços, e é preciso um número mínimo deles para reconstruí-lo. Com menos, o resultado é inútil." data-more="glossario.html#limiar">limiar</button>:
+          um segredo é dividido em pedaços, e só uma quantidade mínima consegue usá-lo.
+          Imagine um cofre com cinco fechaduras, onde <strong>três chaves quaisquer</strong>
+          abrem — mas duas não abrem nada.
+        </p>
+        <p>
+          Neste projeto o cofre é dividido entre instituições diferentes: o cartório central
+          e vários cartórios regionais. Para abrir, é preciso que três deles cooperem, cada
+          um validando a ordem judicial por conta própria.
+        </p>
+        <p>
+          A consequência prática é boa: <strong>um único juiz não consegue</strong> chegar à
+          pessoa falando com uma instituição só. E se um cartório for comprometido, ele
+          sozinho não abre nada.
+        </p>
+        <p>
+          Há um detalhe ainda mais fino: o cartório assina o comprovante de registro
+          <strong>sem ver qual conta ele está autorizando</strong>. É como carimbar um
+          documento dentro de um envelope fechado — o carimbo vale, mas quem carimbou não
+          sabe o que carimbou. Isso é o que impede o próprio cartório de montar uma lista
+          de “contas da Maria”.
+        </p>
+      </div>
+
+      <div class="callout callout--warn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 4 2.8 20h18.4L12 4Z"></path>
+          <path d="M12 10v4.4"></path>
+          <circle cx="12" cy="17.6" r=".9" fill="currentColor" stroke="none"></circle>
+        </svg>
+        <div>
+          <span class="callout__title">Cuidado com a analogia</span>
+          <p class="mb-0">
+            “Cofre” e “chaves” são imagens para facilitar. Na prática são operações
+            matemáticas com números enormes, e a garantia vem de que cada pedaço, sozinho,
+            não carrega informação suficiente para nada.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ORDEM JUDICIAL ============ -->
+  <section class="section section--alt" id="ordem">
+    <div class="wrap">
+      <h2>Quando um juiz pede</h2>
+      <p class="lead">
+        Esta é a parte que mais confunde — e a que mais importa. Abrir o sigilo
+        <strong>não é</strong> publicar a identidade de alguém na internet.
+      </p>
+
+      <div class="scene" data-scene data-duration="13000">
+        <div class="scene__art">
+          <svg viewBox="0 0 880 330" role="img" aria-label="A conta leva ao cofre um, que devolve um número; o número leva ao cofre dois, que devolve nome e documento.">
+            <defs>
+              <marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0 L10 5 L0 10 z" fill="var(--line-strong)"></path>
+              </marker>
+            </defs>
+
+            <!-- trilha fantasma -->
+            <path class="edge ghost" d="M110 110 H 230"></path>
+            <path class="edge ghost" d="M350 110 H 430"></path>
+            <path class="edge ghost" d="M550 110 H 630"></path>
+            <path class="edge ghost" d="M750 110 H 810"></path>
+
+            <g data-at="0">
+              <rect x="30" y="78" width="110" height="64" rx="14" class="node node--brand"></rect>
+              <text x="85" y="106" text-anchor="middle" class="lbl">Conta A</text>
+              <text x="85" y="124" text-anchor="middle" class="lbl-sm">@noite.clara</text>
+            </g>
+
+            <g data-at="1600">
+              <rect x="230" y="60" width="120" height="100" rx="14" class="node node--accent"></rect>
+              <text x="290" y="88" text-anchor="middle" class="lbl">Cofre 1</text>
+              <text x="290" y="106" text-anchor="middle" class="lbl-sm">3 de 5 chaves</text>
+              <circle cx="262" cy="136" r="7" class="node" fill="var(--surface)"></circle>
+              <circle cx="290" cy="136" r="7" class="node" fill="var(--surface)"></circle>
+              <circle cx="318" cy="136" r="7" class="node" fill="var(--surface)"></circle>
+            </g>
+
+            <g data-at="3400">
+              <rect x="430" y="82" width="120" height="56" rx="14" class="node"></rect>
+              <text x="490" y="107" text-anchor="middle" class="lbl">número</text>
+              <text x="490" y="125" text-anchor="middle" class="lbl-sm">sem nome</text>
+            </g>
+
+            <g data-at="5000">
+              <rect x="630" y="60" width="120" height="100" rx="14" class="node node--warn"></rect>
+              <text x="690" y="88" text-anchor="middle" class="lbl">Cofre 2</text>
+              <text x="690" y="106" text-anchor="middle" class="lbl-sm">cartório</text>
+              <text x="690" y="126" text-anchor="middle" class="lbl-sm">segunda etapa</text>
+            </g>
+
+            <g data-at="6600">
+              <rect x="770" y="78" width="90" height="64" rx="14" class="node node--danger"></rect>
+              <text x="815" y="104" text-anchor="middle" class="lbl">nome</text>
+              <text x="815" y="122" text-anchor="middle" class="lbl-sm">documento</text>
+            </g>
+
+            <g data-at="8200">
+              <path class="edge edge--brand" d="M110 110 H 230" marker-end="url(#ar2)"></path>
+            </g>
+            <g data-at="8600">
+              <path class="edge edge--brand" d="M350 110 H 430" marker-end="url(#ar2)"></path>
+            </g>
+            <g data-at="9000">
+              <path class="edge edge--warn" d="M550 110 H 630" marker-end="url(#ar2)"></path>
+            </g>
+            <g data-at="9400">
+              <path class="edge edge--danger" d="M750 110 H 810" marker-end="url(#ar2)"></path>
+            </g>
+
+            <g data-at="10800">
+              <rect x="255" y="215" width="420" height="66" rx="14" class="node"></rect>
+              <text x="465" y="241" text-anchor="middle" class="lbl">Recibo lacrado</text>
+              <text x="465" y="261" text-anchor="middle" class="lbl-mono">H(ordem + conta + data + resultado)</text>
+            </g>
+          </svg>
+        </div>
+        <div class="scene__body">
+          <ol class="scene-caps">
+            <li data-at="0"><b>1.</b> O juiz quer saber quem está por trás da conta A.</li>
+            <li data-at="1600"><b>2.</b> O pedido vai ao <strong>primeiro cofre</strong>. Três das cinco instituições precisam cooperar — e cada uma valida a ordem por conta própria.</li>
+            <li data-at="3400"><b>3.</b> O cofre devolve <strong>um número</strong>: “a conta A pertence ao usuário 7f3c…”. Nada de nome, nada de CPF.</li>
+            <li data-at="5000"><b>4.</b> Esse número indica a qual <strong>cartório</strong> o juiz precisa se dirigir. É a segunda etapa, num outro lugar.</li>
+            <li data-at="6600"><b>5.</b> O cartório entrega <strong>só os campos pedidos</strong>: nome e documento. Não entrega endereço, não entrega histórico.</li>
+            <li data-at="8200"><b>6.</b> Cada etapa registra um <strong>recibo lacrado</strong>. O recibo prova que houve abertura, sem dizer para quem.</li>
+          </ol>
+        </div>
+        <div class="scene__ctl">
+          <button type="button" data-act="toggle">Pausar</button>
+          <button type="button" data-act="replay">Recomeçar</button>
+          <span class="scene__hint">Clique num passo para ir até ele</span>
+        </div>
+      </div>
+
+      <h3>Quem fica sabendo o quê</h3>
+      <div class="table-wrap">
+        <table class="data">
+          <caption>Depois de uma revelação autorizada por juiz.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Quem</th>
+              <th scope="col">Sabe qual é a conta?</th>
+              <th scope="col">Sabe o número interno?</th>
+              <th scope="col">Sabe quem é a pessoa?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>O juiz</td><td>Sim</td><td>Sim</td><td>Sim, só os campos pedidos</td></tr>
+            <tr><td>Cada cartório do cofre</td><td>Não (só um código embaralhado)</td><td>Não</td><td>Não</td></tr>
+            <tr><td>O cartório central</td><td>Não</td><td>Não</td><td>Não</td></tr>
+            <tr><td>O cartório da segunda etapa</td><td>Não</td><td>Sim</td><td>Sim</td></tr>
+            <tr><td>Os provedores de conteúdo</td><td>Não</td><td>Não</td><td>Não</td></tr>
+            <tr><td>Qualquer pessoa na internet</td><td>Não</td><td>Não</td><td>Não</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout callout--ok">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="m4.5 12.5 5 5 10-11"></path>
+        </svg>
+        <div>
+          <span class="callout__title">A pessoa avisada</span>
+          <p class="mb-0">
+            Quem foi revelado é avisado <strong>depois</strong> que o sigilo judicial termina,
+            com um prazo máximo. Durante a investigação, o aviso fica pendente e registrado —
+            ele nunca desaparece em silêncio.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LIVRO DE RECIBOS ============ -->
+  <section class="section" id="recibos">
+    <div class="wrap">
+      <h2>O livro de recibos lacrados</h2>
+      <div class="prose">
+        <p>
+          Se ninguém pode ver quem foi revelado, como impedir que uma revelação aconteça
+          no escuro? A resposta é um livro público de recibos: cada abertura vira uma
+          linha embaralhada.
+        </p>
+        <p>
+          A linha não diz “foi a conta da Maria”. Ela é um código calculado a partir da
+          ordem judicial, da conta, da data e do resultado. Só quem já tem esses dados
+          consegue conferir que aquela linha corresponde àquela revelação.
+        </p>
+      </div>
+
+      <div class="scene" data-scene data-duration="9000">
+        <div class="scene__art">
+          <svg viewBox="0 0 860 280" role="img" aria-label="Um livro com linhas de códigos embaralhados; cada linha corresponde a uma revelação sem dizer qual.">
+            <defs>
+              <marker id="ar3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0 L10 5 L0 10 z" fill="var(--line-strong)"></path>
+              </marker>
+            </defs>
+
+            <rect x="120" y="30" width="620" height="210" rx="18" class="node ghost"></rect>
+
+            <g data-at="0">
+              <rect x="120" y="30" width="620" height="210" rx="18" class="node"></rect>
+              <text x="150" y="60" class="lbl-sm">Livro público de recibos</text>
+            </g>
+
+            <g data-at="900">
+              <rect x="150" y="78" width="560" height="34" rx="8" class="node"></rect>
+              <text x="166" y="100" class="lbl-mono">3f9a…e21c · 2026-03-04 · 2 etapas</text>
+            </g>
+            <g data-at="1800">
+              <rect x="150" y="120" width="560" height="34" rx="8" class="node"></rect>
+              <text x="166" y="142" class="lbl-mono">8b17…44af · 2026-03-17 · 1 etapa</text>
+            </g>
+            <g data-at="2700">
+              <rect x="150" y="162" width="560" height="34" rx="8" class="node node--brand"></rect>
+              <text x="166" y="184" class="lbl-mono">c2d0…9be3 · 2026-04-02 · 2 etapas</text>
+            </g>
+
+            <g data-at="4500">
+              <rect x="150" y="206" width="230" height="26" rx="8" class="node node--accent"></rect>
+              <text x="166" y="224" class="lbl-sm">março: 17 aberturas</text>
+            </g>
+
+            <g data-at="6300">
+              <path class="edge edge--danger" d="M730 179 C 780 179, 790 120, 745 96" marker-end="url(#ar3)"></path>
+              <text x="760" y="220" text-anchor="middle" class="lbl-sm">só o órgão</text>
+              <text x="760" y="236" text-anchor="middle" class="lbl-sm">de controle abre</text>
+            </g>
+          </svg>
+        </div>
+        <div class="scene__body">
+          <ol class="scene-caps">
+            <li data-at="0"><b>1.</b> O livro é público: qualquer um pode baixar e guardar uma cópia.</li>
+            <li data-at="900"><b>2.</b> Cada linha é um código. Não tem nome, não tem conta, não tem CPF.</li>
+            <li data-at="2700"><b>3.</b> Quem tem a ordem judicial consegue conferir que a linha existe e corresponde ao caso.</li>
+            <li data-at="4500"><b>4.</b> Também há contadores: quantas aberturas por mês. Dá para perceber um uso fora do normal.</li>
+            <li data-at="6300"><b>5.</b> O conteúdo completo do livro fica com um órgão de controle, sob chave própria.</li>
+          </ol>
+        </div>
+        <div class="scene__ctl">
+          <button type="button" data-act="toggle">Pausar</button>
+          <button type="button" data-act="replay">Recomeçar</button>
+          <span class="scene__hint">Clique num passo para ir até ele</span>
+        </div>
+      </div>
+
+      <div class="callout callout--info">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M12 11v5"></path>
+          <circle cx="12" cy="7.8" r=".9" fill="currentColor" stroke="none"></circle>
+        </svg>
+        <div>
+          <span class="callout__title">Por que não mostrar a conta no recibo</span>
+          <p class="mb-0">
+            Porque “a conta X foi aberta” já seria um vazamento. Revelaria que aquela
+            pessoa está sob investigação — o que pode atrapalhar a apuração e expor o
+            investigado antes da hora.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LIMITES ============ -->
+  <section class="section section--alt" id="limites">
+    <div class="wrap">
+      <h2>O que ninguém consegue prometer</h2>
+      <p class="lead">
+        Um projeto de privacidade que só fala das garantias não é confiável. Estas são as
+        limitações reais, na linguagem mais direta possível.
+      </p>
+
+      <div class="compare">
+        <div class="compare__box compare__box--good">
+          <h3>O que o desenho resolve</h3>
+          <ul>
+            <li>Uma conta não mostra quem é a pessoa.</li>
+            <li>Um cartório não consegue ligar contas entre si.</li>
+            <li>Um juiz sozinho não chega ao nome numa etapa só.</li>
+            <li>Provedor de conteúdo não lê mensagens privadas.</li>
+            <li>Abertura de sigilo deixa prova pública.</li>
+          </ul>
+        </div>
+        <div class="compare__box compare__box--bad">
+          <h3>O que ele não resolve</h3>
+          <ul>
+            <li>Quem tem seu aparelho na mão vê o que você vê.</li>
+            <li>Provedores sabem seu endereço de IP.</li>
+            <li>Quem recebe o dado pode vazar depois.</li>
+            <li>Uma ordem abusiva contra o cartório atinge muitos.</li>
+            <li>Nada impede filmar a tela com outro celular.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="prose">
+        <p>
+          Existe ainda uma tensão que não é técnica, é política: os cartórios precisam ser
+          independentes uns dos outros para o cofre valer. Mas, se estiverem em países
+          diferentes, uma ordem judicial brasileira pode não alcançá-los — e aí o sistema
+          deixa de servir justamente para o que foi criado.
+        </p>
+        <p>
+          Não existe resposta pronta para isso. É uma decisão de governança, não de
+          programação.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MENORES ============ -->
+  <section class="section" id="menores">
+    <div class="wrap">
+      <h2>Crianças e adolescentes</h2>
+      <div class="prose">
+        <p>
+          Uma conta de criança ou adolescente não pode ser “anônima” quanto à idade. A lei
+          brasileira exige que as plataformas saibam a faixa etária e protejam esse público
+          — o Estatuto Digital da Criança e do Adolescente, em vigor desde março de 2026.
+        </p>
+        <p>
+          Por isso existe a
+          <button type="button" class="term" data-tip="Conta com restrições obrigatórias: privacidade máxima por padrão, sem anúncios direcionados, com responsável vinculado e um rótulo visível de faixa etária." data-more="glossario.html#conta-restrita">conta restrita</button>.
+          Ela é criada ou autorizada por um responsável e mostra, para qualquer pessoa que
+          interaja com ela, que se trata de criança ou adolescente.
+        </p>
+        <p>
+          O rótulo é um trade-off consciente: a idade deixa de ser privada, e a proteção
+          ganha. O que continua privado é a data de nascimento exata, o nome e o
+          responsável legal.
+        </p>
+      </div>
+
+      <div class="table-wrap">
+        <table class="data">
+          <thead>
+            <tr>
+              <th scope="col">Conta de adulto</th>
+              <th scope="col">Conta restrita</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Visibilidade padrão: pública</td><td>Privacidade máxima por padrão</td></tr>
+            <tr><td>Mensagens de estranhos liberadas</td><td>Bloqueadas ou só com autorização do responsável</td></tr>
+            <tr><td>Anúncios podem usar comportamento</td><td>Perfilamento publicitário proibido</td></tr>
+            <tr><td>Transmissões ao vivo liberadas</td><td>Bloqueadas ou só com verificação</td></tr>
+            <tr><td>Sem rótulo</td><td>Rótulo público “criança” ou “adolescente”</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout callout--warn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 4 2.8 20h18.4L12 4Z"></path>
+          <path d="M12 10v4.4"></path>
+          <circle cx="12" cy="17.6" r=".9" fill="currentColor" stroke="none"></circle>
+        </svg>
+        <div>
+          <span class="callout__title">Verificação de idade de verdade</span>
+          <p class="mb-0">
+            A lei não aceita mais “digite sua idade”. A faixa etária vem de quem verificou
+            o documento — o cartório — e não de um formulário que a criança pode preencher
+            sozinha.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DETALHE ============ -->
+  <section class="section section--alt" id="detalhe">
+    <div class="wrap">
+      <h2>Para quem quer o detalhe</h2>
+      <p class="lead">Esta parte usa termos técnicos. Ela existe para quem quiser conferir o raciocínio.</p>
+
+      <details class="acc">
+        <summary>Como o cartório assina sem saber o que assina</summary>
+        <div class="acc__body">
+          <p>
+            A pessoa escolhe um número aleatório secreto e o “embaralha” antes de mandar
+            ao cartório. O cartório assina o que recebeu — mas o que ele vê não permite
+            descobrir o número original. Depois, a pessoa desembaralha a assinatura e fica
+            com um comprovante válido do cartório, sem que o cartório saiba qual número
+            ele autorizou.
+          </p>
+          <p>
+            Técnicas usadas: assinaturas cegas (por exemplo RSA blind) ou funções
+            pseudoaleatórias verificáveis (VOPRF). O ponto comum é: assinatura válida,
+            conteúdo desconhecido para quem assinou.
+          </p>
+        </div>
+      </details>
+
+      <details class="acc">
+        <summary>Por que uma ordem só é executada em duas etapas</summary>
+        <div class="acc__body">
+          <p>
+            O primeiro cofre guarda apenas um número interno por conta — nunca nome ou
+            documento. O segundo cofre é um cartório, que guarda o registro de identidade.
+            São instituições diferentes, com bases diferentes.
+          </p>
+          <p>
+            A ordem judicial é uma só, mas precisa ser executada nos dois lugares. Isso
+            significa que um vazamento numa instituição só não entrega o par completo
+            conta↔pessoa.
+          </p>
+        </div>
+      </details>
+
+      <details class="acc">
+        <summary>O que acontece se um cartório for extinto</summary>
+        <div class="acc__body">
+          <p>
+            Encerrar um cartório não apaga o dever de responder a ordem judicial. O contrato
+            de credenciamento prevê uma instituição sucessora, que assume os registros e
+            essa obrigação. Sem essa regra, bastaria fechar o cartório para escapar de
+            qualquer investigação.
+          </p>
+        </div>
+      </details>
+
+      <details class="acc">
+        <summary>Contas diferentes da mesma pessoa são ligadas?</summary>
+        <div class="acc__body">
+          <p>
+            Não. Como o cartório assina sem saber quais números autorizou, ele não consegue
+            dizer “estas cinco contas são da mesma pessoa”. Isso permite personas separadas:
+            uma profissional, uma pessoal, uma para denúncias.
+          </p>
+          <p>
+            O efeito colateral é que uma ordem judicial sobre uma conta não revela as
+            outras. Cada conta exige o seu próprio caminho.
+          </p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <nav class="pager" aria-label="Navegação entre capítulos">
+      <a class="pager--prev" href="index.html">
+        <span>Anterior</span>
+        <strong>← Início</strong>
+      </a>
+      <a class="pager--next" href="mensagens.html">
+        <span>Próximo capítulo</span>
+        <strong>Mensagens →</strong>
+      </a>
+    </nav>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <p>
+          <strong>IPR</strong> — uma rede social que tenta conciliar duas coisas que costumam
+          se excluir: <em>anonimato para quem age de boa-fé</em> e
+          <em>responsabilidade para quem comete crime</em>.
+        </p>
+        <p class="faint">Explicação em linguagem simples, para quem não é de TI.</p>
+      </div>
+      <div>
+        <h2>Entender</h2>
+        <ul>
+          <li><a href="seguranca.html">Segurança e privacidade</a></li>
+          <li><a href="mensagens.html">Mensagens</a></li>
+          <li><a href="diario.html">Diário</a></li>
+          <li><a href="chamadas.html">Chamadas</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Ajuda</h2>
+        <ul>
+          <li><a href="provedores.html">Provedores</a></li>
+          <li><a href="perguntas.html">Perguntas frequentes</a></li>
+          <li><a href="glossario.html">Glossário</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-base">
+      <span>Conteúdo educativo. Não é aconselhamento jurídico.</span>
+      <span>© <span data-year>2026</span> IPR</span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

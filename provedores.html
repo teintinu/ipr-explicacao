@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Provedores e armazenamento — IPR</title>
+<meta name="description" content="Quem guarda os arquivos da rede, por que o navegador não pode ser um servidor e como o uso de espaço é medido e mostrado.">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<script src="assets/js/site.js" defer></script>
+<script src="assets/js/scenes.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="brand" href="index.html" aria-label="IPR — página inicial">
+      <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+        <rect width="32" height="32" rx="9" fill="currentColor" opacity=".1"></rect>
+        <circle cx="16" cy="16" r="3.7" fill="currentColor"></circle>
+        <circle cx="7.5" cy="8.5" r="2" fill="currentColor" opacity=".6"></circle>
+        <circle cx="24.5" cy="8.5" r="2" fill="currentColor" opacity=".6"></circle>
+        <circle cx="7.5" cy="23.5" r="2" fill="currentColor" opacity=".6"></circle>
+        <circle cx="24.5" cy="23.5" r="2" fill="currentColor" opacity=".6"></circle>
+        <path d="M9.2 9.7 13.4 13.2M22.8 9.7 18.6 13.2M9.2 22.3 13.4 18.8M22.8 22.3 18.6 18.8" stroke="currentColor" stroke-width="1.3" opacity=".45"></path>
+      </svg>
+      <span>IPR<span class="brand__sub">a rede explicada</span></span>
+    </a>
+
+    <nav class="nav" id="menu-principal" aria-label="Navegação principal" data-open="false">
+      <a href="index.html">Início</a>
+      <a href="seguranca.html">Segurança</a>
+      <a href="mensagens.html">Mensagens</a>
+      <a href="diario.html">Diário</a>
+      <a href="chamadas.html">Chamadas</a>
+      <a href="provedores.html" aria-current="page">Provedores</a>
+      <a href="perguntas.html">Perguntas</a>
+    </nav>
+
+    <div class="header-actions">
+      <button type="button" class="icon-btn" data-theme-toggle aria-label="Alternar tema">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+          <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path>
+        </svg>
+      </button>
+      <button type="button" class="icon-btn nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menu">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="conteudo">
+  <section class="section section--tight">
+    <div class="wrap">
+      <p class="kicker">Capítulo 5</p>
+      <h1>Provedores e armazenamento</h1>
+      <p class="lead">
+        Se não existe um servidor da rede, quem guarda os arquivos? A resposta é: vários
+        computadores escolhidos pelos próprios usuários.
+      </p>
+
+      <div class="tldr mt-3">
+        <h2>Resumo em cinco linhas</h2>
+        <ul>
+          <li>Um <strong>provedor</strong> é um computador que guarda pedaços de conteúdo e os entrega a quem pede.</li>
+          <li>Você escolhe quais provedores guardam o quê — e pode mudar de ideia.</li>
+          <li>O <strong>navegador</strong> também ajuda, mas com limites rígidos de espaço e de envio.</li>
+          <li>O uso de espaço é <strong>recalculável</strong>: dá para conferir a partir da lista de arquivos.</li>
+          <li>Quem guarda <strong>não é autor</strong>: a responsabilidade pelo conteúdo é de quem publicou.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ O QUE É ============ -->
+  <section class="section section--tight" id="o-que-e">
+    <div class="wrap">
+      <h2>O que é um provedor</h2>
+
+      <div class="prose">
+        <p>
+          Pense num guarda-volumes. Ele não é dono da sua mala, não abre sua mala, mas
+          guarda enquanto você precisa e devolve para quem você autorizou.
+        </p>
+        <p>
+          Um provedor faz isso com dados: guarda arquivos identificados por uma
+          <button type="button" class="term" data-tip="Código calculado a partir do conteúdo do arquivo. Funciona como um endereço que ninguém pode falsificar: se o conteúdo mudar, o endereço muda." data-more="glossario.html#impressao-digital">impressão digital</button>
+          e entrega quando alguém pede. Ele não precisa saber o que está guardando, e no caso
+          de conteúdo privado realmente não sabe.
+        </p>
+        <p>
+          Pode ser o computador de uma pessoa, uma máquina alugada, uma empresa pequena ou
+          um servidor doméstico ligado 24 horas.
+        </p>
+      </div>
+
+      <div class="cards cards--3 mt-3">
+        <div class="card">
+          <h3>Sempre-ligado</h3>
+          <p>Fica disponível o tempo todo. É o que garante que o conteúdo exista quando você não está online.</p>
+        </div>
+        <div class="card">
+          <h3>Oportunista</h3>
+          <p>Funciona só enquanto está aberto — o caso do seu navegador. Ajuda, mas não serve como única cópia.</p>
+        </div>
+        <div class="card">
+          <h3>Especializado</h3>
+          <p>Pode cuidar só de um tipo: armazenar, retransmitir, distribuir vídeo de chamada ou indexar conteúdo público.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ POR QUE ============ -->
+  <section class="section section--alt" id="por-que">
+    <div class="wrap">
+      <h2>Por que a rede precisa deles</h2>
+      <p class="lead">
+        A tentação é dizer “cada um guarda o que é seu”. Isso não funciona, por três
+        motivos simples.
+      </p>
+
+      <ol class="steps" style="max-width:70ch">
+        <li class="step">
+          <h3>O celular dorme</h3>
+          <p>
+            Se você publica um vídeo e desliga o aparelho, ninguém consegue assistir. Alguém
+            precisa estar acordado para entregar.
+          </p>
+        </li>
+        <li class="step">
+          <h3>O endereço muda</h3>
+          <p>
+            A conexão de casa troca de endereço, o celular muda de rede. Não dá para apontar
+            um link para o seu aparelho e esperar que funcione amanhã.
+          </p>
+        </li>
+        <li class="step">
+          <h3>Ninguém está sempre online</h3>
+          <p>
+            Mensagens precisam ficar depositadas até o destinatário aparecer. Isso exige um
+            escaninho que não é o aparelho de ninguém.
+          </p>
+        </li>
+      </ol>
+
+      <div class="callout callout--info">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M12 11v5"></path>
+          <circle cx="12" cy="7.8" r=".9" fill="currentColor" stroke="none"></circle>
+        </svg>
+        <div>
+          <span class="callout__title">Provedor não é “servidor da rede”</span>
+          <p class="mb-0">
+            Não existe um servidor central que guarda tudo. Existem muitos provedores
+            independentes, e nenhum deles precisa conhecer o conjunto. Se um desligar, o
+            conteúdo continua nos outros — desde que esteja replicado.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ NAVEGADOR ============ -->
+  <section class="section" id="navegador">
+    <div class="wrap">
+      <h2>O navegador como ajudante — com limites</h2>
+      <p class="lead">
+        Quando você está vendo um vídeo, seu navegador já baixou boa parte dele. Faz
+        sentido ajudar a entregar para outras pessoas — desde que isso não estrague sua
+        vida.
+      </p>
+
+      <div class="prose">
+        <p>
+          O projeto permite que o navegador seja um provedor <strong>enquanto a aba está
+          aberta</strong>, e apenas para o conteúdo que você está vendo ou marcou que
+          gostou. Fora disso, ele não guarda nada.
+        </p>
+        <p>
+          E existem tetos explícitos. Sem eles, “ajudar a rede” viraria consumo de bateria,
+          de disco e de dados móveis — o tipo de coisa que faz alguém desinstalar um
+          aplicativo.
+        </p>
+      </div>
+
+      <div class="demo" data-budget>
+        <div class="demo__bar">
+          <span class="pill">Simulação</span>
+          <label for="budget-range" style="font-size:.9rem">Conteúdo guardado pelo navegador</label>
+        </div>
+        <div class="demo__stage">
+          <div>
+            <div class="meter-label">
+              <span>uso atual</span>
+              <span><strong data-budget-value>128 MB</strong> de 512 MB</span>
+            </div>
+            <div class="meter"><i style="width:25%"></i></div>
+          </div>
+          <input id="budget-range" type="range" min="0" max="512" value="128" step="8"
+                 style="width:100%;accent-color:var(--brand)" aria-describedby="budget-help">
+          <p id="budget-help" class="faint mb-0" style="font-size:.86rem">
+            Ao chegar no teto, o navegador descarta o mais antigo — nunca o que você está
+            vendo agora.
+          </p>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table class="data">
+          <caption>Limites que o navegador respeita por padrão.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Limite</th>
+              <th scope="col">Comportamento</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Espaço em disco</td><td>Teto fixo; o excedente é descartado</td></tr>
+            <tr><td>Envio (upload)</td><td>Teto diário — o mais importante, porque é o que custa caro</td></tr>
+            <tr><td>Bateria</td><td>Pausa quando o aparelho está na bateria</td></tr>
+            <tr><td>Rede móvel</td><td>Desligado por padrão</td></tr>
+            <tr><td>Aba em segundo plano</td><td>Pausa</td></tr>
+            <tr><td>Cópia única</td><td>Nunca é a única cópia: exige ao menos um provedor sempre-ligado</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout callout--warn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 4 2.8 20h18.4L12 4Z"></path>
+          <path d="M12 10v4.4"></path>
+          <circle cx="12" cy="17.6" r=".9" fill="currentColor" stroke="none"></circle>
+        </svg>
+        <div>
+          <span class="callout__title">Curtir não é baixar</span>
+          <p class="mb-0">
+            Marcar “gostei” sinaliza interesse em ajudar a guardar, não baixa o arquivo
+            inteiro na hora. O conteúdo vem sob demanda, em pedaços, quando alguém pedir.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MEDIÇÃO ============ -->
+  <section class="section section--alt" id="medicao">
+    <div class="wrap">
+      <h2>Quanto está ocupando</h2>
+      <p class="lead">
+        Você pode ver, por conta, quanto espaço está sendo usado em cada provedor. E pode
+        adicionar ou remover provimento de uma conta ou de um conteúdo específico.
+      </p>
+
+      <div class="scene" data-scene data-duration="10500">
+        <div class="scene__art">
+          <svg viewBox="0 0 880 320" role="img" aria-label="A conta distribui seus arquivos entre três provedores, que devolvem recibos com a soma dos bytes.">
+            <defs>
+              <marker id="arp1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0 L10 5 L0 10 z" fill="var(--line-strong)"></path>
+              </marker>
+            </defs>
+
+            <g data-at="0">
+              <rect x="40" y="120" width="150" height="80" rx="16" class="node node--brand"></rect>
+              <text x="115" y="152" text-anchor="middle" class="lbl">Sua conta</text>
+              <text x="115" y="172" text-anchor="middle" class="lbl-sm">3,4 GB no total</text>
+            </g>
+
+            <g data-at="1400">
+              <rect x="300" y="40" width="180" height="70" rx="14" class="node"></rect>
+              <text x="390" y="68" text-anchor="middle" class="lbl">Provedor 1</text>
+              <text x="390" y="88" text-anchor="middle" class="lbl-sm">1,2 GB · 340 arquivos</text>
+            </g>
+
+            <g data-at="2200">
+              <rect x="300" y="130" width="180" height="70" rx="14" class="node"></rect>
+              <text x="390" y="158" text-anchor="middle" class="lbl">Provedor 2</text>
+              <text x="390" y="178" text-anchor="middle" class="lbl-sm">1,9 GB · 512 arquivos</text>
+            </g>
+
+            <g data-at="3000">
+              <rect x="300" y="220" width="180" height="70" rx="14" class="node"></rect>
+              <text x="390" y="248" text-anchor="middle" class="lbl">Provedor 3</text>
+              <text x="390" y="268" text-anchor="middle" class="lbl-sm">0,3 GB · 88 arquivos</text>
+            </g>
+
+            <g data-at="4400">
+              <path class="edge edge--brand" d="M190 150 L 296 80" marker-end="url(#arp1)"></path>
+              <path class="edge edge--brand" d="M190 160 H 296" marker-end="url(#arp1)"></path>
+              <path class="edge edge--brand" d="M190 172 L 296 250" marker-end="url(#arp1)"></path>
+            </g>
+
+            <g data-at="6200">
+              <rect x="570" y="120" width="270" height="80" rx="14" class="node node--accent"></rect>
+              <text x="705" y="148" text-anchor="middle" class="lbl-sm">recibo de uso</text>
+              <text x="705" y="168" text-anchor="middle" class="lbl-mono">soma dos arquivos = 1,2 GB</text>
+              <text x="705" y="186" text-anchor="middle" class="lbl-sm">conferível por qualquer um</text>
+            </g>
+
+            <g data-at="8000">
+              <path class="edge edge--accent" d="M480 75 C 520 75, 530 120, 566 150" marker-end="url(#arp1)"></path>
+            </g>
+          </svg>
+        </div>
+        <div class="scene__body">
+          <ol class="scene-caps">
+            <li data-at="0"><b>1.</b> Sua conta tem arquivos espalhados por provedores escolhidos por você.</li>
+            <li data-at="1400"><b>2.</b> O provedor 1 guarda 1,2 GB. O 2 guarda 1,9 GB. O 3 guarda 0,3 GB.</li>
+            <li data-at="4400"><b>3.</b> Você pede a lista do que está guardado onde.</li>
+            <li data-at="6200"><b>4.</b> Cada provedor devolve um recibo com a lista de arquivos — e a soma.</li>
+            <li data-at="8000"><b>5.</b> Como a soma vem da lista, ninguém consegue inflar o número sem inventar arquivo.</li>
+          </ol>
+        </div>
+        <div class="scene__ctl">
+          <button type="button" data-act="toggle">Pausar</button>
+          <button type="button" data-act="replay">Recomeçar</button>
+          <span class="scene__hint">Clique num passo para ir até ele</span>
+        </div>
+      </div>
+
+      <div class="prose">
+        <p>
+          Esse detalhe — <strong>o número sai da lista, não da palavra do provedor</strong> —
+          é o que permite cobrar sem precisar confiar. Se o recibo diz 1,2 GB, qualquer
+          pessoa pode somar os arquivos listados e checar.
+        </p>
+        <p>
+          O provedor pode errar para menos (e sair no prejuízo), mas não consegue errar para
+          mais sem listar arquivos que não existem — o que seria imediatamente detectável.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ QUEM PAGA ============ -->
+  <section class="section" id="custo">
+    <div class="wrap">
+      <h2>Quem paga por isso</h2>
+
+      <div class="prose">
+        <p>
+          Guardar texto e fotos é barato. <strong>Vídeo não é.</strong> O custo maior não é
+          o disco: é a banda de saída, ou seja, entregar o mesmo vídeo para muita gente.
+        </p>
+        <p>
+          O projeto não define preço nem cobra nada. Ele apenas mede e mostra. Quem opera o
+          provedor decide se cobra, quanto cobra e de quem — e essa conversa acontece fora
+          do sistema.
+        </p>
+      </div>
+
+      <div class="cards cards--3 mt-3">
+        <div class="card">
+          <h3>Provedor pessoal</h3>
+          <p>Um amigo ou a própria família guarda. Custo baixo, escala pequena, funciona bem no começo.</p>
+        </div>
+        <div class="card">
+          <h3>Provedor comercial</h3>
+          <p>Alguém cobra para guardar e entregar. Precisa de medição confiável — é por isso que o recibo existe.</p>
+        </div>
+        <div class="card">
+          <h3>Espelho público</h3>
+          <p>Quem tem interesse no conteúdo guarda uma cópia. Só funciona para o que é popular.</p>
+        </div>
+      </div>
+
+      <div class="callout callout--info">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M12 11v5"></path>
+          <circle cx="12" cy="7.8" r=".9" fill="currentColor" stroke="none"></circle>
+        </svg>
+        <div>
+          <span class="callout__title">A rede é indiferente à cobrança</span>
+          <p class="mb-0">
+            Cobrar ou não é escolha de quem opera o provedor. O sistema não favorece nem
+            penaliza nenhum dos dois modelos — e não tem como saber quanto foi pago.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RESPONSABILIDADE ============ -->
+  <section class="section section--alt" id="responsabilidade">
+    <div class="wrap">
+      <h2>Quem responde pelo conteúdo</h2>
+
+      <div class="compare">
+        <div class="compare__box compare__box--good">
+          <h3>Responsável</h3>
+          <ul>
+            <li>Quem criou o conteúdo.</li>
+            <li>Quem o divulgou.</li>
+            <li>O grupo, quando o conteúdo é do grupo.</li>
+          </ul>
+        </div>
+        <div class="compare__box">
+          <h3>Não é responsável</h3>
+          <ul>
+            <li>Quem apenas guardou os arquivos.</li>
+            <li>Quem apenas entregou os pacotes.</li>
+            <li>Quem apenas indexou o que era público.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="prose">
+        <p>
+          Essa separação não é uma invenção do projeto: é como o direito brasileiro trata
+          intermediários. Mas ela tem consequência prática. O provedor continua obrigado a
+          cumprir ordem judicial de remoção, e por isso existe um canal de notificação e um
+          registro de tudo o que foi removido.
+        </p>
+        <p>
+          A distinção também vale para o usuário: guardar um arquivo de outra pessoa não
+          transforma você no autor dele. Publicar, sim.
+        </p>
+      </div>
+
+      <div class="callout callout--warn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 4 2.8 20h18.4L12 4Z"></path>
+          <path d="M12 10v4.4"></path>
+          <circle cx="12" cy="17.6" r=".9" fill="currentColor" stroke="none"></circle>
+        </svg>
+        <div>
+          <span class="callout__title">Provedor comercial e anonimato</span>
+          <p class="mb-0">
+            No Brasil, provedores com fins econômicos têm obrigações de guarda de registros
+            de acesso. Um provedor comercial não pode prometer que não sabe de onde veio a
+            conexão. Um nó doméstico está em outra situação. É uma diferença que o sistema
+            registra, não esconde.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DETALHE ============ -->
+  <section class="section" id="detalhe">
+    <div class="wrap">
+      <h2>Para quem quer o detalhe</h2>
+
+      <details class="acc">
+        <summary>Por que o arquivo tem “endereço” em vez de nome</summary>
+        <div class="acc__body">
+          <p>
+            O endereço de um arquivo é calculado a partir do conteúdo dele. Isso traz duas
+            propriedades: o mesmo arquivo tem sempre o mesmo endereço (então cópias são
+            reconhecidas), e qualquer alteração muda o endereço (então não dá para trocar o
+            conteúdo sem ser notado).
+          </p>
+          <p>
+            O efeito colateral é que arquivos diferentes com o mesmo conteúdo ocupam um
+            lugar só. E que não existe “renomear”: o nome é uma etiqueta guardada à parte.
+          </p>
+        </div>
+      </details>
+
+      <details class="acc">
+        <summary>Como o conteúdo é dividido em pedaços</summary>
+        <div class="acc__body">
+          <p>
+            Vídeos grandes são cortados em blocos. Cada bloco tem seu próprio endereço, e um
+            índice lista a ordem. Assim dá para baixar de vários provedores ao mesmo tempo,
+            continuar de onde parou e trocar um bloco corrompido sem refazer tudo.
+          </p>
+        </div>
+      </details>
+
+      <details class="acc">
+        <summary>O que acontece se um provedor desligar</summary>
+        <div class="acc__body">
+          <p>
+            Quem pediu o arquivo simplesmente pede a outro provedor que tenha o mesmo bloco.
+            O problema só existe se aquele bloco não estiver em nenhum outro lugar — por isso
+            a escolha de quantas cópias manter é uma decisão importante, e o sistema avisa
+            quando uma conta está com pouca réplica.
+          </p>
+        </div>
+      </details>
+
+      <details class="acc">
+        <summary>Remover conteúdo de verdade</summary>
+        <div class="acc__body">
+          <p>
+            Apagar o índice não apaga os blocos. Para remover de fato, é preciso pedir a
+            cada provedor que apague os blocos correspondentes. Enquanto alguém tiver uma
+            cópia, o conteúdo continua acessível por aquele endereço.
+          </p>
+          <p>
+            É a mesma razão pela qual “apagar da internet” é difícil em qualquer sistema
+            distribuído — a diferença é que aqui você sabe exatamente onde estão as cópias.
+          </p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <nav class="pager" aria-label="Navegação entre capítulos">
+      <a class="pager--prev" href="chamadas.html">
+        <span>Anterior</span>
+        <strong>← Chamadas</strong>
+      </a>
+      <a class="pager--next" href="perguntas.html">
+        <span>Próximo</span>
+        <strong>Perguntas frequentes →</strong>
+      </a>
+    </nav>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <p>
+          <strong>IPR</strong> — uma rede social que tenta conciliar duas coisas que costumam
+          se excluir: <em>anonimato para quem age de boa-fé</em> e
+          <em>responsabilidade para quem comete crime</em>.
+        </p>
+        <p class="faint">Explicação em linguagem simples, para quem não é de TI.</p>
+      </div>
+      <div>
+        <h2>Entender</h2>
+        <ul>
+          <li><a href="seguranca.html">Segurança e privacidade</a></li>
+          <li><a href="mensagens.html">Mensagens</a></li>
+          <li><a href="diario.html">Diário</a></li>
+          <li><a href="chamadas.html">Chamadas</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Ajuda</h2>
+        <ul>
+          <li><a href="provedores.html">Provedores</a></li>
+          <li><a href="perguntas.html">Perguntas frequentes</a></li>
+          <li><a href="glossario.html">Glossário</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-base">
+      <span>Conteúdo educativo. Não é aconselhamento jurídico.</span>
+      <span>© <span data-year>2026</span> IPR</span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

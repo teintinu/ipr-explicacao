@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mensagens — IPR</title>
+<meta name="description" content="Como funcionam as conversas privadas e os grupos: cifra no aparelho, grupos com chave própria e o que o provedor consegue ver.">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<script src="assets/js/site.js" defer></script>
+<script src="assets/js/scenes.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="brand" href="index.html" aria-label="IPR — página inicial">
+      <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+        <rect width="32" height="32" rx="9" fill="currentColor" opacity=".1"></rect>
+        <circle cx="16" cy="16" r="3.7" fill="currentColor"></circle>
+        <circle cx="7.5" cy="8.5" r="2" fill="currentColor" opacity=".6"></circle>
+        <circle cx="24.5" cy="8.5" r="2" fill="currentColor" opacity=".6"></circle>
+        <circle cx="7.5" cy="23.5" r="2" fill="currentColor" opacity=".6"></circle>
+        <circle cx="24.5" cy="23.5" r="2" fill="currentColor" opacity=".6"></circle>
+        <path d="M9.2 9.7 13.4 13.2M22.8 9.7 18.6 13.2M9.2 22.3 13.4 18.8M22.8 22.3 18.6 18.8" stroke="currentColor" stroke-width="1.3" opacity=".45"></path>
+      </svg>
+      <span>IPR<span class="brand__sub">a rede explicada</span></span>
+    </a>
+
+    <nav class="nav" id="menu-principal" aria-label="Navegação principal" data-open="false">
+      <a href="index.html">Início</a>
+      <a href="seguranca.html">Segurança</a>
+      <a href="mensagens.html" aria-current="page">Mensagens</a>
+      <a href="diario.html">Diário</a>
+      <a href="chamadas.html">Chamadas</a>
+      <a href="provedores.html">Provedores</a>
+      <a href="perguntas.html">Perguntas</a>
+    </nav>
+
+    <div class="header-actions">
+      <button type="button" class="icon-btn" data-theme-toggle aria-label="Alternar tema">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+          <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path>
+        </svg>
+      </button>
+      <button type="button" class="icon-btn nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menu">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="conteudo">
+  <section class="section section--tight">
+    <div class="wrap">
+      <p class="kicker">Capítulo 2</p>
+      <h1>Mensagens</h1>
+      <p class="lead">
+        Conversas de uma pessoa para outra e conversas em grupo. A ideia é parecida com a
+        de um aplicativo de mensagens comum — mas o conteúdo é trancado no seu aparelho,
+        antes de sair dele.
+      </p>
+
+      <div class="tldr mt-3">
+        <h2>Resumo em cinco linhas</h2>
+        <ul>
+          <li>A mensagem é <strong>trancada no seu aparelho</strong> e só o destinatário tem a chave.</li>
+          <li>O provedor que guarda a mensagem vê <strong>um embrulho fechado</strong>, não o texto.</li>
+          <li>Grupos funcionam como uma <strong>conta com assinatura própria</strong>, com chave que muda quando alguém entra ou sai.</li>
+          <li>Quem entra depois <strong>não lê o passado</strong>; quem sai <strong>não lê o futuro</strong>.</li>
+          <li>O que sobra de exposição são os <strong>metadados</strong>: quem fala com quem, e quando.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 1:1 ============ -->
+  <section class="section section--tight" id="um-para-um">
+    <div class="wrap">
+      <h2>Conversa de uma pessoa para outra</h2>
+      <p class="lead">
+        Quando você escreve, o texto nunca viaja legível. Ele é transformado em algo que
+        só o destinatário consegue desfazer.
+      </p>
+
+      <div class="scene" data-scene data-duration="10500">
+        <div class="scene__art">
+          <svg viewBox="0 0 880 320" role="img" aria-label="Maria escreve, a mensagem é trancada, passa pelo provedor como embrulho fechado e é aberta por João.">
+            <defs>
+              <marker id="arm1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0 L10 5 L0 10 z" fill="var(--line-strong)"></path>
+              </marker>
+            </defs>
+
+            <path class="edge ghost" d="M150 120 H 330"></path>
+            <path class="edge ghost" d="M550 120 H 730"></path>
+
+            <g data-at="0">
+              <rect x="30" y="76" width="120" height="88" rx="16" class="node node--brand"></rect>
+              <text x="90" y="108" text-anchor="middle" class="lbl">Maria</text>
+              <text x="90" y="128" text-anchor="middle" class="lbl-sm">escreve</text>
+              <text x="90" y="146" text-anchor="middle" class="lbl-sm">“chego às 19h”</text>
+            </g>
+
+            <g data-at="1800">
+              <rect x="330" y="76" width="220" height="88" rx="16" class="node node--accent"></rect>
+              <text x="440" y="106" text-anchor="middle" class="lbl">Mensagem trancada</text>
+              <text x="440" y="126" text-anchor="middle" class="lbl-mono">a7f3 9c21 0b4e …</text>
+              <text x="440" y="146" text-anchor="middle" class="lbl-sm">ilegível sem a chave</text>
+            </g>
+
+            <g data-at="3600">
+              <rect x="330" y="220" width="220" height="62" rx="14" class="node"></rect>
+              <text x="440" y="245" text-anchor="middle" class="lbl-sm">Provedor</text>
+              <text x="440" y="264" text-anchor="middle" class="lbl-sm">guarda o embrulho</text>
+              <path class="edge edge-dash" d="M440 164 V 216" marker-end="url(#arm1)"></path>
+            </g>
+
+            <g data-at="5400">
+              <rect x="730" y="76" width="120" height="88" rx="16" class="node node--brand"></rect>
+              <text x="790" y="108" text-anchor="middle" class="lbl">João</text>
+              <text x="790" y="128" text-anchor="middle" class="lbl-sm">abre</text>
+              <text x="790" y="146" text-anchor="middle" class="lbl-sm">“chego às 19h”</text>
+            </g>
+
+            <g data-at="7200">
+              <path class="edge edge--brand" d="M150 120 H 330" marker-end="url(#arm1)"></path>
+              <path class="edge edge--brand" d="M550 120 H 730" marker-end="url(#arm1)"></path>
+            </g>
+
+            <g data-at="8600">
+              <rect x="330" y="300" width="220" height="0" rx="0" class="node"></rect>
+              <text x="440" y="300" text-anchor="middle" class="lbl-sm">o provedor nunca viu o texto</text>
+            </g>
+          </svg>
+        </div>
+        <div class="scene__body">
+          <ol class="scene-caps">
+            <li data-at="0"><b>1.</b> Maria escreve “chego às 19h”.</li>
+            <li data-at="1800"><b>2.</b> O aplicativo tranca o texto com a chave de João. O que sai é um bloco ilegível.</li>
+            <li data-at="3600"><b>3.</b> O provedor guarda o bloco. Ele consegue entregar, mas não consegue ler.</li>
+            <li data-at="5400"><b>4.</b> João recebe e destranca com a chave dele.</li>
+            <li data-at="7200"><b>5.</b> Em nenhum momento o texto existiu fora dos dois aparelhos.</li>
+          </ol>
+        </div>
+        <div class="scene__ctl">
+          <button type="button" data-act="toggle">Pausar</button>
+          <button type="button" data-act="replay">Recomeçar</button>
+          <span class="scene__hint">Clique num passo para ir até ele</span>
+        </div>
+      </div>
+
+      <div class="callout callout--info">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M12 11v5"></path>
+          <circle cx="12" cy="7.8" r=".9" fill="currentColor" stroke="none"></circle>
+        </svg>
+        <div>
+          <span class="callout__title">“Ponta a ponta” quer dizer isto</span>
+          <p class="mb-0">
+            A tranca é feita numa ponta (Maria) e aberta na outra (João). Quem fica no meio
+            — o provedor — transporta um pacote que não consegue abrir. É diferente de
+            “criptografia em trânsito”, onde o servidor abre e fecha no caminho.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ O QUE O PROVEDOR VÊ ============ -->
+  <section class="section section--alt" id="provedor">
+    <div class="wrap">
+      <h2>O que o provedor vê — e o que não vê</h2>
+
+      <div class="compare">
+        <div class="compare__box compare__box--bad">
+          <h3>Ele vê</h3>
+          <ul>
+            <li>que existe uma mensagem para você;</li>
+            <li>o tamanho aproximado dela;</li>
+            <li>a data e a hora em que foi depositada;</li>
+            <li>o endereço de rede de quem se conectou.</li>
+          </ul>
+        </div>
+        <div class="compare__box compare__box--good">
+          <h3>Ele não vê</h3>
+          <ul>
+            <li>o texto da mensagem;</li>
+            <li>fotos e arquivos enviados;</li>
+            <li>o conteúdo do grupo;</li>
+            <li>a chave que abre qualquer coisa.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="prose">
+        <p>
+          O que sobra é chamado de
+          <button type="button" class="term" data-tip="Metadados são os dados sobre a comunicação, não o conteúdo: quem, quando, com quem, por quanto tempo. Muitas vezes revelam mais do que o texto." data-more="glossario.html#metadados">metadado</button>.
+          E metadado não é detalhe: saber com quem você conversa e em que horário pode
+          dizer muito sobre você.
+        </p>
+        <p>
+          O projeto reduz isso, mas não elimina. A entrega é feita de forma que o provedor
+          não precise saber quem envia para quem — e o preço é complexidade extra para
+          combater spam.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GRUPOS ============ -->
+  <section class="section" id="grupos">
+    <div class="wrap">
+      <h2>Grupos</h2>
+      <p class="lead">
+        Um grupo não é “uma conversa com muita gente”. É uma <strong>conta nova</strong>,
+        com chave própria, que também assina o que passa por ela.
+      </p>
+
+      <div class="scene" data-scene data-duration="11500">
+        <div class="scene__art">
+          <svg viewBox="0 0 880 340" role="img" aria-label="Um grupo com quatro membros e uma chave; quando uma pessoa sai, a chave é trocada.">
+            <defs>
+              <marker id="arm2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0 L10 5 L0 10 z" fill="var(--line-strong)"></path>
+              </marker>
+            </defs>
+
+            <g data-at="0">
+              <rect x="300" y="30" width="280" height="86" rx="16" class="node node--accent"></rect>
+              <text x="440" y="60" text-anchor="middle" class="lbl">Grupo “Banda do bairro”</text>
+              <text x="440" y="82" text-anchor="middle" class="lbl-sm">tem chave e assinatura próprias</text>
+              <text x="440" y="100" text-anchor="middle" class="lbl-mono">chave do grupo · versão 1</text>
+            </g>
+
+            <g data-at="1400">
+              <circle cx="150" cy="210" r="34" class="node"></circle>
+              <text x="150" y="215" text-anchor="middle" class="lbl-sm">Ana</text>
+              <circle cx="330" cy="210" r="34" class="node"></circle>
+              <text x="330" y="215" text-anchor="middle" class="lbl-sm">Beto</text>
+              <circle cx="520" cy="210" r="34" class="node"></circle>
+              <text x="520" y="215" text-anchor="middle" class="lbl-sm">Caio</text>
+              <circle cx="700" cy="210" r="34" class="node"></circle>
+              <text x="700" y="215" text-anchor="middle" class="lbl-sm">Duda</text>
+            </g>
+
+            <g data-at="3000">
+              <path class="edge edge--accent" d="M170 180 L 420 116" marker-end="url(#arm2)"></path>
+              <path class="edge edge--accent" d="M340 178 L 430 118" marker-end="url(#arm2)"></path>
+              <path class="edge edge--accent" d="M512 178 L 452 118" marker-end="url(#arm2)"></path>
+              <path class="edge edge--accent" d="M680 182 L 462 116" marker-end="url(#arm2)"></path>
+            </g>
+
+            <g data-at="5000">
+              <circle cx="150" cy="210" r="40" fill="none" stroke="var(--danger)" stroke-width="2.4" stroke-dasharray="6 6"></circle>
+              <text x="150" y="272" text-anchor="middle" class="lbl-sm">Ana saiu</text>
+            </g>
+
+            <g data-at="6400">
+              <rect x="300" y="30" width="280" height="86" rx="16" class="node node--warn"></rect>
+              <text x="440" y="60" text-anchor="middle" class="lbl">Grupo “Banda do bairro”</text>
+              <text x="440" y="82" text-anchor="middle" class="lbl-sm">chave trocada automaticamente</text>
+              <text x="440" y="100" text-anchor="middle" class="lbl-mono">chave do grupo · versão 2</text>
+            </g>
+
+            <g data-at="8000">
+              <path class="edge edge--danger" d="M190 210 H 300" marker-end="url(#arm2)" opacity=".7"></path>
+              <text x="245" y="196" text-anchor="middle" class="lbl-sm">não lê o futuro</text>
+            </g>
+
+            <g data-at="9600">
+              <circle cx="640" cy="290" r="26" class="node node--brand"></circle>
+              <text x="640" y="295" text-anchor="middle" class="lbl-sm">Eva</text>
+              <path class="edge edge--brand" d="M616 274 L 540 120" marker-end="url(#arm2)"></path>
+              <text x="700" y="320" text-anchor="middle" class="lbl-sm">entrou depois: não lê o passado</text>
+            </g>
+          </svg>
+        </div>
+        <div class="scene__body">
+          <ol class="scene-caps">
+            <li data-at="0"><b>1.</b> O grupo tem chave e assinatura próprias — é como uma conta.</li>
+            <li data-at="1400"><b>2.</b> Cada membro usa essa chave para ler e escrever.</li>
+            <li data-at="3000"><b>3.</b> Todas as mensagens são trancadas com a chave do grupo.</li>
+            <li data-at="5000"><b>4.</b> Ana sai. Ela ainda tem a cópia antiga da chave.</li>
+            <li data-at="6400"><b>5.</b> O grupo troca a chave automaticamente. É a versão 2.</li>
+            <li data-at="8000"><b>6.</b> Ana não consegue ler nada do que vier depois da troca.</li>
+            <li data-at="9600"><b>7.</b> Eva entra depois: recebe a chave nova e não lê o que passou.</li>
+          </ol>
+        </div>
+        <div class="scene__ctl">
+          <button type="button" data-act="toggle">Pausar</button>
+          <button type="button" data-act="replay">Recomeçar</button>
+          <span class="scene__hint">Clique num passo para ir até ele</span>
+        </div>
+      </div>
+
+      <h3>Por que o grupo tem assinatura própria</h3>
+      <div class="prose">
+        <p>
+          Se um grupo fosse só uma lista de pessoas, ninguém de fora conseguiria verificar
+          que uma mensagem realmente saiu dali. Com chave própria, o grupo vira um
+          <strong>autor</strong>: ele assina o que publica, como uma conta assinaria.
+        </p>
+        <p>
+          Ao mesmo tempo, cada mensagem carrega também quem a escreveu. Ou seja: o grupo
+          responde pelo todo, e a pessoa responde pelo que disse. Isso resolve dois
+          problemas ao mesmo tempo — credibilidade para fora e responsabilidade para dentro.
+        </p>
+      </div>
+
+      <div class="callout callout--warn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 4 2.8 20h18.4L12 4Z"></path>
+          <path d="M12 10v4.4"></path>
+          <circle cx="12" cy="17.6" r=".9" fill="currentColor" stroke="none"></circle>
+        </svg>
+        <div>
+          <span class="callout__title">Entrar e sair de um grupo é público</span>
+          <p class="mb-0">
+            O projeto trata entrada e saída como conteúdos assinados, para que a composição
+            do grupo seja verificável. Isso significa que o <em>fato</em> de você ter
+            entrado num grupo é registrado — mas o conteúdo das conversas não. É uma
+            decisão em aberto e vale saber que ela existe.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CHAVES ============ -->
+  <section class="section section--alt" id="chaves">
+    <div class="wrap">
+      <h2>Se você perder o celular</h2>
+      <div class="prose">
+        <p>
+          Sua conta é protegida por uma chave que fica no aparelho. Se o aparelho quebrar e
+          você não tiver uma cópia, perde o acesso — não existe “recuperar por e-mail”.
+        </p>
+        <p>
+          A solução é uma <strong>chave de recuperação</strong>: um código longo, guardado
+          em papel ou num gerenciador de senhas, capaz de reinstalar o acesso numa máquina
+          nova. É chato, mas é o preço de não ter uma empresa capaz de entrar na sua conta.
+        </p>
+      </div>
+
+      <div class="callout callout--danger">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 4 2.8 20h18.4L12 4Z"></path>
+          <path d="M12 10v4.4"></path>
+          <circle cx="12" cy="17.6" r=".9" fill="currentColor" stroke="none"></circle>
+        </svg>
+        <div>
+          <span class="callout__title">Ninguém pode “resetar” sua conta</span>
+          <p class="mb-0">
+            Nem o provedor, nem o cartório, nem quem desenvolve o aplicativo. Isso é uma
+            proteção contra vigilância e um risco pessoal ao mesmo tempo. Guarde a chave de
+            recuperação.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DETALHE ============ -->
+  <section class="section" id="detalhe">
+    <div class="wrap">
+      <h2>Para quem quer o detalhe</h2>
+
+      <details class="acc">
+        <summary>Como funciona a troca de chaves de um grupo</summary>
+        <div class="acc__body">
+          <p>
+            O padrão usado é o MLS (Messaging Layer Security), o mesmo que está sendo
+            padronizado para interoperar aplicativos de mensagem entre empresas diferentes.
+          </p>
+          <p>
+            Ele organiza os membros numa estrutura de árvore: cada participante conhece
+            apenas os segredos do seu ramo. Quando alguém entra ou sai, só o caminho afetado
+            é recalculado — e não a conversa inteira. É o que torna grupos grandes viáveis.
+          </p>
+        </div>
+      </details>
+
+      <details class="acc">
+        <summary>Por que “mensagem apagada” não é garantia</summary>
+        <div class="acc__body">
+          <p>
+            Apagar do seu aparelho é fácil. Apagar do aparelho do outro não é: o
+            destinatário já descriptografou. Nenhum aplicativo sério promete isso.
+          </p>
+          <p>
+            O que o projeto pode fazer é apagar o conteúdo dos provedores e deixar um
+            registro de que o conteúdo existiu — sem o conteúdo.
+          </p>
+        </div>
+      </details>
+
+      <details class="acc">
+        <summary>O envio é imediato? E se o destinatário estiver offline?</summary>
+        <div class="acc__body">
+          <p>
+            Não existe conexão direta garantida entre dois celulares: aparelhos dormem,
+            trocam de rede e ficam atrás de bloqueios. Por isso a mensagem fica depositada
+            num provedor até o destinatário buscá-la.
+          </p>
+          <p>
+            O provedor funciona como um escaninho: guarda o embrulho, avisa que chegou, e
+            entrega quando der. Não abre.
+          </p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <nav class="pager" aria-label="Navegação entre capítulos">
+      <a class="pager--prev" href="seguranca.html">
+        <span>Anterior</span>
+        <strong>← Segurança</strong>
+      </a>
+      <a class="pager--next" href="diario.html">
+        <span>Próximo capítulo</span>
+        <strong>Diário →</strong>
+      </a>
+    </nav>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <p>
+          <strong>IPR</strong> — uma rede social que tenta conciliar duas coisas que costumam
+          se excluir: <em>anonimato para quem age de boa-fé</em> e
+          <em>responsabilidade para quem comete crime</em>.
+        </p>
+        <p class="faint">Explicação em linguagem simples, para quem não é de TI.</p>
+      </div>
+      <div>
+        <h2>Entender</h2>
+        <ul>
+          <li><a href="seguranca.html">Segurança e privacidade</a></li>
+          <li><a href="mensagens.html">Mensagens</a></li>
+          <li><a href="diario.html">Diário</a></li>
+          <li><a href="chamadas.html">Chamadas</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Ajuda</h2>
+        <ul>
+          <li><a href="provedores.html">Provedores</a></li>
+          <li><a href="perguntas.html">Perguntas frequentes</a></li>
+          <li><a href="glossario.html">Glossário</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-base">
+      <span>Conteúdo educativo. Não é aconselhamento jurídico.</span>
+      <span>© <span data-year>2026</span> IPR</span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

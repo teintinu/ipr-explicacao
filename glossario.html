@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Glossário — IPR</title>
+<meta name="description" content="Os termos usados neste site, explicados em linguagem simples.">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<script src="assets/js/site.js" defer></script>
+<script src="assets/js/scenes.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="brand" href="index.html" aria-label="IPR — página inicial">
+      <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+        <rect width="32" height="32" rx="9" fill="currentColor" opacity=".1"></rect>
+        <circle cx="16" cy="16" r="3.7" fill="currentColor"></circle>
+        <circle cx="7.5" cy="8.5" r="2" fill="currentColor" opacity=".6"></circle>
+        <circle cx="24.5" cy="8.5" r="2" fill="currentColor" opacity=".6"></circle>
+        <circle cx="7.5" cy="23.5" r="2" fill="currentColor" opacity=".6"></circle>
+        <circle cx="24.5" cy="23.5" r="2" fill="currentColor" opacity=".6"></circle>
+        <path d="M9.2 9.7 13.4 13.2M22.8 9.7 18.6 13.2M9.2 22.3 13.4 18.8M22.8 22.3 18.6 18.8" stroke="currentColor" stroke-width="1.3" opacity=".45"></path>
+      </svg>
+      <span>IPR<span class="brand__sub">a rede explicada</span></span>
+    </a>
+
+    <nav class="nav" id="menu-principal" aria-label="Navegação principal" data-open="false">
+      <a href="index.html">Início</a>
+      <a href="seguranca.html">Segurança</a>
+      <a href="mensagens.html">Mensagens</a>
+      <a href="diario.html">Diário</a>
+      <a href="chamadas.html">Chamadas</a>
+      <a href="provedores.html">Provedores</a>
+      <a href="perguntas.html">Perguntas</a>
+    </nav>
+
+    <div class="header-actions">
+      <button type="button" class="icon-btn" data-theme-toggle aria-label="Alternar tema">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+          <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path>
+        </svg>
+      </button>
+      <button type="button" class="icon-btn nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menu">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="conteudo">
+  <section class="section section--tight">
+    <div class="wrap">
+      <p class="kicker">Referência</p>
+      <h1>Glossário</h1>
+      <p class="lead">
+        Os termos que aparecem neste site, em ordem alfabética. Cada verbete é a versão
+        curta; o capítulo correspondente tem a explicação completa.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="wrap prose">
+
+      <h2 id="a">A</h2>
+
+      <h3 id="assinatura-digital">Assinatura digital</h3>
+      <p>
+        Um selo matemático que só o dono de uma chave consegue produzir e que qualquer
+        pessoa consegue conferir. É o que garante que um post realmente saiu daquela conta.
+        <a href="diario.html#posts">Como o conteúdo é assinado.</a>
+      </p>
+
+      <h3 id="autoridade-certificadora">Autoridade Certificadora (AC)</h3>
+      <p>
+        O cartório central. Não atende pessoas: credencia os cartórios e mantém a lista
+        assinada de quais são legítimos. Se um cartório é cassado, ele sai dessa lista.
+        <a href="seguranca.html#cartorio">Ver o capítulo de segurança.</a>
+      </p>
+
+      <h3 id="autoridade-registradora">Autoridade Registradora (AR)</h3>
+      <p>
+        O cartório. Instituição privada credenciada que vê seu documento e atesta que ele
+        existe e é válido. Guarda o registro de identidade — e nada mais: não vê posts,
+        mensagens nem chamadas. <a href="seguranca.html#cartorio">Ver o capítulo de segurança.</a>
+      </p>
+
+      <h2 id="c">C</h2>
+
+      <h3 id="chave-publica">Chave pública e chave privada</h3>
+      <p>
+        Um par de números ligados entre si. A chave pública pode ser mostrada a qualquer
+        pessoa; a privada fica só com você. O que é trancado com a pública só a privada
+        abre, e o que é assinado com a privada qualquer um confere com a pública.
+      </p>
+
+      <h3 id="cifra">Cifra</h3>
+      <p>
+        Transformar um conteúdo legível em algo ilegível para quem não tem a chave. É o que
+        acontece com a mensagem antes de ela sair do seu aparelho.
+      </p>
+
+      <h3 id="cofre-de-vinculo">Cofre de vínculo</h3>
+      <p>
+        O lugar onde fica guardado o envelope lacrado que liga uma conta a uma pessoa. É
+        dividido entre várias instituições, e nenhuma delas abre sozinha.
+        <a href="seguranca.html#cofre">Entender o cofre.</a>
+      </p>
+
+      <h3 id="conta">Conta</h3>
+      <p>
+        A persona que aparece na rede: um apelido e uma chave. Não contém nome civil,
+        documento nem endereço. É o que qualquer pessoa vê.
+      </p>
+
+      <h3 id="conta-restrita">Conta restrita</h3>
+      <p>
+        Conta de criança ou adolescente, criada ou autorizada por um responsável. Tem
+        privacidade máxima por padrão, não recebe anúncios direcionados e exibe um rótulo
+        público de faixa etária. <a href="seguranca.html#menores">Ver as restrições.</a>
+      </p>
+
+      <h3 id="conteudo">Conteúdo</h3>
+      <p>
+        Qualquer coisa que uma conta publica e que passa a existir depois: post,
+        comentário, vídeo, corte, evento de grupo. Uma ligação <em>não</em> é conteúdo.
+      </p>
+
+      <h2 id="e">E</h2>
+
+      <h3 id="escrow">Escrow</h3>
+      <p>
+        Termo em inglês para “custódia”. Descreve o arranjo em que o vínculo entre conta e
+        pessoa fica guardado por terceiros, sob regras, em vez de ficar com quem criou a
+        conta. Aqui é sempre com divisão de chaves.
+      </p>
+
+      <h2 id="g">G</h2>
+
+      <h3 id="grupo">Grupo</h3>
+      <p>
+        Uma conta coletiva, com chave e assinatura próprias. Cada mensagem leva a
+        identificação do grupo e a de quem escreveu.
+        <a href="mensagens.html#grupos">Ver o capítulo de mensagens.</a>
+      </p>
+
+      <h2 id="i">I</h2>
+
+      <h3 id="impressao-digital">Impressão digital (hash)</h3>
+      <p>
+        Um código calculado a partir do conteúdo de um arquivo. Muda por completo se um
+        único caractere mudar. Serve para provar que o arquivo é exatamente o que foi
+        publicado. <a href="diario.html#posts">Ver o exemplo.</a>
+      </p>
+
+      <h2 id="l">L</h2>
+
+      <h3 id="limiar">Limiar (threshold)</h3>
+      <p>
+        Regra em que um segredo é dividido em pedaços e só uma quantidade mínima deles
+        funciona. Com 3 de 5, três pedaços abrem e dois não abrem nada.
+        <a href="seguranca.html#cofre">Ver o cofre.</a>
+      </p>
+
+      <h3 id="livro-de-recibos">Livro de recibos</h3>
+      <p>
+        Registro público em que cada abertura de sigilo vira uma linha embaralhada. Prova
+        que houve abertura, sem dizer para quem. <a href="seguranca.html#recibos">Ver o livro.</a>
+      </p>
+
+      <h2 id="m">M</h2>
+
+      <h3 id="metadados">Metadados</h3>
+      <p>
+        Dados sobre a comunicação, não o conteúdo dela: quem, quando, com quem, por quanto
+        tempo, de qual endereço. Costumam revelar mais do que o próprio texto.
+      </p>
+
+      <h3 id="mls">MLS</h3>
+      <p>
+        <em>Messaging Layer Security.</em> Padrão internacional para conversas em grupo com
+        criptografia de ponta a ponta. É o que permite trocar a chave do grupo quando
+        alguém entra ou sai. <a href="mensagens.html#detalhe">Ver o detalhe técnico.</a>
+      </p>
+
+      <h2 id="n">N</h2>
+
+      <h3 id="nat">NAT / bloqueio de rede</h3>
+      <p>
+        Situação em que um aparelho não pode ser “chamado de fora” pela internet. É o
+        normal em casas e celulares. Para furar isso, os aplicativos usam servidores
+        auxiliares. <a href="chamadas.html#detalhe">Ver o detalhe técnico.</a>
+      </p>
+
+      <h2 id="p">P</h2>
+
+      <h3 id="ponta-a-ponta">Ponta a ponta</h3>
+      <p>
+        Criptografia feita na ponta que envia e aberta só na ponta que recebe. Quem fica no
+        meio transporta um pacote que não consegue abrir.
+        <a href="mensagens.html#um-para-um">Ver o exemplo.</a>
+      </p>
+
+      <h3 id="provedor">Provedor</h3>
+      <p>
+        Computador que guarda pedaços de conteúdo e os entrega a quem pede. Pode ser de uma
+        pessoa, de uma empresa, ou o seu próprio navegador — este último com limites
+        rígidos. <a href="provedores.html">Ver o capítulo de provedores.</a>
+      </p>
+
+      <h2 id="s">S</h2>
+
+      <h3 id="sfu">SFU (distribuidor)</h3>
+      <p>
+        <em>Selective Forwarding Unit.</em> Equipamento que recebe um fluxo de áudio e vídeo
+        e repassa para vários participantes, sem precisar recodificar.
+        <a href="chamadas.html#topologia">Ver a comparação.</a>
+      </p>
+
+      <h2 id="t">T</h2>
+
+      <h3 id="token-cego">Token cego</h3>
+      <p>
+        Comprovante que o cartório assina sem saber qual conta ele autoriza — como carimbar
+        um documento dentro de um envelope fechado. Garante que o cartório não monte listas
+        de contas por pessoa. <a href="seguranca.html#cofre">Ver o capítulo de segurança.</a>
+      </p>
+
+      <h2 id="u">U</h2>
+
+      <h3 id="usuario">Usuário</h3>
+      <p>
+        A pessoa real, com documento verificado. Existe apenas dentro do cartório. Nunca
+        aparece em posts, mensagens ou chamadas.
+      </p>
+
+      <h2 id="w">W</h2>
+
+      <h3 id="webrtc">WebRTC</h3>
+      <p>
+        Tecnologia que permite transmitir áudio, vídeo e dados diretamente entre navegadores
+        e aplicativos, sem depender de um servidor no meio. É a base das chamadas e das
+        lives. <a href="chamadas.html">Ver o capítulo de chamadas.</a>
+      </p>
+
+    </div>
+  </section>
+
+  <div class="wrap">
+    <nav class="pager" aria-label="Navegação">
+      <a class="pager--prev" href="perguntas.html">
+        <span>Anterior</span>
+        <strong>← Perguntas</strong>
+      </a>
+      <a class="pager--next" href="index.html">
+        <span>Voltar ao começo</span>
+        <strong>Início →</strong>
+      </a>
+    </nav>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <p>
+          <strong>IPR</strong> — uma rede social que tenta conciliar duas coisas que costumam
+          se excluir: <em>anonimato para quem age de boa-fé</em> e
+          <em>responsabilidade para quem comete crime</em>.
+        </p>
+        <p class="faint">Explicação em linguagem simples, para quem não é de TI.</p>
+      </div>
+      <div>
+        <h2>Entender</h2>
+        <ul>
+          <li><a href="seguranca.html">Segurança e privacidade</a></li>
+          <li><a href="mensagens.html">Mensagens</a></li>
+          <li><a href="diario.html">Diário</a></li>
+          <li><a href="chamadas.html">Chamadas</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Ajuda</h2>
+        <ul>
+          <li><a href="provedores.html">Provedores</a></li>
+          <li><a href="perguntas.html">Perguntas frequentes</a></li>
+          <li><a href="glossario.html">Glossário</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-base">
+      <span>Conteúdo educativo. Não é aconselhamento jurídico.</span>
+      <span>© <span data-year>2026</span> IPR</span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
