@@ -1,0 +1,124 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: upr-explicacao
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: redirect-https
+  namespace: upr-explicacao
+spec:
+  redirectScheme:
+    scheme: https
+    permanent: true
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: upr-explicacao
+  namespace: upr-explicacao
+  labels:
+    app: upr-explicacao
+spec:
+  replicas: 1
+  # Recreate: o bundle é montado do host e extraído no start. Dois pods ao mesmo
+  # tempo não fazem sentido para um site estático de 250 KB.
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: upr-explicacao
+  template:
+    metadata:
+      labels:
+        app: upr-explicacao
+    spec:
+      # O bundle vive em /srv/upr-explicacao neste nó (hostPath). Se o pod cair
+      # em outro nó, não encontra os arquivos.
+      nodeSelector:
+        kubernetes.io/hostname: srv1550081.hstgr.cloud
+      containers:
+        - name: site
+          image: oven/bun:1.3-alpine
+          imagePullPolicy: IfNotPresent
+          command:
+            - sh
+            - -c
+          args:
+            - mkdir -p /app && tar xzf /opt/site/site.tgz -C /app && cd /app && exec bun run server.js
+          ports:
+            - containerPort: 8080
+              name: http
+          env:
+            - name: PORT
+              value: "8080"
+            - name: SITE_ROOT
+              value: /app
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            initialDelaySeconds: 3
+            periodSeconds: 10
+            failureThreshold: 6
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          resources:
+            requests:
+              cpu: 10m
+              memory: 32Mi
+            limits:
+              memory: 128Mi
+          volumeMounts:
+            - name: bundle
+              mountPath: /opt/site
+              readOnly: true
+      volumes:
+        - name: bundle
+          hostPath:
+            path: /srv/upr-explicacao
+            type: Directory
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: upr-explicacao
+  namespace: upr-explicacao
+spec:
+  selector:
+    app: upr-explicacao
+  ports:
+    - name: http
+      port: 80
+      targetPort: http
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: upr-explicacao
+  namespace: upr-explicacao
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    traefik.ingress.kubernetes.io/router.middlewares: upr-explicacao-redirect-https@kubernetescrd
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: upr-explicacao.teintinu.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: upr-explicacao
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - upr-explicacao.teintinu.com
+      secretName: upr-explicacao-teintinu-tls

@@ -78,6 +78,36 @@ JavaScript: basta escolher os tempos.
 - Navegação por teclado: os tooltips abrem no foco e fecham com `Esc`.
 - Contraste conferido nos dois temas (claro e escuro).
 
+## Publicação
+
+O site vai para **https://upr-explicacao.teintinu.com**, no cluster gerenciado pelo
+`teintinu-net`, como um bundle estático servido por um container Bun sobre `hostPath`
+(mesmo padrão do projeto `ecovila`).
+
+```sh
+./scripts/deploy.sh --dry-run   # empacota e não envia nada
+./scripts/deploy.sh             # empacota, envia, aplica e verifica
+./scripts/deploy.sh --check     # só verifica o que está no ar
+```
+
+Arquivos:
+
+- `deploy/kubernetes.yaml` — Namespace, Middleware de redirect HTTPS, Deployment, Service
+  e Ingress com TLS (`letsencrypt-prod`).
+- `deploy/server.js` — servidor estático mínimo, sem dependências.
+- `scripts/deploy.sh` — empacota `*.html` + `assets/` + `server.js`, envia para
+  `/srv/upr-explicacao`, aplica o manifesto, reinicia o deployment e verifica o HTTPS.
+
+**Duas restrições que não são óbvias:**
+
+1. **DNS é pré-requisito e não é criado pelo script.** `upr-explicacao.teintinu.com`
+   precisa apontar para `187.124.248.88` e `187.41.110.244` na zona `teintinu.com`.
+   O `--check` mostra exatamente os registros a criar.
+2. **O pod é fixo no nó `srv1550081.hstgr.cloud`**, porque o bundle vive no disco daquele
+   nó (`hostPath`). Trocar de nó exige mudar o `nodeSelector` e reenviar o bundle.
+
+O script **nunca** executa git e **nunca** roda sozinho.
+
 ## Convenções
 
 - Conteúdo em **português**; código (classes, atributos, arquivos) em inglês.
