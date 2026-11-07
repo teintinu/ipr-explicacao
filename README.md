@@ -16,9 +16,9 @@ judicial** ou **determinação da justiça**. Evite masculinos genéricos ("o us
 
 ## Créditos de imagem
 
-- `assets/img/estudio.jpg` — foto de microfone de estúdio, **CC0** (domínio público),
-  via Wikimedia Commons: `Music-technology-guitar-microphone-studio-amplifier-846852-pxhere.jpg`.
-  Redimensionada e recortada em 3:2 para o exemplo do feed.
+- `assets/img/cerebro.jpg` — foto de um modelo anatômico de cérebro, **CC0** (domínio
+  público), via Wikimedia Commons: `The_Human_Brain_Model_01.jpg`. Redimensionada e
+  recortada em 3:2 para o exemplo do feed.
 
 ## Como abrir
 
