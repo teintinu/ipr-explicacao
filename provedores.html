@@ -70,7 +70,7 @@
         <h2>Resumo em cinco linhas</h2>
         <ul class="tldr__list">
           <li>
-            <strong>Um <strong>provedor</strong> é um computador que guarda pedaços de conteúdo e os entrega a quem pede.</strong>
+            <strong>Um provedor é um computador que guarda pedaços de conteúdo e os entrega a quem pede.</strong>
             <span class="tldr__note">Não existe “o servidor da rede”: são vários, de donos diferentes, e nenhum precisa do conjunto inteiro.</span>
           </li>
           <li>
@@ -78,22 +78,210 @@
             <span class="tldr__note">A escolha é da conta. Mudar de provedor é copiar os blocos para outro lugar e avisar os demais de onde encontrá-los.</span>
           </li>
           <li>
-            <strong>Todo bloco é <strong>replicado em mais de um provedor</strong>: uma queda não apaga o conteúdo.</strong>
+            <strong>Todo bloco é replicado em mais de um provedor: uma queda não apaga o conteúdo.</strong>
             <span class="tldr__note">Se um sai do ar, os outros respondem. É o que impede a rede de depender de uma máquina só.</span>
           </li>
           <li>
-            <strong>Quem <strong>acessa</strong> o conteúdo também é, por um tempo, um provedor — dentro de limites.</strong>
+            <strong>Quem acessa o conteúdo também é, por um tempo, um provedor — dentro de limites.</strong>
             <span class="tldr__note">Enquanto você vê um vídeo, seu aparelho guarda um pedaço e pode repassar. Fecha a aba, para de repassar.</span>
           </li>
           <li>
-            <strong>O uso de espaço é <strong>recalculável</strong>: dá para conferir a partir da lista de arquivos.</strong>
+            <strong>O uso de espaço é recalculável: dá para conferir a partir da lista de arquivos.</strong>
             <span class="tldr__note">A conta é a soma dos blocos guardados. Qualquer pessoa refaz a conta e compara com o que o provedor cobra.</span>
           </li>
           <li>
-            <strong>Quem guarda <strong>não é autor</strong>: a responsabilidade pelo conteúdo é de quem publicou.</strong>
+            <strong>Quem guarda não é autor: a responsabilidade pelo conteúdo é de quem publicou.</strong>
             <span class="tldr__note">Guardar um arquivo não faz de você o autor dele. Publicar, sim.</span>
           </li>
         </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HOJE X PROPOSTA ============ -->
+  <section class="section section--tight" id="hoje-e-proposta">
+    <div class="wrap">
+      <h2>Como é hoje, e como fica aqui</h2>
+      <p class="lead">
+        A diferença não é de tamanho, é de desenho: hoje o conteúdo sobe para um lugar só;
+        aqui ele é distribuído por muitos — e quem assiste também ajuda a entregar.
+      </p>
+
+      <h3>Hoje: cada post sobe para um datacenter</h3>
+
+      <div class="scene" data-scene data-duration="7600">
+        <div class="scene__art">
+          <svg viewBox="0 0 880 300" role="img" aria-label="Três contas enviam seus posts para um único datacenter, e todos os leitores baixam desse mesmo lugar.">
+            <defs>
+              <marker id="pv1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0 L10 5 L0 10 z" fill="var(--line-strong)"></path>
+              </marker>
+            </defs>
+
+            <g data-at="0">
+              <circle cx="70" cy="70" r="26" class="node node--brand"></circle>
+              <text x="70" y="75" text-anchor="middle" class="lbl-sm">conta</text>
+              <circle cx="70" cy="150" r="26" class="node node--brand"></circle>
+              <text x="70" y="155" text-anchor="middle" class="lbl-sm">conta</text>
+              <circle cx="70" cy="230" r="26" class="node node--brand"></circle>
+              <text x="70" y="235" text-anchor="middle" class="lbl-sm">conta</text>
+            </g>
+
+            <g data-at="1200">
+              <rect x="330" y="105" width="220" height="90" rx="16" class="node node--warn"></rect>
+              <text x="440" y="140" text-anchor="middle" class="lbl">datacenter</text>
+              <text x="440" y="162" text-anchor="middle" class="lbl-sm">um lugar só</text>
+            </g>
+
+            <g data-at="2600">
+              <path class="edge edge--brand" d="M96 70 L 326 118" marker-end="url(#pv1)"></path>
+              <path class="edge edge--brand" d="M96 150 H 326" marker-end="url(#pv1)"></path>
+              <path class="edge edge--brand" d="M96 230 L 326 182" marker-end="url(#pv1)"></path>
+              <text x="205" y="72" text-anchor="middle" class="lbl-sm">cada post sobe</text>
+            </g>
+
+            <g data-at="4400">
+              <circle cx="810" cy="70" r="26" class="node"></circle>
+              <text x="810" y="75" text-anchor="middle" class="lbl-sm">quem vê</text>
+              <circle cx="810" cy="150" r="26" class="node"></circle>
+              <text x="810" y="155" text-anchor="middle" class="lbl-sm">quem vê</text>
+              <circle cx="810" cy="230" r="26" class="node"></circle>
+              <text x="810" y="235" text-anchor="middle" class="lbl-sm">quem vê</text>
+              <path class="edge edge--warn" d="M554 118 L 780 72" marker-end="url(#pv1)"></path>
+              <path class="edge edge--warn" d="M554 150 H 780" marker-end="url(#pv1)"></path>
+              <path class="edge edge--warn" d="M554 182 L 780 228" marker-end="url(#pv1)"></path>
+            </g>
+
+            <g data-at="6000">
+              <text x="440" y="288" text-anchor="middle" class="lbl-sm">todo mundo baixa do mesmo lugar — o datacenter guarda, entrega e decide</text>
+            </g>
+          </svg>
+        </div>
+        <div class="scene__body">
+          <ol class="scene-caps">
+            <li data-at="0"><b>1.</b> Três contas publicam.</li>
+            <li data-at="1200"><b>2.</b> Tudo sobe para <strong>o datacenter de uma empresa</strong>.</li>
+            <li data-at="2600"><b>3.</b> Quem publica não escolhe onde o conteúdo fica.</li>
+            <li data-at="4400"><b>4.</b> Quem assiste baixa do mesmo lugar — e só consome.</li>
+            <li data-at="6000"><b>5.</b> Disco, banda e energia se concentram ali. E quem decide o que existe é também quem opera o lugar.</li>
+          </ol>
+        </div>
+        <div class="scene__ctl">
+          <button type="button" data-act="toggle">Pausar</button>
+          <button type="button" data-act="replay">Recomeçar</button>
+          <span class="scene__hint">Clique num passo para ir até ele</span>
+        </div>
+      </div>
+
+      <div class="prose">
+        <p>
+          Esse desenho funcionou, mas cobra um preço: o custo fica concentrado, a operação
+          depende de uma empresa só e a distância entre quem publica e quem lê vira
+          intermediário obrigatório.
+        </p>
+      </div>
+
+      <h3>Na proposta: a conta publica, os provedores distribuem</h3>
+
+      <div class="scene" data-scene data-duration="10000">
+        <div class="scene__art">
+          <svg viewBox="0 0 880 330" role="img" aria-label="A conta publica e vários provedores distribuem o conteúdo; qualquer empresa pode ser provedor, e quem está vendo também repassa.">
+            <g data-at="0">
+              <circle cx="70" cy="160" r="30" class="node node--brand"></circle>
+              <text x="70" y="164" text-anchor="middle" class="lbl-sm">conta</text>
+              <text x="70" y="182" text-anchor="middle" class="lbl-sm">publica</text>
+            </g>
+
+            <g data-at="1400">
+              <rect x="250" y="40" width="170" height="60" rx="12" class="node node--accent"></rect>
+              <text x="335" y="66" text-anchor="middle" class="lbl-sm">provedor A</text>
+              <text x="335" y="84" text-anchor="middle" class="lbl-sm">qualquer empresa</text>
+
+              <rect x="250" y="130" width="170" height="60" rx="12" class="node node--accent"></rect>
+              <text x="335" y="156" text-anchor="middle" class="lbl-sm">provedor B</text>
+              <text x="335" y="174" text-anchor="middle" class="lbl-sm">cooperativa</text>
+
+              <rect x="250" y="220" width="170" height="60" rx="12" class="node node--accent"></rect>
+              <text x="335" y="246" text-anchor="middle" class="lbl-sm">provedor C</text>
+              <text x="335" y="264" text-anchor="middle" class="lbl-sm">ou uma pessoa</text>
+            </g>
+
+            <g data-at="3200">
+              <path class="edge edge--brand" d="M96 152 L 246 76" marker-end="url(#pv1)"></path>
+              <path class="edge edge--brand" d="M100 160 H 246" marker-end="url(#pv1)"></path>
+              <path class="edge edge--brand" d="M96 168 L 246 244" marker-end="url(#pv1)"></path>
+            </g>
+
+            <g data-at="4800">
+              <circle cx="790" cy="70" r="24" class="node"></circle>
+              <text x="790" y="75" text-anchor="middle" class="lbl-sm">quem vê</text>
+              <circle cx="790" cy="160" r="24" class="node"></circle>
+              <text x="790" y="165" text-anchor="middle" class="lbl-sm">quem vê</text>
+              <circle cx="790" cy="250" r="24" class="node"></circle>
+              <text x="790" y="255" text-anchor="middle" class="lbl-sm">quem vê</text>
+            </g>
+
+            <g data-at="6000">
+              <path class="edge edge--accent" d="M422 76 L 764 68" marker-end="url(#pv1)"></path>
+              <path class="edge edge--accent" d="M422 160 H 764" marker-end="url(#pv1)"></path>
+              <path class="edge edge--accent" d="M422 244 L 764 252" marker-end="url(#pv1)"></path>
+            </g>
+
+            <g data-at="8000">
+              <path class="edge edge--warn" d="M814 186 V 224" stroke-dasharray="5 5" marker-end="url(#pv1)"></path>
+              <text x="828" y="208" class="lbl-sm">repasse</text>
+            </g>
+          </svg>
+        </div>
+        <div class="scene__body">
+          <ol class="scene-caps">
+            <li data-at="0"><b>1.</b> A conta publica — ela é a autora do conteúdo.</li>
+            <li data-at="1400"><b>2.</b> Vários <strong>provedores</strong> guardam e distribuem. Qualquer um pode ser provedor: empresa, cooperativa, universidade, pessoa.</li>
+            <li data-at="3200"><b>3.</b> O bloco vai para mais de um provedor — nenhum precisa do conjunto inteiro.</li>
+            <li data-at="4800"><b>4.</b> Quem assiste recebe de vários lugares ao mesmo tempo.</li>
+            <li data-at="6000"><b>5.</b> A entrega se <strong>equilibra com quem está consumindo</strong> naquele momento: cada pedaço sai de quem o tem mais perto.</li>
+            <li data-at="8000"><b>6.</b> E quem já baixou repassa enquanto assiste — por isso o datacenter deixa de ser gargalo, mesmo quando existe.</li>
+          </ol>
+        </div>
+        <div class="scene__ctl">
+          <button type="button" data-act="toggle">Pausar</button>
+          <button type="button" data-act="replay">Recomeçar</button>
+          <span class="scene__hint">Clique num passo para ir até ele</span>
+        </div>
+      </div>
+
+      <div class="prose">
+        <p>
+          Isso abre um mercado: quem tem banda e disco pode vender armazenamento e entrega
+          sem precisar ser dono da rede, nem criar um aplicativo. A empresa que hoje seria
+          só consumidora pode virar fornecedora.
+        </p>
+        <p>
+          E mesmo quando o provedor é um datacenter grande, a distribuição não sai toda de
+          um endereço. Ela se reparte entre quem está consumindo naquele momento — o pedaço
+          que você já baixou serve para quem começou a ver depois.
+        </p>
+      </div>
+
+      <div class="compare">
+        <div class="compare__box compare__box--bad">
+          <h3>Hoje</h3>
+          <ul>
+            <li>Um lugar guarda tudo.</li>
+            <li>Quem publica não escolhe onde fica.</li>
+            <li>Quem assiste só consome.</li>
+            <li>Custo e risco concentrados.</li>
+          </ul>
+        </div>
+        <div class="compare__box compare__box--good">
+          <h3>Na proposta</h3>
+          <ul>
+            <li>Vários provedores, com cópias.</li>
+            <li>A conta escolhe onde guardar.</li>
+            <li>Quem assiste também entrega.</li>
+            <li>Custo e carga distribuídos.</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
