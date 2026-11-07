@@ -73,6 +73,9 @@
 
     function setToggleLabel() {
       if (!toggleBtn) return;
+      // Com um botão "Recomeçar" ao lado, esconder o toggle no fim evita
+      // dois botões idênticos.
+      toggleBtn.hidden = finished && Boolean(replayBtn);
       if (finished) {
         toggleBtn.textContent = "Recomeçar";
       } else if (playing) {
@@ -114,6 +117,7 @@
     }
 
     function start(fromZero) {
+      if (toggleBtn) toggleBtn.hidden = false;
       if (fromZero) {
         elapsed = 0;
         finished = false;

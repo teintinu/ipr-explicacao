@@ -454,62 +454,81 @@
     <div class="wrap">
       <span class="step-label">Elemento 7</span>
       <h2>Provedores de conteúdo</h2>
-      <p class="lead">Não existe “o servidor da rede”. Existem cópias, em computadores diferentes.</p>
+      <p class="lead">Não existe “o servidor da rede”. Existem cópias — e quem lê também guarda uma.</p>
 
       <div class="scene" data-scene data-duration="11000">
         <div class="scene__art">
-          <svg viewBox="0 0 880 320" role="img" aria-label="Sua conta distribui arquivos entre provedores, que devolvem recibos; o navegador ajuda dentro de limites.">
+          <svg viewBox="0 0 880 390" role="img" aria-label="Sua conta distribui blocos replicados entre provedores; quem lê guarda uma cópia temporária e repassa.">
             <g data-at="0">
-              <rect x="30" y="120" width="160" height="86" rx="14" class="node node--brand"></rect>
-              <text x="110" y="152" text-anchor="middle" class="lbl">sua conta</text>
-              <text x="110" y="172" text-anchor="middle" class="lbl-sm">3,4 GB</text>
+              <rect x="20" y="130" width="150" height="80" rx="14" class="node node--brand"></rect>
+              <text x="95" y="162" text-anchor="middle" class="lbl">sua conta</text>
+              <text x="95" y="182" text-anchor="middle" class="lbl-sm">3,4 GB</text>
             </g>
 
             <g data-at="1400">
-              <rect x="280" y="40" width="180" height="66" rx="12" class="node"></rect>
-              <text x="370" y="64" text-anchor="middle" class="lbl-sm">Provedor A</text>
-              <text x="370" y="84" text-anchor="middle" class="lbl-mono">1,2 GB</text>
-              <rect x="280" y="130" width="180" height="66" rx="12" class="node"></rect>
-              <text x="370" y="154" text-anchor="middle" class="lbl-sm">Provedor B</text>
-              <text x="370" y="174" text-anchor="middle" class="lbl-mono">1,9 GB</text>
-              <rect x="280" y="220" width="180" height="66" rx="12" class="node"></rect>
-              <text x="370" y="244" text-anchor="middle" class="lbl-sm">Provedor C</text>
-              <text x="370" y="264" text-anchor="middle" class="lbl-mono">0,3 GB</text>
+              <rect x="240" y="30" width="170" height="64" rx="12" class="node"></rect>
+              <text x="325" y="56" text-anchor="middle" class="lbl-sm">Provedor A</text>
+              <text x="325" y="76" text-anchor="middle" class="lbl-mono">1,2 GB</text>
+
+              <rect x="240" y="130" width="170" height="64" rx="12" class="node"></rect>
+              <text x="325" y="156" text-anchor="middle" class="lbl-sm">Provedor B</text>
+              <text x="325" y="176" text-anchor="middle" class="lbl-mono">1,9 GB</text>
+
+              <rect x="240" y="230" width="170" height="64" rx="12" class="node"></rect>
+              <text x="325" y="256" text-anchor="middle" class="lbl-sm">Provedor C</text>
+              <text x="325" y="276" text-anchor="middle" class="lbl-mono">0,3 GB</text>
             </g>
 
-            <g data-at="3400">
-              <path class="edge edge--brand" d="M190 150 L 276 80" marker-end="url(#pd1)"></path>
-              <path class="edge edge--brand" d="M190 163 H 276" marker-end="url(#pd1)"></path>
-              <path class="edge edge--brand" d="M190 176 L 276 246" marker-end="url(#pd1)"></path>
+            <g data-at="3000">
+              <rect x="240" y="30" width="170" height="64" rx="12" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="6 5"></rect>
+              <rect x="240" y="130" width="170" height="64" rx="12" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="6 5"></rect>
+              <rect x="240" y="230" width="170" height="64" rx="12" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="6 5"></rect>
+              <text x="325" y="18" text-anchor="middle" class="lbl-sm">≈ 2 cópias de cada bloco</text>
             </g>
 
-            <g data-at="5200">
-              <rect x="560" y="120" width="290" height="86" rx="12" class="node node--accent"></rect>
-              <text x="705" y="148" text-anchor="middle" class="lbl-sm">recibo de uso</text>
-              <text x="705" y="168" text-anchor="middle" class="lbl-mono">lista de arquivos → soma</text>
-              <text x="705" y="188" text-anchor="middle" class="lbl-sm">conferível por qualquer um</text>
+            <g data-at="4600">
+              <rect x="520" y="30" width="330" height="80" rx="12" class="node node--accent"></rect>
+              <text x="685" y="58" text-anchor="middle" class="lbl-sm">recibo de uso</text>
+              <text x="685" y="78" text-anchor="middle" class="lbl-mono">lista de arquivos → soma</text>
+              <text x="685" y="97" text-anchor="middle" class="lbl-sm">conferível por qualquer um</text>
             </g>
 
+            <g data-at="6200">
+              <rect x="240" y="330" width="610" height="50" rx="12" class="node node--warn"></rect>
+              <text x="545" y="352" text-anchor="middle" class="lbl-sm">quem está lendo também é provedor</text>
+              <text x="545" y="369" text-anchor="middle" class="lbl-sm">guarda uma cópia temporária e repassa enquanto assiste</text>
+            </g>
+
+            <g data-at="8200">
+              <rect x="520" y="140" width="330" height="70" rx="12" class="node"></rect>
+              <text x="685" y="168" text-anchor="middle" class="lbl-sm">o navegador respeita tetos</text>
+              <text x="685" y="188" text-anchor="middle" class="lbl-sm">de disco, de envio e de bateria</text>
+            </g>
+
+            <g data-at="9600">
+              <text x="685" y="248" text-anchor="middle" class="lbl-sm">se um provedor cair,</text>
+              <text x="685" y="266" text-anchor="middle" class="lbl-sm">as cópias dos outros respondem</text>
+            </g>
+
+            <g data-at="5400">
+              <path class="edge edge--brand" d="M170 155 L 236 62" marker-end="url(#pd1)"></path>
+              <path class="edge edge--brand" d="M170 170 H 236" marker-end="url(#pd1)"></path>
+              <path class="edge edge--brand" d="M170 185 L 236 262" marker-end="url(#pd1)"></path>
+            </g>
             <g data-at="7000">
-              <rect x="560" y="230" width="290" height="66" rx="12" class="node node--warn"></rect>
-              <text x="705" y="254" text-anchor="middle" class="lbl-sm">seu navegador também ajuda</text>
-              <text x="705" y="274" text-anchor="middle" class="lbl-sm">com teto de disco e de envio</text>
-            </g>
-
-            <g data-at="8800">
-              <text x="705" y="60" text-anchor="middle" class="lbl-sm">se um cair,</text>
-              <text x="705" y="78" text-anchor="middle" class="lbl-sm">os outros respondem</text>
+              <path class="edge edge--accent" d="M325 294 V 326" marker-end="url(#pd1)"></path>
             </g>
           </svg>
         </div>
         <div class="scene__body">
           <ol class="scene-caps">
-            <li data-at="0"><b>1.</b> Sua conta tem arquivos espalhados por provedores que você escolheu.</li>
+            <li data-at="0"><b>1.</b> Sua conta tem arquivos distribuídos entre provedores que você escolheu.</li>
             <li data-at="1400"><b>2.</b> Cada um guarda uma parte — e nenhum precisa conhecer o conjunto.</li>
-            <li data-at="3400"><b>3.</b> O conteúdo é dividido em blocos identificados por impressão digital.</li>
-            <li data-at="5200"><b>4.</b> Cada provedor devolve um recibo com a lista do que guarda. A soma é conferível.</li>
-            <li data-at="7000"><b>5.</b> O navegador ajuda enquanto você está vendo algo, dentro de limites rígidos.</li>
-            <li data-at="8800"><b>6.</b> Um provedor pode cair: os outros continuam servindo.</li>
+            <li data-at="3000"><b>3.</b> Cada bloco é <strong>replicado em mais de um provedor</strong>. Uma queda não apaga nada.</li>
+            <li data-at="4600"><b>4.</b> Cada provedor devolve um recibo com o que guarda. A soma é conferível.</li>
+            <li data-at="6200"><b>5.</b> Quem abre o conteúdo também guarda uma cópia temporária — e ajuda a entregar para os próximos. <strong>Quem acessa é, por um tempo, um provedor.</strong></li>
+            <li data-at="8200"><b>6.</b> O navegador faz isso dentro de limites rígidos: disco, envio e bateria.</li>
+            <li data-at="9600"><b>7.</b> Como há cópias, um provedor pode cair sem derrubar o conteúdo.</li>
           </ol>
         </div>
         <div class="scene__ctl">
@@ -524,9 +543,9 @@
         <div class="compare__box compare__box--good">
           <h3>O que o provedor faz</h3>
           <ul>
-            <li>Guarda blocos por impressão digital.</li>
+            <li>Guarda blocos por impressão digital, com mais de uma cópia.</li>
             <li>Entrega para quem pede.</li>
-            <li>Emite recibo do que apagou.</li>
+            <li>Emite recibo do que guarda e do que apagou.</li>
             <li>Pode cobrar ou não — a rede não opina.</li>
           </ul>
         </div>
