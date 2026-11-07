@@ -71,7 +71,7 @@
         <ol>
           <li><a href="#post">Publicar um post</a></li>
           <li><a href="#conselho">Comentário de conta confiável</a></li>
-          <li><a href="#comentario">Comentário anônimo</a></li>
+          <li><a href="#comentario">Comentários sem identificação</a></li>
           <li><a href="#grupo">Criar um grupo</a></li>
           <li><a href="#aprovacao">Aprovar um membro</a></li>
           <li><a href="#mensagem">Enviar uma mensagem</a></li>
@@ -222,51 +222,60 @@
   <section class="section section--tight" id="comentario">
     <div class="wrap">
       <span class="step-label">Elemento 3</span>
-      <h2>Comentário anônimo</h2>
-      <p class="lead">Por que o nome some — e o isso pode mudar o tom da conversa.</p>
+      <h2>Comentários sem identificação</h2>
+      <p class="lead">Quem publicou escolheu não mostrar quem comenta. A escolha é do post.</p>
 
-      <div class="scene" data-scene data-duration="8000">
+      <div class="scene" data-scene data-duration="9000">
         <div class="scene__art">
-          <svg viewBox="0 0 860 240" role="img" aria-label="O comentário é assinado pela conta, mas a interface mostra só o texto; quem lê responde ao argumento.">
+          <svg viewBox="0 0 880 250" role="img" aria-label="O post foi publicado com comentários sem identificação; o comentário continua assinado e a tela mostra só o texto.">
             <g data-at="0">
-              <rect x="60" y="70" width="250" height="100" rx="14" class="node"></rect>
-              <text x="185" y="102" text-anchor="middle" class="lbl">comentário</text>
-              <text x="185" y="122" text-anchor="middle" class="lbl-sm">texto enviado</text>
+              <rect x="60" y="70" width="240" height="100" rx="14" class="node node--brand"></rect>
+              <text x="180" y="100" text-anchor="middle" class="lbl">o post</text>
+              <text x="180" y="120" text-anchor="middle" class="lbl-sm">assunto polêmico</text>
+              <rect x="105" y="132" width="150" height="24" rx="12" class="node node--accent"></rect>
+              <text x="180" y="149" text-anchor="middle" class="lbl-sm">sem identificação</text>
             </g>
 
-            <g data-at="1600">
-              <rect x="360" y="70" width="180" height="100" rx="14" class="node node--accent"></rect>
-              <text x="450" y="100" text-anchor="middle" class="lbl-sm">assinatura</text>
-              <text x="450" y="120" text-anchor="middle" class="lbl-mono">9c21…</text>
-              <text x="450" y="142" text-anchor="middle" class="lbl-sm">continua lá</text>
+            <g data-at="2900">
+              <rect x="350" y="70" width="180" height="100" rx="14" class="node"></rect>
+              <text x="440" y="100" text-anchor="middle" class="lbl-sm">assinatura</text>
+              <text x="440" y="120" text-anchor="middle" class="lbl-mono">9c21…</text>
+              <text x="440" y="142" text-anchor="middle" class="lbl-sm">continua lá</text>
             </g>
 
-            <g data-at="3400">
-              <rect x="620" y="60" width="210" height="120" rx="14" class="node"></rect>
-              <text x="725" y="92" text-anchor="middle" class="lbl">na tela</text>
-              <text x="725" y="116" text-anchor="middle" class="lbl-sm" style="font-style:italic">“Conta anônima”</text>
-              <text x="725" y="140" text-anchor="middle" class="lbl-sm">o nome não aparece</text>
-              <line x1="650" y1="156" x2="800" y2="156" stroke="var(--line-strong)" stroke-dasharray="4 5"></line>
+            <g data-at="4600">
+              <rect x="600" y="60" width="220" height="120" rx="14" class="node"></rect>
+              <text x="710" y="88" text-anchor="middle" class="lbl">na tela</text>
+              <rect x="620" y="100" width="180" height="26" rx="8" class="node" fill="var(--surface-2)"></rect>
+              <line x1="630" y1="109" x2="782" y2="109" stroke="var(--line-strong)" stroke-width="2" stroke-linecap="round"></line>
+              <line x1="630" y1="117" x2="738" y2="117" stroke="var(--line-strong)" stroke-width="2" stroke-linecap="round"></line>
+              <rect x="620" y="134" width="150" height="26" rx="8" class="node" fill="var(--surface-2)"></rect>
+              <line x1="630" y1="143" x2="752" y2="143" stroke="var(--line-strong)" stroke-width="2" stroke-linecap="round"></line>
+              <line x1="630" y1="151" x2="700" y2="151" stroke="var(--line-strong)" stroke-width="2" stroke-linecap="round"></line>
+              <text x="710" y="176" text-anchor="middle" class="lbl-sm">sem o nome de quem escreveu</text>
             </g>
 
-            <g data-at="5600">
-              <path class="edge edge--danger" d="M540 120 H 616" marker-end="url(#pd1)"></path>
-              <text x="578" y="106" text-anchor="middle" class="lbl-sm">oculta</text>
+            <g data-at="6200">
+              <rect x="250" y="200" width="540" height="34" rx="10" class="node node--accent"></rect>
+              <text x="520" y="222" text-anchor="middle" class="lbl-sm">quem lê vê o argumento, não a pessoa — e responde ao argumento</text>
             </g>
 
-            <g data-at="6800">
-              <rect x="300" y="196" width="520" height="34" rx="10" class="node node--accent"></rect>
-              <text x="560" y="218" text-anchor="middle" class="lbl-sm">quem lê vê o argumento, não a pessoa — e responde ao argumento</text>
+            <g data-at="6600">
+              <path class="edge edge--brand" d="M300 120 H 346" marker-end="url(#pd1)"></path>
+            </g>
+            <g data-at="7400">
+              <path class="edge edge--brand" d="M530 120 H 596" marker-end="url(#pd1)"></path>
             </g>
           </svg>
         </div>
         <div class="scene__body">
           <ol class="scene-caps">
-            <li data-at="0"><b>1.</b> A pessoa escreve normalmente.</li>
-            <li data-at="1600"><b>2.</b> O comentário é assinado pela conta, como qualquer outro.</li>
-            <li data-at="3400"><b>3.</b> A interface decide não mostrar o apelido. Só isso.</li>
-            <li data-at="5600"><b>4.</b> Quem lê vê o texto, não o nome: a conversa deixa de ser sobre quem falou.</li>
-            <li data-at="6800"><b>5.</b> É um convite a discordar de ideias sem atacar quem as defende.</li>
+            <li data-at="0"><b>1.</b> Quem publicou o post escolheu <strong>comentários sem identificação</strong>. Quem comenta não escolheu nada.</li>
+            <li data-at="1600"><b>2.</b> O assunto é polêmico — e a escolha existe para o debate ficar sobre o assunto.</li>
+            <li data-at="2900"><b>3.</b> A pessoa escreve normalmente: o comentário é assinado como qualquer outro.</li>
+            <li data-at="4600"><b>4.</b> A tela mostra os comentários, sem o nome de quem escreveu. Não há etiqueta dizendo “anônimo”.</li>
+            <li data-at="6200"><b>5.</b> A assinatura continua por baixo — é o que permite moderar abuso.</li>
+            <li data-at="7600"><b>6.</b> O convite: discordar de ideias sem atacar quem as defende.</li>
           </ol>
         </div>
         <div class="scene__ctl">

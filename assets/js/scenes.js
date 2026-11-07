@@ -1,5 +1,5 @@
 /* ==========================================================================
-   IPR — Explicação · scenes.js
+   UPR — Explicação · scenes.js
    Motor de linha do tempo para as cenas explicativas.
    Sem dependências. Funciona em file:// .
    ========================================================================== */

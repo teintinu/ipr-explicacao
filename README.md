@@ -14,6 +14,10 @@ ponteiro para lá. Não use "juiz", "juíza" nem "juízo": diga **a justiça**, 
 judicial** ou **determinação da justiça**. Evite masculinos genéricos ("o usuário",
 "o cidadão"); prefira "quem usa", "as pessoas".
 
+Comentário sem identificação **não leva etiqueta na tela**: nada de "conta anônima".
+A escolha é de quem publicou o post; a interface apenas não mostra o nome de quem
+comentou.
+
 ## Créditos de imagem
 
 - `assets/img/cerebro.jpg` — foto de um modelo anatômico de cérebro, **CC0** (domínio

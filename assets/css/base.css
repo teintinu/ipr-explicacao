@@ -1,5 +1,5 @@
 /* ==========================================================================
-   IPR — Explicação · base.css
+   UPR — Explicação · base.css
    Tokens, reset, tipografia, layout, cabeçalho, rodapé.
    ========================================================================== */
 
@@ -82,6 +82,10 @@
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
 }
 
 html {

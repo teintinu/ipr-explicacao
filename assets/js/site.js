@@ -1,5 +1,5 @@
 /* ==========================================================================
-   IPR — Explicação · site.js
+   UPR — Explicação · site.js
    Tema, navegação, tooltips, revelação ao rolar e demonstrações simples.
    Sem dependências. Funciona em file:// .
    ========================================================================== */
@@ -243,7 +243,7 @@
     var author = demo.querySelector("[data-author]");
     var bubble = demo.querySelector("[data-bubble]");
     var realName = author ? author.getAttribute("data-name") || author.textContent : "";
-    var anonLabel = author ? author.getAttribute("data-anon-label") || "Conta anônima" : "";
+    var anonLabel = author ? author.getAttribute("data-anon-label") || "" : "";
 
     function setAnon(isAnon) {
       buttons.forEach(function (b) {
@@ -251,6 +251,7 @@
       });
       if (!author || !bubble) return;
       author.textContent = isAnon ? anonLabel : realName;
+      author.hidden = isAnon && anonLabel === "";
       bubble.classList.toggle("bubble--anon", isAnon);
     }
 
