@@ -69,13 +69,50 @@
       </p>
 
       <div class="tldr mt-3">
-        <h2>Resumo em cinco linhas</h2>
-        <ul>
-          <li>Você prova quem é <strong>uma vez</strong>, para um verificador de identidade.</li>
-          <li>Ele devolve uma <strong>credencial</strong> — e não conta para a rede quem você é.</li>
-          <li>A rede só sabe que a conta tem uma credencial válida.</li>
-          <li>Uma <strong>certificadora</strong> mantém a lista de verificadores legítimos.</li>
-          <li>O objetivo é que essa verificação use o <strong>gov.br</strong>, que já confere seu CPF.</li>
+        <h2>Resumo em cinco linhas — com o que cada uma quer dizer</h2>
+        <ul class="tldr__list">
+          <li>
+            <strong>Você prova quem é uma vez, para um verificador de identidade.</strong>
+            <span class="tldr__note">
+              É ele que atesta que você existe e te autoriza a entrar na rede. Pode ser um
+              órgão do governo, a sua operadora de telefone, o seu partido político ou a
+              empresa em que você trabalha. Você escolhe a quem se apresentar, e o documento
+              só é conferido uma vez: as contas seguintes não pedem de novo.
+            </span>
+          </li>
+          <li>
+            <strong>Ele devolve uma credencial — e não conta para a rede quem você é.</strong>
+            <span class="tldr__note">
+              A credencial é o que você usa para entrar. Ela não leva seu nome, seu CPF nem
+              sua foto: leva só a prova de que um verificador conferiu seus dados. O
+              verificador sabe que emitiu uma credencial para você; o que ele não consegue é
+              dizer <em>em qual conta</em> ela foi usada.
+            </span>
+          </li>
+          <li>
+            <strong>A rede só sabe que a conta tem uma credencial válida.</strong>
+            <span class="tldr__note">
+              Por isso você pode ter quantas contas quiser. Cada uma recebe a própria
+              credencial, emitida numa conversa separada, e elas não ficam ligadas entre si.
+              De cada conta, a rede sabe uma coisa só: existe uma pessoa real por trás dela.
+            </span>
+          </li>
+          <li>
+            <strong>Uma certificadora mantém a lista de verificadores legítimos.</strong>
+            <span class="tldr__note">
+              Ela não atende pessoas: credencia as instituições e responde pela lista. E quem
+              verifica assume <strong>responsabilidade legal</strong> pelo que atesta — se
+              emitir credencial falsa ou conferir mal, pode ser suspenso e responder por isso.
+            </span>
+          </li>
+          <li>
+            <strong>A meta é o gov.br — mas não só ele.</strong>
+            <span class="tldr__note">
+              Quando a rede estiver em pleno vapor, queremos usar o gov.br, que já confere o
+              CPF. Isso precisa ser articulado com o governo e resolvido para quem não é
+              brasileiro: estrangeiros e uso em outros países exigem outros emissores.
+            </span>
+          </li>
         </ul>
       </div>
     </div>
@@ -256,6 +293,29 @@
             <tr><td>A faixa etária declarada?</td><td>Qual é a sua data de nascimento?</td></tr>
           </tbody>
         </table>
+      </div>
+
+      <div class="callout callout--warn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 3.5 2.5 20.5h19L12 3.5Z"></path>
+          <path d="M12 10v4.5"></path>
+          <circle cx="12" cy="17.6" r=".9" fill="currentColor" stroke="none"></circle>
+        </svg>
+        <div>
+          <span class="callout__title">Ainda em aberto: quem não tem CPF</span>
+          <p>
+            A rede não pode assumir que todo mundo é brasileiro. Um estrangeiro residente,
+            alguém que vive fora, uma pessoa sem documento nacional — todos precisam de um
+            caminho. A direção é aceitar credenciais de outros países e de organismos
+            internacionais, com o país emissor registrado junto da credencial, e permitir
+            que a certificadora credencie emissores estrangeiros.
+          </p>
+          <p class="mb-0">
+            O que não pode acontecer é a rede exigir um documento que a pessoa não tem. Como
+            fazer isso sem criar um identificador rastreável é uma das perguntas em aberto do
+            projeto — está registrada como <strong>Q36</strong> no documento de desenho.
+          </p>
+        </div>
       </div>
     </div>
   </section>

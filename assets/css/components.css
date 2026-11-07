@@ -220,6 +220,18 @@ a.card:hover {
   color: var(--brand);
 }
 
+.tldr__list li {
+  margin: 1.15em 0;
+}
+
+.tldr__note {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 0.94rem;
+  line-height: 1.58;
+  color: var(--text-soft);
+}
+
 /* ---------- Callouts ---------- */
 
 .callout {
