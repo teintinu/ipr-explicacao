@@ -24,17 +24,22 @@ python3 -m http.server 8080
 
 ```
 .
-├── index.html          visão geral e mapa do site
-├── seguranca.html      identidade, cartórios, cofre, ordem judicial, menores
+├── index.html          demonstração do feed, com elementos clicáveis
+├── conversa.html       demonstração da tela de conversas
+├── por-dentro.html     sete animações dos bastidores (post, grupo, provedor…)
+├── identidade.html     verificador de identidade, certificadora e gov.br
+├── seguranca.html      cofre, ordem judicial, recibos, menores
 ├── mensagens.html      conversas, grupos, chaves
 ├── diario.html         posts, comentários anônimos, jogo, lives, cortes
 ├── chamadas.html       topologia, gravação, fila de fala
+├── confianca.html      remoção e conselhos de confiança
 ├── provedores.html     armazenamento, navegador como ajudante, custos
 ├── perguntas.html      perguntas frequentes
 ├── glossario.html      termos, com âncoras usadas pelos tooltips
 └── assets/
     ├── css/base.css         tokens, tipografia, layout, cabeçalho, rodapé
     ├── css/components.css   cartões, cenas, tooltip, acordeão, tabelas
+    ├── css/app.css          moldura do aplicativo, feed, conversa, hotspots
     ├── js/site.js           tema, menu, tooltips, alternadores, demonstrações
     ├── js/scenes.js         motor de linha do tempo das cenas animadas
     └── img/favicon.svg

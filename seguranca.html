@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Segurança e privacidade — UPR</title>
-<meta name="description" content="Como a rede protege sua identidade sem garantir impunidade: duas camadas, cartórios, cofres com várias chaves e recibos lacrados.">
+<meta name="description" content="Como a rede protege sua identidade sem garantir impunidade: duas camadas, verificadores, cofres com várias chaves e recibos lacrados.">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/css/base.css">
 <link rel="stylesheet" href="assets/css/components.css">
@@ -31,13 +31,14 @@
 
     <nav class="nav" id="menu-principal" aria-label="Navegação principal" data-open="false">
       <a href="index.html">Início</a>
+      <a href="por-dentro.html">Por dentro</a>
+      <a href="identidade.html">Identidade</a>
       <a href="seguranca.html" aria-current="page">Segurança</a>
       <a href="mensagens.html">Mensagens</a>
       <a href="diario.html">Diário</a>
       <a href="chamadas.html">Chamadas</a>
       <a href="confianca.html">Confiança</a>
       <a href="provedores.html">Provedores</a>
-      <a href="perguntas.html">Perguntas</a>
     </nav>
 
     <div class="header-actions">
@@ -68,8 +69,8 @@
       <div class="tldr mt-3">
         <h2>Resumo em cinco linhas</h2>
         <ul>
-          <li>A <strong>pessoa</strong> e a <strong>conta</strong> ficam separadas. A rede vê a conta; só o cartório vê a pessoa.</li>
-          <li>O cartório assina um comprovante <strong>sem saber qual conta</strong> ele autoriza — por isso nem o cartório consegue ligar os pontos sozinho.</li>
+          <li>A <strong>pessoa</strong> e a <strong>conta</strong> ficam separadas. A rede vê a conta; só o verificador de identidade vê a pessoa.</li>
+          <li>O verificador de identidade assina um comprovante <strong>sem saber qual conta</strong> ele autoriza — por isso nem ele consegue ligar os pontos sozinho.</li>
           <li>O vínculo fica num <strong>cofre trancado com várias chaves</strong>. Uma chave só não abre nada.</li>
           <li>Abrir o cofre devolve <strong>um número</strong>, não um nome. Chegar até a pessoa exige uma segunda etapa, num outro lugar.</li>
           <li>Toda abertura gera um <strong>recibo lacrado</strong>: dá para provar que aconteceu, sem revelar para quem.</li>
@@ -97,7 +98,7 @@
             </defs>
 
             <rect x="40" y="70" width="200" height="130" rx="16" class="node node--warn ghost"></rect>
-            <text x="140" y="60" text-anchor="middle" class="lbl-sm ghost">só o cartório vê</text>
+            <text x="140" y="60" text-anchor="middle" class="lbl-sm ghost">só o verificador vê</text>
 
             <g data-at="0">
               <rect x="40" y="70" width="200" height="130" rx="16" class="node node--warn"></rect>
@@ -133,7 +134,7 @@
         </div>
         <div class="scene__body">
           <ol class="scene-caps">
-            <li data-at="0"><b>1.</b> No cartório, a pessoa existe com nome e documento. É o único lugar que guarda isso.</li>
+            <li data-at="0"><b>1.</b> No verificador, a pessoa existe com nome e documento. É o único lugar que guarda isso.</li>
             <li data-at="1600"><b>2.</b> Na rede, existe só uma conta com apelido e chave. Nenhum dado civil.</li>
             <li data-at="3200"><b>3.</b> Entre as duas há uma parede. A conta não “aponta” para a pessoa em lugar nenhum.</li>
             <li data-at="4800"><b>4.</b> O que liga as duas é um envelope lacrado, guardado num cofre. Ele existe — mas não pode ser lido por quem passa.</li>
@@ -151,13 +152,13 @@
   <!-- ============ CARTÓRIO ============ -->
   <section class="section section--tight" id="cartorio">
     <div class="wrap">
-      <h2>O cartório: quem confere que você existe</h2>
+      <h2>O verificador: quem confere que você existe</h2>
 
       <div class="prose">
         <p>
           A rede não tem como saber se um CPF é real. Quem sabe disso é um órgão público —
           no Brasil, a Receita Federal. O projeto resolve isso do jeito antigo: com
-          <strong>cartórios credenciados</strong>.
+          <strong>verificadores credenciados</strong>.
         </p>
         <p>
           A
@@ -175,8 +176,8 @@
         </p>
         <p>
           Já a
-          <button type="button" class="term" data-tip="Autoridade Certificadora. É a raiz de confiança: mantém a lista assinada de quais cartórios são legítimos. Se um cartório for cassado, ele sai dessa lista." data-more="glossario.html#autoridade-certificadora">autoridade certificadora</button>
-          é o cartório central: ela não atende pessoas, ela credencia os cartórios. Mantém
+          <button type="button" class="term" data-tip="Autoridade Certificadora. É a raiz de confiança: mantém a lista assinada de quais verificadores são legítimos. Se um verificador for cassado, ele sai dessa lista." data-more="glossario.html#autoridade-certificadora">autoridade certificadora</button>
+          é o certificadora: ela não atende pessoas, ela credencia os verificadores. Mantém
           uma lista assinada de quais são legítimos — parecido com a lista de sites seguros
           que o seu navegador confia.
         </p>
@@ -214,20 +215,20 @@
           abrem — mas duas não abrem nada.
         </p>
         <p>
-          Neste projeto o cofre é dividido entre instituições diferentes: o cartório central
-          e vários cartórios regionais. Para abrir, é preciso que três deles cooperem, cada
+          Neste projeto o cofre é dividido entre instituições diferentes: o certificadora
+          e vários verificadores regionais. Para abrir, é preciso que três deles cooperem, cada
           um validando a ordem judicial por conta própria.
         </p>
         <p>
           A consequência prática é boa: <strong>um único juiz não consegue</strong> chegar à
-          pessoa falando com uma instituição só. E se um cartório for comprometido, ele
+          pessoa falando com uma instituição só. E se um verificador for comprometido, ele
           sozinho não abre nada.
         </p>
         <p>
-          Há um detalhe ainda mais fino: o cartório assina o comprovante de registro
+          Há um detalhe ainda mais fino: o verificador assina o comprovante de registro
           <strong>sem ver qual conta ele está autorizando</strong>. É como carimbar um
           documento dentro de um envelope fechado — o carimbo vale, mas quem carimbou não
-          sabe o que carimbou. Isso é o que impede o próprio cartório de montar uma lista
+          sabe o que carimbou. Isso é o que impede o próprio verificador de montar uma lista
           de “contas da Maria”.
         </p>
       </div>
@@ -298,7 +299,7 @@
             <g data-at="5000">
               <rect x="630" y="60" width="120" height="100" rx="14" class="node node--warn"></rect>
               <text x="690" y="88" text-anchor="middle" class="lbl">Cofre 2</text>
-              <text x="690" y="106" text-anchor="middle" class="lbl-sm">cartório</text>
+              <text x="690" y="106" text-anchor="middle" class="lbl-sm">verificador</text>
               <text x="690" y="126" text-anchor="middle" class="lbl-sm">segunda etapa</text>
             </g>
 
@@ -333,8 +334,8 @@
             <li data-at="0"><b>1.</b> O juiz quer saber quem está por trás da conta A.</li>
             <li data-at="1600"><b>2.</b> O pedido vai ao <strong>primeiro cofre</strong>. Três das cinco instituições precisam cooperar — e cada uma valida a ordem por conta própria.</li>
             <li data-at="3400"><b>3.</b> O cofre devolve <strong>um número</strong>: “a conta A pertence ao usuário 7f3c…”. Nada de nome, nada de CPF.</li>
-            <li data-at="5000"><b>4.</b> Esse número indica a qual <strong>cartório</strong> o juiz precisa se dirigir. É a segunda etapa, num outro lugar.</li>
-            <li data-at="6600"><b>5.</b> O cartório entrega <strong>só os campos pedidos</strong>: nome e documento. Não entrega endereço, não entrega histórico.</li>
+            <li data-at="5000"><b>4.</b> Esse número indica a qual <strong>verificador</strong> o juiz precisa se dirigir. É a segunda etapa, num outro lugar.</li>
+            <li data-at="6600"><b>5.</b> O verificador de identidade entrega <strong>só os campos pedidos</strong>: nome e documento. Não entrega endereço, não entrega histórico.</li>
             <li data-at="8200"><b>6.</b> Cada etapa registra um <strong>recibo lacrado</strong>. O recibo prova que houve abertura, sem dizer para quem.</li>
           </ol>
         </div>
@@ -359,9 +360,9 @@
           </thead>
           <tbody>
             <tr><td>O juiz</td><td>Sim</td><td>Sim</td><td>Sim, só os campos pedidos</td></tr>
-            <tr><td>Cada cartório do cofre</td><td>Não (só um código embaralhado)</td><td>Não</td><td>Não</td></tr>
-            <tr><td>O cartório central</td><td>Não</td><td>Não</td><td>Não</td></tr>
-            <tr><td>O cartório da segunda etapa</td><td>Não</td><td>Sim</td><td>Sim</td></tr>
+            <tr><td>Cada verificador de identidade do cofre</td><td>Não (só um código embaralhado)</td><td>Não</td><td>Não</td></tr>
+            <tr><td>O certificadora</td><td>Não</td><td>Não</td><td>Não</td></tr>
+            <tr><td>O verificador de identidade da segunda etapa</td><td>Não</td><td>Sim</td><td>Sim</td></tr>
             <tr><td>Os provedores de conteúdo</td><td>Não</td><td>Não</td><td>Não</td></tr>
             <tr><td>Qualquer pessoa na internet</td><td>Não</td><td>Não</td><td>Não</td></tr>
           </tbody>
@@ -490,7 +491,7 @@
           <h3>O que o desenho resolve</h3>
           <ul>
             <li>Uma conta não mostra quem é a pessoa.</li>
-            <li>Um cartório não consegue ligar contas entre si.</li>
+            <li>Um verificador de identidade não consegue ligar contas entre si.</li>
             <li>Um juiz sozinho não chega ao nome numa etapa só.</li>
             <li>Provedor de conteúdo não lê mensagens privadas.</li>
             <li>Abertura de sigilo deixa prova pública.</li>
@@ -502,7 +503,7 @@
             <li>Quem tem seu aparelho na mão vê o que você vê.</li>
             <li>Provedores sabem seu endereço de IP.</li>
             <li>Quem recebe o dado pode vazar depois.</li>
-            <li>Uma ordem abusiva contra o cartório atinge muitos.</li>
+            <li>Uma ordem abusiva contra o verificador de identidade atinge muitos.</li>
             <li>Nada impede filmar a tela com outro celular.</li>
           </ul>
         </div>
@@ -510,7 +511,7 @@
 
       <div class="prose">
         <p>
-          Existe ainda uma tensão que não é técnica, é política: os cartórios precisam ser
+          Existe ainda uma tensão que não é técnica, é política: os verificadores precisam ser
           independentes uns dos outros para o cofre valer. Mas, se estiverem em países
           diferentes, uma ordem judicial brasileira pode não alcançá-los — e aí o sistema
           deixa de servir justamente para o que foi criado.
@@ -574,7 +575,7 @@
           <span class="callout__title">Verificação de idade de verdade</span>
           <p class="mb-0">
             A lei não aceita mais “digite sua idade”. A faixa etária vem de quem verificou
-            o documento — o cartório — e não de um formulário que a criança pode preencher
+            o documento — o verificador de identidade — e não de um formulário que a criança pode preencher
             sozinha.
           </p>
         </div>
@@ -589,13 +590,13 @@
       <p class="lead">Esta parte usa termos técnicos. Ela existe para quem quiser conferir o raciocínio.</p>
 
       <details class="acc">
-        <summary>Como o cartório assina sem saber o que assina</summary>
+        <summary>Como o verificador de identidade assina sem saber o que assina</summary>
         <div class="acc__body">
           <p>
             A pessoa escolhe um número aleatório secreto e o “embaralha” antes de mandar
-            ao cartório. O cartório assina o que recebeu — mas o que ele vê não permite
+            ao verificador de identidade. O verificador de identidade assina o que recebeu — mas o que ele vê não permite
             descobrir o número original. Depois, a pessoa desembaralha a assinatura e fica
-            com um comprovante válido do cartório, sem que o cartório saiba qual número
+            com um comprovante válido do verificador de identidade, sem que o verificador de identidade saiba qual número
             ele autorizou.
           </p>
           <p>
@@ -611,7 +612,7 @@
         <div class="acc__body">
           <p>
             O primeiro cofre guarda apenas um número interno por conta — nunca nome ou
-            documento. O segundo cofre é um cartório, que guarda o registro de identidade.
+            documento. O segundo cofre é um verificador de identidade, que guarda o registro de identidade.
             São instituições diferentes, com bases diferentes.
           </p>
           <p>
@@ -623,12 +624,12 @@
       </details>
 
       <details class="acc">
-        <summary>O que acontece se um cartório for extinto</summary>
+        <summary>O que acontece se um verificador de identidade for extinto</summary>
         <div class="acc__body">
           <p>
-            Encerrar um cartório não apaga o dever de responder a ordem judicial. O contrato
+            Encerrar um verificador de identidade não apaga o dever de responder a ordem judicial. O contrato
             de credenciamento prevê uma instituição sucessora, que assume os registros e
-            essa obrigação. Sem essa regra, bastaria fechar o cartório para escapar de
+            essa obrigação. Sem essa regra, bastaria fechar o verificador de identidade para escapar de
             qualquer investigação.
           </p>
         </div>
@@ -638,7 +639,7 @@
         <summary>Contas diferentes da mesma pessoa são ligadas?</summary>
         <div class="acc__body">
           <p>
-            Não. Como o cartório assina sem saber quais números autorizou, ele não consegue
+            Não. Como o verificador de identidade assina sem saber quais números autorizou, ele não consegue
             dizer “estas cinco contas são da mesma pessoa”. Isso permite personas separadas:
             uma profissional, uma pessoal, uma para denúncias.
           </p>
@@ -679,16 +680,18 @@
       <div>
         <h2>Entender</h2>
         <ul>
-          <li><a href="seguranca.html">Segurança e privacidade</a></li>
+          <li><a href="por-dentro.html">Por dentro</a></li>
+          <li><a href="identidade.html">Identidade</a></li>
+          <li><a href="seguranca.html">Segurança</a></li>
           <li><a href="mensagens.html">Mensagens</a></li>
           <li><a href="diario.html">Diário</a></li>
-          <li><a href="chamadas.html">Chamadas</a></li>
-          <li><a href="confianca.html">Confiança e remoção</a></li>
         </ul>
       </div>
       <div>
         <h2>Ajuda</h2>
         <ul>
+          <li><a href="chamadas.html">Chamadas</a></li>
+          <li><a href="confianca.html">Confiança e remoção</a></li>
           <li><a href="provedores.html">Provedores</a></li>
           <li><a href="perguntas.html">Perguntas frequentes</a></li>
           <li><a href="glossario.html">Glossário</a></li>

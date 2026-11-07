@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conversas — UPR</title>
+<meta name="description" content="A tela de conversas: clique numa bolha para ver o que acontece por dentro, da cifra à entrega.">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/app.css">
+<script src="assets/js/site.js" defer></script>
+<script src="assets/js/scenes.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="brand" href="index.html" aria-label="UPR — página inicial">
+      <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+        <rect width="32" height="32" rx="9" fill="currentColor" opacity=".1"></rect>
+        <circle cx="16" cy="16" r="3.7" fill="currentColor"></circle>
+        <circle cx="7.5" cy="8.5" r="2" fill="currentColor" opacity=".6"></circle>
+        <circle cx="24.5" cy="8.5" r="2" fill="currentColor" opacity=".6"></circle>
+        <circle cx="7.5" cy="23.5" r="2" fill="currentColor" opacity=".6"></circle>
+        <circle cx="24.5" cy="23.5" r="2" fill="currentColor" opacity=".6"></circle>
+        <path d="M9.2 9.7 13.4 13.2M22.8 9.7 18.6 13.2M9.2 22.3 13.4 18.8M22.8 22.3 18.6 18.8" stroke="currentColor" stroke-width="1.3" opacity=".45"></path>
+      </svg>
+      <span>UPR<span class="brand__sub">a rede explicada</span></span>
+    </a>
+
+    <nav class="nav" id="menu-principal" aria-label="Navegação principal" data-open="false">
+      <a href="index.html">Início</a>
+      <a href="por-dentro.html">Por dentro</a>
+      <a href="identidade.html">Identidade</a>
+      <a href="seguranca.html">Segurança</a>
+      <a href="mensagens.html" aria-current="page">Mensagens</a>
+      <a href="diario.html">Diário</a>
+      <a href="chamadas.html">Chamadas</a>
+      <a href="confianca.html">Confiança</a>
+      <a href="provedores.html">Provedores</a>
+    </nav>
+
+    <div class="header-actions">
+      <button type="button" class="icon-btn" data-theme-toggle aria-label="Alternar tema">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+          <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path>
+        </svg>
+      </button>
+      <button type="button" class="icon-btn nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menu">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="conteudo">
+  <section class="section section--tight">
+    <div class="wrap center">
+      <p class="kicker" style="justify-content:center">Conversas</p>
+      <h1>A tela onde você fala.</h1>
+      <p class="lead" style="margin-inline:auto">
+        Clique no cabeçalho, numa bolha ou na barra de escrever. Cada um abre a animação do
+        que acontece por baixo.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="wrap">
+      <div class="app" style="max-width:720px">
+        <a class="chat__head hotspot" href="por-dentro.html#grupo" style="text-decoration:none;color:inherit">
+          <span class="avatar avatar--g">BB</span>
+          <span style="flex:1;min-width:0">
+            <span class="chat__name">Banda do bairro</span>
+            <span class="chat__status">grupo · 47 membros · 3 online</span>
+          </span>
+          <span class="tag tag--group">chave do grupo</span>
+        </a>
+
+        <div class="chat" style="height:min(480px,60vh)">
+          <div class="chat__body">
+            <span class="msg msg--system">Ana entrou no grupo · aprovada por 3 membros</span>
+
+            <a class="msg hotspot" href="por-dentro.html#mensagem" style="text-decoration:none;color:inherit">
+              <strong>Caio:</strong> levo o cabo e a caixa de som
+              <span class="msg__meta">19:04 · cifrada</span>
+            </a>
+
+            <a class="msg msg--out hotspot" href="por-dentro.html#mensagem" style="text-decoration:none">
+              combinado. chego 15h pra montar
+              <span class="msg__meta">19:05 ✓✓</span>
+            </a>
+
+            <span class="msg msg--system">🔑 chave do grupo trocada (versão 2) — Ana saiu</span>
+
+            <a class="msg hotspot" href="por-dentro.html#mensagem" style="text-decoration:none;color:inherit">
+              <strong>Duda:</strong> e o repertório, muda alguma coisa?
+              <span class="msg__meta">19:12 · cifrada</span>
+            </a>
+
+            <a class="msg msg--out hotspot" href="por-dentro.html#mensagem" style="text-decoration:none">
+              só a ordem. manda o setlist novo no grupo
+              <span class="msg__meta">19:13 ✓✓</span>
+            </a>
+          </div>
+
+          <div class="chat__composer">
+            <a class="chat__input hotspot" href="por-dentro.html#mensagem" style="text-decoration:none">Escrever uma mensagem…</a>
+            <span class="chat__send" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12 20 4l-6 16-3-6-7-2Z"></path></svg>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="legend">
+        <a class="legend__item" href="por-dentro.html#grupo">
+          <span class="legend__num">1</span>
+          <span><strong>Cabeçalho do grupo</strong><span>O grupo tem chave e assinatura próprias — é como uma conta.</span></span>
+        </a>
+        <a class="legend__item" href="por-dentro.html#mensagem">
+          <span class="legend__num">2</span>
+          <span><strong>Bolha de mensagem</strong><span>Trancada no seu aparelho, aberta só no do destinatário.</span></span>
+        </a>
+        <a class="legend__item" href="por-dentro.html#mensagem">
+          <span class="legend__num">3</span>
+          <span><strong>“chave trocada”</strong><span>Quem sai não lê o que vem depois. Quem entra não lê o passado.</span></span>
+        </a>
+        <a class="legend__item" href="por-dentro.html#provedor">
+          <span class="legend__num">4</span>
+          <span><strong>Enquanto você está offline</strong><span>A mensagem fica num escaninho de provedor, fechada.</span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="wrap">
+      <div class="callout callout--info">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M12 11v5"></path>
+          <circle cx="12" cy="7.8" r=".9" fill="currentColor" stroke="none"></circle>
+        </svg>
+        <div>
+          <span class="callout__title">O que o provedor consegue ver</span>
+          <p class="mb-0">
+            Que existe uma mensagem, para quem, de que tamanho e a que horas. Não vê o
+            texto, nem a foto, nem a chave que abre. <a href="mensagens.html#provedor">Ver o capítulo de mensagens.</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <nav class="pager" aria-label="Navegação">
+      <a class="pager--prev" href="index.html">
+        <span>Voltar</span>
+        <strong>← Início</strong>
+      </a>
+      <a class="pager--next" href="mensagens.html">
+        <span>Capítulo</span>
+        <strong>Mensagens por extenso →</strong>
+      </a>
+    </nav>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <p>
+          <strong>UPR</strong> — uma rede social que tenta conciliar duas coisas que costumam
+          se excluir: <em>anonimato para quem age de boa-fé</em> e
+          <em>responsabilidade para quem comete crime</em>.
+        </p>
+        <p class="faint">Explicação em linguagem simples, para quem não é de TI.</p>
+      </div>
+      <div>
+        <h2>Entender</h2>
+        <ul>
+          <li><a href="por-dentro.html">Por dentro</a></li>
+          <li><a href="identidade.html">Identidade</a></li>
+          <li><a href="seguranca.html">Segurança</a></li>
+          <li><a href="mensagens.html">Mensagens</a></li>
+          <li><a href="diario.html">Diário</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Ajuda</h2>
+        <ul>
+          <li><a href="chamadas.html">Chamadas</a></li>
+          <li><a href="confianca.html">Confiança e remoção</a></li>
+          <li><a href="provedores.html">Provedores</a></li>
+          <li><a href="perguntas.html">Perguntas frequentes</a></li>
+          <li><a href="glossario.html">Glossário</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-base">
+      <span>Conteúdo educativo. Não é aconselhamento jurídico.</span>
+      <span>© <span data-year>2026</span> UPR</span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

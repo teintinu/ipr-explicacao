@@ -3,11 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>UPR — uma rede social anônima, mas não impune</title>
-<meta name="description" content="Explicação em linguagem simples de como funciona uma rede social em WebRTC: identidade protegida, mensagens, diário, chamadas e provedores.">
+<title>UPR — a rede explicada</title>
+<meta name="description" content="Veja a rede funcionando por fora e clique em qualquer elemento para entender o que acontece por dentro.">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/css/base.css">
 <link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/app.css">
 <script src="assets/js/site.js" defer></script>
 <script src="assets/js/scenes.js" defer></script>
 </head>
@@ -31,13 +32,14 @@
 
     <nav class="nav" id="menu-principal" aria-label="Navegação principal" data-open="false">
       <a href="index.html" aria-current="page">Início</a>
+      <a href="por-dentro.html">Por dentro</a>
+      <a href="identidade.html">Identidade</a>
       <a href="seguranca.html">Segurança</a>
       <a href="mensagens.html">Mensagens</a>
       <a href="diario.html">Diário</a>
       <a href="chamadas.html">Chamadas</a>
       <a href="confianca.html">Confiança</a>
       <a href="provedores.html">Provedores</a>
-      <a href="perguntas.html">Perguntas</a>
     </nav>
 
     <div class="header-actions">
@@ -56,216 +58,190 @@
 </header>
 
 <main id="conteudo">
-
-  <!-- ================= HERO ================= -->
-  <section class="hero">
-    <div class="wrap hero__grid">
-      <div>
-        <p class="kicker">Entenda em 15 minutos</p>
-        <h1>Uma rede social onde você pode ser anônimo — mas não impune.</h1>
-        <p class="lead">
-          Hoje a internet te oferece duas opções ruins: entregar seus dados para todo mundo
-          ou conviver com contas falsas que não respondem por nada. Este projeto tenta um
-          terceiro caminho: <strong>sua conta não mostra quem você é</strong>, mas existe
-          alguém — um cartório — que sabe. E esse conhecimento só sai de lá com ordem judicial.
-        </p>
-        <div class="hero-actions">
-          <a class="btn btn--primary" href="seguranca.html">Começar pela segurança</a>
-          <a class="btn btn--ghost" href="mensagens.html">Ver como funcionam as mensagens</a>
-        </div>
-      </div>
-
-      <figure class="hero-art">
-        <svg viewBox="0 0 560 440" role="img" aria-label="Desenho de uma conta no centro, ligada a dois provedores, um grupo e um cartório">
-          <defs>
-            <linearGradient id="heroGrad" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="var(--brand)" stop-opacity=".28"></stop>
-              <stop offset="1" stop-color="var(--accent)" stop-opacity=".28"></stop>
-            </linearGradient>
-          </defs>
-
-          <g class="edge-flow">
-            <path class="edge" d="M280 220 C 230 190, 170 150, 118 108"></path>
-            <path class="edge" d="M280 220 C 330 190, 390 150, 442 108"></path>
-            <path class="edge" d="M280 220 C 230 250, 170 290, 118 332"></path>
-            <path class="edge" d="M280 220 C 330 250, 390 290, 442 332"></path>
-          </g>
-
-          <circle cx="280" cy="220" r="86" fill="url(#heroGrad)" class="hero-glow"></circle>
-
-          <g transform="translate(280,220)">
-            <rect x="-74" y="-30" width="148" height="60" rx="16" class="node node--brand"></rect>
-            <text class="lbl" text-anchor="middle" y="-3">Conta</text>
-            <text class="lbl-sm" text-anchor="middle" y="15">sem nome real</text>
-          </g>
-
-          <g transform="translate(112,100)">
-            <rect x="-72" y="-26" width="144" height="52" rx="14" class="node"></rect>
-            <text class="lbl" text-anchor="middle" y="-2">Provedor</text>
-            <text class="lbl-sm" text-anchor="middle" y="15">guarda arquivos</text>
-          </g>
-
-          <g transform="translate(448,100)">
-            <rect x="-64" y="-26" width="128" height="52" rx="14" class="node node--accent"></rect>
-            <text class="lbl" text-anchor="middle" y="-2">Grupo</text>
-            <text class="lbl-sm" text-anchor="middle" y="15">tem assinatura</text>
-          </g>
-
-          <g transform="translate(112,340)">
-            <rect x="-72" y="-26" width="144" height="52" rx="14" class="node node--warn"></rect>
-            <text class="lbl" text-anchor="middle" y="-2">Cartório</text>
-            <text class="lbl-sm" text-anchor="middle" y="15">viu seu documento</text>
-          </g>
-
-          <g transform="translate(448,340)">
-            <rect x="-72" y="-26" width="144" height="52" rx="14" class="node"></rect>
-            <text class="lbl" text-anchor="middle" y="-2">Provedor</text>
-            <text class="lbl-sm" text-anchor="middle" y="15">guarda arquivos</text>
-          </g>
-
-          <circle class="hero-pulse" cx="280" cy="220" r="94" fill="none"
-                  stroke="var(--brand)" stroke-width="1.4" opacity=".25"></circle>
-        </svg>
-        <figcaption class="faint center" style="font-size:.82rem;margin-top:.6rem">
-          A conta aparece na rede. Quem está por trás dela fica no cartório.
-        </figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <!-- ================= O PROBLEMA ================= -->
-  <section class="section">
-    <div class="wrap">
-      <h2>O problema que este projeto tenta resolver</h2>
-      <p class="lead">
-        Antes de explicar a solução, vale entender por que ela é difícil. São três problemas
-        que puxam em direções opostas.
+  <section class="section section--tight">
+    <div class="wrap center">
+      <p class="kicker" style="justify-content:center">Experimente a rede</p>
+      <h1>Isto é o UPR por dentro.</h1>
+      <p class="lead" style="margin-inline:auto">
+        Abaixo está a tela de uma conta comum. <strong>Passe o mouse e clique em qualquer
+        elemento</strong> para ver, em animação, o que acontece nos bastidores.
       </p>
+      <p class="faint" style="font-size:.88rem;margin-top:.4rem">
+        1. é o seu feed · 2. são as conversas · 3. é a sua identidade
+      </p>
+    </div>
+  </section>
 
-      <div class="cards cards--3 mt-3">
-        <div class="card reveal">
-          <div class="card__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M12 3 4 6v6c0 5 3.4 8.4 8 9 4.6-.6 8-4 8-9V6l-8-3Z"></path>
-              <path d="M12 11v3"></path>
-              <circle cx="12" cy="8.4" r=".9" fill="currentColor" stroke="none"></circle>
-            </svg>
-          </div>
-          <h3>Para usar, você entrega tudo</h3>
-          <p>
-            Nome, telefone, localização, quem são seus contatos. A maioria dos aplicativos
-            guarda isso num servidor que pode ler suas mensagens e saber com quem você fala.
-          </p>
+  <!-- ================= APLICATIVO ================= -->
+  <section class="section section--tight">
+    <div class="wrap">
+      <div class="app">
+
+        <div class="app__bar">
+          <span class="app__logo"><i aria-hidden="true"></i> UPR</span>
+          <span class="app__search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+            Buscar contas, grupos ou assuntos
+          </span>
+          <span class="app__actions">
+            <a class="app__icon" href="conversa.html" aria-label="Abrir conversas (2 não lidas)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.6 9.6 0 0 1-3.2-.6L3 21l1.7-4.9A8.3 8.3 0 0 1 3.6 11.5a8.4 8.4 0 0 1 9-8.4 8.4 8.4 0 0 1 8.4 8.4Z"></path>
+              </svg>
+              <span class="badge-dot">2</span>
+            </a>
+            <a class="app__icon" href="identidade.html" aria-label="Sua identidade verificada">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 3.5 5 6.5v5c0 4.4 3 7.5 7 8.5 4-1 7-4.1 7-8.5v-5l-7-3Z"></path>
+                <path d="m9 12 2.2 2.2L15.5 9.8"></path>
+              </svg>
+            </a>
+          </span>
         </div>
 
-        <div class="card reveal">
-          <div class="card__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M4 20h16"></path>
-              <path d="M7 20V9l5-5 5 5v11"></path>
-              <path d="M10 20v-5h4v5"></path>
-            </svg>
-          </div>
-          <h3>E quem comete crime escapa</h3>
-          <p>
-            Criar uma conta falsa leva dois minutos. Quando a polícia chega, o registro
-            aponta para um número de telefone que não existe mais.
-          </p>
-        </div>
+        <div class="feed">
 
-        <div class="card reveal">
-          <div class="card__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M8 7h8M8 12h8M8 17h5"></path>
-              <rect x="3.5" y="3.5" width="17" height="17" rx="3"></rect>
-            </svg>
-          </div>
-          <h3>A escolha oferecida é falsa</h3>
-          <p>
-            “Ou você aceita ser vigiado, ou aceita a impunidade.” Este projeto parte da ideia
-            de que esses dois problemas podem ser tratados separadamente.
-          </p>
+          <!-- POST 1 — conta comum, com parecer de conselho -->
+          <article class="post">
+            <div class="post__head">
+              <span class="avatar avatar--a">NC</span>
+              <span class="post__who">
+                <span class="post__name">@noite.clara <span class="tag tag--council">conselho</span></span>
+                <span class="post__meta">há 12 minutos · público</span>
+              </span>
+            </div>
+            <p class="post__text">
+              Terminei o ensaio do disco novo. Seis meses de gravação em três fins de semana.
+              Quem quiser ouvir antes, é só pedir.
+            </p>
+            <div class="post__media">foto · estúdio, 21h</div>
+
+            <a class="hotspot hotspot--inline post__council" href="por-dentro.html#conselho" style="display:block">
+              <b>⚖ Conselho “Checagem Aberta” — você prioriza esta conta</b>
+              A foto é de um ensaio de 2024, não deste disco. Vale conferir a data antes de
+              compartilhar.
+            </a>
+
+            <div class="post__actions">
+              <a class="post__action" href="por-dentro.html#post">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20.5s-7-4.3-7-9.2A4 4 0 0 1 12 8a4 4 0 0 1 7 3.3c0 4.9-7 9.2-7 9.2Z"></path></svg>
+                128
+              </a>
+              <a class="post__action" href="por-dentro.html#post">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 0 1-11.6 7.1L4 20l1-4.1A8 8 0 1 1 20 12Z"></path></svg>
+                34
+              </a>
+              <a class="post__action" href="por-dentro.html#post" style="margin-left:auto;font-weight:700;color:var(--brand)">
+                ver por dentro →
+              </a>
+            </div>
+          </article>
+
+          <!-- POST 2 — grupo fechado + aprovação -->
+          <article class="post">
+            <div class="post__head">
+              <span class="avatar avatar--g">BB</span>
+              <span class="post__who">
+                <span class="post__name">Banda do bairro <span class="tag tag--group">grupo</span> <span class="tag tag--private">só membros</span></span>
+                <span class="post__meta">publicado pelo grupo · 47 membros</span>
+              </span>
+            </div>
+            <p class="post__text">
+              Ensaio aberto sábado às 16h, no mesmo lugar de sempre. Levem cabo extra — o
+              último queimou.
+            </p>
+            <a class="hotspot hotspot--inline" href="por-dentro.html#aprovacao" style="display:block;text-decoration:none;background:var(--surface-2);border-radius:10px;padding:.45rem .6rem">
+              <span style="font-size:.86rem"><strong>Ana entrou no grupo</strong> · aprovada por 3 membros · há 2 dias</span>
+            </a>
+            <div class="post__actions">
+              <a class="post__action" href="por-dentro.html#grupo">14 respostas</a>
+              <a class="post__action" href="por-dentro.html#aprovacao">3 aguardando aprovação</a>
+              <a class="post__action" href="por-dentro.html#grupo" style="margin-left:auto;font-weight:700;color:var(--brand)">ver por dentro →</a>
+            </div>
+          </article>
+
+          <!-- POST 3 — texto com comentário anônimo -->
+          <article class="post">
+            <div class="post__head">
+              <span class="avatar avatar--b">PH</span>
+              <span class="post__who">
+                <span class="post__name">@pedro.h</span>
+                <span class="post__meta">há 1 hora · público · aceita comentários anônimos</span>
+              </span>
+            </div>
+            <p class="post__text">
+              A prefeitura diz que a fila do posto caiu 40%. Alguém tem o número original?
+              Queria ver a conta.
+            </p>
+            <div class="post__actions">
+              <a class="post__action" href="por-dentro.html#comentario">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 0 1-11.6 7.1L4 20l1-4.1A8 8 0 1 1 20 12Z"></path></svg>
+                9 · 2 anônimos
+              </a>
+              <a class="post__action" href="por-dentro.html#comentario" style="margin-left:auto;font-weight:700;color:var(--brand)">ver por dentro →</a>
+            </div>
+          </article>
+
         </div>
+      </div>
+
+      <!-- legenda dos elementos -->
+      <div class="legend">
+        <a class="legend__item" href="por-dentro.html#post">
+          <span class="legend__num">1</span>
+          <span><strong>Publicar um post</strong><span>Assinatura, impressão digital e envio aos provedores.</span></span>
+        </a>
+        <a class="legend__item" href="por-dentro.html#conselho">
+          <span class="legend__num">2</span>
+          <span><strong>Comentário de conselho</strong><span>Por que ele aparece primeiro para você.</span></span>
+        </a>
+        <a class="legend__item" href="por-dentro.html#comentario">
+          <span class="legend__num">3</span>
+          <span><strong>Comentário anônimo</strong><span>Assinado por dentro, oculto por fora.</span></span>
+        </a>
+        <a class="legend__item" href="por-dentro.html#grupo">
+          <span class="legend__num">4</span>
+          <span><strong>Grupo</strong><span>Como um grupo ganha identidade e chave própria.</span></span>
+        </a>
+        <a class="legend__item" href="por-dentro.html#aprovacao">
+          <span class="legend__num">5</span>
+          <span><strong>Aprovação de membro</strong><span>Pedido, votação e entrada registrada.</span></span>
+        </a>
+        <a class="legend__item" href="conversa.html">
+          <span class="legend__num">6</span>
+          <span><strong>Conversas</strong><span>Abra a tela de mensagens e clique numa bolha.</span></span>
+        </a>
+        <a class="legend__item" href="identidade.html">
+          <span class="legend__num">7</span>
+          <span><strong>Identidade</strong><span>Quem confirma que você existe — e como.</span></span>
+        </a>
+        <a class="legend__item" href="por-dentro.html#provedor">
+          <span class="legend__num">8</span>
+          <span><strong>Provedores</strong><span>Quem guarda os arquivos e por quê.</span></span>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- ================= A IDEIA ================= -->
+  <!-- ================= CAPÍTULOS ================= -->
   <section class="section section--alt">
     <div class="wrap">
-      <h2>A ideia, em quatro passos</h2>
-      <p class="lead">
-        Tudo o que vem depois neste site é consequência destes quatro passos.
-      </p>
-
-      <ol class="steps" style="max-width:70ch">
-        <li class="step reveal">
-          <h3>Todo mundo entra com documento — num cartório</h3>
-          <p>
-            Para criar uma conta, você prova quem é: CPF, CNPJ ou passaporte. Quem confere
-            isso é uma instituição chamada de
-            <button type="button" class="term" data-tip="Autoridade Registradora. Uma empresa credenciada que vê seu documento e atesta que você existe. Funciona como um cartório." data-more="seguranca.html#cartorio">autoridade registradora</button>,
-            não a rede.
-          </p>
-        </li>
-
-        <li class="step reveal">
-          <h3>O que aparece na rede é um pseudônimo</h3>
-          <p>
-            Sua conta tem um nome escolhido por você e uma chave secreta. Não tem seu CPF,
-            seu nome civil, seu endereço. Quem olha a rede vê a conta, não a pessoa.
-          </p>
-        </li>
-
-        <li class="step reveal">
-          <h3>O vínculo entre os dois fica num cofre com várias chaves</h3>
-          <p>
-            O cartório guarda um envelope lacrado dizendo “esta conta é desta pessoa”. O
-            envelope é trancado com uma fechadura que precisa de
-            <button type="button" class="term" data-tip="Técnica chamada de limiar. A chave é dividida em pedaços e qualquer combinação de 3 entre 5 abre. Com 2 pedaços, nada acontece." data-more="seguranca.html#cofre">várias chaves ao mesmo tempo</button>
-            para abrir.
-          </p>
-        </li>
-
-        <li class="step reveal">
-          <h3>A justiça pode abrir — mas isso deixa marca</h3>
-          <p>
-            Só um juiz pode mandar abrir, e mesmo assim a abertura gera um recibo público
-            que não revela de quem se trata. Abrir o sigilo não é o mesmo que publicar a
-            identidade de alguém.
-          </p>
-        </li>
-      </ol>
-
-      <div class="callout callout--info mt-3">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <circle cx="12" cy="12" r="9"></circle>
-          <path d="M12 11v5"></path>
-          <circle cx="12" cy="7.8" r=".9" fill="currentColor" stroke="none"></circle>
-        </svg>
-        <div>
-          <span class="callout__title">Por que isso importa</span>
-          <p class="mb-0">
-            O anonimato protege a pessoa de bem — a vítima que denuncia, o adolescente que
-            faz uma pergunta, quem tem opinião impopular. A identificação positiva protege
-            a sociedade de quem usa o anonimato como escudo. O desenho tenta não sacrificar
-            nenhum dos dois.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= OS TRÊS APLICATIVOS ================= -->
-  <section class="section">
-    <div class="wrap">
-      <h2>As três partes que você usa no dia a dia</h2>
-      <p class="lead">
-        A mesma conta serve para conversar, publicar e ligar. Cada uma dessas partes tem
-        regras próprias — e é isso que os capítulos a seguir explicam.
-      </p>
+      <h2>Se quiser o caminho longo</h2>
+      <p class="lead">Cada capítulo explica um pedaço da rede com calma.</p>
 
       <div class="cards cards--3 mt-3">
+        <a class="card reveal" href="identidade.html">
+          <div class="card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 3.5 5 6.5v5c0 4.4 3 7.5 7 8.5 4-1 7-4.1 7-8.5v-5l-7-3Z"></path>
+              <path d="m9 12 2.2 2.2L15.5 9.8"></path>
+            </svg>
+          </div>
+          <h3>Identidade</h3>
+          <p>Como a rede sabe que você existe sem nunca ver seu documento.</p>
+          <span class="card__more">Entender →</span>
+        </a>
+
         <a class="card reveal" href="mensagens.html">
           <div class="card__icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -273,11 +249,8 @@
             </svg>
           </div>
           <h3>Mensagens</h3>
-          <p>
-            Conversas de uma pessoa para outra e grupos. O conteúdo é cifrado no seu
-            aparelho e só o destinatário consegue abrir.
-          </p>
-          <span class="card__more">Como funciona →</span>
+          <p>Conversas que só os dois aparelhos conseguem abrir.</p>
+          <span class="card__more">Entender →</span>
         </a>
 
         <a class="card reveal" href="diario.html">
@@ -288,11 +261,8 @@
             </svg>
           </div>
           <h3>Diário</h3>
-          <p>
-            Posts, vídeos, comentários e transmissões ao vivo. O autor escolhe se os
-            comentários podem ser anônimos, e há um jogo de resposta em vídeo.
-          </p>
-          <span class="card__more">Como funciona →</span>
+          <p>Posts, vídeos, comentários e transmissões ao vivo.</p>
+          <span class="card__more">Entender →</span>
         </a>
 
         <a class="card reveal" href="chamadas.html">
@@ -303,75 +273,22 @@
             </svg>
           </div>
           <h3>Chamadas</h3>
-          <p>
-            Voz e vídeo, individuais ou em grupo. Por padrão não são gravadas, e o
-            organizador pode controlar quem fala.
-          </p>
-          <span class="card__more">Como funciona →</span>
+          <p>Voz e vídeo que não viram arquivo por padrão.</p>
+          <span class="card__more">Entender →</span>
         </a>
-      </div>
-    </div>
-  </section>
 
-  <!-- ================= QUEM DECIDE ================= -->
-  <section class="section section--tight">
-    <div class="wrap">
-      <h2>Quem decide o que aparece</h2>
-      <p class="lead">
-        Duas perguntas que todo mundo faz — e duas respostas bem diferentes.
-      </p>
-
-      <div class="cards cards--2 mt-3">
-        <a class="card reveal" href="confianca.html#remocao">
+        <a class="card reveal" href="confianca.html">
           <div class="card__icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M4 7h16M9 7V5h6v2M6 7l1 13h10l1-13"></path>
-              <path d="M10 11v5M14 11v5"></path>
+              <circle cx="12" cy="12" r="9"></circle>
+              <path d="m8.5 12 2.5 2.5 4.5-5"></path>
             </svg>
           </div>
-          <h3>Remoção</h3>
-          <p>
-            O autor pode tirar o que publicou. A justiça pode mandar tirar. O conteúdo sai,
-            mas a prova de que existiu fica.
-          </p>
-          <span class="card__more">Como funciona →</span>
+          <h3>Confiança e remoção</h3>
+          <p>Quem fala primeiro, e como apagar o que você publicou.</p>
+          <span class="card__more">Entender →</span>
         </a>
 
-        <a class="card reveal" href="confianca.html#conselhos">
-          <div class="card__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M12 3.5 5 6.5v5c0 4.4 3 7.5 7 8.5 4-1 7-4.1 7-8.5v-5l-7-3Z"></path>
-              <path d="m9 12 2.2 2.2L15.5 9.8"></path>
-            </svg>
-          </div>
-          <h3>Conselhos de confiança</h3>
-          <p>
-            Qualquer conta que você escolhe ler primeiro. Os comentários dela aparecem
-            antes para você — sem apagar, bloquear ou dar poder a ninguém.
-          </p>
-          <span class="card__more">Como funciona →</span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= A REDE POR BAIXO ================= -->
-  <section class="section section--alt">
-    <div class="wrap">
-      <h2>Por baixo de tudo: a rede de computadores</h2>
-      <div class="grid-split">
-        <div class="prose">
-          <p>
-            Nada disso funciona sem computadores guardando os arquivos. Neste projeto eles
-            se chamam <button type="button" class="term" data-tip="Um computador que armazena pedaços de conteúdo da rede e os entrega a quem pede. Pode ser de uma pessoa, de uma empresa ou até a aba do seu navegador." data-more="provedores.html">provedores</button>.
-            Não existe “o servidor da rede”: existem muitos, escolhidos pelos próprios usuários.
-          </p>
-          <p>
-            Essa escolha tem um preço: alguém precisa pagar o disco e a banda. E tem uma
-            consequência jurídica importante — <strong>quem guarda não é o autor</strong>.
-            A responsabilidade pelo conteúdo é sempre de quem criou e divulgou.
-          </p>
-        </div>
         <a class="card reveal" href="provedores.html">
           <div class="card__icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -380,104 +297,33 @@
               <path d="M7 7h.01M7 17h.01"></path>
             </svg>
           </div>
-          <h3>Provedores e armazenamento</h3>
-          <p>
-            Quem guarda o quê, quanto ocupa e como o seu navegador ajuda sem consumir
-            seus dados móveis.
-          </p>
+          <h3>Provedores</h3>
+          <p>Quem guarda os arquivos, quanto ocupa e quem paga.</p>
           <span class="card__more">Entender →</span>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- ================= COMO LER ================= -->
-  <section class="section">
-    <div class="wrap">
-      <h2>Como ler este site</h2>
-      <p class="lead">
-        Cada assunto aparece em três profundidades diferentes. Você escolhe até onde quer ir.
-      </p>
-
-      <div class="cards cards--3 mt-3">
-        <div class="card reveal">
-          <span class="pill pill--brand">Nível 1</span>
-          <h3>Resumo</h3>
-          <p>
-            No topo de cada página há um quadro com as ideias principais em poucas linhas.
-            Em dois minutos você entende o essencial.
-          </p>
-        </div>
-        <div class="card reveal">
-          <span class="pill">Nível 2</span>
-          <h3>Explicação</h3>
-          <p>
-            O corpo da página conta a história com exemplos, desenhos animados e passos.
-            É onde a maior parte do conteúdo vive.
-          </p>
-        </div>
-        <div class="card reveal">
-          <span class="pill">Nível 3</span>
-          <h3>Detalhe</h3>
-          <p>
-            Palavras com <button type="button" class="term" data-tip="Isto é um exemplo de explicação curta. Passe o mouse ou toque para ver o texto. Alguns termos também têm um link para a explicação completa.">sublinhado pontilhado</button>
-            abrem uma explicação curta. Blocos “Para quem quer o detalhe” abrem o
-            funcionamento técnico.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= LIMITES ================= -->
   <section class="section section--tight">
     <div class="wrap">
-      <div class="callout callout--danger">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M12 4 2.8 20h18.4L12 4Z"></path>
-          <path d="M12 10v4.4"></path>
-          <circle cx="12" cy="17.6" r=".9" fill="currentColor" stroke="none"></circle>
-        </svg>
-        <div>
-          <span class="callout__title">O que este projeto não promete</span>
-          <p class="mb-0">
-            Ele não promete anonimato absoluto. Quem tem acesso ao seu aparelho vê o que
-            você vê. Provedores sabem o endereço de IP de quem se conecta. A justiça, com
-            ordem judicial, chega até a pessoa — é esse o desenho, não um defeito. E
-            nenhuma tecnologia impede alguém de filmar a tela com outro celular.
-          </p>
-        </div>
-      </div>
-
-      <div class="callout callout--warn">
+      <div class="callout callout--info">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <circle cx="12" cy="12" r="9"></circle>
-          <path d="M12 8v4.5"></path>
-          <circle cx="12" cy="16" r=".9" fill="currentColor" stroke="none"></circle>
+          <path d="M12 11v5"></path>
+          <circle cx="12" cy="7.8" r=".9" fill="currentColor" stroke="none"></circle>
         </svg>
         <div>
-          <span class="callout__title">Este site é educativo</span>
+          <span class="callout__title">O que você está vendo</span>
           <p class="mb-0">
-            Ele explica um projeto em construção. Não é aconselhamento jurídico, nem
-            promessa de que tudo o que está descrito já esteja funcionando hoje.
+            Esta é uma demonstração, não um aplicativo funcionando. Os posts, as contas e
+            os grupos são inventados para mostrar o desenho da rede — e cada clique abre a
+            explicação do que aconteceria de verdade por baixo.
           </p>
         </div>
       </div>
     </div>
   </section>
-
-  <div class="wrap">
-    <nav class="pager" aria-label="Próximas páginas">
-      <a class="pager--prev" href="perguntas.html">
-        <span>Dúvidas rápidas</span>
-        <strong>Perguntas frequentes →</strong>
-      </a>
-      <a class="pager--next" href="seguranca.html">
-        <span>Próximo capítulo</span>
-        <strong>Segurança e privacidade →</strong>
-      </a>
-    </nav>
-  </div>
 </main>
 
 <footer class="site-footer">
@@ -494,16 +340,18 @@
       <div>
         <h2>Entender</h2>
         <ul>
-          <li><a href="seguranca.html">Segurança e privacidade</a></li>
+          <li><a href="por-dentro.html">Por dentro</a></li>
+          <li><a href="identidade.html">Identidade</a></li>
+          <li><a href="seguranca.html">Segurança</a></li>
           <li><a href="mensagens.html">Mensagens</a></li>
           <li><a href="diario.html">Diário</a></li>
-          <li><a href="chamadas.html">Chamadas</a></li>
-          <li><a href="confianca.html">Confiança e remoção</a></li>
         </ul>
       </div>
       <div>
         <h2>Ajuda</h2>
         <ul>
+          <li><a href="chamadas.html">Chamadas</a></li>
+          <li><a href="confianca.html">Confiança e remoção</a></li>
           <li><a href="provedores.html">Provedores</a></li>
           <li><a href="perguntas.html">Perguntas frequentes</a></li>
           <li><a href="glossario.html">Glossário</a></li>

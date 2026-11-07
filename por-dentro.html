@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Por dentro — UPR</title>
+<meta name="description" content="Sete animações que mostram o que acontece nos bastidores: post, conselho, comentário anônimo, grupo, aprovação, mensagem e provedores.">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/app.css">
+<script src="assets/js/site.js" defer></script>
+<script src="assets/js/scenes.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="brand" href="index.html" aria-label="UPR — página inicial">
+      <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+        <rect width="32" height="32" rx="9" fill="currentColor" opacity=".1"></rect>
+        <circle cx="16" cy="16" r="3.7" fill="currentColor"></circle>
+        <circle cx="7.5" cy="8.5" r="2" fill="currentColor" opacity=".6"></circle>
+        <circle cx="24.5" cy="8.5" r="2" fill="currentColor" opacity=".6"></circle>
+        <circle cx="7.5" cy="23.5" r="2" fill="currentColor" opacity=".6"></circle>
+        <circle cx="24.5" cy="23.5" r="2" fill="currentColor" opacity=".6"></circle>
+        <path d="M9.2 9.7 13.4 13.2M22.8 9.7 18.6 13.2M9.2 22.3 13.4 18.8M22.8 22.3 18.6 18.8" stroke="currentColor" stroke-width="1.3" opacity=".45"></path>
+      </svg>
+      <span>UPR<span class="brand__sub">a rede explicada</span></span>
+    </a>
+
+    <nav class="nav" id="menu-principal" aria-label="Navegação principal" data-open="false">
+      <a href="index.html">Início</a>
+      <a href="por-dentro.html" aria-current="page">Por dentro</a>
+      <a href="identidade.html">Identidade</a>
+      <a href="seguranca.html">Segurança</a>
+      <a href="mensagens.html">Mensagens</a>
+      <a href="diario.html">Diário</a>
+      <a href="chamadas.html">Chamadas</a>
+      <a href="confianca.html">Confiança</a>
+      <a href="provedores.html">Provedores</a>
+    </nav>
+
+    <div class="header-actions">
+      <button type="button" class="icon-btn" data-theme-toggle aria-label="Alternar tema">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+          <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path>
+        </svg>
+      </button>
+      <button type="button" class="icon-btn nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menu">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="conteudo">
+  <section class="section section--tight">
+    <div class="wrap center">
+      <p class="kicker" style="justify-content:center">Bastidores</p>
+      <h1>Por dentro</h1>
+      <p class="lead" style="margin-inline:auto">
+        Sete animações curtas. Cada uma responde a uma pergunta que a tela do aplicativo
+        não mostra.
+      </p>
+      <nav class="toc mt-3" style="max-width:640px;margin-inline:auto;text-align:left">
+        <h2>Nesta página</h2>
+        <ol>
+          <li><a href="#post">Publicar um post</a></li>
+          <li><a href="#conselho">Comentário de conselho</a></li>
+          <li><a href="#comentario">Comentário anônimo</a></li>
+          <li><a href="#grupo">Criar um grupo</a></li>
+          <li><a href="#aprovacao">Aprovar um membro</a></li>
+          <li><a href="#mensagem">Enviar uma mensagem</a></li>
+          <li><a href="#provedor">Provedores de conteúdo</a></li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+
+  <!-- ============ 1 POST ============ -->
+  <section class="section section--tight" id="post">
+    <div class="wrap">
+      <span class="step-label">Elemento 1</span>
+      <h2>Publicar um post</h2>
+      <p class="lead">Você escreve, assina e vira um bloco que ninguém consegue alterar.</p>
+
+      <div class="scene" data-scene data-duration="9000">
+        <div class="scene__art">
+          <svg viewBox="0 0 860 250" role="img" aria-label="A conta assina o post, calcula a impressão digital e envia aos provedores.">
+            <defs>
+              <marker id="pd1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0 L10 5 L0 10 z" fill="var(--line-strong)"></path>
+              </marker>
+            </defs>
+            <path class="edge ghost" d="M150 120 H 250"></path>
+            <path class="edge ghost" d="M420 120 H 500"></path>
+            <path class="edge ghost" d="M690 120 H 740"></path>
+
+            <g data-at="0">
+              <circle cx="90" cy="120" r="42" class="node node--brand"></circle>
+              <text x="90" y="125" text-anchor="middle" class="lbl">você</text>
+            </g>
+
+            <g data-at="1400">
+              <rect x="250" y="88" width="170" height="64" rx="12" class="node"></rect>
+              <text x="335" y="115" text-anchor="middle" class="lbl">post</text>
+              <text x="335" y="134" text-anchor="middle" class="lbl-sm">texto + foto</text>
+            </g>
+
+            <g data-at="2800">
+              <rect x="500" y="80" width="190" height="80" rx="12" class="node node--accent"></rect>
+              <text x="595" y="108" text-anchor="middle" class="lbl">assinado</text>
+              <text x="595" y="127" text-anchor="middle" class="lbl-mono">hash b94f…</text>
+              <text x="595" y="145" text-anchor="middle" class="lbl-sm">não dá para alterar</text>
+            </g>
+
+            <g data-at="4600">
+              <rect x="740" y="52" width="96" height="42" rx="10" class="node"></rect>
+              <text x="788" y="78" text-anchor="middle" class="lbl-sm">provedor</text>
+              <rect x="740" y="103" width="96" height="42" rx="10" class="node"></rect>
+              <text x="788" y="129" text-anchor="middle" class="lbl-sm">provedor</text>
+              <rect x="740" y="154" width="96" height="42" rx="10" class="node"></rect>
+              <text x="788" y="180" text-anchor="middle" class="lbl-sm">provedor</text>
+            </g>
+
+            <g data-at="6000">
+              <path class="edge edge--brand" d="M150 120 H 250" marker-end="url(#pd1)"></path>
+              <path class="edge edge--brand" d="M420 120 H 500" marker-end="url(#pd1)"></path>
+            </g>
+            <g data-at="7200">
+              <path class="edge edge--accent" d="M690 120 H 740" marker-end="url(#pd1)"></path>
+            </g>
+          </svg>
+        </div>
+        <div class="scene__body">
+          <ol class="scene-caps">
+            <li data-at="0"><b>1.</b> Você escreve o post no seu aparelho.</li>
+            <li data-at="1400"><b>2.</b> O aplicativo monta o conteúdo: texto, foto e a data.</li>
+            <li data-at="2800"><b>3.</b> Ele assina com a sua chave e calcula a impressão digital. Mudar uma vírgula muda o código inteiro.</li>
+            <li data-at="4600"><b>4.</b> O bloco vai para vários provedores. Cada um guarda uma cópia.</li>
+            <li data-at="6000"><b>5.</b> Quem você autorizou busca o bloco e confere a assinatura antes de mostrar.</li>
+          </ol>
+        </div>
+        <div class="scene__ctl">
+          <button type="button" data-act="toggle">Pausar</button>
+          <button type="button" data-act="replay">Recomeçar</button>
+          <span class="scene__hint">Clique num passo para ir até ele</span>
+        </div>
+      </div>
+      <p class="faint"><a href="diario.html#posts">Capítulo do diário →</a></p>
+    </div>
+  </section>
+
+  <!-- ============ 2 CONSELHO ============ -->
+  <section class="section section--tight section--alt" id="conselho">
+    <div class="wrap">
+      <span class="step-label">Elemento 2</span>
+      <h2>Comentário de conselho</h2>
+      <p class="lead">Por que o comentário de uma conta aparece antes de todos — para você.</p>
+
+      <div class="scene" data-scene data-duration="8000">
+        <div class="scene__art">
+          <svg viewBox="0 0 860 240" role="img" aria-label="Você elege uma conta; ela ganha um selo e seus comentários passam a aparecer primeiro.">
+            <g data-at="0">
+              <circle cx="90" cy="110" r="40" class="node node--brand"></circle>
+              <text x="90" y="115" text-anchor="middle" class="lbl">você</text>
+              <rect x="250" y="82" width="180" height="56" rx="12" class="node"></rect>
+              <text x="340" y="106" text-anchor="middle" class="lbl">@checagem</text>
+              <text x="340" y="124" text-anchor="middle" class="lbl-sm">conta comum</text>
+            </g>
+
+            <g data-at="1800">
+              <path class="edge edge--brand" d="M136 110 H 244" marker-end="url(#pd1)"></path>
+              <text x="190" y="96" text-anchor="middle" class="lbl-sm">eleger</text>
+            </g>
+
+            <g data-at="3400">
+              <rect x="250" y="82" width="180" height="56" rx="12" class="node node--accent"></rect>
+              <circle cx="470" cy="110" r="14" class="node node--accent"></circle>
+              <text x="470" y="115" text-anchor="middle" class="lbl-sm">✓</text>
+              <text x="500" y="106" class="lbl-sm">selo discreto</text>
+              <text x="500" y="124" class="lbl-sm">“há quem priorize”</text>
+            </g>
+
+            <g data-at="5200">
+              <rect x="640" y="52" width="190" height="40" rx="10" class="node node--accent"></rect>
+              <text x="735" y="77" text-anchor="middle" class="lbl-sm">comentário dela</text>
+              <rect x="640" y="102" width="190" height="36" rx="10" class="node"></rect>
+              <text x="735" y="125" text-anchor="middle" class="lbl-sm">outros comentários</text>
+            </g>
+
+            <g data-at="6600">
+              <text x="735" y="170" text-anchor="middle" class="lbl-sm">para quem não elegeu,</text>
+              <text x="735" y="187" text-anchor="middle" class="lbl-sm">a ordem é normal</text>
+            </g>
+          </svg>
+        </div>
+        <div class="scene__body">
+          <ol class="scene-caps">
+            <li data-at="0"><b>1.</b> Qualquer conta pode ser eleita conselho — não existe cadastro.</li>
+            <li data-at="1800"><b>2.</b> Você clica em “priorizar esta conta”. A escolha fica só com você.</li>
+            <li data-at="3400"><b>3.</b> Ela ganha um selo que diz apenas que alguém a prioriza. Não diz quem nem quantos.</li>
+            <li data-at="5200"><b>4.</b> Os comentários dela passam a aparecer primeiro, com destaque.</li>
+            <li data-at="6600"><b>5.</b> Para quem não a elegeu, nada muda.</li>
+          </ol>
+        </div>
+        <div class="scene__ctl">
+          <button type="button" data-act="toggle">Pausar</button>
+          <button type="button" data-act="replay">Recomeçar</button>
+          <span class="scene__hint">Clique num passo para ir até ele</span>
+        </div>
+      </div>
+      <p class="faint"><a href="confianca.html#conselhos">Capítulo de confiança →</a></p>
+    </div>
+  </section>
+
+  <!-- ============ 3 COMENTÁRIO ANÔNIMO ============ -->
+  <section class="section section--tight" id="comentario">
+    <div class="wrap">
+      <span class="step-label">Elemento 3</span>
+      <h2>Comentário anônimo</h2>
+      <p class="lead">O autor some da tela. A assinatura não some.</p>
+
+      <div class="scene" data-scene data-duration="8000">
+        <div class="scene__art">
+          <svg viewBox="0 0 860 240" role="img" aria-label="O comentário é assinado pela conta, mas a interface esconde o autor.">
+            <g data-at="0">
+              <rect x="60" y="70" width="250" height="100" rx="14" class="node"></rect>
+              <text x="185" y="102" text-anchor="middle" class="lbl">comentário</text>
+              <text x="185" y="122" text-anchor="middle" class="lbl-sm">texto enviado</text>
+            </g>
+
+            <g data-at="1600">
+              <rect x="360" y="70" width="180" height="100" rx="14" class="node node--accent"></rect>
+              <text x="450" y="100" text-anchor="middle" class="lbl-sm">assinatura</text>
+              <text x="450" y="120" text-anchor="middle" class="lbl-mono">9c21…</text>
+              <text x="450" y="142" text-anchor="middle" class="lbl-sm">continua lá</text>
+            </g>
+
+            <g data-at="3400">
+              <rect x="620" y="60" width="210" height="120" rx="14" class="node"></rect>
+              <text x="725" y="92" text-anchor="middle" class="lbl">na tela</text>
+              <text x="725" y="116" text-anchor="middle" class="lbl-sm" style="font-style:italic">“Conta anônima”</text>
+              <text x="725" y="140" text-anchor="middle" class="lbl-sm">o nome não aparece</text>
+              <line x1="650" y1="156" x2="800" y2="156" stroke="var(--line-strong)" stroke-dasharray="4 5"></line>
+            </g>
+
+            <g data-at="5600">
+              <path class="edge edge--danger" d="M540 120 H 616" marker-end="url(#pd1)"></path>
+              <text x="578" y="106" text-anchor="middle" class="lbl-sm">oculta</text>
+            </g>
+
+            <g data-at="6800">
+              <rect x="360" y="196" width="470" height="34" rx="10" class="node node--warn"></rect>
+              <text x="595" y="218" text-anchor="middle" class="lbl-sm">moderação e ordem judicial chegam ao autor — o público, não</text>
+            </g>
+          </svg>
+        </div>
+        <div class="scene__body">
+          <ol class="scene-caps">
+            <li data-at="0"><b>1.</b> A pessoa escreve normalmente.</li>
+            <li data-at="1600"><b>2.</b> O comentário é assinado pela conta, como qualquer outro.</li>
+            <li data-at="3400"><b>3.</b> A interface decide não mostrar o apelido. Só isso.</li>
+            <li data-at="5600"><b>4.</b> A assinatura continua verificável por baixo.</li>
+            <li data-at="6800"><b>5.</b> Por isso dá para moderar abuso e, com ordem judicial, chegar ao autor.</li>
+          </ol>
+        </div>
+        <div class="scene__ctl">
+          <button type="button" data-act="toggle">Pausar</button>
+          <button type="button" data-act="replay">Recomeçar</button>
+          <span class="scene__hint">Clique num passo para ir até ele</span>
+        </div>
+      </div>
+      <p class="faint"><a href="diario.html#comentarios">Capítulo do diário →</a></p>
+    </div>
+  </section>
+
+  <!-- ============ 4 GRUPO ============ -->
+  <section class="section section--tight section--alt" id="grupo">
+    <div class="wrap">
+      <span class="step-label">Elemento 4</span>
+      <h2>Criar um grupo</h2>
+      <p class="lead">Um grupo não é uma lista de pessoas: é uma conta nova, com chave própria.</p>
+
+      <div class="scene" data-scene data-duration="9000">
+        <div class="scene__art">
+          <svg viewBox="0 0 860 250" role="img" aria-label="O fundador cria o grupo, gera uma chave própria e publica o evento de criação.">
+            <g data-at="0">
+              <circle cx="90" cy="120" r="40" class="node node--brand"></circle>
+              <text x="90" y="125" text-anchor="middle" class="lbl">funda</text>
+            </g>
+
+            <g data-at="1600">
+              <path class="edge edge--brand" d="M136 120 H 240" marker-end="url(#pd1)"></path>
+              <rect x="250" y="80" width="200" height="80" rx="14" class="node node--accent"></rect>
+              <text x="350" y="108" text-anchor="middle" class="lbl">grupo</text>
+              <text x="350" y="128" text-anchor="middle" class="lbl-sm">chave própria</text>
+              <text x="350" y="146" text-anchor="middle" class="lbl-sm">assinatura própria</text>
+            </g>
+
+            <g data-at="3600">
+              <path class="edge edge--accent" d="M450 120 H 540" marker-end="url(#pd1)"></path>
+              <rect x="550" y="70" width="230" height="100" rx="14" class="node"></rect>
+              <text x="665" y="98" text-anchor="middle" class="lbl">evento público</text>
+              <text x="665" y="120" text-anchor="middle" class="lbl-sm">“grupo criado”</text>
+              <text x="665" y="142" text-anchor="middle" class="lbl-sm">qualquer um verifica</text>
+            </g>
+
+            <g data-at="5800">
+              <rect x="250" y="196" width="530" height="38" rx="10" class="node node--warn"></rect>
+              <text x="515" y="220" text-anchor="middle" class="lbl-sm">entrar e sair também são eventos — o grupo sempre sabe quem entrou</text>
+            </g>
+          </svg>
+        </div>
+        <div class="scene__body">
+          <ol class="scene-caps">
+            <li data-at="0"><b>1.</b> Alguém funda o grupo.</li>
+            <li data-at="1600"><b>2.</b> O grupo nasce com chave e assinatura próprias — é como uma conta.</li>
+            <li data-at="3600"><b>3.</b> A criação é publicada como conteúdo assinado, verificável por qualquer pessoa.</li>
+            <li data-at="5800"><b>4.</b> Entradas e saídas também são registradas: o grupo sempre sabe quem está dentro.</li>
+          </ol>
+        </div>
+        <div class="scene__ctl">
+          <button type="button" data-act="toggle">Pausar</button>
+          <button type="button" data-act="replay">Recomeçar</button>
+          <span class="scene__hint">Clique num passo para ir até ele</span>
+        </div>
+      </div>
+      <p class="faint"><a href="mensagens.html#grupos">Capítulo de grupos →</a></p>
+    </div>
+  </section>
+
+  <!-- ============ 5 APROVAÇÃO ============ -->
+  <section class="section section--tight" id="aprovacao">
+    <div class="wrap">
+      <span class="step-label">Elemento 5</span>
+      <h2>Aprovar um membro</h2>
+      <p class="lead">Pedido, votação e entrada — cada etapa assinada.</p>
+
+      <div class="scene" data-scene data-duration="9000">
+        <div class="scene__art">
+          <svg viewBox="0 0 860 250" role="img" aria-label="Uma pessoa pede entrada, os membros votam e a entrada é registrada.">
+            <g data-at="0">
+              <circle cx="90" cy="120" r="36" class="node"></circle>
+              <text x="90" y="125" text-anchor="middle" class="lbl">Ana</text>
+              <path class="edge edge--brand" d="M130 120 H 230" marker-end="url(#pd1)"></path>
+              <rect x="240" y="92" width="170" height="56" rx="12" class="node"></rect>
+              <text x="325" y="116" text-anchor="middle" class="lbl-sm">pedido de entrada</text>
+              <text x="325" y="134" text-anchor="middle" class="lbl-sm">assinado</text>
+            </g>
+
+            <g data-at="1800">
+              <circle cx="500" cy="70" r="22" class="node node--brand"></circle>
+              <text x="500" y="75" text-anchor="middle" class="lbl-sm">✓</text>
+              <circle cx="560" cy="70" r="22" class="node node--brand"></circle>
+              <text x="560" y="75" text-anchor="middle" class="lbl-sm">✓</text>
+              <circle cx="620" cy="70" r="22" class="node node--brand"></circle>
+              <text x="620" y="75" text-anchor="middle" class="lbl-sm">✓</text>
+              <text x="560" y="120" text-anchor="middle" class="lbl-sm">3 membros aprovaram</text>
+            </g>
+
+            <g data-at="3800">
+              <rect x="240" y="170" width="560" height="58" rx="12" class="node node--accent"></rect>
+              <text x="520" y="196" text-anchor="middle" class="lbl">“Ana entrou no grupo”</text>
+              <text x="520" y="216" text-anchor="middle" class="lbl-sm">evento assinado, visível para todos os membros</text>
+            </g>
+
+            <g data-at="6000">
+              <text x="520" y="248" text-anchor="middle" class="lbl-sm">a chave do grupo muda neste instante</text>
+            </g>
+          </svg>
+        </div>
+        <div class="scene__body">
+          <ol class="scene-caps">
+            <li data-at="0"><b>1.</b> A pessoa pede entrada. O pedido é assinado.</li>
+            <li data-at="1800"><b>2.</b> Membros aprovam, conforme a regra do grupo.</li>
+            <li data-at="3800"><b>3.</b> A entrada vira um evento, e todo mundo vê quem entrou.</li>
+            <li data-at="6000"><b>4.</b> A chave do grupo é trocada. Quem não é membro não lê o que vem depois.</li>
+          </ol>
+        </div>
+        <div class="scene__ctl">
+          <button type="button" data-act="toggle">Pausar</button>
+          <button type="button" data-act="replay">Recomeçar</button>
+          <span class="scene__hint">Clique num passo para ir até ele</span>
+        </div>
+      </div>
+      <p class="faint"><a href="mensagens.html#grupos">Capítulo de grupos →</a></p>
+    </div>
+  </section>
+
+  <!-- ============ 6 MENSAGEM ============ -->
+  <section class="section section--tight section--alt" id="mensagem">
+    <div class="wrap">
+      <span class="step-label">Elemento 6</span>
+      <h2>Enviar uma mensagem</h2>
+      <p class="lead">O caminho entre o seu aparelho e o do destinatário.</p>
+
+      <div class="scene" data-scene data-duration="8500">
+        <div class="scene__art">
+          <svg viewBox="0 0 860 230" role="img" aria-label="A mensagem é trancada no aparelho, guardada pelo provedor como embrulho fechado e aberta pelo destinatário.">
+            <g data-at="0">
+              <rect x="40" y="70" width="150" height="90" rx="14" class="node node--brand"></rect>
+              <text x="115" y="108" text-anchor="middle" class="lbl">você</text>
+              <text x="115" y="128" text-anchor="middle" class="lbl-sm">escreve</text>
+            </g>
+            <g data-at="1600">
+              <rect x="250" y="70" width="220" height="90" rx="14" class="node node--accent"></rect>
+              <text x="360" y="104" text-anchor="middle" class="lbl">embrulho fechado</text>
+              <text x="360" y="126" text-anchor="middle" class="lbl-mono">a7f3 9c21 …</text>
+            </g>
+            <g data-at="3200">
+              <rect x="530" y="70" width="150" height="90" rx="14" class="node"></rect>
+              <text x="605" y="104" text-anchor="middle" class="lbl-sm">provedor</text>
+              <text x="605" y="126" text-anchor="middle" class="lbl-sm">guarda</text>
+            </g>
+            <g data-at="4800">
+              <rect x="700" y="70" width="130" height="90" rx="14" class="node node--brand"></rect>
+              <text x="765" y="108" text-anchor="middle" class="lbl">destino</text>
+              <text x="765" y="128" text-anchor="middle" class="lbl-sm">abre</text>
+            </g>
+            <g data-at="6400">
+              <path class="edge edge--brand" d="M190 115 H 246" marker-end="url(#pd1)"></path>
+              <path class="edge edge--brand" d="M470 115 H 526" marker-end="url(#pd1)"></path>
+              <path class="edge edge--brand" d="M680 115 H 696" marker-end="url(#pd1)"></path>
+              <text x="430" y="196" text-anchor="middle" class="lbl-sm">o provedor nunca vê o texto</text>
+            </g>
+          </svg>
+        </div>
+        <div class="scene__body">
+          <ol class="scene-caps">
+            <li data-at="0"><b>1.</b> Você escreve.</li>
+            <li data-at="1600"><b>2.</b> O texto é trancado com a chave do destinatário.</li>
+            <li data-at="3200"><b>3.</b> O provedor guarda o embrulho até a entrega.</li>
+            <li data-at="4800"><b>4.</b> Só o destinatário destranca.</li>
+            <li data-at="6400"><b>5.</b> Em nenhum ponto o texto existiu legível fora dos dois aparelhos.</li>
+          </ol>
+        </div>
+        <div class="scene__ctl">
+          <button type="button" data-act="toggle">Pausar</button>
+          <button type="button" data-act="replay">Recomeçar</button>
+          <span class="scene__hint">Clique num passo para ir até ele</span>
+        </div>
+      </div>
+      <p class="faint"><a href="mensagens.html#um-para-um">Capítulo de mensagens →</a></p>
+    </div>
+  </section>
+
+  <!-- ============ 7 PROVEDOR ============ -->
+  <section class="section section--tight" id="provedor">
+    <div class="wrap">
+      <span class="step-label">Elemento 7</span>
+      <h2>Provedores de conteúdo</h2>
+      <p class="lead">Não existe “o servidor da rede”. Existem cópias, em computadores diferentes.</p>
+
+      <div class="scene" data-scene data-duration="11000">
+        <div class="scene__art">
+          <svg viewBox="0 0 880 320" role="img" aria-label="Sua conta distribui arquivos entre provedores, que devolvem recibos; o navegador ajuda dentro de limites.">
+            <g data-at="0">
+              <rect x="30" y="120" width="160" height="86" rx="14" class="node node--brand"></rect>
+              <text x="110" y="152" text-anchor="middle" class="lbl">sua conta</text>
+              <text x="110" y="172" text-anchor="middle" class="lbl-sm">3,4 GB</text>
+            </g>
+
+            <g data-at="1400">
+              <rect x="280" y="40" width="180" height="66" rx="12" class="node"></rect>
+              <text x="370" y="64" text-anchor="middle" class="lbl-sm">Provedor A</text>
+              <text x="370" y="84" text-anchor="middle" class="lbl-mono">1,2 GB</text>
+              <rect x="280" y="130" width="180" height="66" rx="12" class="node"></rect>
+              <text x="370" y="154" text-anchor="middle" class="lbl-sm">Provedor B</text>
+              <text x="370" y="174" text-anchor="middle" class="lbl-mono">1,9 GB</text>
+              <rect x="280" y="220" width="180" height="66" rx="12" class="node"></rect>
+              <text x="370" y="244" text-anchor="middle" class="lbl-sm">Provedor C</text>
+              <text x="370" y="264" text-anchor="middle" class="lbl-mono">0,3 GB</text>
+            </g>
+
+            <g data-at="3400">
+              <path class="edge edge--brand" d="M190 150 L 276 80" marker-end="url(#pd1)"></path>
+              <path class="edge edge--brand" d="M190 163 H 276" marker-end="url(#pd1)"></path>
+              <path class="edge edge--brand" d="M190 176 L 276 246" marker-end="url(#pd1)"></path>
+            </g>
+
+            <g data-at="5200">
+              <rect x="560" y="120" width="290" height="86" rx="12" class="node node--accent"></rect>
+              <text x="705" y="148" text-anchor="middle" class="lbl-sm">recibo de uso</text>
+              <text x="705" y="168" text-anchor="middle" class="lbl-mono">lista de arquivos → soma</text>
+              <text x="705" y="188" text-anchor="middle" class="lbl-sm">conferível por qualquer um</text>
+            </g>
+
+            <g data-at="7000">
+              <rect x="560" y="230" width="290" height="66" rx="12" class="node node--warn"></rect>
+              <text x="705" y="254" text-anchor="middle" class="lbl-sm">seu navegador também ajuda</text>
+              <text x="705" y="274" text-anchor="middle" class="lbl-sm">com teto de disco e de envio</text>
+            </g>
+
+            <g data-at="8800">
+              <text x="705" y="60" text-anchor="middle" class="lbl-sm">se um cair,</text>
+              <text x="705" y="78" text-anchor="middle" class="lbl-sm">os outros respondem</text>
+            </g>
+          </svg>
+        </div>
+        <div class="scene__body">
+          <ol class="scene-caps">
+            <li data-at="0"><b>1.</b> Sua conta tem arquivos espalhados por provedores que você escolheu.</li>
+            <li data-at="1400"><b>2.</b> Cada um guarda uma parte — e nenhum precisa conhecer o conjunto.</li>
+            <li data-at="3400"><b>3.</b> O conteúdo é dividido em blocos identificados por impressão digital.</li>
+            <li data-at="5200"><b>4.</b> Cada provedor devolve um recibo com a lista do que guarda. A soma é conferível.</li>
+            <li data-at="7000"><b>5.</b> O navegador ajuda enquanto você está vendo algo, dentro de limites rígidos.</li>
+            <li data-at="8800"><b>6.</b> Um provedor pode cair: os outros continuam servindo.</li>
+          </ol>
+        </div>
+        <div class="scene__ctl">
+          <button type="button" data-act="toggle">Pausar</button>
+          <button type="button" data-act="replay">Recomeçar</button>
+          <span class="scene__hint">Clique num passo para ir até ele</span>
+        </div>
+      </div>
+      <p class="faint"><a href="provedores.html">Capítulo de provedores →</a></p>
+
+      <div class="compare mt-3">
+        <div class="compare__box compare__box--good">
+          <h3>O que o provedor faz</h3>
+          <ul>
+            <li>Guarda blocos por impressão digital.</li>
+            <li>Entrega para quem pede.</li>
+            <li>Emite recibo do que apagou.</li>
+            <li>Pode cobrar ou não — a rede não opina.</li>
+          </ul>
+        </div>
+        <div class="compare__box compare__box--bad">
+          <h3>O que ele não faz</h3>
+          <ul>
+            <li>Não lê mensagem privada.</li>
+            <li>Não escolhe o que você vê.</li>
+            <li>Não é dono do conteúdo.</li>
+            <li>Não é obrigatório ser sempre o mesmo.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <nav class="pager" aria-label="Navegação">
+      <a class="pager--prev" href="index.html">
+        <span>Voltar</span>
+        <strong>← Início</strong>
+      </a>
+      <a class="pager--next" href="identidade.html">
+        <span>Próximo</span>
+        <strong>Identidade →</strong>
+      </a>
+    </nav>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <p>
+          <strong>UPR</strong> — uma rede social que tenta conciliar duas coisas que costumam
+          se excluir: <em>anonimato para quem age de boa-fé</em> e
+          <em>responsabilidade para quem comete crime</em>.
+        </p>
+        <p class="faint">Explicação em linguagem simples, para quem não é de TI.</p>
+      </div>
+      <div>
+        <h2>Entender</h2>
+        <ul>
+          <li><a href="por-dentro.html">Por dentro</a></li>
+          <li><a href="identidade.html">Identidade</a></li>
+          <li><a href="seguranca.html">Segurança</a></li>
+          <li><a href="mensagens.html">Mensagens</a></li>
+          <li><a href="diario.html">Diário</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Ajuda</h2>
+        <ul>
+          <li><a href="chamadas.html">Chamadas</a></li>
+          <li><a href="confianca.html">Confiança e remoção</a></li>
+          <li><a href="provedores.html">Provedores</a></li>
+          <li><a href="perguntas.html">Perguntas frequentes</a></li>
+          <li><a href="glossario.html">Glossário</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-base">
+      <span>Conteúdo educativo. Não é aconselhamento jurídico.</span>
+      <span>© <span data-year>2026</span> UPR</span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
