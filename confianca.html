@@ -182,45 +182,46 @@
     <div class="wrap">
       <h2>Conselhos de confiança</h2>
       <p class="lead">
-        Um colegiado que opina sobre conteúdos. Não apaga, não bloqueia, não decide por
-        você — mas, para quem escolheu ouvi-lo, fala primeiro.
+        Não é um colegiado, não tem cadastro e não é um cargo. É uma conta que você escolhe
+        ler primeiro.
       </p>
 
       <div class="prose">
         <p>
-          Pense num selo de avaliação que aparece grudado no conteúdo. Alguns sites fazem
-          isso com “verificado” ou “informação enganosa”. A diferença aqui é quem manda:
-          <strong>quem lê escolhe em quais conselhos confiar</strong>, e não existe um
-          conselho único da rede.
+          <strong>Qualquer conta pode ser um conselho de confiança.</strong> Não existe
+          registro, aprovação, chave especial nem status. Quando você marca uma conta como
+          conselho, ela passa a ser conselho <em>para você</em>. É parecido com seguir
+          alguém — mas o efeito é diferente.
         </p>
         <p>
-          Você pode aderir a um, a vários, ou a nenhum. Se aderir a mais de um, eles são
-          ordenados por você. Quando um conteúdo tiver parecer de um conselho que você
-          aderiu, esse parecer aparece <strong>como o primeiro comentário</strong>, com
-          destaque.
+          O efeito é simples: os comentários dessa conta aparecem <strong>primeiro</strong>
+          para você, com destaque, em qualquer lugar — inclusive dentro de grupos fechados
+          de que você participa. Se a conta não estiver no grupo, você simplesmente não vê
+          nada dela ali: <strong>a eleição não abre porta nenhuma</strong>.
         </p>
         <p>
-          O parecer é assinado pelo conselho. Dá para ver quem disse, quando, com base em
-          quê — e contestar.
+          A conta eleita ganha um selo discreto no perfil: <em>“há pessoas que priorizam
+          ler os comentários desta conta”</em>. Só isso. Não diz quantas pessoas, não diz
+          quem, não diz que a conta é confiável — diz que alguém a prioriza.
         </p>
       </div>
 
-      <div class="demo" data-switch data-value="on">
+      <div class="demo" data-switch data-value="on" style="max-width:760px">
         <div class="demo__bar">
           <span class="pill">Simulação</span>
-          <button type="button" data-set="on" aria-pressed="true">Conselho ligado</button>
-          <button type="button" data-set="off" aria-pressed="false">Conselho desligado</button>
+          <button type="button" data-set="on" aria-pressed="true">Conta eleita por você</button>
+          <button type="button" data-set="off" aria-pressed="false">Sem eleição</button>
         </div>
 
         <div data-when="on">
           <div class="demo__stage">
             <div class="bubble" style="border-color:color-mix(in srgb, var(--brand) 45%, var(--line));background:var(--brand-soft)">
-              <span class="bubble__author">⚖ Conselho “Checagem Aberta” · parecer</span>
+              <span class="bubble__author">@checagem.aberta <span class="pill pill--brand" style="font-size:.68rem">você prioriza</span></span>
               <p class="mb-0 mt-1">
-                <strong>Atenção:</strong> o número citado no vídeo é de 2019 e foi revisado
-                depois. O dado atual é 40% menor.
+                O número citado no vídeo é de 2019 e foi revisado depois. O dado atual é
+                40% menor.
               </p>
-              <span class="bubble__meta">Aparece primeiro porque você aderiu a este conselho.</span>
+              <span class="bubble__meta">Aparece primeiro porque você elegeu esta conta.</span>
             </div>
             <div class="bubble">
               <span class="bubble__author">@noite.clara</span>
@@ -244,32 +245,31 @@
               <p class="mb-0 mt-1">Então o vídeo está errado?</p>
             </div>
             <p class="faint mb-0 mt-1" style="font-size:.88rem">
-              Sem adesão, o conteúdo e os comentários aparecem normalmente. Nenhum aviso,
-              nenhum selo, nenhum bloqueio.
+              Sem eleição, os comentários aparecem na ordem normal. Nenhum aviso, nenhum
+              selo, nenhum bloqueio.
             </p>
           </div>
         </div>
       </div>
 
-      <h3>O que o conselho pode e não pode</h3>
+      <h3>O que a eleição muda — e o que não muda</h3>
       <div class="compare">
         <div class="compare__box compare__box--good">
-          <h3>Pode</h3>
+          <h3>Muda</h3>
           <ul>
-            <li>Emitir parecer assinado sobre conteúdo público.</li>
-            <li>Apontar erro, contexto faltando ou manipulação.</li>
-            <li>Aparecer primeiro para quem aderiu.</li>
-            <li>Ser contestado publicamente.</li>
+            <li>Os comentários dela vêm primeiro para quem a elegeu.</li>
+            <li>Ela ganha o selo no perfil.</li>
+            <li>Você pode desfazer a eleição quando quiser.</li>
           </ul>
         </div>
         <div class="compare__box compare__box--bad">
-          <h3>Não pode</h3>
+          <h3>Não muda</h3>
           <ul>
-            <li>Apagar ou esconder conteúdo.</li>
-            <li>Impedir publicação.</li>
-            <li>Aparecer para quem não aderiu.</li>
-            <li>Ser escolhido ou recusado pelo autor.</li>
-            <li>Opinar sobre conversa privada.</li>
+            <li>Ela não apaga nem esconde conteúdo.</li>
+            <li>Ela não aparece para quem não a elegeu.</li>
+            <li>Ela não vê nada que já não pudesse ver.</li>
+            <li>Ela não ganha poder de moderação.</li>
+            <li>Ela não é escolhida nem recusada pelo autor.</li>
           </ul>
         </div>
       </div>
@@ -283,20 +283,24 @@
         <div>
           <span class="callout__title">O autor não tem controle — e isso é de propósito</span>
           <p class="mb-0">
-            O autor não escolhe quais conselhos existem, não apaga o parecer, não reordena,
-            não esconde. Se pudesse, o filtro viraria enfeite: bastaria recusar quem discorda.
-            É justamente por não poder que o parecer tem peso.
+            O autor não escolhe quem é eleito, não apaga esses comentários, não reordena,
+            não esconde. Se pudesse, bastaria recusar quem discorda e o filtro viraria
+            enfeite. É justamente por não poder que ele tem peso.
           </p>
         </div>
       </div>
 
       <div class="prose">
         <p>
-          E o risco do outro lado? Um conselho pode virar máquina de difamação com
-          aparência técnica. Por isso o parecer é assinado, tem critério declarado e
-          versão, e pode ser contestado. Quem cria conselhos, como se audita o critério e
-          o que impede captura é uma decisão de governança ainda aberta — e prefiro dizer
-          isso a fingir que está resolvido.
+          E o risco do outro lado? Como não existe registro, qualquer conta pode ser eleita
+          sem critério declarado — e o selo pode dar aparência de autoridade a quem não tem.
+          O que segura isso é o selo dizer exatamente o que é (não que a conta “é
+          confiável”), qualquer pessoa poder contestar, e a decisão ficar sempre com quem
+          elege.
+        </p>
+        <p>
+          É uma aposta em curadoria distribuída em vez de certificação central. Não há
+          autoridade para auditar porque não há autoridade — e essa é a escolha.
         </p>
       </div>
     </div>
@@ -441,17 +445,34 @@
       </details>
 
       <details class="acc">
-        <summary>Entrada encoberta em grupo: a exceção que quebra uma regra</summary>
+        <summary>Por que a entrada em grupo nunca é escondida</summary>
         <div class="acc__body">
           <p>
-            A regra geral é que entrar e sair de um grupo é público, para que qualquer
-            pessoa possa verificar quem está ali. Uma admissão judicial, porém, precisa
-            poder ser encoberta: se o grupo vê a entrada, a investigação morre.
+            Entrar e sair de um grupo é sempre visível para os membros, inclusive quando a
+            entrada vem de ordem judicial. O grupo sabe <em>quem</em> entrou; não sabe
+            <em>por quê</em> — o motivo fica no livro lacrado, à disposição do órgão de
+            controle.
           </p>
           <p>
-            A solução é registrar essa entrada apenas no livro lacrado, e não como evento
-            público. É uma exceção deliberada, com custo real: o grupo deixa de conseguir
-            verificar quem entrou. Está registrada como decisão em aberto.
+            O custo é real: uma investigação pode ser percebida assim que a conta entra. A
+            alternativa — esconder a entrada — faria do grupo um lugar onde é impossível
+            saber quem está lendo. A escolha foi transparência para dentro.
+          </p>
+        </div>
+      </details>
+
+      <details class="acc">
+        <summary>O selo não revela quem elegeu</summary>
+        <div class="acc__body">
+          <p>
+            Cada eleição publica apenas um código — um “recibo” calculado a partir da sua
+            conta e da conta eleita. Ele prova que existe uma eleição e impede que a mesma
+            conta conte duas vezes, mas não permite descobrir de quem partiu.
+          </p>
+          <p>
+            Sem isso, o grafo de confiança ficaria exposto: daria para desenhar quem
+            confia em quem. E o selo aparece só a partir de um número mínimo de eleições,
+            para que ninguém carimbe a si mesmo.
           </p>
         </div>
       </details>
