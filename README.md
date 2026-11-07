@@ -1,4 +1,4 @@
-# IPR — Explicação
+# UPR — Explicação
 
 Site estático que explica, em linguagem simples e em português, como a rede funciona:
 segurança e privacidade, mensagens, diário, chamadas e provedores.
