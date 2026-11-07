@@ -668,6 +668,10 @@ table.data tbody tr:hover {
   transition: background 0.16s var(--ease), color 0.16s var(--ease);
 }
 
+.scene__ctl button[hidden] {
+  display: none;
+}
+
 .scene__ctl button:hover {
   background: var(--surface-3);
   color: var(--text);
