@@ -565,3 +565,70 @@
     color: var(--brand-ink);
   }
 }
+
+/* ---------- Momentos (stories) ---------- */
+
+.stories {
+  display: flex;
+  gap: 0.95rem;
+  padding: 0.9rem 1rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+  overflow-x: auto;
+}
+
+.story {
+  display: grid;
+  justify-items: center;
+  gap: 0.32rem;
+  text-decoration: none;
+  color: inherit;
+  flex: 0 0 auto;
+}
+
+.story__ring {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  padding: 3px;
+  background: conic-gradient(from 210deg, var(--brand), var(--accent), var(--brand));
+}
+
+.story__ring .avatar {
+  width: 46px;
+  height: 46px;
+  border: 2px solid var(--surface);
+  font-size: 0.78rem;
+}
+
+.story__ring--add {
+  background: var(--line);
+}
+
+.story__plus {
+  position: absolute;
+  right: -2px;
+  bottom: -2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--brand);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 800;
+  display: grid;
+  place-items: center;
+  border: 2px solid var(--surface);
+}
+
+.story__name {
+  font-size: 0.72rem;
+  color: var(--text-soft);
+  max-width: 64px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
