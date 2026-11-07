@@ -492,6 +492,13 @@
   position: relative;
 }
 
+.chat-wrap {
+  position: relative;
+  width: fit-content;
+  max-width: 100%;
+  margin: 1.5rem auto 0;
+}
+
 .note {
   position: absolute;
   left: calc(100% + 30px);
