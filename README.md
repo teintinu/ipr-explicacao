@@ -6,6 +6,12 @@ segurança e privacidade, mensagens, diário, chamadas e provedores.
 É material **educativo** — não é especificação, não é aconselhamento jurídico e não
 promete que tudo o que descreve já esteja implementado.
 
+## Créditos de imagem
+
+- `assets/img/estudio.jpg` — foto de microfone de estúdio, **CC0** (domínio público),
+  via Wikimedia Commons: `Music-technology-guitar-microphone-studio-amplifier-846852-pxhere.jpg`.
+  Redimensionada e recortada em 3:2 para o exemplo do feed.
+
 ## Como abrir
 
 Não tem build, não tem dependência, não tem `npm install`.
