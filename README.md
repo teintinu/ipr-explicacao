@@ -6,6 +6,14 @@ segurança e privacidade, mensagens, diário, chamadas e provedores.
 É material **educativo** — não é especificação, não é aconselhamento jurídico e não
 promete que tudo o que descreve já esteja implementado.
 
+## Regra editorial
+
+O site fala de convivência: trocar ideias, aprender, se divertir. O mecanismo judicial
+existe, mas **só é detalhado em `seguranca.html`** — nas outras páginas, no máximo um
+ponteiro para lá. Não use "juiz", "juíza" nem "juízo": diga **a justiça**, **mandado
+judicial** ou **determinação da justiça**. Evite masculinos genéricos ("o usuário",
+"o cidadão"); prefira "quem usa", "as pessoas".
+
 ## Créditos de imagem
 
 - `assets/img/estudio.jpg` — foto de microfone de estúdio, **CC0** (domínio público),
