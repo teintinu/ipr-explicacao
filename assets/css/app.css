@@ -12,10 +12,10 @@
   border: 1px solid var(--line);
   border-radius: 22px;
   box-shadow: var(--shadow-l);
-  overflow: hidden;
 }
 
 .app__bar {
+  border-radius: 22px 22px 0 0;
   display: flex;
   align-items: center;
   gap: 0.8rem;
@@ -113,6 +113,7 @@
 /* ---------- Feed ---------- */
 
 .feed {
+  border-radius: 0 0 22px 22px;
   padding: 0.9rem;
   display: grid;
   gap: 0.9rem;
@@ -483,4 +484,77 @@
   text-transform: uppercase;
   color: var(--brand);
   margin-bottom: 0.5rem;
+}
+
+/* Anotação à margem: não é interface, é comentário sobre a interface. */
+
+.post {
+  position: relative;
+}
+
+.note {
+  position: absolute;
+  left: calc(100% + 30px);
+  top: 1.55rem;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--brand-ink);
+  white-space: nowrap;
+  z-index: 3;
+}
+
+.note__zig {
+  width: 52px;
+  height: 26px;
+  flex: 0 0 auto;
+  color: var(--brand);
+}
+
+.note__body {
+  border: 1.5px solid var(--brand);
+  background: var(--surface);
+  color: var(--brand-ink);
+  border-radius: 999px;
+  padding: 0.34rem 0.72rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  box-shadow: var(--shadow-s);
+  transition: background 0.15s var(--ease), color 0.15s var(--ease);
+}
+
+.note:hover .note__body,
+.note:focus-visible .note__body {
+  background: var(--brand);
+  color: #fff;
+}
+
+@media (max-width: 1459px) {
+  .note {
+    position: static;
+    transform: none;
+    margin-top: 0.55rem;
+  }
+
+  .note__zig {
+    display: none;
+  }
+
+  .note__body {
+    border: 0;
+    padding: 0;
+    background: none;
+    box-shadow: none;
+    color: var(--brand);
+    font-size: 0.86rem;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .note:hover .note__body,
+  .note:focus-visible .note__body {
+    background: none;
+    color: var(--brand-ink);
+  }
 }
