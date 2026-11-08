@@ -235,8 +235,26 @@ export function Prototipo() {
     return () => window.removeEventListener("popstate", aoVoltar);
   }, []);
 
+  /** Swipe: para a esquerda mostra o mural, para a direita as conversas. */
+  const toque = useRef<{ x: number; y: number } | null>(null);
+  const aoIniciar = (ev: React.TouchEvent) => {
+    const t = ev.touches[0];
+    toque.current = { x: t.clientX, y: t.clientY };
+  };
+  const aoTerminar = (ev: React.TouchEvent) => {
+    const inicio = toque.current;
+    toque.current = null;
+    if (!inicio) return;
+    const t = ev.changedTouches[0];
+    const dx = t.clientX - inicio.x;
+    const dy = t.clientY - inicio.y;
+    if (Math.abs(dx) < 60 || Math.abs(dy) > Math.abs(dx) * 0.7) return;
+    irPara(dx < 0 ? "mural" : "conversas");
+  };
+
   const app = (compacto: boolean) => (
-    <AppFrame
+    <div className="flex min-h-0 flex-1 flex-col touch-pan-y" onTouchStart={aoIniciar} onTouchEnd={aoTerminar}>
+      <AppFrame
       bare
       compact={compacto}
       extra={
@@ -265,7 +283,8 @@ export function Prototipo() {
           />
         </>
       )}
-    </AppFrame>
+      </AppFrame>
+    </div>
   );
 
   return (
