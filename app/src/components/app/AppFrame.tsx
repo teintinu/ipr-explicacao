@@ -1,7 +1,6 @@
 import type { ReactNode } from "react";
 import { byId } from "../../data/personas";
 import { usarLeitor } from "../../lib/conta";
-import { irPara } from "../../lib/navegacao";
 import { Avatar } from "../Avatar";
 
 /**
@@ -56,19 +55,6 @@ export function AppFrame({
         <div className="flex items-center gap-2">
           {extra}
 
-          <button
-            type="button"
-            onClick={() => irPara("conversas")}
-            className={`relative grid place-items-center rounded-xl border border-line text-text-soft transition hover:bg-surface-2 hover:text-text ${compact ? "h-8 w-8" : "h-9 w-9"}`}
-            aria-label="Abrir conversas (2 não lidas)"
-          >
-            <svg viewBox="0 0 24 24" className={compact ? "h-4 w-4" : "h-4.5 w-4.5"} fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.6 9.6 0 0 1-3.2-.6L3 21l1.7-4.9A8.3 8.3 0 0 1 3.6 11.5a8.4 8.4 0 0 1 9-8.4 8.4 8.4 0 0 1 8.4 8.4Z" />
-            </svg>
-            <span className="absolute -top-1.5 -right-1.5 grid h-4 min-w-4 place-items-center rounded-full border-2 border-surface bg-danger px-1 text-[0.6rem] font-extrabold text-white">
-              2
-            </span>
-          </button>
 
           <a
             href="/identidade"

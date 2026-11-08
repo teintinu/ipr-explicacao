@@ -203,3 +203,31 @@
 @media (prefers-reduced-motion: reduce) {
   .upr-explica-entra, .upr-explica-sai { animation: none; }
 }
+
+/* Linha da explicação: tracejado que corre em direção ao elemento. */
+.upr-linha {
+  stroke-dasharray: 7 6;
+  animation: upr-linha-corre 900ms linear infinite;
+}
+@keyframes upr-linha-corre {
+  to { stroke-dashoffset: -26; }
+}
+
+/* Sonar sobre o elemento apontado: anel que nasce no tamanho dele e desaparece. */
+.upr-sonar {
+  fill: none;
+  stroke: var(--upr-brand);
+  stroke-width: 2;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: upr-sonar-pulso 1600ms ease-out infinite;
+}
+.upr-sonar-tarde { animation-delay: 800ms; }
+@keyframes upr-sonar-pulso {
+  0%   { transform: scale(0); opacity: 0.95; }
+  75%  { opacity: 0.25; }
+  100% { transform: scale(1); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .upr-linha, .upr-sonar { animation: none; }
+}

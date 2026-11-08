@@ -22,6 +22,8 @@ export interface Explicacao {
 interface Ponto {
   x: number;
   y: number;
+  /** Raio do sonar: metade do elemento, com teto de 50 px (100 de diâmetro). */
+  r: number;
 }
 
 const SAIDA_MS = 240;
@@ -78,9 +80,8 @@ export function Explanations({
     }
     const origem = { x: alvo.left - base.left, y: alvo.top + 22 - base.top };
     setLinhas(
-      (pontos.current[id] ?? []).map(
-        (p) => `M ${origem.x} ${origem.y} C ${origem.x - 70} ${origem.y}, ${p.x - 70} ${p.y}, ${p.x - 8} ${p.y}`,
-      ),
+      // Linha reta, sem cotovelo, apontando para o centro do elemento.
+      (pontos.current[id] ?? []).map((p) => `M ${origem.x} ${origem.y} L ${p.x} ${p.y}`),
     );
   }, []);
 
@@ -105,6 +106,7 @@ export function Explanations({
             achados.push({
               x: Math.round(r.left - base.left),
               y: Math.round(r.top + r.height / 2 - base.top),
+              r: Math.round(Math.min(Math.max(r.width, r.height) / 2, 50)),
             });
             break;
           }
@@ -150,12 +152,20 @@ export function Explanations({
     window.addEventListener("scroll", agendar, { passive: true });
     window.addEventListener("resize", agendar);
     feed?.addEventListener("scroll", agendar, { passive: true });
+
+    // Trocar de tela (mural, perfil, conversas) muda o que está visível sem
+    // disparar rolagem — então observamos o conteúdo do celular.
+    const observador = new MutationObserver(agendar);
+    if (telefone.current) {
+      observador.observe(telefone.current, { childList: true, subtree: true, attributes: true, attributeFilter: ["data-hotspot"] });
+    }
     return () => {
       cancelAnimationFrame(quadro);
       window.clearTimeout(t);
       window.removeEventListener("scroll", agendar);
       window.removeEventListener("resize", agendar);
       feed?.removeEventListener("scroll", agendar);
+      observador.disconnect();
     };
   }, [itens, telefone]);
 
@@ -177,12 +187,22 @@ export function Explanations({
     <div ref={caixa} data-explicacoes={ordem.join(',')} className="relative mt-10 lg:mt-0">
       {linhas.length > 0 && (
         <svg className="pointer-events-none absolute inset-0 hidden h-full w-full overflow-visible lg:block" aria-hidden="true">
-          {linhas.map((d, i) => (
-            <g key={i}>
-              <path d={d} fill="none" stroke="var(--upr-brand)" strokeWidth="1.6" strokeDasharray="4 4" opacity="0.9" />
-              <circle cx={pontos.current[ativo ?? ""]?.[i]?.x ? pontos.current[ativo ?? ""][i].x - 6 : 0} cy={pontos.current[ativo ?? ""]?.[i]?.y ?? 0} r="4" fill="var(--upr-brand)" />
-            </g>
-          ))}
+          {linhas.map((d, i) => {
+            const ponto = ativo ? pontos.current[ativo]?.[i] : undefined;
+            const r = ponto?.r ?? 12;
+            return (
+              <g key={i}>
+                <path d={d} className="upr-linha" fill="none" stroke="var(--upr-brand)" strokeWidth="1.6" opacity="0.9" />
+                {ponto && (
+                  <>
+                    <circle cx={ponto.x} cy={ponto.y} r={r} className="upr-sonar" />
+                    <circle cx={ponto.x} cy={ponto.y} r={r} className="upr-sonar upr-sonar-tarde" />
+                    <circle cx={ponto.x} cy={ponto.y} r={2.5} fill="var(--upr-brand)" />
+                  </>
+                )}
+              </g>
+            );
+          })}
         </svg>
       )}
 

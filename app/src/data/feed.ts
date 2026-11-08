@@ -47,6 +47,8 @@ export interface FeedPost {
   /** Classificação indicativa da postagem. */
   rating: Rating;
   likes: number;
+  /** Quantas pessoas viram a postagem. */
+  views: number;
   comments: FeedComment[];
   time: string;
 }

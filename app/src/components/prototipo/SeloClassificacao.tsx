@@ -14,13 +14,15 @@ const cor: Record<Rating, string> = {
 };
 
 export function SeloClassificacao({ rating, className = "" }: { rating: Rating; className?: string }) {
+  // Livre é o padrão: não ocupa espaço com um "L" verde.
+  if (rating === 0) return null;
   return (
     <span
       className={`shrink-0 text-[0.68rem] leading-none font-extrabold ${cor[rating]} ${className}`}
-      title={`Classificação indicativa: ${rating === 0 ? "livre" : rating + " anos"}`}
-      aria-label={`Classificação ${rating === 0 ? "livre" : rating + " anos"}`}
+      title={`Classificação indicativa: ${rating} anos`}
+      aria-label={`Classificação ${rating} anos`}
     >
-      {rating === 0 ? "L" : rating}
+      {rating}
     </span>
   );
 }

@@ -8,16 +8,41 @@ import { ratioClass } from "../../data/feed";
 import { VideoPlayer } from "./VideoPlayer";
 import type { FeedLayout } from "./LayoutSwitcher";
 
+/** 26.000 → "26K"; 3.400 → "3,4K"; 15.000.000 → "15M". */
+export function curto(n: number): string {
+  const arredondar = (v: number) => {
+    const r = Math.round(v * 10) / 10;
+    return Number.isInteger(r) ? String(r) : r.toLocaleString("pt-BR");
+  };
+  if (n < 1_000) return String(n);
+  if (n < 1_000_000) return `${arredondar(n / 1_000)}K`;
+  if (n < 1_000_000_000) return `${arredondar(n / 1_000_000)}M`;
+  return `${arredondar(n / 1_000_000_000)}B`;
+}
+
 function Acoes({ post, compacto = false }: { post: FeedPost; compacto?: boolean }) {
   return (
     <div className={`flex items-center gap-4 text-text-faint ${compacto ? "text-[0.72rem]" : "text-[0.8rem]"}`}>
       <span className="flex items-center gap-1">
         <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M12 20.3 4.8 13a4.6 4.6 0 0 1 6.5-6.5l.7.7.7-.7A4.6 4.6 0 0 1 19.2 13Z" /></svg>
-        {post.likes.toLocaleString("pt-BR")}
+        {curto(post.likes)}
       </span>
+      <a
+        href="/por-dentro"
+        data-hotspot="audiencia"
+        title="Audiência — a rede não tem servidor central"
+        className="flex shrink-0 items-center gap-1 whitespace-nowrap rounded transition hover:text-brand"
+        aria-label={`${curto(post.views)} pessoas viram. Como a rede funciona`}
+      >
+        <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8">
+          <path d="M2.5 12S6 5.8 12 5.8 21.5 12 21.5 12 18 18.2 12 18.2 2.5 12 2.5 12Z" />
+          <circle cx="12" cy="12" r="3.2" />
+        </svg>
+        {curto(post.views)}
+      </a>
       <span className="flex items-center gap-1">
         <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.6 9.6 0 0 1-3.2-.6L3 21l1.7-4.9A8.3 8.3 0 0 1 3.6 11.5a8.4 8.4 0 0 1 9-8.4 8.4 8.4 0 0 1 8.4 8.4Z" /></svg>
-        {post.comments.length}
+        {curto(post.comments.length)}
       </span>
       <span className="ml-auto flex items-center gap-3">
         <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><path d="M4 12v7h16v-7M12 16V3M8 7l4-4 4 4" /></svg>
@@ -85,7 +110,7 @@ function Comentarios({ post, limite = 2 }: { post: FeedPost; limite?: number }) 
               destaque ? "bg-warn-soft/60" : ""
             }`}
           >
-            <span data-hotspot="marca"><Avatar persona={autor} size="sm" /></span>
+            <Avatar persona={autor} size="sm" />
             <div className="min-w-0">
               <p className="text-[0.8rem] leading-snug">
                 <button type="button" onClick={() => abrirPerfil(autor.id)} className="font-semibold hover:underline">
@@ -100,7 +125,7 @@ function Comentarios({ post, limite = 2 }: { post: FeedPost; limite?: number }) 
       })}
       {post.comments.length > limite && (
         <p className="text-[0.76rem] font-semibold text-text-faint">
-          ver os {post.comments.length} comentários
+          ver os comentários
         </p>
       )}
     </div>
@@ -144,7 +169,7 @@ export function FeedPostCard({ post, layout, onPin, pinned }: { post: FeedPost; 
     return (
       <article className="border-b border-line px-3 py-2.5">
         <div className="flex items-start gap-2.5">
-          <span data-hotspot="marca"><Avatar persona={autor} size="sm" /></span>
+          <Avatar persona={autor} size="sm" />
           <div className="min-w-0 flex-1">
             <div className="flex min-w-0 items-center gap-1.5">
               <button
@@ -174,7 +199,7 @@ export function FeedPostCard({ post, layout, onPin, pinned }: { post: FeedPost; 
         <article className="flex min-h-[420px] flex-col justify-center border-b border-line bg-gradient-to-br from-brand-soft/60 to-accent-soft/40 px-5 py-8">
           <p className="text-[1.05rem] leading-snug font-medium">{post.text}</p>
           <div className="mt-4 flex items-center gap-2">
-            <span data-hotspot="marca"><Avatar persona={autor} size="sm" /></span>
+            <Avatar persona={autor} size="sm" />
             <button
               type="button"
               onClick={() => abrirPerfil(autor.id)}
@@ -197,7 +222,7 @@ export function FeedPostCard({ post, layout, onPin, pinned }: { post: FeedPost; 
           <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent px-3 pt-10 pb-3">
             <p className="text-[0.86rem] leading-snug text-white">{post.text}</p>
             <div className="mt-2 flex items-center gap-2">
-              <span data-hotspot="marca"><Avatar persona={autor} size="sm" /></span>
+              <Avatar persona={autor} size="sm" />
               <button
                 type="button"
                 onClick={() => abrirPerfil(autor.id)}
@@ -212,9 +237,26 @@ export function FeedPostCard({ post, layout, onPin, pinned }: { post: FeedPost; 
         <div className="flex items-center gap-4 bg-surface px-3 py-2 text-text-faint">
           <span className="flex items-center gap-1 text-[0.8rem]">
             <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M12 20.3 4.8 13a4.6 4.6 0 0 1 6.5-6.5l.7.7.7-.7A4.6 4.6 0 0 1 19.2 13Z" /></svg>
-            {post.likes.toLocaleString("pt-BR")}
+            {curto(post.likes)}
           </span>
-          <span className="text-[0.8rem]">{post.comments.length} comentários</span>
+          <span className="flex items-center gap-1 text-[0.8rem]">
+            <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8">
+              <path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.6 9.6 0 0 1-3.2-.6L3 21l1.7-4.9A8.3 8.3 0 0 1 3.6 11.5a8.4 8.4 0 0 1 9-8.4 8.4 8.4 0 0 1 8.4 8.4Z" />
+            </svg>
+            {curto(post.comments.length)}
+          </span>
+          <a
+            href="/por-dentro"
+            data-hotspot="audiencia"
+            title="Audiência — a rede não tem servidor central"
+            className="flex shrink-0 items-center gap-1 whitespace-nowrap text-[0.8rem] hover:text-brand"
+          >
+            <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8">
+              <path d="M2.5 12S6 5.8 12 5.8 21.5 12 21.5 12 18 18.2 12 18.2 2.5 12 2.5 12Z" />
+              <circle cx="12" cy="12" r="3.2" />
+            </svg>
+            {curto(post.views)}
+          </a>
           <span data-hotspot="classificacao"><SeloClassificacao rating={post.rating} /></span>
         </div>
       </article>
@@ -227,7 +269,7 @@ export function FeedPostCard({ post, layout, onPin, pinned }: { post: FeedPost; 
     return (
       <article className={`mx-3 my-2.5 rounded-2xl border border-line bg-gradient-to-br p-4 shadow-sm ${cor}`}>
         <header className="flex items-center gap-2">
-          <span data-hotspot="marca"><Avatar persona={autor} size="sm" /></span>
+          <Avatar persona={autor} size="sm" />
           <div className="min-w-0">
             <p className="flex items-center truncate text-[0.82rem] font-semibold">
               <button type="button" onClick={() => abrirPerfil(autor.id)} className="hover:underline">{autor.name}</button>
@@ -254,7 +296,7 @@ export function FeedPostCard({ post, layout, onPin, pinned }: { post: FeedPost; 
   return (
     <article className="mx-3 my-2.5 rounded-2xl border border-line bg-surface shadow-sm">
       <header className="flex items-center gap-2.5 px-3 py-2.5">
-        <span data-hotspot="marca"><Avatar persona={autor} size="sm" /></span>
+        <Avatar persona={autor} size="sm" />
         <div className="min-w-0">
           <p className="flex items-center truncate text-[0.85rem] font-semibold">
             <button type="button" onClick={() => abrirPerfil(autor.id)} className="hover:underline">{autor.name}</button>

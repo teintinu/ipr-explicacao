@@ -2,7 +2,7 @@ import { Avatar } from "../Avatar";
 import { conversasDe, type Conversa } from "../../data/conversas";
 import { byId } from "../../data/personas";
 import { usarLeitor } from "../../lib/conta";
-import { irPara, usarTela, voltar } from "../../lib/navegacao";
+import { irPara, usarTela } from "../../lib/navegacao";
 
 /** Lista de conversas e conversa aberta, dentro do celular. */
 export function ConversasNoApp() {
@@ -28,17 +28,7 @@ function tituloDa(conversa: Conversa, eu: string) {
 function Lista({ minhas }: { minhas: Conversa[] }) {
   return (
     <div className="min-h-0 flex-1 overflow-y-auto bg-bg-alt">
-      <div className="sticky top-0 z-10 flex items-center gap-2 border-b border-line bg-surface px-2 py-2">
-        <button
-          type="button"
-          onClick={voltar}
-          aria-label="Voltar ao mural"
-          className="grid h-8 w-8 place-items-center rounded-lg text-text-soft hover:bg-surface-2 hover:text-text"
-        >
-          <svg viewBox="0 0 24 24" className="h-4.5 w-4.5" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M15 5l-7 7 7 7" />
-          </svg>
-        </button>
+      <div className="border-b border-line bg-surface px-3 py-2">
         <span className="text-[0.95rem] font-bold">Conversas</span>
       </div>
 
@@ -60,7 +50,10 @@ function Lista({ minhas }: { minhas: Conversa[] }) {
                 className="flex w-full items-center gap-3 border-b border-line px-3 py-2.5 text-left hover:bg-surface"
               >
                 {c.grupo ? (
-                  <span className="grid h-8 w-8 shrink-0 place-items-center rounded-xl bg-brand-soft text-[0.7rem] font-extrabold text-brand">
+                  <span
+                    data-hotspot="grupo"
+                    className="grid h-8 w-8 shrink-0 place-items-center rounded-xl bg-brand-soft text-[0.7rem] font-extrabold text-brand"
+                  >
                     {c.grupo.split(" ").filter((w) => w.length > 2).slice(0, 2).map((w) => w[0]).join("").toUpperCase()}
                   </span>
                 ) : (
@@ -96,9 +89,16 @@ function Lista({ minhas }: { minhas: Conversa[] }) {
 
 function Thread({ conversa, eu }: { conversa: Conversa; eu: string }) {
   const leitor = byId(eu);
+  const ultimaRecebida = conversa.mensagens.reduce(
+    (achado, m, i) => (m.de !== eu ? i : achado),
+    -1,
+  );
   return (
     <div className="flex min-h-0 flex-1 flex-col bg-bg-alt">
-      <div className="flex items-center gap-2 border-b border-line bg-surface px-2 py-2">
+      <div
+        className="flex items-center gap-2 border-b border-line bg-surface px-2 py-2"
+        data-hotspot={conversa.grupo ? "grupo" : undefined}
+      >
         <button
           type="button"
           onClick={() => irPara("conversas")}
@@ -125,6 +125,7 @@ function Thread({ conversa, eu }: { conversa: Conversa; eu: string }) {
             <div key={i} className={`flex items-end gap-1.5 ${meu ? "justify-end" : "justify-start"}`}>
               {!meu && <Avatar persona={autor} size="sm" showVerification={false} />}
               <div
+                data-hotspot={i === ultimaRecebida ? "mensagem" : undefined}
                 className={`max-w-[78%] rounded-2xl px-2.5 py-1.5 text-[0.82rem] leading-snug ${
                   meu ? "bg-brand text-white" : "border border-line bg-surface text-text"
                 }`}

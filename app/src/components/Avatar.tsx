@@ -53,7 +53,11 @@ export function Avatar({
   const shape = persona.kind === "group" ? "rounded-xl" : "rounded-full";
 
   return (
-    <span className={`relative inline-flex shrink-0 ${className}`}>
+    <span
+      // A marca vive no avatar: quem usa não precisa repetir a regra.
+      data-hotspot={hasBadge ? "marca" : undefined}
+      className={`relative inline-flex shrink-0 ${className}`}
+    >
       <img
         src={avatar.src}
         alt=""

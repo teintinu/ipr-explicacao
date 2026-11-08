@@ -367,7 +367,7 @@ export function PorDentro() {
             ["Elemento 4", "Criar um grupo", "Um grupo não é uma lista de pessoas: é uma conta nova, com chave própria.", <CenaGrupo key="4" />],
             ["Elemento 5", "Aprovar um membro", "Pedido, votação e entrada — cada etapa assinada.", <CenaAprovacao key="5" />],
             ["Elemento 6", "Enviar uma mensagem", "O caminho entre o seu aparelho e o do destinatário.", <CenaMensagem key="6" />],
-            ["Elemento 7", "Provedores de conteúdo", "Não existe “o servidor da rede”. Existem cópias — e quem lê também guarda uma.", <CenaProvedor key="7" />],
+            ["Elemento 7", "Provedores de conteúdo", "Não existe “o servidor da rede”. Existem cópias — e quem lê também guarda uma. Nenhum datacenter é obrigatório: dois aparelhos já formam rede.", <CenaProvedor key="7" />],
             ["Elemento 8", "Momentos", "Uma postagem com prazo: depois de 24 horas, ninguém busca mais.", <CenaMomentos key="8" />],
             ["Elemento 9", "Antes de publicar: a nota", "A classificação indicativa não é digitada: sai do que a postagem contém.", <CenaNota key="9" />],
           ].map(([kicker, titulo, lead, cena]) => (
@@ -381,6 +381,16 @@ export function PorDentro() {
               {cena}
             </section>
           ))}
+        </div>
+
+        <div className="mt-10 rounded-2xl border border-brand/30 bg-brand-soft/40 p-5">
+          <h3 className="font-bold">Sem datacenter, sem dono</h3>
+          <p className="mt-1.5 text-[0.95rem] leading-relaxed text-text-soft">
+            A rede é feita de aparelhos. Cada um guarda o que viu e serve para quem pede — por
+            WebRTC, direto de navegador para navegador. Não há um servidor central por onde tudo
+            passa, nem um endereço único que possa ser desligado. É por isso que a audiência de uma
+            postagem é contada pelos próprios aparelhos, e não por um medidor central.
+          </p>
         </div>
 
         <TabelaDescritores />

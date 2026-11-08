@@ -14,7 +14,7 @@ import { fecharPip, usarPip } from "../lib/pip";
 import { feedPosts } from "../data/feed-posts";
 import { anaBeatriz, anaMaria, antonioJose, cafeAurora, ehRestrita, joaoPedro, mariaClara, personas, tetoPorIdade } from "../data/personas";
 import { definirLeitor, usarLeitor } from "../lib/conta";
-import { usarPerfil, usarTela } from "../lib/navegacao";
+import { irPara, usarPerfil, usarTela } from "../lib/navegacao";
 import { definirLayout, usarLayout } from "../lib/exibicao";
 
 
@@ -52,8 +52,8 @@ export function Prototipo() {
     const lista: Explicacao[] = [
       {
         id: "modo",
-        titulo: "Três jeitos de ler o mesmo mural",
-        texto: "Clássico para imagem grande, resumido para passar rápido, focado para assistir. Fica salvo para a próxima visita.",
+        titulo: "Rede social e aplicativo de mensagens em um só lugar",
+        texto: "As postagens e mensagens são assinadas conforme quem as publica. O aplicativo não tem dono, e a rede é distribuída: cada aparelho é um nó que transporta conteúdo de um para outro.",
         href: "/por-dentro",
         link: "ver por dentro",
         ancoras: ['button[aria-label^="Modo "]'],
@@ -78,8 +78,8 @@ export function Prototipo() {
       },
       {
         id: "classificacao",
-        titulo: "A nota vem do que a postagem contém",
-        texto: "Quem publica marca o que existe — violência, drogas, nudez, linguagem imprópria. A nota é o item mais alto marcado.",
+        titulo: "Postagems têm classificação indicativa",
+        texto: "Quem publica mar se há — violência, drogas, nudez, linguagem imprópria. E a postagem fica automaticamente ajustada para a idade do leitor. Teste com Ana Beatriz ou Davi.",
         href: "/por-dentro",
         link: "ver os descritores",
         ancoras: ['[data-hotspot="classificacao"]'],
@@ -106,6 +106,21 @@ export function Prototipo() {
         ),
       },
       {
+        id: "audiencia",
+        titulo: "A audiência consume conteúdo de uma rede distriuida, sem necessidade de datacenter",
+        texto:
+          "O número é a soma das visualizações, contada pelos próprios aparelhos. A postagem viaja de nó em nó usando a tecnologia WebRTC: não existe datacenter obrigatório nem dono da rede.",
+        href: "/por-dentro",
+        link: "como a rede funciona",
+        ancoras: ['[data-hotspot="audiencia"]'],
+        icone: (
+          <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M2.5 12S6 5.8 12 5.8 21.5 12 21.5 12 18 18.2 12 18.2 2.5 12 2.5 12Z" />
+            <circle cx="12" cy="12" r="3" />
+          </svg>
+        ),
+      },
+      {
         id: "checagem",
         titulo: "Alerta de checagem de fato",
         texto: "Quem você elegeu para checar aparece destacado. Os outros alertas só mostram o ícone.",
@@ -115,6 +130,37 @@ export function Prototipo() {
         icone: (
           <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round">
             <path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.6 9.6 0 0 1-3.2-.6L3 21l1.7-4.9A8.3 8.3 0 0 1 3.6 11.5a8.4 8.4 0 0 1 9-8.4 8.4 8.4 0 0 1 8.4 8.4Z" />
+          </svg>
+        ),
+      },
+      {
+        id: "grupo",
+        titulo: "Grupo é uma conta, e a lista fica no grupo",
+        texto:
+          "Quem entrou e quem saiu é visível para quem já é membro — não para a rede. O grafo social não é publicado em lugar nenhum.",
+        href: "/por-dentro",
+        link: "como um grupo funciona",
+        ancoras: ['[data-hotspot="grupo"]'],
+        icone: (
+          <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="9" cy="8.5" r="3" />
+            <circle cx="17" cy="10" r="2.2" />
+            <path d="M3.5 19c0-3 2.5-5 5.5-5s5.5 2 5.5 5M15.5 19c0-2.2 1.4-3.6 3.5-3.6s3.5 1.4 3.5 3.6" />
+          </svg>
+        ),
+      },
+      {
+        id: "mensagem",
+        titulo: "O provedor não abre a mensagem",
+        texto:
+          "A conversa é selada entre os dois aparelhos. O nó que transporta vê de onde veio e para onde vai — não vê o conteúdo.",
+        href: "/conversas",
+        link: "como a conversa funciona",
+        ancoras: ['[data-hotspot="mensagem"]'],
+        icone: (
+          <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
+            <rect x="4" y="10.5" width="16" height="9.5" rx="2" />
+            <path d="M8 10.5V8a4 4 0 0 1 8 0v2.5" />
           </svg>
         ),
       },
@@ -195,7 +241,16 @@ export function Prototipo() {
                 bare
                 compact
                 extra={
-                  <LayoutSwitcher layout={layout} onChange={trocarLayout} />
+                  // O grupo traz a exibição do mural e a porta das conversas.
+                  !perfilId ? (
+                    <LayoutSwitcher
+                      layout={layout}
+                      onChange={trocarLayout}
+                      emConversas={tela !== "mural"}
+                      aoAlternarConversas={() => irPara(tela === "mural" ? "conversas" : "mural")}
+                      naoLidas={2}
+                    />
+                  ) : undefined
                 }
               >
                 {perfilId ? (

@@ -24,7 +24,7 @@ export function StoryRow({ people, me }: { people: Persona[]; me: Persona }) {
         <button key={persona.id} className="grid w-16 shrink-0 justify-items-center gap-1.5" type="button">
           <span className="grid h-14 w-14 place-items-center rounded-full bg-[conic-gradient(from_210deg,var(--upr-brand),var(--upr-accent),var(--upr-brand))] p-[3px]">
             <span className="grid h-12.5 w-12.5 place-items-center rounded-full bg-surface">
-              <Avatar persona={persona} size="md" showVerification={false} />
+              <Avatar persona={persona} size="md" />
             </span>
           </span>
           <span className="w-full truncate text-center text-[0.72rem] text-text-soft">
