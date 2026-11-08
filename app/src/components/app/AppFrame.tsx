@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { byId } from "../../data/personas";
 import { usarLeitor } from "../../lib/conta";
+import { irPara } from "../../lib/navegacao";
 import { Avatar } from "../Avatar";
 
 /**
@@ -55,8 +56,9 @@ export function AppFrame({
         <div className="flex items-center gap-2">
           {extra}
 
-          <a
-            href="/conversas"
+          <button
+            type="button"
+            onClick={() => irPara("conversas")}
             className={`relative grid place-items-center rounded-xl border border-line text-text-soft transition hover:bg-surface-2 hover:text-text ${compact ? "h-8 w-8" : "h-9 w-9"}`}
             aria-label="Abrir conversas (2 não lidas)"
           >
@@ -66,7 +68,7 @@ export function AppFrame({
             <span className="absolute -top-1.5 -right-1.5 grid h-4 min-w-4 place-items-center rounded-full border-2 border-surface bg-danger px-1 text-[0.6rem] font-extrabold text-white">
               2
             </span>
-          </a>
+          </button>
 
           <a
             href="/identidade"
@@ -74,7 +76,7 @@ export function AppFrame({
             aria-label={`Sua identidade — ${leitor.verification.label}`}
             title={`${leitor.name} — ${leitor.verification.label}`}
           >
-            <Avatar persona={leitor} size="sm" showVerification={false} />
+            <span data-hotspot="perfil"><Avatar persona={leitor} size="sm" showVerification={false} /></span>
           </a>
         </div>
       </div>

@@ -188,3 +188,18 @@
     opacity: 1;
   }
 }
+
+/* Explicações: entram e saem sem sobressalto. */
+@keyframes upr-explica-entra {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes upr-explica-sai {
+  from { opacity: 1; transform: none; }
+  to   { opacity: 0; transform: translateY(-8px) scale(0.98); }
+}
+.upr-explica-entra { animation: upr-explica-entra 280ms ease-out both; }
+.upr-explica-sai { animation: upr-explica-sai 240ms ease-in forwards; }
+@media (prefers-reduced-motion: reduce) {
+  .upr-explica-entra, .upr-explica-sai { animation: none; }
+}

@@ -20,7 +20,6 @@ export function Feed({
   const leitor = byId(usarLeitor());
   const teto = tetoPorIdade(leitor.age);
   const permitidas = feedPosts.filter((p) => p.rating <= teto);
-  const ocultas = feedPosts.length - permitidas.length;
 
   const [visiveis, setVisiveis] = useState(PASSO);
   const [carregando, setCarregando] = useState(false);
@@ -53,13 +52,6 @@ export function Feed({
         layout === "focado" ? "snap-y snap-mandatory" : ""
       }`}
     >
-      {ocultas > 0 && (
-        <p className="border-b border-line bg-warn-soft/50 px-3 py-2 text-[0.74rem] leading-snug text-warn">
-          {ocultas} postagen{ocultas === 1 ? "" : "s"} acima da classificação de {leitor.name} —
-          conta restrita só vê até {teto}.
-        </p>
-      )}
-
       <div className={layout === "focado" ? "flex flex-col" : "pb-4"}>
         {permitidas.slice(0, visiveis).map((post) => (
           <div key={post.id} id={`post-${post.id}`} className={layout === "focado" ? "snap-start" : ""}>

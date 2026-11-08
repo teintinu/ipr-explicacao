@@ -22,7 +22,7 @@ function Acoes({ post, compacto = false }: { post: FeedPost; compacto?: boolean 
       <span className="ml-auto flex items-center gap-3">
         <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><path d="M4 12v7h16v-7M12 16V3M8 7l4-4 4 4" /></svg>
         <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><path d="M5 5h14v14l-7-4-7 4z" /></svg>
-        <SeloClassificacao rating={post.rating} />
+        <span data-hotspot="classificacao"><SeloClassificacao rating={post.rating} /></span>
       </span>
     </div>
   );
@@ -80,11 +80,12 @@ function Comentarios({ post, limite = 2 }: { post: FeedPost; limite?: number }) 
         return (
           <div
             key={i}
+            data-hotspot="alerta"
             className={`flex items-start gap-2 rounded-lg px-1.5 py-1 ${
               destaque ? "bg-warn-soft/60" : ""
             }`}
           >
-            <Avatar persona={autor} size="sm" />
+            <span data-hotspot="marca"><Avatar persona={autor} size="sm" /></span>
             <div className="min-w-0">
               <p className="text-[0.8rem] leading-snug">
                 <button type="button" onClick={() => abrirPerfil(autor.id)} className="font-semibold hover:underline">
@@ -143,12 +144,13 @@ export function FeedPostCard({ post, layout, onPin, pinned }: { post: FeedPost; 
     return (
       <article className="border-b border-line px-3 py-2.5">
         <div className="flex items-start gap-2.5">
-          <Avatar persona={autor} size="sm" />
+          <span data-hotspot="marca"><Avatar persona={autor} size="sm" /></span>
           <div className="min-w-0 flex-1">
             <div className="flex min-w-0 items-center gap-1.5">
               <button
                 type="button"
                 onClick={() => abrirPerfil(autor.id)}
+                data-hotspot="nome"
                 className="truncate text-[0.8rem] font-semibold hover:underline"
               >
                 {autor.name}
@@ -172,7 +174,7 @@ export function FeedPostCard({ post, layout, onPin, pinned }: { post: FeedPost; 
         <article className="flex min-h-[420px] flex-col justify-center border-b border-line bg-gradient-to-br from-brand-soft/60 to-accent-soft/40 px-5 py-8">
           <p className="text-[1.05rem] leading-snug font-medium">{post.text}</p>
           <div className="mt-4 flex items-center gap-2">
-            <Avatar persona={autor} size="sm" />
+            <span data-hotspot="marca"><Avatar persona={autor} size="sm" /></span>
             <button
               type="button"
               onClick={() => abrirPerfil(autor.id)}
@@ -195,7 +197,7 @@ export function FeedPostCard({ post, layout, onPin, pinned }: { post: FeedPost; 
           <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent px-3 pt-10 pb-3">
             <p className="text-[0.86rem] leading-snug text-white">{post.text}</p>
             <div className="mt-2 flex items-center gap-2">
-              <Avatar persona={autor} size="sm" />
+              <span data-hotspot="marca"><Avatar persona={autor} size="sm" /></span>
               <button
                 type="button"
                 onClick={() => abrirPerfil(autor.id)}
@@ -213,7 +215,7 @@ export function FeedPostCard({ post, layout, onPin, pinned }: { post: FeedPost; 
             {post.likes.toLocaleString("pt-BR")}
           </span>
           <span className="text-[0.8rem]">{post.comments.length} comentários</span>
-          <SeloClassificacao rating={post.rating} className="ml-auto" />
+          <span data-hotspot="classificacao"><SeloClassificacao rating={post.rating} /></span>
         </div>
       </article>
     );
@@ -225,7 +227,7 @@ export function FeedPostCard({ post, layout, onPin, pinned }: { post: FeedPost; 
     return (
       <article className={`mx-3 my-2.5 rounded-2xl border border-line bg-gradient-to-br p-4 shadow-sm ${cor}`}>
         <header className="flex items-center gap-2">
-          <Avatar persona={autor} size="sm" />
+          <span data-hotspot="marca"><Avatar persona={autor} size="sm" /></span>
           <div className="min-w-0">
             <p className="flex items-center truncate text-[0.82rem] font-semibold">
               <button type="button" onClick={() => abrirPerfil(autor.id)} className="hover:underline">{autor.name}</button>
@@ -252,7 +254,7 @@ export function FeedPostCard({ post, layout, onPin, pinned }: { post: FeedPost; 
   return (
     <article className="mx-3 my-2.5 rounded-2xl border border-line bg-surface shadow-sm">
       <header className="flex items-center gap-2.5 px-3 py-2.5">
-        <Avatar persona={autor} size="sm" />
+        <span data-hotspot="marca"><Avatar persona={autor} size="sm" /></span>
         <div className="min-w-0">
           <p className="flex items-center truncate text-[0.85rem] font-semibold">
             <button type="button" onClick={() => abrirPerfil(autor.id)} className="hover:underline">{autor.name}</button>

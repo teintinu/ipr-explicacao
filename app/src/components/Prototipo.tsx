@@ -1,105 +1,33 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { AppFrame } from "./app/AppFrame";
 import { StoryRow } from "./app/StoryRow";
 import { Kicker, Section } from "./ui";
 import { Feed } from "./prototipo/Feed";
-import { Explanations, type Hotspot } from "./prototipo/Explanations";
+import { Explanations, type Explicacao } from "./prototipo/Explanations";
 import { LayoutSwitcher } from "./prototipo/LayoutSwitcher";
 import { MiniPlayer } from "./prototipo/MiniPlayer";
 import { PhoneShell } from "./prototipo/PhoneShell";
 import { PipWindow } from "./prototipo/PipWindow";
 import { PerfilNoApp } from "./prototipo/PerfilNoApp";
+import { ConversasNoApp } from "./prototipo/ConversasNoApp";
 import { fecharPip, usarPip } from "../lib/pip";
-import { SoundButton } from "./prototipo/SoundButton";
 import { feedPosts } from "../data/feed-posts";
-import { anaBeatriz, anaMaria, antonioJose, cafeAurora, ehRestrita, joaoPedro, mariaClara, personas } from "../data/personas";
+import { anaBeatriz, anaMaria, antonioJose, cafeAurora, ehRestrita, joaoPedro, mariaClara, personas, tetoPorIdade } from "../data/personas";
 import { definirLeitor, usarLeitor } from "../lib/conta";
-import { usarPerfil } from "../lib/navegacao";
+import { usarPerfil, usarTela } from "../lib/navegacao";
 import { definirLayout, usarLayout } from "../lib/exibicao";
 
 
 const stories = [joaoPedro, mariaClara, antonioJose, anaBeatriz, cafeAurora];
 
-function cartoes(t: Record<string, number>): Hotspot[] {
-  return [
-    {
-      id: "layout",
-      top: t.layout ?? 40,
-      titulo: "Três jeitos de ler o mesmo mural",
-      texto: "Clássico para imagem grande, resumido para passar rápido, focado para assistir.",
-      href: "/perguntas",
-      link: "como a rede se organiza",
-      icone: (
-        <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round">
-          <path d="M4 6h16M4 12h16M4 18h10" />
-        </svg>
-      ),
-    },
-    {
-      id: "momentos",
-      top: t.momentos ?? 150,
-      titulo: "Momentos: some em 24 horas",
-      texto: "A faixa do topo tem prazo: depois de um dia, ninguém busca mais o arquivo.",
-      href: "/diario",
-      link: "ver os momentos",
-      icone: (
-        <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round">
-          <circle cx="12" cy="12" r="9" />
-          <path d="M12 7v5l3 2" />
-        </svg>
-      ),
-    },
-    {
-      id: "selo",
-      top: t.selo ?? 250,
-      titulo: "O selo diz a idade da verificação",
-      texto: "Verde até um ano, amarelo até cinco, vermelho acima disso. É data, não nota.",
-      href: "/identidade",
-      link: "como a identidade funciona",
-      icone: (
-        <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M12 3 5 6v5c0 4.4 3 8.3 7 10 4-1.7 7-5.6 7-10V6Z" />
-          <path d="m9 12 2 2 4-4" />
-        </svg>
-      ),
-    },
-    {
-      id: "video",
-      top: t.video ?? 400,
-      titulo: "Vídeo que continua enquanto você rola",
-      texto: "Fixe no canto ou abra na janela flutuante — e os outros vídeos seguem mudos.",
-      href: "/por-dentro",
-      link: "ver por dentro",
-      icone: (
-        <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M8 5.5v13l11-6.5z" />
-        </svg>
-      ),
-    },
-    {
-      id: "comentarios",
-      top: t.comentarios ?? 470,
-      titulo: "Alerta de checagem de fato",
-      texto: "Quem você elegeu para checar aparece destacado. Os outros alertas só mostram o ícone.",
-      href: "/confianca",
-      link: "como funciona a checagem",
-      icone: (
-        <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.6 9.6 0 0 1-3.2-.6L3 21l1.7-4.9A8.3 8.3 0 0 1 3.6 11.5a8.4 8.4 0 0 1 9-8.4 8.4 8.4 0 0 1 8.4 8.4Z" />
-        </svg>
-      ),
-    },
-  ];
-}
-
 export function Prototipo() {
   const layout = usarLayout();
   const trocarLayout = definirLayout;
   const [pinnedId, setPinnedId] = useState<string | null>(null);
-  const [tops, setTops] = useState<Record<string, number>>({});
   const pip = usarPip();
   const leitorId = usarLeitor();
   const perfilId = usarPerfil();
+  const tela = usarTela();
   const leitor = personas.find((p) => p.id === leitorId) ?? anaMaria;
 
   /** Leva o mural até a postagem e fecha a janela flutuante. */
@@ -115,44 +43,104 @@ export function Prototipo() {
   };
   const telefone = useRef<HTMLDivElement>(null);
 
-  // As setas precisam apontar para o elemento, não para um número fixo:
-  // mede a posição real de cada âncora dentro da seção.
-  useEffect(() => {
-    const medir = () => {
-      const base = telefone.current?.getBoundingClientRect().top ?? 0;
-      const centro = (nome: string, delta = 0) => {
-        const el = document.querySelector<HTMLElement>(`[data-hotspot="${nome}"]`);
-        if (!el) return 0;
-        const r = el.getBoundingClientRect();
-        return Math.round(r.top - base + r.height / 2 + delta);
-      };
-      // O feed é alto: a âncora dele é o topo, não o meio.
-      const elFeed = document.querySelector<HTMLElement>('[data-hotspot="feed"]');
-      const feed = elFeed ? Math.round(elFeed.getBoundingClientRect().top - base) : 0;
-      setTops({
-        layout: centro("layout"),
-        momentos: centro("momentos"),
-        selo: feed + 55,
-        video: feed + 200,
-        comentarios: feed + 400,
-      });
-    };
+  const raiz = useRef<HTMLDivElement>(null);
 
-    medir();
-    const t = window.setTimeout(medir, 400); // depois de imagens e fontes
-    window.addEventListener("resize", medir);
-    return () => {
-      window.clearTimeout(t);
-      window.removeEventListener("resize", medir);
-    };
-  }, []);
+  const restrita = ehRestrita(leitor);
+  const tetoLeitor = tetoPorIdade(leitor.age);
+
+  const explicacoes: Explicacao[] = useMemo(() => {
+    const lista: Explicacao[] = [
+      {
+        id: "modo",
+        titulo: "Três jeitos de ler o mesmo mural",
+        texto: "Clássico para imagem grande, resumido para passar rápido, focado para assistir. Fica salvo para a próxima visita.",
+        href: "/por-dentro",
+        link: "ver por dentro",
+        ancoras: ['button[aria-label^="Modo "]'],
+        icone: (
+          <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round">
+            <path d="M4 6h16M4 12h16M4 18h10" />
+          </svg>
+        ),
+      },
+      {
+        id: "marca",
+        titulo: "Marca diz há quanto tempo essa pessoa foi verificada",
+        texto: "Sem marca, a verificação tem menos de um ano. Laranja passa de um ano; vermelho, de cinco.",
+        href: "/seguranca",
+        link: "como a verificação funciona",
+        ancoras: ['[data-hotspot="marca"]'],
+        icone: (
+          <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 3 5 6v5c0 4.4 3 8.3 7 10 4-1.7 7-5.6 7-10V6Z" />
+          </svg>
+        ),
+      },
+      {
+        id: "classificacao",
+        titulo: "A nota vem do que a postagem contém",
+        texto: "Quem publica marca o que existe — violência, drogas, nudez, linguagem imprópria. A nota é o item mais alto marcado.",
+        href: "/por-dentro",
+        link: "ver os descritores",
+        ancoras: ['[data-hotspot="classificacao"]'],
+        icone: (
+          <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
+            <rect x="4" y="5" width="16" height="14" rx="2.5" />
+            <path d="M9 10h6M9 14h4" />
+          </svg>
+        ),
+      },
+      {
+        id: "restrita",
+        titulo: "Conta restrita vê menos",
+        texto: `${leitor.name} tem ${leitor.age} anos, então o mural para em ${tetoLeitor}. O que passa disso não aparece — nem na busca, nem no perfil.`,
+        href: "/identidade",
+        link: "como a conta restrita funciona",
+        ancoras: ['[data-hotspot="perfil"]'],
+        quando: restrita,
+        icone: (
+          <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
+            <rect x="4" y="10" width="16" height="10" rx="2.5" />
+            <path d="M8 10V7.5a4 4 0 0 1 8 0V10" />
+          </svg>
+        ),
+      },
+      {
+        id: "checagem",
+        titulo: "Alerta de checagem de fato",
+        texto: "Quem você elegeu para checar aparece destacado. Os outros alertas só mostram o ícone.",
+        href: "/confianca",
+        link: "como funciona a checagem",
+        ancoras: ['[data-hotspot="alerta"]'],
+        icone: (
+          <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round">
+            <path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.6 9.6 0 0 1-3.2-.6L3 21l1.7-4.9A8.3 8.3 0 0 1 3.6 11.5a8.4 8.4 0 0 1 9-8.4 8.4 8.4 0 0 1 8.4 8.4Z" />
+          </svg>
+        ),
+      },
+      {
+        id: "perfil",
+        titulo: "O nome leva ao perfil",
+        texto: "Tocar no nome abre o perfil dentro do app: seguir, bloquear, restringir story e post, e eleger para checagem.",
+        href: "/confianca",
+        link: "o que dá para fazer no perfil",
+        ancoras: ['[data-hotspot="nome"]'],
+        icone: (
+          <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="12" cy="8.5" r="3.5" />
+            <path d="M5 20c0-3.6 3.1-6 7-6s7 2.4 7 6" />
+          </svg>
+        ),
+      },
+    ];
+    return lista;
+  }, [leitor, restrita, tetoLeitor]);
 
   const pinned = useMemo(
     () => (pinnedId ? feedPosts.find((p) => p.id === pinnedId) : undefined),
     [pinnedId],
   );
 
-  const hotspots = useMemo(() => cartoes(tops), [tops]);
 
   return (
     <Section id="prototipo" tight>
@@ -166,7 +154,7 @@ export function Prototipo() {
           que está acontecendo — clique para entender o mecanismo por trás.
         </p>
 
-        <div className="mt-8 grid items-start gap-10 lg:grid-cols-[minmax(0,372px)_minmax(0,1fr)] lg:gap-16">
+        <div ref={raiz} className="mt-8 grid items-start gap-10 lg:grid-cols-[minmax(0,372px)_minmax(0,1fr)] lg:gap-16">
           <div>
           <div className="mb-3 flex items-center justify-center gap-2 text-[0.8rem] text-text-soft">
             <label htmlFor="ver-como">Ver como</label>
@@ -207,16 +195,13 @@ export function Prototipo() {
                 bare
                 compact
                 extra={
-                  <>
-                    <span data-hotspot="layout">
-                      <LayoutSwitcher layout={layout} onChange={trocarLayout} />
-                    </span>
-                    <SoundButton />
-                  </>
+                  <LayoutSwitcher layout={layout} onChange={trocarLayout} />
                 }
               >
                 {perfilId ? (
                   <PerfilNoApp id={perfilId} />
+                ) : tela !== "mural" ? (
+                  <ConversasNoApp />
                 ) : (
                   <>
                     <StoryRow me={leitor} people={stories} />
@@ -236,9 +221,8 @@ export function Prototipo() {
           </div>
           </div>
 
-          <Explanations hotspots={hotspots} />
-          <div className="lg:hidden">
-            <Explanations hotspots={hotspots} compacto />
+          <div className="lg:pt-2">
+            <Explanations itens={explicacoes} raiz={raiz} telefone={telefone} />
           </div>
         </div>
       </div>
