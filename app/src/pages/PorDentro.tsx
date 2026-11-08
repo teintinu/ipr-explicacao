@@ -7,7 +7,7 @@ import { Arrow, Box, CircleNode, Label, Marker } from "../components/scene/parts
 /* ------------------------------------------------------------------ */
 
 const passosPost: SceneStep[] = [
-  { at: 0, label: "Você escreve o post no seu aparelho.", note: "Nada sai daqui antes de estar pronto: texto, foto e data viram um pacote só." },
+  { at: 0, label: "Você escreve a postagem no seu aparelho.", note: "Nada sai daqui antes de estar pronto: texto, foto e data viram um pacote só." },
   { at: 1400, label: "O aplicativo monta o conteúdo: texto, foto e a data.", note: "A data entra dentro do pacote — é ela que vai provar depois quando aquilo foi publicado." },
   { at: 2800, label: "Ele assina com a sua chave e calcula a impressão digital.", note: "A assinatura prova que foi você; a impressão digital prova que ninguém alterou." },
   { at: 4600, label: "O bloco vai para vários provedores. Cada um guarda uma cópia.", note: "Se um provedor cair, o bloco continua existindo nos outros — você não depende de nenhum deles." },
@@ -17,13 +17,13 @@ const passosPost: SceneStep[] = [
 function CenaPost() {
   return (
     <Scene duration={7600} steps={passosPost}>
-      <svg viewBox="0 0 860 250" role="img" aria-label="A conta assina o post, calcula a impressão digital e envia aos provedores.">
+      <svg viewBox="0 0 860 250" role="img" aria-label="A conta assina a postagem, calcula a impressão digital e envia aos provedores.">
         <Marker id="m-post" />
         <path className="edge ghost" d="M150 120 H 250" />
         <path className="edge ghost" d="M420 120 H 500" />
         <path className="edge ghost" d="M690 120 H 740" />
         <CircleNode cx={90} cy={120} r={42} tone="brand" label="você" at={0} />
-        <Box x={250} y={88} w={170} h={64} lines={["post", "texto + foto"]} at={1400} />
+        <Box x={250} y={88} w={170} h={64} lines={["postagem", "texto + foto"]} at={1400} />
         <Box x={500} y={80} w={190} h={80} tone="accent" mono lines={["assinado", "hash b94f…", "não dá para alterar"]} at={2800} />
         <Box x={740} y={52} w={96} h={42} lines={["provedor"]} at={4600} />
         <Box x={740} y={103} w={96} h={42} lines={["provedor"]} at={4600} />
@@ -44,7 +44,7 @@ const passosConfianca: SceneStep[] = [
   { at: 0, label: "Qualquer conta pode receber essa confiança — não existe cadastro.", note: "Não há lista oficial, nem candidatura, nem aprovação. A conta é só uma conta." },
   { at: 1800, label: "Você clica em “Confiar nesta conta”. A escolha fica só com você.", note: "A eleição mora no seu aparelho. Ninguém fica sabendo que você escolheu — nem a conta escolhida." },
   { at: 3400, label: "Ela ganha um selo que mostra que existem pessoas que confiam nas opiniões dela.", note: "O selo é uma contagem, não um título: diz “há quem confie”, nunca “esta conta é autoridade”." },
-  { at: 5200, label: "Os comentários dela passam a aparecer primeiro, com destaque.", note: "Só a ordem muda. Nada é escondido e nada deixa de existir por causa disso." },
+  { at: 5200, label: "Quando ela marca um comentário como alerta, ele aparece primeiro.", note: "A marcação é dela, não sua: o leitor não decide o que é aviso. Comentário comum continua na ordem normal." },
   { at: 6600, label: "Para quem não confiou, nada muda.", note: "A prioridade é sua, não da rede: quem não elegeu vê a conversa na ordem normal." },
 ];
 
@@ -75,7 +75,7 @@ function CenaConfianca() {
 /* ------------------------------------------------------------------ */
 
 const passosComentarios: SceneStep[] = [
-  { at: 0, label: "Quem publicou o post escolheu comentários sem identificação.", note: "A decisão é do post, tomada antes dos comentários. Quem comenta entra na regra que já estava lá." },
+  { at: 0, label: "Quem publicou a postagem escolheu comentários sem identificação.", note: "A decisão é da postagem, tomada antes dos comentários. Quem comenta entra na regra que já estava lá." },
   { at: 1600, label: "O assunto é polêmico — e a escolha existe para o debate ficar sobre o assunto.", note: "Quando o nome não está em jogo, fica mais difícil transformar a discussão em ataque pessoal." },
   { at: 2900, label: "A pessoa escreve normalmente: o comentário é assinado como qualquer outro.", note: "A assinatura é a mesma. O que muda é só o que a tela mostra." },
   { at: 4600, label: "A tela mostra os comentários, sem o nome de quem escreveu.", note: "Ninguém é marcado. O comentário aparece como texto, e é ao texto que se responde." },
@@ -86,9 +86,9 @@ const passosComentarios: SceneStep[] = [
 function CenaComentarios() {
   return (
     <Scene duration={9000} steps={passosComentarios}>
-      <svg viewBox="0 0 880 250" role="img" aria-label="O post foi publicado sem identificação nos comentários; o comentário segue assinado e a tela mostra só o texto.">
+      <svg viewBox="0 0 880 250" role="img" aria-label="A postagem foi publicada sem identificação nos comentários; o comentário segue assinado e a tela mostra só o texto.">
         <Marker id="m-com" />
-        <Box x={60} y={70} w={240} h={100} tone="brand" lines={["o post", "assunto polêmico", "sem identificação"]} at={0} />
+        <Box x={60} y={70} w={240} h={100} tone="brand" lines={["a postagem", "assunto polêmico", "sem identificação"]} at={0} />
         <Box x={350} y={70} w={180} h={100} lines={["assinatura", "9c21…", "continua lá"]} mono at={2900} />
         <Box x={600} y={60} w={220} h={120} lines={["na tela", "os comentários", "sem o nome de quem escreveu"]} at={4600} />
         <Box x={250} y={200} w={540} h={34} tone="accent" lines={["quem lê vê o argumento, não a pessoa"]} at={6200} />
@@ -105,9 +105,9 @@ function CenaComentarios() {
 
 const passosGrupo: SceneStep[] = [
   { at: 0, label: "Alguém funda o grupo.", note: "Quem funda escolhe as regras iniciais: quem entra, como entra, quem modera." },
-  { at: 1600, label: "O grupo nasce com chave e assinatura próprias — é como uma conta.", note: "É por isso que o grupo assina o que publica: o post é do grupo, não de quem apertou o botão." },
+  { at: 1600, label: "O grupo nasce com chave e assinatura próprias — é como uma conta.", note: "É por isso que o grupo assina o que publica: a postagem é do grupo, não de quem apertou o botão." },
   { at: 3600, label: "A criação é publicada como conteúdo assinado, verificável por qualquer pessoa.", note: "Qualquer um confere que aquele grupo existe e quem o criou. Não há grupo fantasma." },
-  { at: 5800, label: "Entradas e saídas também são registradas: o grupo sempre sabe quem está dentro.", note: "Não existe admissão escondida — nem quando a entrada vem de uma ordem judicial." },
+  { at: 5800, label: "Entradas e saídas ficam registradas para o grupo.", note: "Só quem é membro vê quem entrou e quem saiu. A rede não publica essa lista — o grafo social não fica exposto." },
 ];
 
 function CenaGrupo() {
@@ -119,8 +119,8 @@ function CenaGrupo() {
         <Arrow d="M136 120 H 240" marker="m-grupo" at={1600} />
         <Box x={250} y={80} w={200} h={80} tone="accent" lines={["grupo", "chave própria", "assinatura própria"]} at={1600} />
         <Arrow d="M450 120 H 540" tone="accent" marker="m-grupo" at={3600} />
-        <Box x={550} y={70} w={230} h={100} lines={["evento público", "“grupo criado”", "qualquer um verifica"]} at={3600} />
-        <Box x={250} y={196} w={530} h={38} tone="warn" lines={["entrar e sair também são eventos — o grupo sempre sabe quem entrou"]} at={5800} />
+        <Box x={550} y={70} w={230} h={100} lines={["criação assinada", "“grupo criado”", "o grupo verifica"]} at={3600} />
+        <Box x={250} y={196} w={530} h={38} tone="warn" lines={["entrar e sair são eventos — visíveis só para o grupo"]} at={5800} />
       </svg>
     </Scene>
   );
@@ -133,7 +133,7 @@ function CenaGrupo() {
 const passosAprovacao: SceneStep[] = [
   { at: 0, label: "A pessoa pede entrada. O pedido é assinado.", note: "O pedido carrega a conta que pediu, não um nome. O grupo decide olhando o histórico dela." },
   { at: 1800, label: "Membros aprovam, conforme a regra do grupo.", note: "A regra é do grupo: pode ser um moderador, três membros, ou todos." },
-  { at: 3800, label: "A entrada vira um evento, e todo mundo vê quem entrou.", note: "Quem já era membro sabe que a conta entrou. Grupo sem registro de entrada é grupo sem confiança." },
+  { at: 3800, label: "A entrada vira um evento, visível para quem já é membro.", note: "Grupo sem registro de entrada é grupo sem confiança — mas o registro não sai do grupo." },
   { at: 6000, label: "A chave do grupo é trocada. Quem não é membro não lê o que vem depois.", note: "Quem ficou de fora não abre o que foi dito depois da troca. O passado, esse, ninguém tira de quem já leu." },
 ];
 
@@ -233,7 +233,7 @@ function CenaProvedor() {
 const passosMomentos: SceneStep[] = [
   { at: 0, label: "Você publica um momento, com um prazo escrito junto.", note: "O prazo é público desde o começo: não é uma promessa feita depois." },
   { at: 1600, label: "Ele fica no ar por 24 horas, para quem te segue.", note: "Quem vê é quem te segue, ou a lista que você escolher — não a rede inteira." },
-  { at: 3400, label: "Passado o prazo, ninguém busca mais. O provedor apaga quando voltar a ficar online.", note: "Não há recibo: o momento não é apagado na hora, ele deixa de ser procurado." },
+  { at: 3400, label: "Passado o prazo, ninguém busca mais. O provedor apaga quando voltar a se conectar.", note: "Não há recibo: o momento não é apagado na hora, ele deixa de ser procurado." },
   { at: 5200, label: "O que sobra é o registro assinado: existiu, e tinha prazo de um dia.", note: "O registro não guarda o conteúdo — guarda que aquilo existiu e por quanto tempo." },
   { at: 7000, label: "E o prazo não promete que ninguém salvou: print e gravação de tela seguem possíveis.", note: "Nenhuma rede consegue impedir isso, e prometer seria mentira." },
 ];
@@ -273,14 +273,14 @@ export function PorDentro() {
       <Section tight>
         <div className="space-y-10">
           {[
-            ["Elemento 1", "Publicar um post", "Você escreve, assina e vira um bloco que ninguém consegue alterar.", <CenaPost key="1" />],
-            ["Elemento 2", "Comentário de conta confiável", "Por que o comentário de uma conta aparece antes de todos — para você.", <CenaConfianca key="2" />],
+            ["Elemento 1", "Publicar uma postagem", "Você escreve, assina e vira um bloco que ninguém consegue alterar.", <CenaPost key="1" />],
+            ["Elemento 2", "Alerta de conta confiável", "Por que um aviso marcado por uma conta em que você confia aparece antes de todos.", <CenaConfianca key="2" />],
             ["Elemento 3", "Comentários sem identificação", "Quem publicou escolheu não mostrar quem comenta.", <CenaComentarios key="3" />],
             ["Elemento 4", "Criar um grupo", "Um grupo não é uma lista de pessoas: é uma conta nova, com chave própria.", <CenaGrupo key="4" />],
             ["Elemento 5", "Aprovar um membro", "Pedido, votação e entrada — cada etapa assinada.", <CenaAprovacao key="5" />],
             ["Elemento 6", "Enviar uma mensagem", "O caminho entre o seu aparelho e o do destinatário.", <CenaMensagem key="6" />],
             ["Elemento 7", "Provedores de conteúdo", "Não existe “o servidor da rede”. Existem cópias — e quem lê também guarda uma.", <CenaProvedor key="7" />],
-            ["Elemento 8", "Momentos", "Um post com prazo: depois de 24 horas, ninguém busca mais.", <CenaMomentos key="8" />],
+            ["Elemento 8", "Momentos", "Uma postagem com prazo: depois de 24 horas, ninguém busca mais.", <CenaMomentos key="8" />],
           ].map(([kicker, titulo, lead, cena]) => (
             <section key={String(titulo)}>
               <p className="mb-2 flex items-center gap-2 text-[0.72rem] font-extrabold tracking-[0.14em] text-brand uppercase">

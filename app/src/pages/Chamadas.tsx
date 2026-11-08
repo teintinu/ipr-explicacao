@@ -86,7 +86,7 @@ export function Chamadas() {
               tenta impedir — e não promete sigilo do que foi dito.
             </p>
           </Callout>
-          <Callout tone="ok" title="Quem responde pela live">
+          <Callout tone="ok" title="Quem responde pela transmissão">
             <p>
               Criador, quem está ao vivo e quem modera ficam registrados. Se houver problema, a
               justiça sabe a quem perguntar — e a rede não vira juíza.

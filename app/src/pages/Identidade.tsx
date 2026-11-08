@@ -2,7 +2,7 @@ import { Avatar, VerificationTag } from "../components/Avatar";
 import { Callout, Kicker, Lead, Section, Tldr } from "../components/ui";
 import { Scene, type SceneStep } from "../components/scene/Scene";
 import { Arrow, Box, Label, Marker } from "../components/scene/parts";
-import { anaMaria, antonioJose, mariaClara, type Persona } from "../data/personas";
+import { anaMaria, antonioJose, joaoPedro, larissaNaomi, mariaClara, rafaelAugusto, type Persona } from "../data/personas";
 
 const passos: SceneStep[] = [
   { at: 0, label: "Você tem um documento: CPF, CNPJ ou passaporte.", note: "O tipo importa: cada um tem regra própria de validação e um emissor." },
@@ -63,7 +63,7 @@ export function Identidade() {
             },
             {
               title: "Ele devolve uma credencial — e não conta para a rede quem você é.",
-              note: "A credencial não leva nome, CPF nem foto: leva só a prova de que um verificador conferiu seus dados. Ele sabe que emitiu; não consegue dizer em qual conta foi usada.",
+              note: "A credencial não leva nome, CPF nem foto: leva só a prova de que um verificador conferiu seus dados. A rede não sabe quem é você. O verificador sabe: ele anota, na base dele, que aquela conta é sua — e essa anotação não sai de lá.",
             },
             {
               title: "A rede só sabe que a conta tem uma credencial válida.",
@@ -131,6 +131,77 @@ export function Identidade() {
               confere de novo. A cor é só a leitura pública dessa data.
             </p>
           </Callout>
+        </div>
+      </Section>
+
+      <Section alt tight>
+        <h2 className="text-2xl font-extrabold tracking-tight md:text-3xl">
+          Conta restrita: o responsável aprova cada vínculo
+        </h2>
+        <p className="mt-2 max-w-3xl text-[1.02rem] leading-relaxed text-text-soft">
+          Conta de criança ou adolescente é <strong className="text-text">restrita</strong>. Ela existe,
+          publica e conversa — mas quem decide por quem ela se aproxima é o responsável legal, de uma
+          conta própria dele.
+        </p>
+
+        <div className="mt-6 grid gap-4 lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)]">
+          <div className="rounded-2xl border border-line bg-surface p-4">
+            <p className="mb-3 flex items-center gap-2 text-[0.74rem] font-extrabold tracking-[0.1em] text-text-faint uppercase">
+              <svg viewBox="0 0 24 24" className="h-4 w-4 text-warn" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M12 3 5 6v5c0 4.4 3 8.3 7 10 4-1.7 7-5.6 7-10V6Z" />
+                <path d="M12 9v4" /><circle cx="12" cy="16.4" r=".9" fill="currentColor" stroke="none" />
+              </svg>
+              Esperando o responsável
+            </p>
+
+            <ul className="space-y-2">
+              {([
+                [joaoPedro, "quer seguir esta conta"],
+                [larissaNaomi, "quer que esta conta a siga"],
+                [rafaelAugusto, "quer começar uma amizade"],
+              ] as Array<[Persona, string]>).map(([persona, texto]) => {
+                return (
+                  <li key={persona.id} className="flex items-center gap-2.5 rounded-xl border border-line bg-bg-alt px-3 py-2">
+                    <Avatar persona={persona} size="sm" showVerification={false} />
+                    <div className="min-w-0 flex-1">
+                      <p className="truncate text-[0.85rem] font-semibold">{persona.name}</p>
+                      <p className="text-[0.74rem] text-text-faint">{texto}</p>
+                    </div>
+                    <span className="rounded-md bg-accent-soft px-2 py-1 text-[0.7rem] font-bold text-accent">aprovar</span>
+                    <span className="rounded-md border border-line px-2 py-1 text-[0.7rem] font-bold text-text-faint">recusar</span>
+                  </li>
+                );
+              })}
+            </ul>
+
+            <p className="mt-3 text-[0.78rem] text-text-faint">
+              Exemplo — quem vê esta tela é o responsável, não a conta restrita.
+            </p>
+          </div>
+
+          <div className="space-y-3">
+            <div className="rounded-2xl border border-line bg-surface p-4">
+              <h3 className="font-bold">Uma a uma, sem atalho</h3>
+              <p className="mt-1 text-[0.92rem] leading-relaxed text-text-soft">
+                Não existe “aprovar tudo”, nem aprovação automática por idade próxima. Cada amizade e
+                cada perfil seguido é um pedido separado, e a recusa não precisa de justificativa.
+              </p>
+            </div>
+            <div className="rounded-2xl border border-line bg-surface p-4">
+              <h3 className="font-bold">Aprovar não é definitivo</h3>
+              <p className="mt-1 text-[0.92rem] leading-relaxed text-text-soft">
+                O responsável pode revogar um vínculo já aprovado. A revogação também fica registrada
+                como ato dele — e vale igual para amizade e para seguir.
+              </p>
+            </div>
+            <div className="rounded-2xl border border-line bg-surface p-4">
+              <h3 className="font-bold">O que a conta restrita não tem</h3>
+              <p className="mt-1 text-[0.92rem] leading-relaxed text-text-soft">
+                Anúncio, perfilamento e recomendação aberta de desconhecidos. A etiqueta de idade é
+                pública; o resto da conta continua sem nome e sem documento.
+              </p>
+            </div>
+          </div>
         </div>
       </Section>
     </>

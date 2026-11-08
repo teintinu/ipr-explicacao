@@ -6,14 +6,14 @@ const passosEleicao: SceneStep[] = [
   { at: 0, label: "Qualquer conta pode ser eleita — não existe cadastro.", note: "Não há lista oficial, candidatura nem aprovação. A conta é só uma conta." },
   { at: 1600, label: "Você clica em “Confiar nesta conta”. A escolha fica só com você.", note: "A eleição mora no seu aparelho. Ninguém fica sabendo — nem a conta escolhida." },
   { at: 3200, label: "Ela ganha um selo que mostra que há pessoas que confiam nela.", note: "O selo é uma contagem, não um título: diz “há quem confie”, nunca “esta conta é autoridade”." },
-  { at: 4800, label: "Os comentários dela passam a aparecer primeiro, com destaque.", note: "Só a ordem muda. Nada é escondido e nada deixa de existir por causa disso." },
+  { at: 4800, label: "Se ela marcar o comentário como alerta, ele aparece primeiro.", note: "Quem marca é ela. Um comentário comum dela continua na ordem normal — e é assim que precisa ser." },
   { at: 6400, label: "Para quem não confiou, nada muda.", note: "A prioridade é sua, não da rede: quem não elegeu vê a conversa na ordem normal." },
 ];
 
 function CenaEleicao() {
   return (
     <Scene duration={7600} steps={passosEleicao}>
-      <svg viewBox="0 0 860 240" role="img" aria-label="Você escolhe confiar numa conta; ela ganha um selo e seus comentários aparecem primeiro.">
+      <svg viewBox="0 0 860 240" role="img" aria-label="Você escolhe confiar numa conta; quando ela marca um comentário como alerta, ele aparece primeiro.">
         <Marker id="m-conf2" />
         <CircleNode cx={90} cy={110} r={40} tone="brand" label="você" at={0} />
         <Arrow d="M136 110 H 244" marker="m-conf2" at={1600} />
@@ -23,8 +23,8 @@ function CenaEleicao() {
         <Label x={520} y={106} at={3200}>selo discreto</Label>
         <Box x={640} y={52} w={190} h={40} tone="accent" lines={["comentário dela"]} at={4800} />
         <Box x={640} y={102} w={190} h={36} lines={["outros comentários"]} at={4800} />
-        <Label x={735} y={170} at={6400}>para quem não confiou,</Label>
-        <Label x={735} y={187} at={6400}>a ordem é normal</Label>
+        <Label x={735} y={170} at={6400}>alerta vem antes;</Label>
+        <Label x={735} y={187} at={6400}>o resto segue normal</Label>
       </svg>
     </Scene>
   );
@@ -62,10 +62,11 @@ export function Confianca() {
             </p>
           </div>
           <div className="rounded-2xl border border-line bg-surface p-5">
-            <h3 className="font-bold">A justiça determina</h3>
+            <h3 className="font-bold">A justiça bloqueia</h3>
             <p className="mt-1.5 text-[0.95rem] leading-relaxed text-text-soft">
-              Uma ordem judicial pode mandar remover o original e os derivados juntos. Não é o autor
-              pedindo: é o Estado decidindo, com registro.
+              A ordem vai para a instituição que verificou a pessoa, que marca a conta como
+              bloqueada: ela para de operar. A rede não apaga conteúdo por ordem judicial — quem
+              remove é o autor.
             </p>
           </div>
         </div>
@@ -81,6 +82,37 @@ export function Confianca() {
             <p>
               Toda remoção gera um recibo por provedor, com a lista do que foi apagado e assinatura.
               Quem não cumpre fica visível — e a divergência é registrada como falha dele.
+            </p>
+          </Callout>
+        </div>
+      </Section>
+
+      <Section tight>
+        <h2 className="text-2xl font-extrabold tracking-tight md:text-3xl">Alerta é decisão de quem comenta</h2>
+        <div className="mt-4 grid gap-3 md:grid-cols-2">
+          <div className="rounded-2xl border border-line bg-surface p-5">
+            <h3 className="font-bold">Comentário marcado como alerta</h3>
+            <p className="mt-1.5 text-[0.95rem] leading-relaxed text-text-soft">
+              Quem escreveu sinalizou que aquilo é aviso — correção, risco, informação que não pode
+              passar. Se o leitor confia nessa conta, o comentário sobe para o topo e ganha a
+              etiqueta <strong>alerta</strong>.
+            </p>
+          </div>
+          <div className="rounded-2xl border border-line bg-surface p-5">
+            <h3 className="font-bold">Comentário comum</h3>
+            <p className="mt-1.5 text-[0.95rem] leading-relaxed text-text-soft">
+              Opinião, pergunta, brincadeira: fica onde foi escrito. Ser uma conta confiável não
+              transforma toda fala em aviso — e é isso que impede o filtro de virar palco.
+            </p>
+          </div>
+        </div>
+
+        <div className="mt-6">
+          <Callout tone="info" title="Por que a marcação é de quem escreve">
+            <p>
+              Se o leitor pudesse promover qualquer comentário, a prioridade viraria curadoria — e a
+              conta eleita viraria só um selo decorativo. Quem sabe se aquilo é alerta é quem
+              escreveu. O leitor decide apenas <em>em quem</em> confiar.
             </p>
           </Callout>
         </div>

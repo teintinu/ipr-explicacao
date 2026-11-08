@@ -11,6 +11,11 @@ export interface FeedComment {
   authorId: string;
   text: string;
   likes: number;
+  /**
+   * Quem comentou marcou isto como alerta. Só alerta de conta em que o leitor
+   * confia sobe para o topo; comentário comum fica comum, venha de quem vier.
+   */
+  alerta?: boolean;
 }
 
 export interface FeedPost {

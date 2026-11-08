@@ -7,6 +7,8 @@ import { Explanations, type Hotspot } from "./prototipo/Explanations";
 import { LayoutSwitcher, type FeedLayout } from "./prototipo/LayoutSwitcher";
 import { MiniPlayer } from "./prototipo/MiniPlayer";
 import { PhoneShell } from "./prototipo/PhoneShell";
+import { PipWindow } from "./prototipo/PipWindow";
+import { fecharPip, usarPip } from "../lib/pip";
 import { SoundButton } from "./prototipo/SoundButton";
 import { feedPosts } from "../data/feed-posts";
 import { anaBeatriz, anaMaria, antonioJose, cafeAurora, joaoPedro, mariaClara } from "../data/personas";
@@ -26,7 +28,7 @@ function cartoes(t: Record<string, number>): Hotspot[] {
     {
       id: "layout",
       top: t.layout ?? 40,
-      titulo: "Três jeitos de ler o mesmo feed",
+      titulo: "Três jeitos de ler o mesmo mural",
       texto: "Clássico para imagem grande, resumido para passar rápido, focado para assistir.",
       href: "/perguntas",
       link: "como a rede se organiza",
@@ -68,7 +70,7 @@ function cartoes(t: Record<string, number>): Hotspot[] {
       id: "video",
       top: t.video ?? 400,
       titulo: "Vídeo que continua enquanto você rola",
-      texto: "Fixe no canto e siga descendo, ou jogue na janela do sistema.",
+      texto: "Fixe no canto ou abra na janela flutuante — e os outros vídeos seguem mudos.",
       href: "/por-dentro",
       link: "ver por dentro",
       icone: (
@@ -80,8 +82,8 @@ function cartoes(t: Record<string, number>): Hotspot[] {
     {
       id: "comentarios",
       top: t.comentarios ?? 470,
-      titulo: "Conta confiável comenta primeiro",
-      texto: "Quem você elegeu aparece antes — só para você. Para os outros, nada muda.",
+      titulo: "Alerta de conta confiável vem primeiro",
+      texto: "Só se ela marcar o comentário como alerta. Comentário comum fica na ordem normal.",
       href: "/confianca",
       link: "como funciona a confiança",
       icone: (
@@ -97,6 +99,19 @@ export function Prototipo() {
   const [layout, setLayout] = useState<FeedLayout>(layoutInicial);
   const [pinnedId, setPinnedId] = useState<string | null>(null);
   const [tops, setTops] = useState<Record<string, number>>({});
+  const pip = usarPip();
+
+  /** Leva o mural até a postagem e fecha a janela flutuante. */
+  const irParaPostagem = (id: string) => {
+    const feed = document.querySelector<HTMLElement>(".feed-scroll");
+    const alvo = document.getElementById(`post-${id}`);
+    if (feed && alvo) {
+      const fr = feed.getBoundingClientRect();
+      const ar = alvo.getBoundingClientRect();
+      feed.scrollTop += ar.top - fr.top - 6;
+    }
+    fecharPip();
+  };
   const telefone = useRef<HTMLDivElement>(null);
 
   // As setas precisam apontar para o elemento, não para um número fixo:
@@ -146,7 +161,7 @@ export function Prototipo() {
           Esta é a tela de uma conta comum.
         </h2>
         <p className="mt-2 max-w-3xl text-lg leading-relaxed text-text-soft">
-          Role o feed, troque o layout, assista a um vídeo. As explicações à direita apontam para o
+          Role o mural, troque a exibição, assista a um vídeo. As explicações à direita apontam para o
           que está acontecendo — clique para entender o mecanismo por trás.
         </p>
 
@@ -154,14 +169,17 @@ export function Prototipo() {
           <div ref={telefone} className="relative mx-auto w-full max-w-[372px]">
             <PhoneShell
               overlay={
-                pinned?.media ? (
+                <>
+                  {pip && <PipWindow video={pip} onIrPara={() => irParaPostagem(pip.id)} />}
+                  {pinned?.media ? (
                   <MiniPlayer
                     src={pinned.media.src}
                     poster={pinned.media.poster}
                     onClose={() => setPinnedId(null)}
                     onExpand={() => setPinnedId(null)}
                   />
-                ) : null
+                ) : null}
+                </>
               }
             >
               <AppFrame
@@ -186,7 +204,7 @@ export function Prototipo() {
             </PhoneShell>
 
             <p className="mt-3 text-center text-[0.76rem] text-text-faint">
-              Protótipo · {feedPosts.length} posts · contas e histórias inventadas
+              Protótipo · {feedPosts.length} postagens · contas e histórias inventadas
             </p>
           </div>
 

@@ -11,7 +11,7 @@ const perguntas = [
   },
   {
     q: "Se ninguém vê meu nome, como alguém me encontra?",
-    a: "Só por ordem judicial, em duas etapas: o primeiro cofre devolve um identificador sem nome, e a instituição que verificou você entrega os campos pedidos. Nenhuma etapa acontece sem a mesma ordem. Ou, claro, você pode se identificar voluntariamente. Você pode ter várias contas e se identificar apenas nas que você achar necessário.",
+    a: "Só por ordem judicial. O mandado vai para a instituição que verificou você — a AR —, que confere a ordem, consulta a própria base e entrega só os campos pedidos. A rede não participa: ela não tem esse vínculo para entregar. E você pode se identificar voluntariamente numa conta, sem abrir mão das outras.",
   },
   {
     q: "Posso ter mais de uma conta?",
@@ -31,10 +31,10 @@ const perguntas = [
   },
   {
     q: "O que é um “momento”?",
-    a: "Um post com prazo de 24 horas. Depois do prazo, ninguém busca mais o arquivo, e o provedor apaga quando voltar a ficar online. O que fica é o registro assinado de que ele existiu.",
+    a: "Uma postagem com prazo de 24 horas. Depois do prazo, ninguém busca mais o arquivo, e o provedor apaga quando voltar a se conectar. O que fica é o registro assinado de que ele existiu.",
   },
   {
-    q: "Dá para apagar um post?",
+    q: "Dá para apagar uma postagem?",
     a: "Sim, quem publicou pode remover. O arquivo sai, mas fica um registro com o resumo do que existia — é o que impede que apagar vire impunidade.",
   },
   {
@@ -44,6 +44,10 @@ const perguntas = [
   {
     q: "E se a justiça pedir minhas conversas?",
     a: "A rede não tem o que entregar: ela nunca teve o texto. O conteúdo existe nos dois aparelhos, e só eles podem abrir.",
+  },
+  {
+    q: "Conta de menor de idade: quem aprova os seguidores?",
+    a: "O responsável legal, de uma conta própria dele. Cada nova amizade e cada perfil que a conta passa a seguir é um pedido separado — não existe aprovar tudo nem aprovação automática. Ele também pode revogar um vínculo já aprovado.",
   },
   {
     q: "Quem paga a conta?",

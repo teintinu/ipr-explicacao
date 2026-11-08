@@ -27,6 +27,23 @@ DADOS = RAIZ / "app" / "src" / "data" / "feed-posts.ts"
 PROPORCOES = {"1:1": (1, 1), "3:4": (3, 4), "4:5": (4, 5), "16:9": (16, 9), "9:16": (9, 16)}
 DURACAO = 8
 
+# Comentários que a autora marcou como alerta (aviso/correção). Só alerta de conta
+# em que o leitor confia sobe para o topo. Mantido aqui para que regerar o feed
+# não perca a marcação.
+ALERTAS = (
+    "Vale checar a areia",
+    "Olho azul é só genética",
+    "Neblina densa",
+    "Parece margarida",
+    "Amendoim sem sal",
+    "Fotografar fachada alheia",
+    "Água nesse tom",
+    "Bonito de olhar, mas calçada",
+    "Vidro sujo com chuva",
+    "Não dá pra garantir que é abelha",
+    "Água lisa assim",
+)
+
 
 def recorte(w, h, rw, rh):
     if w / h > rw / rh:
@@ -103,7 +120,13 @@ def main():
 
     def com_likes(lista, semente):
         r = random.Random(semente)
-        return [{**c, "likes": r.choice([0, 1, 2, 3, 5, 8, 12, 21, 34])} for c in lista]
+        saida = []
+        for c in lista:
+            item = {**c, "likes": r.choice([0, 1, 2, 3, 5, 8, 12, 21, 34])}
+            if c["authorId"] == "maria-clara" and c["text"].startswith(ALERTAS):
+                item["alerta"] = True
+            saida.append(item)
+        return saida
 
     for i, p in enumerate(midia):
         base = MEDIA / p["videoId"].replace("-", "_")

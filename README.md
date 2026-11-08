@@ -38,13 +38,13 @@ judicial** ou **determinação da justiça**. Evite masculinos genéricos ("o us
 "o cidadão"); prefira "quem usa", "as pessoas".
 
 Comentário sem identificação **não leva etiqueta na tela**: nada de "conta anônima".
-A escolha é de quem publicou o post; a interface apenas não mostra o nome de quem
+A escolha é de quem publicou a postagem; a interface apenas não mostra o nome de quem
 comentou.
 
 ## Créditos de imagem
 
 - `app/public/cerebro.jpg` — modelo anatômico de cérebro, **CC0** (domínio público), via
-  Wikimedia Commons: `The_Human_Brain_Model_01.jpg`. Recortada em 3:2 para o post de
+  Wikimedia Commons: `The_Human_Brain_Model_01.jpg`. Recortada em 3:2 para a postagem de
   exemplo.
 - **Avatares das personas** (as 33 contas: pessoas, grupos e empresas) —
   [pravatar.cc](https://pravatar.cc/). São imagens de exemplo, livres para uso em
@@ -52,7 +52,7 @@ comentou.
   *Exceção:* os dois avatares institucionais — `cafe-aurora.jpg` e
   `banda-do-bairro.jpg` — vêm do [StockSnap](https://stocksnap.io/), **CC0**, porque
   precisavam ser foto de objeto/cena, não retrato.
-- **Vídeos do feed de demonstração** — [pixabay.com/pt/videos](https://pixabay.com/pt/videos/).
+- **Vídeos do mural de demonstração** — [pixabay.com/pt/videos](https://pixabay.com/pt/videos/).
   Os arquivos originais ficam em `../raw/` e são recortados e transcodificados por
   `scripts/build-feed.py`; o que vai para o site está em `app/public/media/`.
 - **Músicas dos vídeos** — [pixabay.com/pt/music/search/audio](https://pixabay.com/pt/music/search/audio).
@@ -70,7 +70,7 @@ comentou.
 .
 ├── app/                    o site: React 19 + Vite + Tailwind 4
 │   ├── src/components/     Avatar, PostCard, ChatWindow, AppFrame, PageShell
-│   │   ├── app/            moldura do aplicativo, feed, conversa, anotação
+│   │   ├── app/            moldura do aplicativo, mural, conversa, anotação
 │   │   └── scene/          motor das cenas (Scene) e primitivas de SVG
 │   ├── src/data/           personas — Ana Maria e mais seis
 │   ├── src/pages/          as 11 rotas
@@ -81,10 +81,10 @@ comentou.
 └── README.md
 ```
 
-## O protótipo e o feed de demonstração
+## O protótipo e o mural de demonstração
 
 A home tem um protótipo navegável: um celular com o aplicativo dentro, à esquerda, e
-explicações com seta à direita. O feed tem **100 posts** (68 com mídia, 32 de texto) e
+explicações com seta à direita. O mural tem **100 postagens** (68 com mídia, 32 de texto) e
 **33 personas**, e três layouts — clássico, resumido e focado.
 
 A mídia vem dos vídeos de `../raw/`
@@ -92,7 +92,7 @@ A mídia vem dos vídeos de `../raw/`
 por `scripts/build-feed.py`:
 
 ```sh
-python3 scripts/build-feed.py            # recorta, transcodifica e gera o feed
+python3 scripts/build-feed.py            # recorta, transcodifica e gera o mural
 python3 scripts/build-feed.py --keep-raw # o mesmo, sem apagar os vídeos consumidos
 python3 scripts/add-music.py             # põe um trecho de música em cada clipe
 ```
@@ -105,6 +105,11 @@ O script lê os posts escritos em `app/.feed/out/` (JSON), grava `app/public/med
 reescreve `app/src/data/feed-posts.ts`. Os vídeos consumidos saem de `raw/`.
 
 Para conferir um layout direto: `/?layout=resumido` ou `/?layout=focado`.
+
+Os vídeos tocam sozinhos quando entram na tela. O botão de janela flutuante abre um
+quadro **dentro do celular** (não é o picture-in-picture do navegador, que sairia da
+moldura): a janela é arrastável, e enquanto ela está aberta todos os outros vídeos tocam
+mudos.
 
 O som dos vídeos é uma preferência única, guardada em `localStorage` na chave
 `upr-som` (`1` ligado, `0` desligado) e **ligada por padrão**. Vale para todos os

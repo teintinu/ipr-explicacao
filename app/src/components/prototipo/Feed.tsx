@@ -48,7 +48,7 @@ export function Feed({
     >
       <div className={layout === "focado" ? "flex flex-col" : "pb-4"}>
         {feedPosts.slice(0, visiveis).map((post) => (
-          <div key={post.id} className={layout === "focado" ? "snap-start" : ""}>
+          <div key={post.id} id={`post-${post.id}`} className={layout === "focado" ? "snap-start" : ""}>
             <FeedPostCard
               post={post}
               layout={layout}
@@ -66,7 +66,7 @@ export function Feed({
             carregando mais…
           </>
         ) : (
-          <span>fim do feed de demonstração · {feedPosts.length} posts</span>
+          <span>fim do mural de demonstração · {feedPosts.length} posts</span>
         )}
       </div>
     </div>

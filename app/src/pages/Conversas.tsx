@@ -59,7 +59,7 @@ export function Conversas() {
         <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,420px)_1fr]">
           <ChatWindow
             person={joaoPedro}
-            status="online · cifrada de ponta a ponta"
+            status="conectado · cifrada de ponta a ponta"
             messages={conversa}
             height="min(430px,60vh)"
           />

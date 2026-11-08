@@ -17,7 +17,7 @@ const opcoes: Array<{ id: FeedLayout; titulo: string; descricao: string; icone: 
   {
     id: "resumido",
     titulo: "Resumido",
-    descricao: "texto curto, muitos posts por tela",
+    descricao: "texto curto, muitas postagens por tela",
     icone: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
         <path d="M4 6h16M4 11h16M4 16h10M4 21h7" />
@@ -52,7 +52,7 @@ export function LayoutSwitcher({
           type="button"
           onClick={() => onChange(o.id)}
           title={`${o.titulo} — ${o.descricao}`}
-          aria-label={`Layout ${o.titulo}: ${o.descricao}`}
+          aria-label={`Modo ${o.titulo.toLowerCase()}: ${o.descricao}`}
           aria-pressed={layout === o.id}
           className={`grid h-7 w-7 place-items-center rounded-full transition ${
             layout === o.id ? "bg-surface text-brand shadow-sm" : "text-text-faint hover:text-text"

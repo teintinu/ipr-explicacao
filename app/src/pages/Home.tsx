@@ -16,7 +16,7 @@ const conversa: Message[] = [
 const capitulos = [
   { href: "/identidade", titulo: "Identidade", texto: "Como a rede sabe que você existe sem nunca ver seu documento." },
   { href: "/conversas", titulo: "Conversas", texto: "Conversas que só os dois aparelhos conseguem abrir." },
-  { href: "/diario", titulo: "Diário", texto: "Posts, momentos, vídeos, comentários e transmissões ao vivo." },
+  { href: "/diario", titulo: "Diário", texto: "Postagens, momentos, vídeos, comentários e transmissões ao vivo." },
   { href: "/chamadas", titulo: "Chamadas", texto: "Voz e vídeo que não viram arquivo por padrão." },
   { href: "/confianca", titulo: "Confiança e remoção", texto: "Quem fala primeiro, e como apagar o que você publicou." },
   { href: "/provedores", titulo: "Provedores", texto: "Quem guarda os arquivos, quanto ocupa e quem paga." },
@@ -75,7 +75,7 @@ export function Home() {
           <div className="w-full max-w-[620px]">
             <ChatWindow
               person={joaoPedro}
-              status="online · cifrada de ponta a ponta"
+              status="conectado · cifrada de ponta a ponta"
               messages={conversa}
               height="min(400px,54vh)"
             />
@@ -108,8 +108,8 @@ export function Home() {
         <div className="mt-10 max-w-3xl">
           <Callout tone="info" title="O que você está vendo">
             <p>
-              Esta é uma demonstração, não um aplicativo funcionando. As contas, os posts e os
-              grupos são inventados para mostrar o desenho da rede — e cada clique abre a explicação
+              Esta é uma demonstração, não um aplicativo funcionando. As contas, as postagens e
+              os grupos são inventados para mostrar o desenho da rede — e cada clique abre a explicação
               do que aconteceria de verdade por baixo.
             </p>
             <p className="flex items-center gap-2">

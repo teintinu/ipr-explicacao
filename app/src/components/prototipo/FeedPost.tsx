@@ -27,30 +27,39 @@ function Acoes({ post, compacto = false }: { post: FeedPost; compacto?: boolean 
 /** A conta eleita pela leitora — nos exemplos, é a Maria Clara. */
 const CONFIAVEL = "maria-clara";
 
+/**
+ * Só **alerta** de conta confiável sobe para o topo.
+ *
+ * Um comentário comum da mesma conta — uma pergunta, uma piada, uma opinião —
+ * fica na ordem normal, como qualquer outro. É o autor do comentário que
+ * decide se aquilo é aviso ou conversa, não o leitor.
+ */
+function ehAlerta(c: { authorId: string; alerta?: boolean }) {
+  return c.alerta === true && c.authorId === CONFIAVEL;
+}
+
 function Comentarios({ post, limite = 2 }: { post: FeedPost; limite?: number }) {
-  // Quem a leitora elegeu aparece antes. Para quem não elegeu, a ordem é a original.
-  const ordenados = [...post.comments].sort(
-    (a, b) => Number(b.authorId === CONFIAVEL) - Number(a.authorId === CONFIAVEL),
-  );
+  // Alertas de conta confiável primeiro; o resto na ordem em que foi comentado.
+  const ordenados = [...post.comments].sort((a, b) => Number(ehAlerta(b)) - Number(ehAlerta(a)));
   const vistos = ordenados.slice(0, limite);
 
   return (
     <div className="space-y-1.5">
       {vistos.map((c, i) => {
         const autor = byId(c.authorId);
-        const confiavel = c.authorId === CONFIAVEL;
+        const alerta = ehAlerta(c);
         return (
           <div key={i} className="flex items-start gap-2">
             <Avatar persona={autor} size="sm" />
             <div className="min-w-0">
               <p className="flex flex-wrap items-center gap-1 text-[0.8rem] leading-snug">
                 <span className="font-semibold">{autor.name.split(" ")[0]}</span>
-                {confiavel && (
+                {alerta && (
                   <span
-                    className="rounded bg-brand-soft px-1 py-px text-[0.58rem] font-extrabold tracking-wide text-brand-ink uppercase"
-                    title="Conta em que você confia — por isso aparece primeiro"
+                    className="rounded bg-warn-soft px-1 py-px text-[0.58rem] font-extrabold tracking-wide text-warn uppercase"
+                    title="Aviso marcado como alerta por uma conta em que você confia"
                   >
-                    você confia
+                    alerta
                   </span>
                 )}
                 <span className="text-text-soft">{c.text}</span>
@@ -75,7 +84,7 @@ function Midia({ post, onPin, pinned, compacto = false }: { post: FeedPost; onPi
   if (post.kind === "video") {
     return (
       <div className="relative">
-        <VideoPlayer src={src} poster={poster} ratio={ratio} pinned={pinned} onPin={onPin} compact={compacto} />
+        <VideoPlayer postId={post.id} src={src} poster={poster} ratio={ratio} pinned={pinned} onPin={onPin} compact={compacto} />
         {duration && (
           <span className="pointer-events-none absolute top-2 right-2 rounded bg-black/55 px-1.5 py-0.5 text-[0.64rem] font-semibold text-white">
             {duration}s

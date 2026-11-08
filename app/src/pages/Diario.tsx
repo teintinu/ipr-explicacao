@@ -3,8 +3,8 @@ import { Scene, type SceneStep } from "../components/scene/Scene";
 import { Arrow, Box, Label, Marker } from "../components/scene/parts";
 
 const formatos = [
-  { titulo: "Post", texto: "Texto, foto ou vídeo curto. Fica no seu perfil até você apagar." },
-  { titulo: "Momento", texto: "Post com prazo de 24 horas. Depois do prazo, ninguém busca mais." },
+  { titulo: "Postagem", texto: "Texto, foto ou vídeo curto. Fica no seu perfil até você apagar." },
+  { titulo: "Momento", texto: "Postagem com prazo de 24 horas. Depois do prazo, ninguém busca mais." },
   { titulo: "Vídeo", texto: "Arquivo maior, entregue em pedaços por vários provedores." },
   { titulo: "Comentário", texto: "Assinado, com regra de identificação escolhida por quem publicou." },
   { titulo: "Transmissão ao vivo", texto: "Acontece uma vez; vira arquivo só se quem transmitiu decidir." },
@@ -17,8 +17,8 @@ const passosLive: SceneStep[] = [
   { at: 4800, label: "O moderador ouve, descarta o que é abuso e aprova o que faz sentido.", note: "A decisão dele também é registrada." },
   { at: 6400, label: "O aprovado é encaminhado, com um comentário rápido do moderador.", note: "O apresentador recebe o vídeo já triado e com contexto." },
   { at: 8000, label: "O apresentador decide, com um clique, tocar aquele vídeo ao vivo.", note: "Ele pode recusar, mesmo depois da aprovação." },
-  { at: 9600, label: "Depois, ele decide se a live continua publicada.", note: "Transmissão ao vivo não é arquivo automático." },
-  { at: 11200, label: "A partir da live é possível gerar cortes, que apontam para o original.", note: "O corte é derivado: se o original sai, o corte fica órfão, com aviso." },
+  { at: 9600, label: "Depois, ele decide se a transmissão continua publicada.", note: "Transmissão ao vivo não é arquivo automático." },
+  { at: 11200, label: "A partir da transmissão é possível gerar cortes, que apontam para o original.", note: "O corte é derivado: se o original sai, o corte fica órfão, com aviso." },
 ];
 
 function CenaLive() {
@@ -38,7 +38,7 @@ function CenaLive() {
         <Arrow d="M550 80 H 616" marker="m-live" at={8000} />
         <Arrow d="M550 190 H 616" marker="m-live" at={6400} />
         <Arrow d="M345 262 V 234" tone="accent" marker="m-live" at={10400} />
-        <Label x={545} y={250} at={9600}>a live não vira arquivo sozinha</Label>
+        <Label x={545} y={250} at={9600}>a transmissão não vira arquivo sozinha</Label>
       </svg>
     </Scene>
   );
@@ -70,8 +70,8 @@ export function Diario() {
       <Section alt tight>
         <h2 className="text-2xl font-extrabold tracking-tight md:text-3xl">Momentos: o que some em 24 horas</h2>
         <p className="mt-2 max-w-3xl text-[1.02rem] leading-relaxed text-text-soft">
-          Um momento é um post com prazo escrito junto. Passado o prazo, ele deixa de ser servido — e
-          o provedor apaga o arquivo quando voltar a ficar online. Não há recibo, e não precisa: a
+          Um momento é uma postagem com prazo escrito junto. Passado o prazo, ele deixa de ser servido — e
+          o provedor apaga o arquivo quando voltar a se conectar. Não há recibo, e não precisa: a
           rede simplesmente não busca mais.
         </p>
         <p className="mt-3 max-w-3xl text-[1.02rem] leading-relaxed text-text-soft">
