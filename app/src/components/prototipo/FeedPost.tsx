@@ -1,4 +1,7 @@
 import { Avatar } from "../Avatar";
+import { usarEleitos } from "../../lib/confianca";
+import { abrirPerfil } from "../../lib/navegacao";
+import { SeloClassificacao } from "./SeloClassificacao";
 import { byId } from "../../data/personas";
 import type { FeedPost } from "../../data/feed";
 import { ratioClass } from "../../data/feed";
@@ -19,13 +22,11 @@ function Acoes({ post, compacto = false }: { post: FeedPost; compacto?: boolean 
       <span className="ml-auto flex items-center gap-3">
         <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><path d="M4 12v7h16v-7M12 16V3M8 7l4-4 4 4" /></svg>
         <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><path d="M5 5h14v14l-7-4-7 4z" /></svg>
+        <SeloClassificacao rating={post.rating} />
       </span>
     </div>
   );
 }
-
-/** A conta eleita pela leitora — nos exemplos, é a Maria Clara. */
-const CONFIAVEL = "maria-clara";
 
 /**
  * Só **alerta** de conta confiável sobe para o topo.
@@ -34,13 +35,40 @@ const CONFIAVEL = "maria-clara";
  * fica na ordem normal, como qualquer outro. É o autor do comentário que
  * decide se aquilo é aviso ou conversa, não o leitor.
  */
-function ehAlerta(c: { authorId: string; alerta?: boolean }) {
-  return c.alerta === true && c.authorId === CONFIAVEL;
+/** Marcado como alerta por quem escreveu. */
+function ehAlerta(c: { alerta?: boolean }) {
+  return c.alerta === true;
 }
 
+/** Ícone de alerta — sem palavra, com destaque só se a conta foi eleita. */
+function SinalAlerta() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className="mr-1 inline-block h-3.5 w-3.5 shrink-0 text-warn"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M12 3.5 2.5 20.5h19L12 3.5Z" />
+      <path d="M12 10v4.4" />
+      <circle cx="12" cy="17.4" r=".9" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+
 function Comentarios({ post, limite = 2 }: { post: FeedPost; limite?: number }) {
-  // Alertas de conta confiável primeiro; o resto na ordem em que foi comentado.
-  const ordenados = [...post.comments].sort((a, b) => Number(ehAlerta(b)) - Number(ehAlerta(a)));
+  const eleitos = usarEleitos();
+  const destaca = (c: { authorId: string; alerta?: boolean }) =>
+    ehAlerta(c) && eleitos.includes(c.authorId);
+
+  // Alerta de conta eleita sobe; alerta de quem não foi eleito fica na ordem,
+  // só com o ícone. Comentário comum nunca sobe.
+  const ordenados = [...post.comments].sort((a, b) => Number(destaca(b)) - Number(destaca(a)));
   const vistos = ordenados.slice(0, limite);
 
   return (
@@ -48,20 +76,21 @@ function Comentarios({ post, limite = 2 }: { post: FeedPost; limite?: number }) 
       {vistos.map((c, i) => {
         const autor = byId(c.authorId);
         const alerta = ehAlerta(c);
+        const destaque = destaca(c);
         return (
-          <div key={i} className="flex items-start gap-2">
+          <div
+            key={i}
+            className={`flex items-start gap-2 rounded-lg px-1.5 py-1 ${
+              destaque ? "bg-warn-soft/60" : ""
+            }`}
+          >
             <Avatar persona={autor} size="sm" />
             <div className="min-w-0">
-              <p className="flex flex-wrap items-center gap-1 text-[0.8rem] leading-snug">
-                <span className="font-semibold">{autor.name.split(" ")[0]}</span>
-                {alerta && (
-                  <span
-                    className="rounded bg-warn-soft px-1 py-px text-[0.58rem] font-extrabold tracking-wide text-warn uppercase"
-                    title="Aviso marcado como alerta por uma conta em que você confia"
-                  >
-                    alerta
-                  </span>
-                )}
+              <p className="text-[0.8rem] leading-snug">
+                <button type="button" onClick={() => abrirPerfil(autor.id)} className="font-semibold hover:underline">
+                {autor.name.split(" ")[0]}
+              </button>{" "}
+                {alerta && <SinalAlerta />}
                 <span className="text-text-soft">{c.text}</span>
               </p>
             </div>
@@ -113,12 +142,19 @@ export function FeedPostCard({ post, layout, onPin, pinned }: { post: FeedPost; 
   if (layout === "resumido") {
     return (
       <article className="border-b border-line px-3 py-2.5">
-        <div className="flex gap-2.5">
+        <div className="flex items-start gap-2.5">
           <Avatar persona={autor} size="sm" />
           <div className="min-w-0 flex-1">
-            <p className="truncate text-[0.8rem] font-semibold">
-              {autor.name} <span className="font-normal text-text-faint">· {post.time}</span>
-            </p>
+            <div className="flex min-w-0 items-center gap-1.5">
+              <button
+                type="button"
+                onClick={() => abrirPerfil(autor.id)}
+                className="truncate text-[0.8rem] font-semibold hover:underline"
+              >
+                {autor.name}
+              </button>
+              <span className="shrink-0 text-[0.72rem] text-text-faint">· {post.time}</span>
+            </div>
             <p className="mt-0.5 line-clamp-3 text-[0.85rem] leading-snug text-text-soft">{post.text}</p>
             <Acoes post={post} compacto />
           </div>
@@ -137,7 +173,13 @@ export function FeedPostCard({ post, layout, onPin, pinned }: { post: FeedPost; 
           <p className="text-[1.05rem] leading-snug font-medium">{post.text}</p>
           <div className="mt-4 flex items-center gap-2">
             <Avatar persona={autor} size="sm" />
-            <span className="text-[0.8rem] font-semibold">{autor.name}</span>
+            <button
+              type="button"
+              onClick={() => abrirPerfil(autor.id)}
+              className="text-[0.8rem] font-semibold hover:underline"
+            >
+              {autor.name}
+            </button>
             <span className="text-[0.74rem] text-text-faint">{post.time}</span>
           </div>
           <div className="mt-3">
@@ -154,7 +196,13 @@ export function FeedPostCard({ post, layout, onPin, pinned }: { post: FeedPost; 
             <p className="text-[0.86rem] leading-snug text-white">{post.text}</p>
             <div className="mt-2 flex items-center gap-2">
               <Avatar persona={autor} size="sm" />
-              <span className="text-[0.78rem] font-semibold text-white">{autor.name}</span>
+              <button
+                type="button"
+                onClick={() => abrirPerfil(autor.id)}
+                className="pointer-events-auto text-[0.78rem] font-semibold text-white hover:underline"
+              >
+                {autor.name}
+              </button>
               <span className="text-[0.72rem] text-white/70">{post.time}</span>
             </div>
           </div>
@@ -165,6 +213,7 @@ export function FeedPostCard({ post, layout, onPin, pinned }: { post: FeedPost; 
             {post.likes.toLocaleString("pt-BR")}
           </span>
           <span className="text-[0.8rem]">{post.comments.length} comentários</span>
+          <SeloClassificacao rating={post.rating} className="ml-auto" />
         </div>
       </article>
     );
@@ -178,7 +227,9 @@ export function FeedPostCard({ post, layout, onPin, pinned }: { post: FeedPost; 
         <header className="flex items-center gap-2">
           <Avatar persona={autor} size="sm" />
           <div className="min-w-0">
-            <p className="truncate text-[0.82rem] font-semibold">{autor.name}</p>
+            <p className="flex items-center truncate text-[0.82rem] font-semibold">
+              <button type="button" onClick={() => abrirPerfil(autor.id)} className="hover:underline">{autor.name}</button>
+            </p>
             <p className="text-[0.7rem] text-text-faint">{post.time}</p>
           </div>
           {post.kind === "news" && (
@@ -203,7 +254,9 @@ export function FeedPostCard({ post, layout, onPin, pinned }: { post: FeedPost; 
       <header className="flex items-center gap-2.5 px-3 py-2.5">
         <Avatar persona={autor} size="sm" />
         <div className="min-w-0">
-          <p className="truncate text-[0.85rem] font-semibold">{autor.name}</p>
+          <p className="flex items-center truncate text-[0.85rem] font-semibold">
+            <button type="button" onClick={() => abrirPerfil(autor.id)} className="hover:underline">{autor.name}</button>
+          </p>
           <p className="text-[0.72rem] text-text-faint">{post.time} · público</p>
         </div>
       </header>

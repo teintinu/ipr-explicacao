@@ -4,22 +4,19 @@ import { StoryRow } from "./app/StoryRow";
 import { Kicker, Section } from "./ui";
 import { Feed } from "./prototipo/Feed";
 import { Explanations, type Hotspot } from "./prototipo/Explanations";
-import { LayoutSwitcher, type FeedLayout } from "./prototipo/LayoutSwitcher";
+import { LayoutSwitcher } from "./prototipo/LayoutSwitcher";
 import { MiniPlayer } from "./prototipo/MiniPlayer";
 import { PhoneShell } from "./prototipo/PhoneShell";
 import { PipWindow } from "./prototipo/PipWindow";
+import { PerfilNoApp } from "./prototipo/PerfilNoApp";
 import { fecharPip, usarPip } from "../lib/pip";
 import { SoundButton } from "./prototipo/SoundButton";
 import { feedPosts } from "../data/feed-posts";
-import { anaBeatriz, anaMaria, antonioJose, cafeAurora, joaoPedro, mariaClara } from "../data/personas";
+import { anaBeatriz, anaMaria, antonioJose, cafeAurora, ehRestrita, joaoPedro, mariaClara, personas } from "../data/personas";
+import { definirLeitor, usarLeitor } from "../lib/conta";
+import { usarPerfil } from "../lib/navegacao";
+import { definirLayout, usarLayout } from "../lib/exibicao";
 
-const LAYOUTS: FeedLayout[] = ["classico", "resumido", "focado"];
-
-/** `?layout=resumido` abre o protótipo já naquele layout (útil para conferir). */
-function layoutInicial(): FeedLayout {
-  const pedido = new URLSearchParams(window.location.search).get("layout");
-  return LAYOUTS.includes(pedido as FeedLayout) ? (pedido as FeedLayout) : "classico";
-}
 
 const stories = [joaoPedro, mariaClara, antonioJose, anaBeatriz, cafeAurora];
 
@@ -82,10 +79,10 @@ function cartoes(t: Record<string, number>): Hotspot[] {
     {
       id: "comentarios",
       top: t.comentarios ?? 470,
-      titulo: "Alerta de conta confiável vem primeiro",
-      texto: "Só se ela marcar o comentário como alerta. Comentário comum fica na ordem normal.",
+      titulo: "Alerta de checagem de fato",
+      texto: "Quem você elegeu para checar aparece destacado. Os outros alertas só mostram o ícone.",
       href: "/confianca",
-      link: "como funciona a confiança",
+      link: "como funciona a checagem",
       icone: (
         <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
           <path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.6 9.6 0 0 1-3.2-.6L3 21l1.7-4.9A8.3 8.3 0 0 1 3.6 11.5a8.4 8.4 0 0 1 9-8.4 8.4 8.4 0 0 1 8.4 8.4Z" />
@@ -96,10 +93,14 @@ function cartoes(t: Record<string, number>): Hotspot[] {
 }
 
 export function Prototipo() {
-  const [layout, setLayout] = useState<FeedLayout>(layoutInicial);
+  const layout = usarLayout();
+  const trocarLayout = definirLayout;
   const [pinnedId, setPinnedId] = useState<string | null>(null);
   const [tops, setTops] = useState<Record<string, number>>({});
   const pip = usarPip();
+  const leitorId = usarLeitor();
+  const perfilId = usarPerfil();
+  const leitor = personas.find((p) => p.id === leitorId) ?? anaMaria;
 
   /** Leva o mural até a postagem e fecha a janela flutuante. */
   const irParaPostagem = (id: string) => {
@@ -166,6 +167,26 @@ export function Prototipo() {
         </p>
 
         <div className="mt-8 grid items-start gap-10 lg:grid-cols-[minmax(0,372px)_minmax(0,1fr)] lg:gap-16">
+          <div>
+          <div className="mb-3 flex items-center justify-center gap-2 text-[0.8rem] text-text-soft">
+            <label htmlFor="ver-como">Ver como</label>
+            <select
+              id="ver-como"
+              value={leitorId}
+              onChange={(e) => definirLeitor(e.target.value)}
+              className="rounded-lg border border-line bg-surface px-2 py-1 text-[0.82rem] font-semibold text-text outline-none focus:border-brand"
+            >
+              {personas
+                .filter((p) => p.kind === "personal")
+                .map((p) => (
+                  <option key={p.id} value={p.id}>
+                    {p.name}
+                    {ehRestrita(p) ? ` (${p.age} anos)` : ""}
+                  </option>
+                ))}
+            </select>
+          </div>
+
           <div ref={telefone} className="relative mx-auto w-full max-w-[372px]">
             <PhoneShell
               overlay={
@@ -188,24 +209,31 @@ export function Prototipo() {
                 extra={
                   <>
                     <span data-hotspot="layout">
-                      <LayoutSwitcher layout={layout} onChange={setLayout} />
+                      <LayoutSwitcher layout={layout} onChange={trocarLayout} />
                     </span>
                     <SoundButton />
                   </>
                 }
               >
-                <StoryRow me={anaMaria} people={stories} />
-                <Feed
-                  layout={layout}
-                  pinnedId={pinnedId}
-                  onPin={(id) => setPinnedId((atual) => (atual === id ? null : id))}
-                />
+                {perfilId ? (
+                  <PerfilNoApp id={perfilId} />
+                ) : (
+                  <>
+                    <StoryRow me={leitor} people={stories} />
+                    <Feed
+                      layout={layout}
+                      pinnedId={pinnedId}
+                      onPin={(id) => setPinnedId((atual) => (atual === id ? null : id))}
+                    />
+                  </>
+                )}
               </AppFrame>
             </PhoneShell>
 
             <p className="mt-3 text-center text-[0.76rem] text-text-faint">
-              Protótipo · {feedPosts.length} postagens · contas e histórias inventadas
+              Vendo como {leitor.name} · contas e histórias inventadas
             </p>
+          </div>
           </div>
 
           <Explanations hotspots={hotspots} />

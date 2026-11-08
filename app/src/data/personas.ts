@@ -25,6 +25,23 @@ export interface Verification {
 
 export type AccountKind = "personal" | "business" | "group";
 
+/**
+ * Classificação máxima que a conta pode ver, a partir da idade.
+ * Conta sem idade é organização — não é restrita.
+ */
+export function tetoPorIdade(idade?: number): 10 | 14 | 16 | 18 {
+  if (idade === undefined) return 18;
+  if (idade < 13) return 10;
+  if (idade < 16) return 14;
+  if (idade < 18) return 16;
+  return 18;
+}
+
+/** Conta restrita é conta de pessoa menor de 18. */
+export function ehRestrita(p: Persona): boolean {
+  return p.age !== undefined && p.age < 18;
+}
+
 /** Imagem do avatar: sempre uma foto, de pessoa, grupo ou empresa. */
 export interface AvatarSpec {
   readonly kind: "photo";
@@ -36,6 +53,8 @@ export interface Persona {
   name: string;
   handle: string;
   kind: AccountKind;
+  /** Idade da pessoa. Ausente em conta de organização. */
+  age?: number;
   avatar: AvatarSpec;
   verification: Verification;
   /** Uma linha sobre o papel dela nos exemplos. */
@@ -47,6 +66,7 @@ export const anaMaria: Persona = {
   name: "Ana Maria",
   handle: "@anamaria",
   kind: "personal",
+  age: 34,
   avatar: { kind: "photo", src: "/avatars/ana-maria.jpg" },
   verification: { state: "green", label: "essa pessoa foi verificada há 2 meses" },
   role: "é você nesta demonstração",
@@ -57,6 +77,7 @@ export const joaoPedro: Persona = {
   name: "João Pedro",
   handle: "@joaopedro",
   kind: "personal",
+  age: 29,
   avatar: { kind: "photo", src: "/avatars/joao-pedro.jpg" },
   verification: { state: "green", label: "essa pessoa foi verificada há 8 meses" },
   role: "música, tecnologia, shows",
@@ -67,6 +88,7 @@ export const mariaClara: Persona = {
   name: "Maria Clara",
   handle: "@mariaclara",
   kind: "personal",
+  age: 38,
   avatar: { kind: "photo", src: "/avatars/maria-clara.jpg" },
   verification: { state: "yellow", label: "essa pessoa foi verificada há 2 anos" },
   role: "checagem de fatos e ciência",
@@ -77,6 +99,7 @@ export const antonioJose: Persona = {
   name: "Antônio José",
   handle: "@antoniojose",
   kind: "personal",
+  age: 41,
   avatar: { kind: "photo", src: "/avatars/antonio-jose.jpg" },
   verification: { state: "red", label: "essa pessoa foi verificada há 6 anos" },
   role: "voltou depois de anos; opinião política",
@@ -87,6 +110,7 @@ export const anaBeatriz: Persona = {
   name: "Ana Beatriz",
   handle: "@anabeatriz",
   kind: "personal",
+  age: 17,
   avatar: { kind: "photo", src: "/avatars/ana-beatriz.jpg" },
   verification: { state: "green", label: "essa pessoa foi verificada há 10 dias" },
   role: "estudante de jornalismo",
@@ -97,6 +121,7 @@ export const luisaFernanda: Persona = {
   name: "Luísa Fernanda",
   handle: "@luisafernanda",
   kind: "personal",
+  age: 33,
   avatar: { kind: "photo", src: "/avatars/luisa-fernanda.jpg" },
   verification: { state: "green", label: "essa pessoa foi verificada há 3 meses" },
   role: "fotógrafa de natureza",
@@ -107,9 +132,21 @@ export const rafaelAugusto: Persona = {
   name: "Rafael Augusto",
   handle: "@rafaelaugusto",
   kind: "personal",
+  age: 52,
   avatar: { kind: "photo", src: "/avatars/rafael-augusto.jpg" },
   verification: { state: "green", label: "essa pessoa foi verificada há 1 ano" },
   role: "ciclista urbano",
+};
+
+export const daviLuiz: Persona = {
+  id: "davi-luiz",
+  name: "Davi Luiz",
+  handle: "@daviluiz",
+  kind: "personal",
+  age: 11,
+  avatar: { kind: "photo", src: "/avatars/davi-luiz.jpg" },
+  verification: { state: "green", label: "verificada há 1 mês" },
+  role: "conta restrita (11 anos), com responsável",
 };
 
 export const beatrizHelena: Persona = {
@@ -117,6 +154,7 @@ export const beatrizHelena: Persona = {
   name: "Beatriz Helena",
   handle: "@beatrizhelena",
   kind: "personal",
+  age: 44,
   avatar: { kind: "photo", src: "/avatars/beatriz-helena.jpg" },
   verification: { state: "green", label: "essa pessoa foi verificada há 5 meses" },
   role: "cozinha e cafés",
@@ -127,6 +165,7 @@ export const carlosEduardo: Persona = {
   name: "Carlos Eduardo",
   handle: "@carloseduardo",
   kind: "personal",
+  age: 58,
   avatar: { kind: "photo", src: "/avatars/carlos-eduardo.jpg" },
   verification: { state: "yellow", label: "essa pessoa foi verificada há 3 anos" },
   role: "professor de história",
@@ -137,6 +176,7 @@ export const fernandaLuisa: Persona = {
   name: "Fernanda Luísa",
   handle: "@fernandaluisa",
   kind: "personal",
+  age: 28,
   avatar: { kind: "photo", src: "/avatars/fernanda-luisa.jpg" },
   verification: { state: "green", label: "essa pessoa foi verificada há 7 meses" },
   role: "veterinária",
@@ -147,6 +187,7 @@ export const gustavoHenrique: Persona = {
   name: "Gustavo Henrique",
   handle: "@gustavohenrique",
   kind: "personal",
+  age: 25,
   avatar: { kind: "photo", src: "/avatars/gustavo-henrique.jpg" },
   verification: { state: "green", label: "essa pessoa foi verificada há 2 meses" },
   role: "programador",
@@ -157,6 +198,7 @@ export const helenaCristina: Persona = {
   name: "Helena Cristina",
   handle: "@helenacristina",
   kind: "personal",
+  age: 31,
   avatar: { kind: "photo", src: "/avatars/helena-cristina.jpg" },
   verification: { state: "green", label: "essa pessoa foi verificada há 9 meses" },
   role: "ceramista",
@@ -167,6 +209,7 @@ export const igorMatheus: Persona = {
   name: "Igor Matheus",
   handle: "@igormatheus",
   kind: "personal",
+  age: 23,
   avatar: { kind: "photo", src: "/avatars/igor-matheus.jpg" },
   verification: { state: "green", label: "essa pessoa foi verificada há 4 meses" },
   role: "estudante de física",
@@ -177,6 +220,7 @@ export const julianaRosa: Persona = {
   name: "Juliana Rosa",
   handle: "@julianarosa",
   kind: "personal",
+  age: 35,
   avatar: { kind: "photo", src: "/avatars/juliana-rosa.jpg" },
   verification: { state: "yellow", label: "essa pessoa foi verificada há 1 ano e 6 meses" },
   role: "rotina de mãe e trabalho",
@@ -187,6 +231,7 @@ export const kaiqueVinicius: Persona = {
   name: "Kaique Vinícius",
   handle: "@kaiquevinicius",
   kind: "personal",
+  age: 26,
   avatar: { kind: "photo", src: "/avatars/kaique-vinicius.jpg" },
   verification: { state: "green", label: "essa pessoa foi verificada há 6 meses" },
   role: "entregador, cidade e trânsito",
@@ -197,6 +242,7 @@ export const larissaNaomi: Persona = {
   name: "Larissa Naomi",
   handle: "@larissanaomi",
   kind: "personal",
+  age: 24,
   avatar: { kind: "photo", src: "/avatars/larissa-naomi.jpg" },
   verification: { state: "green", label: "essa pessoa foi verificada há 2 meses" },
   role: "ilustradora",
@@ -207,6 +253,7 @@ export const marceloAntonio: Persona = {
   name: "Marcelo Antônio",
   handle: "@marceloantonio",
   kind: "personal",
+  age: 68,
   avatar: { kind: "photo", src: "/avatars/marcelo-antonio.jpg" },
   verification: { state: "red", label: "essa pessoa foi verificada há 5 anos" },
   role: "aposentado, pesca e mar",
@@ -217,6 +264,7 @@ export const nataliaCristina: Persona = {
   name: "Natália Cristina",
   handle: "@nataliacristina",
   kind: "personal",
+  age: 21,
   avatar: { kind: "photo", src: "/avatars/natalia-cristina.jpg" },
   verification: { state: "green", label: "essa pessoa foi verificada há 8 meses" },
   role: "dançarina",
@@ -227,6 +275,7 @@ export const otavioLuis: Persona = {
   name: "Otávio Luís",
   handle: "@otavioluis",
   kind: "personal",
+  age: 36,
   avatar: { kind: "photo", src: "/avatars/otavio-luis.jpg" },
   verification: { state: "green", label: "essa pessoa foi verificada há 1 mês" },
   role: "viajante e trilhas",
@@ -237,6 +286,7 @@ export const patriciaElaine: Persona = {
   name: "Patrícia Elaine",
   handle: "@patriciaelaine",
   kind: "personal",
+  age: 46,
   avatar: { kind: "photo", src: "/avatars/patricia-elaine.jpg" },
   verification: { state: "green", label: "essa pessoa foi verificada há 1 ano" },
   role: "médica",
@@ -247,6 +297,7 @@ export const rodrigoJose: Persona = {
   name: "Rodrigo José",
   handle: "@rodrigojose",
   kind: "personal",
+  age: 39,
   avatar: { kind: "photo", src: "/avatars/rodrigo-jose.jpg" },
   verification: { state: "green", label: "essa pessoa foi verificada há 5 meses" },
   role: "mecânico",
@@ -257,6 +308,7 @@ export const sabrinaLuiza: Persona = {
   name: "Sabrina Luiza",
   handle: "@sabrinaluiza",
   kind: "personal",
+  age: 30,
   avatar: { kind: "photo", src: "/avatars/sabrina-luiza.jpg" },
   verification: { state: "green", label: "essa pessoa foi verificada há 3 meses" },
   role: "violão e composição",
@@ -267,6 +319,7 @@ export const thiagoAndre: Persona = {
   name: "Thiago André",
   handle: "@thiagoandre",
   kind: "personal",
+  age: 27,
   avatar: { kind: "photo", src: "/avatars/thiago-andre.jpg" },
   verification: { state: "green", label: "essa pessoa foi verificada há 2 meses" },
   role: "jornalista de cidade",
@@ -277,6 +330,7 @@ export const vanessaKelly: Persona = {
   name: "Vanessa Kelly",
   handle: "@vanessakelly",
   kind: "personal",
+  age: 32,
   avatar: { kind: "photo", src: "/avatars/vanessa-kelly.jpg" },
   verification: { state: "green", label: "essa pessoa foi verificada há 7 meses" },
   role: "estilista",
@@ -287,6 +341,7 @@ export const wagnerLuis: Persona = {
   name: "Wagner Luís",
   handle: "@wagnerluis",
   kind: "personal",
+  age: 55,
   avatar: { kind: "photo", src: "/avatars/wagner-luis.jpg" },
   verification: { state: "yellow", label: "essa pessoa foi verificada há 4 anos" },
   role: "fotógrafo de rua",
@@ -297,6 +352,7 @@ export const yaraBeatriz: Persona = {
   name: "Yara Beatriz",
   handle: "@yarabeatriz",
   kind: "personal",
+  age: 43,
   avatar: { kind: "photo", src: "/avatars/yara-beatriz.jpg" },
   verification: { state: "green", label: "essa pessoa foi verificada há 2 meses" },
   role: "arquiteta",
@@ -378,6 +434,7 @@ export const personas: Persona[] = [
   mariaClara,
   antonioJose,
   anaBeatriz,
+  daviLuiz,
   luisaFernanda,
   rafaelAugusto,
   beatrizHelena,

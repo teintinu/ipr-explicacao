@@ -91,8 +91,8 @@ export function Identidade() {
 
         <div className="grid gap-3 sm:grid-cols-3">
           {[
-            ["Verde", "conferida há menos de um ano", "bg-accent"],
-            ["Amarelo", "entre um e cinco anos", "bg-warn"],
+            ["Sem marca", "conferida há menos de um ano — o padrão", "bg-line"],
+            ["Laranja", "entre um e cinco anos", "bg-[#e8791f]"],
             ["Vermelho", "acima de cinco anos", "bg-danger"],
           ].map(([nome, texto, cor]) => (
             <div key={nome} className="rounded-2xl border border-line bg-surface p-5">

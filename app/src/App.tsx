@@ -11,7 +11,7 @@ import { Provedores } from "./pages/Provedores";
 import { Confianca } from "./pages/Confianca";
 import { Perguntas } from "./pages/Perguntas";
 import { Glossario } from "./pages/Glossario";
-import { Soon } from "./pages/Soon";
+import { Navigate } from "react-router-dom";
 
 function Shell() {
   const { pathname } = useLocation();
@@ -29,7 +29,7 @@ function Shell() {
         <Route path="/confianca" element={<Confianca />} />
         <Route path="/perguntas" element={<Perguntas />} />
         <Route path="/glossario" element={<Glossario />} />
-        <Route path="*" element={<Soon />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </PageShell>
   );

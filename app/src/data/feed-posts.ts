@@ -13,6 +13,7 @@ export const feedPosts: FeedPost[] = [
       "ratio": "9:16",
       "duration": 8
     },
+    "rating": 18,
     "likes": 540,
     "time": "há 2 horas",
     "comments": [
@@ -44,6 +45,7 @@ export const feedPosts: FeedPost[] = [
       "poster": "/media/12881706_2160_3840_25fps.jpg",
       "ratio": "9:16"
     },
+    "rating": 10,
     "likes": 340,
     "time": "há 2 horas",
     "comments": [
@@ -69,6 +71,7 @@ export const feedPosts: FeedPost[] = [
     "authorId": "otavio-luis",
     "kind": "note",
     "text": "Subi sem pressa hoje e cheguei no alto já com o sol baixo. Trilha não é competição: quem para pra olhar chega igual e vê mais. A mata não tem cronograma.",
+    "rating": 0,
     "likes": 96,
     "time": "há 9 horas",
     "comments": [
@@ -89,6 +92,7 @@ export const feedPosts: FeedPost[] = [
     "authorId": "ana-maria",
     "kind": "question",
     "text": "Preciso de ajuda de verdade: meu pai está aprendendo a usar o celular novo e esquece tudo no dia seguinte. Já tentei escrever no caderno, ele não abre. Alguém já ensinou alguém assim? O que funcionou?",
+    "rating": 0,
     "likes": 47,
     "time": "há 12 minutos",
     "comments": [
@@ -109,6 +113,7 @@ export const feedPosts: FeedPost[] = [
     "authorId": "ana-beatriz",
     "kind": "question",
     "text": "Como vocês checam notícia que só aparece em print de grupo? Recebi imagem de um suposto alagamento com trânsito parado, sem fonte e sem data. Já vi a mesma foto circulando em outro ano. Por onde começar sem parecer chata?",
+    "rating": 14,
     "likes": 43,
     "time": "há 40 minutos",
     "comments": [
@@ -129,6 +134,7 @@ export const feedPosts: FeedPost[] = [
     "authorId": "gustavo-henrique",
     "kind": "opinion",
     "text": "Meu time foi elogiado por entregar a função em uma semana. A gente entregou em uma semana porque trabalhou dez dias seguidos, até depois da meia-noite. Elogiar isso é contratar o próximo esgotamento com aplauso. Produtividade que depende de insônia não é processo.",
+    "rating": 10,
     "likes": 498,
     "time": "há 6 horas",
     "comments": [
@@ -155,6 +161,7 @@ export const feedPosts: FeedPost[] = [
       "ratio": "3:4",
       "duration": 8
     },
+    "rating": 12,
     "likes": 312,
     "time": "há 8 minutos",
     "comments": [
@@ -180,6 +187,7 @@ export const feedPosts: FeedPost[] = [
     "authorId": "rafael-augusto",
     "kind": "opinion",
     "text": "Pedir ciclovia não é briga com motorista. Rua que serve pra bike serve pro pedestre, pro entregador e pra quem empurra carrinho. O problema nunca foi o espaço, foi a pressa.",
+    "rating": 10,
     "likes": 208,
     "time": "há 2 horas",
     "comments": [
@@ -200,6 +208,7 @@ export const feedPosts: FeedPost[] = [
     "authorId": "patricia-elaine",
     "kind": "note",
     "text": "Plantão de dezoito horas. Atendi, expliquei e repeti a explicação devagar pra quem não entendia, e ainda ouvi que eu não estava nem aí. Saí com o pé doendo e a cabeça em silêncio. Amanhã tem outro. Não é reclamação, é registro de que a gente cansa.",
+    "rating": 12,
     "likes": 73,
     "time": "há 1 hora",
     "comments": [
@@ -226,6 +235,7 @@ export const feedPosts: FeedPost[] = [
       "ratio": "9:16",
       "duration": 8
     },
+    "rating": 10,
     "likes": 213,
     "time": "há 2 horas",
     "comments": [
@@ -252,6 +262,7 @@ export const feedPosts: FeedPost[] = [
       "poster": "/media/13197974_2160_3840_60fps.jpg",
       "ratio": "9:16"
     },
+    "rating": 0,
     "likes": 643,
     "time": "há 2 horas",
     "comments": [
@@ -283,6 +294,7 @@ export const feedPosts: FeedPost[] = [
       "ratio": "9:16",
       "duration": 7
     },
+    "rating": 16,
     "likes": 214,
     "time": "há 2 horas",
     "comments": [
@@ -313,6 +325,7 @@ export const feedPosts: FeedPost[] = [
       "poster": "/media/17215069_2160_3840_30fps.jpg",
       "ratio": "9:16"
     },
+    "rating": 0,
     "likes": 712,
     "time": "há 2 horas",
     "comments": [
@@ -339,6 +352,7 @@ export const feedPosts: FeedPost[] = [
     "authorId": "gustavo-henrique",
     "kind": "opinion",
     "text": "Trabalhar até tarde virou sinal de dedicação. Não é. É sinal de que o prazo era impossível e ninguém quis dizer isso em voz alta. A gente chama de cultura, mas é falta de planejamento com nome bonito.",
+    "rating": 10,
     "likes": 415,
     "time": "há 1 dia",
     "comments": [
@@ -365,6 +379,7 @@ export const feedPosts: FeedPost[] = [
       "ratio": "9:16",
       "duration": 7
     },
+    "rating": 12,
     "likes": 148,
     "time": "há 8 minutos",
     "comments": [
@@ -395,6 +410,7 @@ export const feedPosts: FeedPost[] = [
       "poster": "/media/17134458_1080_1920_50fps.jpg",
       "ratio": "3:4"
     },
+    "rating": 0,
     "likes": 97,
     "time": "há 5 horas",
     "comments": [
@@ -421,6 +437,7 @@ export const feedPosts: FeedPost[] = [
       "ratio": "3:4",
       "duration": 8
     },
+    "rating": 0,
     "likes": 612,
     "time": "há 1 dia",
     "comments": [
@@ -452,6 +469,7 @@ export const feedPosts: FeedPost[] = [
       "ratio": "9:16",
       "duration": 8
     },
+    "rating": 14,
     "likes": 356,
     "time": "há 8 minutos",
     "comments": [
@@ -477,6 +495,7 @@ export const feedPosts: FeedPost[] = [
     "authorId": "thiago-andre",
     "kind": "news",
     "text": "Linha de ônibus que liga o centro ao bairro da escola volta a circular amanhã, depois de três semanas de obra. A prefeitura promete intervalo pela metade entre as viagens. Moradores reclamam que o ponto novo fica longe da praça.",
+    "rating": 12,
     "likes": 87,
     "time": "há 12 minutos",
     "comments": [
@@ -497,6 +516,7 @@ export const feedPosts: FeedPost[] = [
     "authorId": "juliana-rosa",
     "kind": "note",
     "text": "Hoje consegui almoçar sentada. Parece pouco, mas nos últimos dois meses meu almoço era engolido em pé na cozinha, segurando a mochila do filho com o pé. Foi só um dia, mas lembrei que eu também conto na rotina de casa.",
+    "rating": 0,
     "likes": 156,
     "time": "há 5 horas",
     "comments": [
@@ -523,6 +543,7 @@ export const feedPosts: FeedPost[] = [
       "ratio": "16:9",
       "duration": 7
     },
+    "rating": 0,
     "likes": 587,
     "time": "há 1 dia",
     "comments": [
@@ -553,6 +574,7 @@ export const feedPosts: FeedPost[] = [
       "poster": "/media/16849446_1080_1920_25fps.jpg",
       "ratio": "1:1"
     },
+    "rating": 0,
     "likes": 24,
     "time": "há 8 minutos",
     "comments": [
@@ -584,6 +606,7 @@ export const feedPosts: FeedPost[] = [
       "ratio": "9:16",
       "duration": 8
     },
+    "rating": 16,
     "likes": 268,
     "time": "há 8 minutos",
     "comments": [
@@ -610,6 +633,7 @@ export const feedPosts: FeedPost[] = [
       "ratio": "9:16",
       "duration": 8
     },
+    "rating": 12,
     "likes": 203,
     "time": "há 8 minutos",
     "comments": [
@@ -640,6 +664,7 @@ export const feedPosts: FeedPost[] = [
       "poster": "/media/13407069_3840_2160_24fps.jpg",
       "ratio": "16:9"
     },
+    "rating": 12,
     "likes": 356,
     "time": "há 2 horas",
     "comments": [
@@ -670,6 +695,7 @@ export const feedPosts: FeedPost[] = [
       "poster": "/media/17387388_2160_3840_60fps.jpg",
       "ratio": "16:9"
     },
+    "rating": 0,
     "likes": 128,
     "time": "há 2 horas",
     "comments": [
@@ -701,6 +727,7 @@ export const feedPosts: FeedPost[] = [
       "ratio": "16:9",
       "duration": 7
     },
+    "rating": 12,
     "likes": 156,
     "time": "há 1 dia",
     "comments": [
@@ -731,6 +758,7 @@ export const feedPosts: FeedPost[] = [
       "poster": "/media/15370999_3840_2160_24fps.jpg",
       "ratio": "16:9"
     },
+    "rating": 14,
     "likes": 96,
     "time": "há 1 dia",
     "comments": [
@@ -762,6 +790,7 @@ export const feedPosts: FeedPost[] = [
       "ratio": "16:9",
       "duration": 5
     },
+    "rating": 16,
     "likes": 512,
     "time": "há 1 dia",
     "comments": [
@@ -787,6 +816,7 @@ export const feedPosts: FeedPost[] = [
     "authorId": "thiago-andre",
     "kind": "news",
     "text": "A feira da praça do bairro vai ganhar cobertura nova depois de três anos de pedido. A obra começa no mês que vem, segundo a prefeitura, mas feirantes ainda não sabem onde vão ficar durante a reforma.",
+    "rating": 12,
     "likes": 57,
     "time": "há 4 horas",
     "comments": [
@@ -818,6 +848,7 @@ export const feedPosts: FeedPost[] = [
       "ratio": "9:16",
       "duration": 7
     },
+    "rating": 10,
     "likes": 287,
     "time": "há 2 horas",
     "comments": [
@@ -843,6 +874,7 @@ export const feedPosts: FeedPost[] = [
     "authorId": "thiago-andre",
     "kind": "news",
     "text": "A linha que liga o centro ao bairro das oficinas volta a circular amanhã, depois de dois meses de obra. A empresa promete ônibus a cada quinze minutos, mas não disse quantos veículos entram na frota. Moradores marcam fiscalização na parada principal.",
+    "rating": 18,
     "likes": 47,
     "time": "há 2 horas",
     "comments": [
@@ -874,6 +906,7 @@ export const feedPosts: FeedPost[] = [
       "ratio": "1:1",
       "duration": 7
     },
+    "rating": 0,
     "likes": 156,
     "time": "há 1 dia",
     "comments": [
@@ -904,6 +937,7 @@ export const feedPosts: FeedPost[] = [
       "poster": "/media/16850078_2160_3840_60fps.jpg",
       "ratio": "9:16"
     },
+    "rating": 0,
     "likes": 289,
     "time": "há 1 dia",
     "comments": [
@@ -929,6 +963,7 @@ export const feedPosts: FeedPost[] = [
     "authorId": "gustavo-henrique",
     "kind": "note",
     "text": "Desliguei o notebook às 19h pela primeira vez em três meses. Não terminei nada da lista e ninguém morreu. Ainda estou tentando entender por que isso pareceu uma ousadia.",
+    "rating": 0,
     "likes": 212,
     "time": "há 1 dia",
     "comments": [
@@ -949,6 +984,7 @@ export const feedPosts: FeedPost[] = [
     "authorId": "patricia-elaine",
     "kind": "note",
     "text": "Saí do plantão de doze horas e ainda fiquei no estacionamento sem conseguir ligar o carro. Não é sono, é o corpo cobrando a conta. A gente fala de saúde o dia inteiro e esquece da própria.",
+    "rating": 14,
     "likes": 271,
     "time": "ontem",
     "comments": [
@@ -975,6 +1011,7 @@ export const feedPosts: FeedPost[] = [
       "ratio": "16:9",
       "duration": 8
     },
+    "rating": 10,
     "likes": 156,
     "time": "há 2 horas",
     "comments": [
@@ -1000,6 +1037,7 @@ export const feedPosts: FeedPost[] = [
     "authorId": "larissa-naomi",
     "kind": "note",
     "text": "Passei a tarde desenhando a mesma mão e ela continua parecendo um garfo. Amanhã eu venço. Ou pelo menos faço um garfo bonito.",
+    "rating": 14,
     "likes": 64,
     "time": "há 20 minutos",
     "comments": [
@@ -1026,6 +1064,7 @@ export const feedPosts: FeedPost[] = [
       "ratio": "1:1",
       "duration": 8
     },
+    "rating": 0,
     "likes": 137,
     "time": "há 5 horas",
     "comments": [
@@ -1057,6 +1096,7 @@ export const feedPosts: FeedPost[] = [
       "ratio": "16:9",
       "duration": 4
     },
+    "rating": 14,
     "likes": 312,
     "time": "há 2 horas",
     "comments": [
@@ -1088,6 +1128,7 @@ export const feedPosts: FeedPost[] = [
       "ratio": "16:9",
       "duration": 8
     },
+    "rating": 0,
     "likes": 631,
     "time": "há 1 dia",
     "comments": [
@@ -1114,6 +1155,7 @@ export const feedPosts: FeedPost[] = [
     "authorId": "rafael-augusto",
     "kind": "question",
     "text": "Pergunta sincera: por que a faixa exclusiva de ônibus vira estacionamento de entrega depois das 18h? Não é reclamação, é curiosidade de quem pedala ali todo dia e desvia de três caminhões parados.",
+    "rating": 16,
     "likes": 31,
     "time": "há 6 horas",
     "comments": [
@@ -1140,6 +1182,7 @@ export const feedPosts: FeedPost[] = [
       "ratio": "3:4",
       "duration": 5
     },
+    "rating": 10,
     "likes": 214,
     "time": "há 12 minutos",
     "comments": [
@@ -1171,6 +1214,7 @@ export const feedPosts: FeedPost[] = [
       "poster": "/media/16979092_uhd_3840_2160_60fps.jpg",
       "ratio": "16:9"
     },
+    "rating": 12,
     "likes": 87,
     "time": "há 8 minutos",
     "comments": [
@@ -1196,6 +1240,7 @@ export const feedPosts: FeedPost[] = [
       "poster": "/media/16894799_3840_2160_24fps.jpg",
       "ratio": "16:9"
     },
+    "rating": 18,
     "likes": 96,
     "time": "há 8 minutos",
     "comments": [
@@ -1222,6 +1267,7 @@ export const feedPosts: FeedPost[] = [
       "ratio": "9:16",
       "duration": 8
     },
+    "rating": 10,
     "likes": 187,
     "time": "há 2 horas",
     "comments": [
@@ -1253,6 +1299,7 @@ export const feedPosts: FeedPost[] = [
       "ratio": "3:4",
       "duration": 5
     },
+    "rating": 12,
     "likes": 58,
     "time": "há 2 horas",
     "comments": [
@@ -1285,6 +1332,7 @@ export const feedPosts: FeedPost[] = [
       "ratio": "16:9",
       "duration": 5
     },
+    "rating": 10,
     "likes": 412,
     "time": "há 2 horas",
     "comments": [
@@ -1315,6 +1363,7 @@ export const feedPosts: FeedPost[] = [
       "poster": "/media/13033459_1920_1080_30fps.jpg",
       "ratio": "16:9"
     },
+    "rating": 14,
     "likes": 431,
     "time": "há 2 horas",
     "comments": [
@@ -1340,6 +1389,7 @@ export const feedPosts: FeedPost[] = [
     "authorId": "thiago-andre",
     "kind": "news",
     "text": "A feira da rua de baixo muda de horário a partir de sábado: abre às 6h e fecha às 13h. A mudança foi pedida pelos feirantes e confirmada pela associação do bairro. Quem for depois das 11h encontra pouca coisa.",
+    "rating": 10,
     "likes": 89,
     "time": "há 45 minutos",
     "comments": [
@@ -1366,6 +1416,7 @@ export const feedPosts: FeedPost[] = [
       "ratio": "1:1",
       "duration": 8
     },
+    "rating": 12,
     "likes": 76,
     "time": "há 1 dia",
     "comments": [
@@ -1396,6 +1447,7 @@ export const feedPosts: FeedPost[] = [
       "poster": "/media/15656737_1920_1080_30fps.jpg",
       "ratio": "1:1"
     },
+    "rating": 0,
     "likes": 63,
     "time": "há 2 horas",
     "comments": [
@@ -1422,6 +1474,7 @@ export const feedPosts: FeedPost[] = [
       "ratio": "1:1",
       "duration": 8
     },
+    "rating": 12,
     "likes": 726,
     "time": "há 1 dia",
     "comments": [
@@ -1452,6 +1505,7 @@ export const feedPosts: FeedPost[] = [
       "poster": "/media/16921220_1080_1922_30fps.jpg",
       "ratio": "3:4"
     },
+    "rating": 0,
     "likes": 412,
     "time": "há 8 minutos",
     "comments": [
@@ -1477,6 +1531,7 @@ export const feedPosts: FeedPost[] = [
     "authorId": "gustavo-henrique",
     "kind": "note",
     "text": "Passei o dia consertando um bug que só existia porque ontem eu consertei outro. Fim do expediente, café frio e a sensação de que o código cresce mais rápido do que eu. Amanhã tento de novo.",
+    "rating": 16,
     "likes": 34,
     "time": "há 25 minutos",
     "comments": [
@@ -1507,6 +1562,7 @@ export const feedPosts: FeedPost[] = [
       "poster": "/media/16618543_1440_2562_30fps.jpg",
       "ratio": "3:4"
     },
+    "rating": 12,
     "likes": 187,
     "time": "há 1 dia",
     "comments": [
@@ -1538,6 +1594,7 @@ export const feedPosts: FeedPost[] = [
       "ratio": "1:1",
       "duration": 5
     },
+    "rating": 14,
     "likes": 97,
     "time": "há 1 dia",
     "comments": [
@@ -1569,6 +1626,7 @@ export const feedPosts: FeedPost[] = [
       "ratio": "16:9",
       "duration": 8
     },
+    "rating": 12,
     "likes": 61,
     "time": "há 8 minutos",
     "comments": [
@@ -1594,6 +1652,7 @@ export const feedPosts: FeedPost[] = [
     "authorId": "juliana-rosa",
     "kind": "note",
     "text": "Hoje o ônibus atrasou vinte minutos, o menino perdeu o reforço e eu cheguei no trabalho com cara de quem dormiu no ponto. Não é um dia ruim, é toda semana. Quem monta horário de ônibus nunca esperou com criança pela mão.",
+    "rating": 14,
     "likes": 89,
     "time": "ontem",
     "comments": [
@@ -1614,6 +1673,7 @@ export const feedPosts: FeedPost[] = [
     "authorId": "luisa-fernanda",
     "kind": "note",
     "text": "Saí cedo pra pegar a luz na serra e errei o horário. Quando cheguei, o sol já tinha subido e o mato parecia chapado, sem sombra nenhuma. Fiquei olhando de qualquer jeito. Paisagem boa às vezes é só insistir no dia errado.",
+    "rating": 14,
     "likes": 302,
     "time": "ontem",
     "comments": [
@@ -1645,6 +1705,7 @@ export const feedPosts: FeedPost[] = [
       "ratio": "1:1",
       "duration": 8
     },
+    "rating": 0,
     "likes": 389,
     "time": "há 1 dia",
     "comments": [
@@ -1671,6 +1732,7 @@ export const feedPosts: FeedPost[] = [
       "ratio": "1:1",
       "duration": 8
     },
+    "rating": 0,
     "likes": 87,
     "time": "há 1 dia",
     "comments": [
@@ -1702,6 +1764,7 @@ export const feedPosts: FeedPost[] = [
       "ratio": "3:4",
       "duration": 8
     },
+    "rating": 0,
     "likes": 412,
     "time": "há 2 horas",
     "comments": [
@@ -1733,6 +1796,7 @@ export const feedPosts: FeedPost[] = [
       "ratio": "3:4",
       "duration": 8
     },
+    "rating": 12,
     "likes": 234,
     "time": "há 1 dia",
     "comments": [
@@ -1758,6 +1822,7 @@ export const feedPosts: FeedPost[] = [
     "authorId": "kaique-vinicius",
     "kind": "note",
     "text": "Chuva na rua, o aplicativo mandando corrida em corrida e o cliente reclamando do atraso. Atrasei porque o semáforo não abriu, porque a rua alagou, porque eu não voo. Queria que quem monta a rota sentasse no banco de trás uma tarde.",
+    "rating": 10,
     "likes": 154,
     "time": "há 12 minutos",
     "comments": [
@@ -1784,6 +1849,7 @@ export const feedPosts: FeedPost[] = [
       "ratio": "16:9",
       "duration": 8
     },
+    "rating": 14,
     "likes": 508,
     "time": "há 1 dia",
     "comments": [
@@ -1809,6 +1875,7 @@ export const feedPosts: FeedPost[] = [
     "authorId": "beatriz-helena",
     "kind": "note",
     "text": "Descoberta de hoje: o pão que mais vende não é o mais bonito da vitrine. É o que sai quentinho às sete e some antes do meio-dia. Padaria é feita de horário, não só de receita.",
+    "rating": 12,
     "likes": 146,
     "time": "há 6 horas",
     "comments": [
@@ -1835,6 +1902,7 @@ export const feedPosts: FeedPost[] = [
       "ratio": "9:16",
       "duration": 8
     },
+    "rating": 0,
     "likes": 246,
     "time": "há 3 horas",
     "comments": [
@@ -1867,6 +1935,7 @@ export const feedPosts: FeedPost[] = [
       "ratio": "9:16",
       "duration": 8
     },
+    "rating": 12,
     "likes": 87,
     "time": "há 2 horas",
     "comments": [
@@ -1897,6 +1966,7 @@ export const feedPosts: FeedPost[] = [
       "poster": "/media/16745770_2160_3840_30fps.jpg",
       "ratio": "9:16"
     },
+    "rating": 0,
     "likes": 364,
     "time": "há 2 horas",
     "comments": [
@@ -1922,6 +1992,7 @@ export const feedPosts: FeedPost[] = [
     "authorId": "fernanda-luisa",
     "kind": "opinion",
     "text": "Adotar não é caridade, é compromisso de quinze anos. Quem adota por pena devolve em três meses. Quem adota por escolha fica. O abrigo não precisa de emoção, precisa de gente que volte no sábado.",
+    "rating": 0,
     "likes": 156,
     "time": "há 8 horas",
     "comments": [
@@ -1942,6 +2013,7 @@ export const feedPosts: FeedPost[] = [
     "authorId": "ana-beatriz",
     "kind": "question",
     "text": "Pergunta de estudante: como vocês decidem em quem confiar quando duas fontes dizem coisas opostas e as duas parecem seguras? Estou fazendo uma matéria e travei exatamente nisso.",
+    "rating": 0,
     "likes": 12,
     "time": "há 1 hora",
     "comments": [
@@ -1962,6 +2034,7 @@ export const feedPosts: FeedPost[] = [
     "authorId": "maria-clara",
     "kind": "opinion",
     "text": "Checar não é desconfiar de tudo, é se importar com o que é verdade antes de repassar. Quando a notícia é boa demais, o primeiro passo continua sendo procurar o estudo de origem e o tamanho da amostra.",
+    "rating": 12,
     "likes": 389,
     "time": "há 3 horas",
     "comments": [
@@ -1982,6 +2055,7 @@ export const feedPosts: FeedPost[] = [
     "authorId": "antonio-jose",
     "kind": "opinion",
     "text": "Morei fora oito anos e voltei. A cidade que deixei não existe mais: o comércio fechou, o cinema virou estacionamento e a praça virou ponto de entrega. Não é saudade de tudo, é raiva de ver o dinheiro público escolher sempre asfalto e nunca gente.",
+    "rating": 0,
     "likes": 214,
     "time": "há 3 horas",
     "comments": [
@@ -2007,6 +2081,7 @@ export const feedPosts: FeedPost[] = [
       "poster": "/media/16937743_1920_1080_30fps.jpg",
       "ratio": "1:1"
     },
+    "rating": 12,
     "likes": 64,
     "time": "há 1 dia",
     "comments": [
@@ -2038,6 +2113,7 @@ export const feedPosts: FeedPost[] = [
       "ratio": "1:1",
       "duration": 8
     },
+    "rating": 10,
     "likes": 96,
     "time": "há 8 minutos",
     "comments": [
@@ -2058,6 +2134,7 @@ export const feedPosts: FeedPost[] = [
     "authorId": "luisa-fernanda",
     "kind": "note",
     "text": "Hoje o céu fez aquela coisa de fim de tarde que dura uns quatro minutos: laranja embaixo, cinza em cima, e a cidade virou silhueta. Saí sem câmera. Fiquei olhando mesmo assim, e foi melhor que qualquer foto.",
+    "rating": 12,
     "likes": 203,
     "time": "há 40 minutos",
     "comments": [
@@ -2078,6 +2155,7 @@ export const feedPosts: FeedPost[] = [
     "authorId": "beatriz-helena",
     "kind": "note",
     "text": "O padeiro colocou o pão na prateleira às 6h10 e a fila já tinha sete pessoas. Tem coisa que o bairro inteiro sincroniza sem combinar. Cheiro de pão quente é o despertador mais honesto que existe.",
+    "rating": 10,
     "likes": 340,
     "time": "há 3 horas",
     "comments": [
@@ -2104,6 +2182,7 @@ export const feedPosts: FeedPost[] = [
       "ratio": "3:4",
       "duration": 8
     },
+    "rating": 14,
     "likes": 431,
     "time": "há 1 dia",
     "comments": [
@@ -2124,6 +2203,7 @@ export const feedPosts: FeedPost[] = [
     "authorId": "ana-beatriz",
     "kind": "question",
     "text": "Pergunta séria: quando a prefeitura diz que ouviu a população, quem exatamente foi ouvido? Queria ver a lista, o bairro, o horário da reunião. Não é desconfiança de tudo, é só querer entender como a decisão foi tomada antes de virar placa na rua.",
+    "rating": 10,
     "likes": 128,
     "time": "há 6 horas",
     "comments": [
@@ -2144,6 +2224,7 @@ export const feedPosts: FeedPost[] = [
     "authorId": "antonio-jose",
     "kind": "opinion",
     "text": "Voltei depois de anos e uma coisa não mudou: obra pública começa pelo tapume e termina na faixa. O calendário é sugestão, o orçamento é ficção. Quem mora aqui paga a conta duas vezes.",
+    "rating": 0,
     "likes": 128,
     "time": "há 2 horas",
     "comments": [
@@ -2169,6 +2250,7 @@ export const feedPosts: FeedPost[] = [
       "poster": "/media/14596394_1440_2560_30fps.jpg",
       "ratio": "3:4"
     },
+    "rating": 10,
     "likes": 64,
     "time": "há 1 dia",
     "comments": [
@@ -2201,6 +2283,7 @@ export const feedPosts: FeedPost[] = [
       "ratio": "3:4",
       "duration": 8
     },
+    "rating": 10,
     "likes": 482,
     "time": "há 8 minutos",
     "comments": [
@@ -2232,6 +2315,7 @@ export const feedPosts: FeedPost[] = [
       "ratio": "9:16",
       "duration": 8
     },
+    "rating": 12,
     "likes": 96,
     "time": "há 1 dia",
     "comments": [
@@ -2263,6 +2347,7 @@ export const feedPosts: FeedPost[] = [
       "ratio": "9:16",
       "duration": 8
     },
+    "rating": 10,
     "likes": 214,
     "time": "há 2 horas",
     "comments": [
@@ -2294,6 +2379,7 @@ export const feedPosts: FeedPost[] = [
       "ratio": "9:16",
       "duration": 5
     },
+    "rating": 18,
     "likes": 74,
     "time": "há 1 dia",
     "comments": [
@@ -2325,6 +2411,7 @@ export const feedPosts: FeedPost[] = [
       "ratio": "3:4",
       "duration": 6
     },
+    "rating": 12,
     "likes": 431,
     "time": "há 1 dia",
     "comments": [
@@ -2356,6 +2443,7 @@ export const feedPosts: FeedPost[] = [
       "ratio": "16:9",
       "duration": 8
     },
+    "rating": 12,
     "likes": 63,
     "time": "há 2 horas",
     "comments": [
@@ -2387,6 +2475,7 @@ export const feedPosts: FeedPost[] = [
       "ratio": "9:16",
       "duration": 6
     },
+    "rating": 0,
     "likes": 168,
     "time": "há 8 minutos",
     "comments": [
@@ -2418,6 +2507,7 @@ export const feedPosts: FeedPost[] = [
       "poster": "/media/13106123_2160_3840_25fps.jpg",
       "ratio": "1:1"
     },
+    "rating": 10,
     "likes": 47,
     "time": "há 2 horas",
     "comments": [
@@ -2443,6 +2533,7 @@ export const feedPosts: FeedPost[] = [
     "authorId": "livraria-pagina-viva",
     "kind": "news",
     "text": "A feira do livro do bairro foi confirmada para o mês que vem, agora na praça em vez do ginásio. A organização promete dez barracas de editoras pequenas e uma mesa de troca de usados. Quem quer expor se inscreve até sexta.",
+    "rating": 0,
     "likes": 76,
     "time": "há 3 horas",
     "comments": [
@@ -2469,6 +2560,7 @@ export const feedPosts: FeedPost[] = [
       "ratio": "1:1",
       "duration": 7
     },
+    "rating": 0,
     "likes": 158,
     "time": "há 2 horas",
     "comments": [
@@ -2496,6 +2588,7 @@ export const feedPosts: FeedPost[] = [
       "ratio": "3:4",
       "duration": 7
     },
+    "rating": 14,
     "likes": 312,
     "time": "há 2 horas",
     "comments": [
@@ -2521,6 +2614,7 @@ export const feedPosts: FeedPost[] = [
     "authorId": "rafael-augusto",
     "kind": "opinion",
     "text": "Vou dizer o que ninguém quer ouvir: tirar uma faixa de carro para a bicicleta não piora o trânsito, só revela o que já estava ruim. O problema nunca foi a bike, foi a cidade desenhada para o carro. Testa trinta dias e depois a gente conversa.",
+    "rating": 0,
     "likes": 312,
     "time": "há 25 minutos",
     "comments": [
@@ -2547,6 +2641,7 @@ export const feedPosts: FeedPost[] = [
       "ratio": "3:4",
       "duration": 5
     },
+    "rating": 16,
     "likes": 48,
     "time": "há 8 minutos",
     "comments": [
@@ -2577,6 +2672,7 @@ export const feedPosts: FeedPost[] = [
       "poster": "/media/14415260_1440_2560_30fps.jpg",
       "ratio": "3:4"
     },
+    "rating": 12,
     "likes": 143,
     "time": "há 2 horas",
     "comments": [
@@ -2603,6 +2699,7 @@ export const feedPosts: FeedPost[] = [
     "authorId": "rafael-augusto",
     "kind": "news",
     "text": "Começou o teste da ciclofaixa de quatro quadras na rua do mercado. Foram dois anos de discussão, um abaixo-assinado e três acidentes com bicicleta na esquina. A prefeitura vai medir velocidade e fluxo por sessenta dias antes de decidir se fica.",
+    "rating": 10,
     "likes": 121,
     "time": "há 2 dias",
     "comments": [
@@ -2629,6 +2726,7 @@ export const feedPosts: FeedPost[] = [
       "ratio": "3:4",
       "duration": 6
     },
+    "rating": 10,
     "likes": 512,
     "time": "há 8 minutos",
     "comments": [
@@ -2659,6 +2757,7 @@ export const feedPosts: FeedPost[] = [
       "poster": "/media/16903339_1920_1080_30fps.jpg",
       "ratio": "3:4"
     },
+    "rating": 12,
     "likes": 57,
     "time": "há 2 horas",
     "comments": [
@@ -2689,6 +2788,7 @@ export const feedPosts: FeedPost[] = [
       "poster": "/media/12635446_uhd_3840_2160_24fps.jpg",
       "ratio": "16:9"
     },
+    "rating": 0,
     "likes": 803,
     "time": "há 1 dia",
     "comments": [

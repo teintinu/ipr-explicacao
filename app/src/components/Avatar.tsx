@@ -1,8 +1,14 @@
-import type { Persona, VerificationState } from "../data/personas";
+import type { Persona } from "../data/personas";
 
-const badgeClass: Record<Exclude<VerificationState, "none">, string> = {
-  green: "bg-accent",
-  yellow: "bg-warn",
+/**
+ * Só o que foge do padrão ganha marca.
+ *
+ * Todo mundo na rede é autenticado — então a verificação recente não vira selo.
+ * A bolinha aparece apenas quando há o que sinalizar: laranja para verificação
+ * antiga, vermelha para o caso crítico.
+ */
+const badgeClass: Record<"yellow" | "red", string> = {
+  yellow: "bg-[#e8791f]",
   red: "bg-danger",
 };
 
@@ -42,7 +48,8 @@ export function Avatar({
   className = "",
 }: AvatarProps) {
   const { verification, avatar } = persona;
-  const hasBadge = showVerification && verification.state !== "none";
+  const sinal = verification.state === "yellow" || verification.state === "red" ? verification.state : null;
+  const hasBadge = showVerification && sinal !== null;
   const shape = persona.kind === "group" ? "rounded-xl" : "rounded-full";
 
   return (
@@ -56,14 +63,11 @@ export function Avatar({
         className={`${sizeClass[size]} ${shape} bg-surface-3 object-cover ring-1 ring-line`}
       />
 
-      {hasBadge && (
+      {hasBadge && sinal && (
         <span
-          className={`absolute -right-0.5 -bottom-0.5 grid place-items-center rounded-full ring-2 ring-surface ${badgeClass[verification.state as Exclude<VerificationState, "none">]} ${badgeSize[size]}`}
+          className={`absolute -right-0.5 -bottom-0.5 block rounded-full ring-2 ring-surface ${badgeClass[sinal]} ${badgeSize[size]}`}
           title={verification.label}
         >
-          <svg viewBox="0 0 24 24" className="h-2.5 w-2.5" fill="none" stroke="white" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="m5 12.5 4 4 10-10" />
-          </svg>
           <span className="sr-only">{verification.label}</span>
         </span>
       )}
@@ -81,12 +85,12 @@ export function VerificationTag({ persona }: { persona: Persona }) {
       </span>
     );
   }
-  const tone =
-    state === "green"
-      ? "bg-accent-soft text-accent"
-      : state === "yellow"
-        ? "bg-warn-soft text-warn"
-        : "bg-danger-soft text-danger";
+  // Verificação recente é o padrão da rede: não vira selo.
+  if (state === "green") {
+    return <span className="text-[0.7rem] text-text-faint">{label}</span>;
+  }
+
+  const tone = state === "yellow" ? "bg-[#fdf0dc] text-[#b45309]" : "bg-danger-soft text-danger";
 
   return (
     <span className={`rounded-md px-1.5 py-0.5 text-[0.68rem] font-semibold uppercase tracking-wide ${tone}`}>

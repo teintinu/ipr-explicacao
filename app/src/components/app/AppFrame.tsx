@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
-import { anaMaria } from "../../data/personas";
+import { byId } from "../../data/personas";
+import { usarLeitor } from "../../lib/conta";
 import { Avatar } from "../Avatar";
 
 /**
@@ -22,6 +23,7 @@ export function AppFrame({
   compact?: boolean;
   extra?: ReactNode;
 }) {
+  const leitor = byId(usarLeitor());
   const casca = bare
     ? "flex h-full min-h-0 w-full flex-col"
     : `mx-auto flex w-full flex-col overflow-hidden rounded-[22px] border border-line bg-surface shadow-xl ${width}`;
@@ -69,10 +71,10 @@ export function AppFrame({
           <a
             href="/identidade"
             className={`grid place-items-center rounded-xl border border-line text-text-soft transition hover:bg-surface-2 hover:text-text ${compact ? "h-8 w-8" : "h-9 w-9"}`}
-            aria-label={`Sua identidade — ${anaMaria.verification.label}`}
-            title={`${anaMaria.name} — ${anaMaria.verification.label}`}
+            aria-label={`Sua identidade — ${leitor.verification.label}`}
+            title={`${leitor.name} — ${leitor.verification.label}`}
           >
-            <Avatar persona={anaMaria} size="sm" />
+            <Avatar persona={leitor} size="sm" showVerification={false} />
           </a>
         </div>
       </div>

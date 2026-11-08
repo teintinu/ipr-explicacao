@@ -1,6 +1,7 @@
 import { Kicker, Lead, Section } from "../components/ui";
 import { Scene, type SceneStep } from "../components/scene/Scene";
 import { Arrow, Box, CircleNode, Label, Marker } from "../components/scene/parts";
+import { SeloClassificacao } from "../components/prototipo/SeloClassificacao";
 
 /* ------------------------------------------------------------------ */
 /* 1 — Publicar um post                                               */
@@ -258,6 +259,93 @@ function CenaMomentos() {
 
 /* ------------------------------------------------------------------ */
 
+
+/* ------------------------------------------------------------------ */
+/* 9 — Antes de publicar: a nota                                      */
+/* ------------------------------------------------------------------ */
+
+const passosNota: SceneStep[] = [
+  { at: 0, label: "Antes de publicar, o aplicativo pergunta o que a postagem tem.", note: "Não pergunta a idade. Pergunta sobre o conteúdo: tem violência? tem droga? tem nudez?" },
+  { at: 1600, label: "Quem publica marca o que existe — e só o que existe.", note: "É uma lista fechada de descritores. Marcar não é confissão: é a informação que calcula a nota." },
+  { at: 3200, label: "A nota sai do descritor mais alto marcado.", note: "Sem descritor, a postagem é livre. Com um ou mais, vale o mais alto. Ninguém digita a idade à mão." },
+  { at: 4800, label: "A nota vai junto do conteúdo, com os descritores.", note: "Quem lê vê a idade. Quem quiser saber por que vê a lista. O motivo não fica escondido." },
+  { at: 6400, label: "Quem tem conta restrita não recebe o que passa do teto.", note: "O autor marcou o conteúdo; quem decide o que aparece é a faixa de quem lê." },
+];
+
+function CenaNota() {
+  return (
+    <Scene duration={8000} steps={passosNota}>
+      <svg viewBox="0 0 860 260" role="img" aria-label="O autor marca descritores, o aplicativo calcula a nota e o leitor vê o selo.">
+        <Marker id="m-nota" />
+        <Box x={20} y={30} w={200} h={150} tone="brand" lines={["o que tem aqui?", "□ violência", "□ drogas", "☑ linguagem imprópria", "☑ violência doméstica"]} at={0} />
+        <Box x={300} y={50} w={190} h={110} tone="accent" lines={["maior descritor", "violência doméstica", "→ 14"]} at={3200} />
+        <Box x={570} y={40} w={200} h={64} lines={["a postagem", "com a nota dentro"]} at={4800} />
+        <Box x={570} y={140} w={200} h={64} tone="warn" lines={["conta restrita", "não recebe acima do teto"]} at={6400} />
+        <Arrow d="M224 105 H 296" marker="m-nota" at={1600} />
+        <Arrow d="M494 105 H 566" tone="accent" marker="m-nota" at={4000} />
+        <Label x={672} y={228} at={6400}>quem tem 12 não vê</Label>
+      </svg>
+    </Scene>
+  );
+}
+
+const descritores: Array<[string, string[]]> = [
+  ["10", ["Violência Fantasiosa", "Medo", "Linguagem Imprópria"]],
+  ["12", ["Atos Criminosos", "Drogas", "Drogas Lícitas", "Procedimentos Médicos", "Temas Sensíveis", "Violência"]],
+  ["14", ["Apostas ou Jogos de Azar", "Drogas Ilícitas", "Estigma ou Preconceito", "Nudez", "Violência Contra Vulnerável", "Violência Doméstica"]],
+  ["16", ["Autoagressão ou Suicídio", "Conteúdo Sexual", "Transtornos Estéticos", "Violência Extrema"]],
+  ["18", ["Sexo Explícito", "Violência Sexual"]],
+];
+
+function TabelaDescritores() {
+  return (
+    <div className="mt-8 grid gap-4 md:grid-cols-2">
+      {descritores.map(([nota, itens]) => (
+        <div key={nota} className="rounded-2xl border border-line bg-surface p-4">
+          <p className="mb-2 flex items-center gap-2">
+            <SeloClassificacao rating={Number(nota) as 10 | 12 | 14 | 16 | 18} />
+            <span className="text-[0.72rem] font-extrabold tracking-[0.1em] text-text-faint uppercase">
+              a partir de {nota} anos
+            </span>
+          </p>
+          <ul className="flex flex-wrap gap-1.5">
+            {itens.map((item) => (
+              <li key={item} className="rounded-md bg-surface-2 px-2 py-0.5 text-[0.78rem] text-text-soft">
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function Noticia() {
+  return (
+    <div className="mt-8 rounded-2xl border border-line bg-surface p-5">
+      <h3 className="font-bold">Notícia também pede lugar e assunto</h3>
+      <p className="mt-1.5 text-[0.95rem] leading-relaxed text-text-soft">
+        Toda postagem de notícia carrega uma <strong className="text-text">região</strong> e um
+        conjunto de <strong className="text-text">assuntos</strong>. Assim a pessoa vê o que
+        interessa a ela — o bairro, a cidade, o país, o mundo — sem que a rede deduza de onde ela
+        está ou o que ela gosta.
+      </p>
+      <div className="mt-3 flex flex-wrap gap-1.5">
+        {["mundo inteiro", "país", "estado", "cidade", "bairro"].map((r) => (
+          <span key={r} className="rounded-md bg-brand-soft px-2 py-0.5 text-[0.78rem] font-semibold text-brand">
+            {r}
+          </span>
+        ))}
+      </div>
+      <p className="mt-3 text-[0.85rem] text-text-faint">
+        A região é escolhida por quem publica, nunca detectada por IP, GPS ou fuso. Bairro é
+        opcional e grosseiro: bairro identificado é dado de localização.
+      </p>
+    </div>
+  );
+}
+
 export function PorDentro() {
   return (
     <>
@@ -281,6 +369,7 @@ export function PorDentro() {
             ["Elemento 6", "Enviar uma mensagem", "O caminho entre o seu aparelho e o do destinatário.", <CenaMensagem key="6" />],
             ["Elemento 7", "Provedores de conteúdo", "Não existe “o servidor da rede”. Existem cópias — e quem lê também guarda uma.", <CenaProvedor key="7" />],
             ["Elemento 8", "Momentos", "Uma postagem com prazo: depois de 24 horas, ninguém busca mais.", <CenaMomentos key="8" />],
+            ["Elemento 9", "Antes de publicar: a nota", "A classificação indicativa não é digitada: sai do que a postagem contém.", <CenaNota key="9" />],
           ].map(([kicker, titulo, lead, cena]) => (
             <section key={String(titulo)}>
               <p className="mb-2 flex items-center gap-2 text-[0.72rem] font-extrabold tracking-[0.14em] text-brand uppercase">
@@ -293,6 +382,9 @@ export function PorDentro() {
             </section>
           ))}
         </div>
+
+        <TabelaDescritores />
+        <Noticia />
       </Section>
     </>
   );

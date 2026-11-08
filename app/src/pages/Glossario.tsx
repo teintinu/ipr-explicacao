@@ -8,6 +8,11 @@ interface Termo {
 }
 
 const termos: Termo[] = [
+  { termo: "Classificação indicativa", grupo: "conteúdo", def: "A nota de idade de uma postagem: L, 10, 12, 14, 16 ou 18. É calculada a partir do que a postagem contém — nunca digitada por quem publica." },
+  { termo: "Descritor", grupo: "conteúdo", def: "Item da lista que descreve o conteúdo: violência, drogas, nudez, linguagem imprópria, medo, temas sensíveis. A nota é o maior descritor marcado." },
+  { termo: "Teto de classificação", grupo: "conteúdo", def: "A maior nota que uma conta pode ver, tirada da idade dela. Quem tem 11 anos vê até 10; quem tem 17 vê até 16." },
+  { termo: "Região", grupo: "conteúdo", def: "Onde a notícia aconteceu: mundo inteiro, país, estado, cidade ou bairro. Escolhida por quem publica, nunca detectada pelo aparelho." },
+  { termo: "Assunto", grupo: "conteúdo", def: "Etiqueta curta da notícia, para filtrar por interesse. Lista fechada: não é texto livre." },
   { termo: "AC", grupo: "identidade", def: "Autoridade Certificadora. A raiz de confiança: credencia os verificadores e responde pela lista deles." },
   { termo: "AR", grupo: "identidade", def: "Autoridade Registradora. A instituição que confere o documento e emite a credencial — a sua operadora, o seu partido, a sua empresa." },
   { termo: "Verificador de identidade", grupo: "identidade", def: "Quem confere seus documentos uma vez e devolve a credencial. Pode ser um órgão público ou uma empresa." },

@@ -4,6 +4,18 @@ import { byId } from "./personas";
 /** Formatos de post que o feed precisa saber desenhar. */
 export type PostKind = "video" | "photo" | "text" | "opinion" | "news" | "question" | "note";
 
+/** Classificação indicativa. `0` é livre ("L"). */
+export type Rating = 0 | 10 | 12 | 14 | 16 | 18;
+
+export const ratingLabel: Record<Rating, string> = {
+  0: "L",
+  10: "10",
+  12: "12",
+  14: "14",
+  16: "16",
+  18: "18",
+};
+
 /** Proporção da mídia. O vídeo/frame é recortado nessa proporção. */
 export type Ratio = "1:1" | "3:4" | "16:9" | "9:16";
 
@@ -32,6 +44,8 @@ export interface FeedPost {
     ratio: Ratio;
     duration?: number;
   };
+  /** Classificação indicativa da postagem. */
+  rating: Rating;
   likes: number;
   comments: FeedComment[];
   time: string;

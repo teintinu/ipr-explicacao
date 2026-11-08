@@ -35,18 +35,18 @@ export function Confianca() {
     <>
       <Section>
         <Kicker>Quem fala primeiro</Kicker>
-        <h1 className="text-4xl font-extrabold tracking-tight md:text-5xl">Confiança e remoção</h1>
+        <h1 className="text-4xl font-extrabold tracking-tight md:text-5xl">Checagem de fato e remoção</h1>
         <Lead>
-          Não existe "autoridade" da rede. Existe a sua escolha, guardada no seu aparelho — e o
-          direito de quem publicou de tirar o que publicou.
+          Não existe "autoridade" da rede. Existe a sua escolha de quem checa fatos para você —
+          guardada no seu aparelho — e o direito de quem publicou de tirar o que publicou.
         </Lead>
       </Section>
 
       <Section tight>
-        <h2 className="text-2xl font-extrabold tracking-tight md:text-3xl">O conselho é uma eleição, não um cargo</h2>
+        <h2 className="text-2xl font-extrabold tracking-tight md:text-3xl">A checagem de fato é uma eleição, não um cargo</h2>
         <p className="mt-2 mb-5 max-w-3xl text-lg text-text-soft">
-          Qualquer conta pode ser eleita por qualquer leitor. O que se publica é a contagem — nunca
-          quem elegeu.
+          Qualquer conta pode ser eleita por qualquer leitor para checar fatos. O que se publica é a
+          contagem — nunca quem elegeu.
         </p>
         <CenaEleicao />
       </Section>
@@ -123,7 +123,7 @@ export function Confianca() {
         <div className="mt-4 grid gap-3 sm:grid-cols-3">
           {[
             ["Não dá acesso", "A conta eleita continua vendo só o que já era visível para ela."],
-            ["Não esconde ninguém", "Quem não foi eleito continua aparecendo — só depois."],
+            ["Não esconde ninguém", "Quem não foi eleito continua aparecendo — só sem destaque."],
             ["Não vira cargo", "Não há registro, chave própria nem status de conselheiro."],
           ].map(([titulo, texto]) => (
             <div key={titulo} className="rounded-2xl border border-line bg-surface p-5">

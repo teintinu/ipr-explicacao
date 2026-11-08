@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { feedPosts } from "../../data/feed-posts";
+import { byId, tetoPorIdade } from "../../data/personas";
+import { usarLeitor } from "../../lib/conta";
 import { FeedPostCard } from "./FeedPost";
 import type { FeedLayout } from "./LayoutSwitcher";
 
@@ -15,6 +17,11 @@ export function Feed({
   pinnedId: string | null;
   onPin: (id: string) => void;
 }) {
+  const leitor = byId(usarLeitor());
+  const teto = tetoPorIdade(leitor.age);
+  const permitidas = feedPosts.filter((p) => p.rating <= teto);
+  const ocultas = feedPosts.length - permitidas.length;
+
   const [visiveis, setVisiveis] = useState(PASSO);
   const [carregando, setCarregando] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -28,14 +35,14 @@ export function Feed({
     const el = ref.current;
     if (!el || carregando) return;
     if (el.scrollTop + el.clientHeight >= el.scrollHeight - 280) {
-      if (visiveis >= feedPosts.length) return;
+      if (visiveis >= permitidas.length) return;
       setCarregando(true);
       window.setTimeout(() => {
-        setVisiveis((v) => Math.min(v + PASSO, feedPosts.length));
+        setVisiveis((v) => Math.min(v + PASSO, permitidas.length));
         setCarregando(false);
       }, 260);
     }
-  }, [carregando, visiveis]);
+  }, [carregando, visiveis, permitidas.length]);
 
   return (
     <div
@@ -46,8 +53,15 @@ export function Feed({
         layout === "focado" ? "snap-y snap-mandatory" : ""
       }`}
     >
+      {ocultas > 0 && (
+        <p className="border-b border-line bg-warn-soft/50 px-3 py-2 text-[0.74rem] leading-snug text-warn">
+          {ocultas} postagen{ocultas === 1 ? "" : "s"} acima da classificação de {leitor.name} —
+          conta restrita só vê até {teto}.
+        </p>
+      )}
+
       <div className={layout === "focado" ? "flex flex-col" : "pb-4"}>
-        {feedPosts.slice(0, visiveis).map((post) => (
+        {permitidas.slice(0, visiveis).map((post) => (
           <div key={post.id} id={`post-${post.id}`} className={layout === "focado" ? "snap-start" : ""}>
             <FeedPostCard
               post={post}
@@ -60,7 +74,7 @@ export function Feed({
       </div>
 
       <div className="flex items-center justify-center gap-2 py-5 text-[0.78rem] text-text-faint">
-        {visiveis < feedPosts.length ? (
+        {visiveis < permitidas.length ? (
           <>
             <span className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-line border-t-brand" />
             carregando mais…

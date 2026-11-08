@@ -1,8 +1,20 @@
 import type { ReactNode } from "react";
 
-export type FeedLayout = "classico" | "resumido" | "focado";
+export type { FeedLayout } from "../../lib/exibicao";
+import type { FeedLayout } from "../../lib/exibicao";
 
 const opcoes: Array<{ id: FeedLayout; titulo: string; descricao: string; icone: ReactNode }> = [
+  {
+    id: "focado",
+    titulo: "Focado",
+    descricao: "uma mídia por vez, tela cheia",
+    icone: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+        <rect x="5" y="2.5" width="14" height="19" rx="3" />
+        <path d="M9.5 12.5 12 15l4.5-5" />
+      </svg>
+    ),
+  },
   {
     id: "classico",
     titulo: "Clássico",
@@ -21,17 +33,6 @@ const opcoes: Array<{ id: FeedLayout; titulo: string; descricao: string; icone: 
     icone: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
         <path d="M4 6h16M4 11h16M4 16h10M4 21h7" />
-      </svg>
-    ),
-  },
-  {
-    id: "focado",
-    titulo: "Focado",
-    descricao: "uma mídia por vez, tela cheia",
-    icone: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
-        <rect x="5" y="2.5" width="14" height="19" rx="3" />
-        <path d="M9.5 12.5 12 15l4.5-5" />
       </svg>
     ),
   },

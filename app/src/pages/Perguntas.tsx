@@ -2,6 +2,14 @@ import { Kicker, Lead, Section } from "../components/ui";
 
 const perguntas = [
   {
+    q: "Como sei que um conteúdo é para a minha idade?",
+    a: "Cada postagem tem uma classificação: L, 10, 12, 14, 16 ou 18. Quem publica não escolhe a nota — responde o que a postagem contém (violência, drogas, nudez, linguagem imprópria…) e a nota sai do item mais alto marcado. A conta restrita só recebe o que está dentro do teto da idade dela.",
+  },
+  {
+    q: "Como encontro notícia do meu bairro, da minha cidade ou do mundo?",
+    a: "Toda notícia carrega uma região — mundo inteiro, país, estado, cidade ou bairro — e uma lista de assuntos. Você filtra pelo que interessa. A região é escolhida por quem publica: a rede nunca descobre onde você está pelo IP, pelo GPS ou pelo fuso.",
+  },
+  {
     q: "Isso existe hoje?",
     a: "Não. O que existe é o desenho da rede e este site explicando o desenho. A rede em si ainda está em construção — por isso falamos de “proposta” e não de “aplicativo”.",
   },
