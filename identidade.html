@@ -176,11 +176,21 @@
         </div>
         <div class="scene__body">
           <ol class="scene-caps">
-            <li data-at="0"><b>1.</b> Você tem um documento: CPF, CNPJ ou passaporte.</li>
-            <li data-at="1600"><b>2.</b> Um verificador de identidade confere que ele é válido e que é seu.</li>
-            <li data-at="3400"><b>3.</b> Ele emite uma credencial que diz “esta pessoa foi verificada” — sem dizer quem é.</li>
-            <li data-at="5200"><b>4.</b> Com a credencial, você cria contas. A rede não sabe seu nome.</li>
-            <li data-at="6800"><b>5.</b> Cada conta continua separada das outras.</li>
+            <li data-at="0"><b>1.</b> Você tem um documento: CPF, CNPJ ou passaporte.
+              <span class="step-note">O tipo importa: cada um tem regra própria de validação e um emissor.</span>
+            </li>
+            <li data-at="1600"><b>2.</b> Um verificador de identidade confere que ele é válido e que é seu.
+              <span class="step-note">A conferência é da instituição, com os meios dela — a rede não participa.</span>
+            </li>
+            <li data-at="3400"><b>3.</b> Ele emite uma credencial que diz “esta pessoa foi verificada” — sem dizer quem é.
+              <span class="step-note">A credencial carrega a assinatura do verificador, não o seu documento.</span>
+            </li>
+            <li data-at="5200"><b>4.</b> Com a credencial, você cria contas. A rede não sabe seu nome.
+              <span class="step-note">A conta nasce com a credencial; o nome fica do lado de fora.</span>
+            </li>
+            <li data-at="6800"><b>5.</b> Cada conta continua separada das outras.
+              <span class="step-note">Uma credencial por conta, sem ligação entre elas — e nada impede ter várias.</span>
+            </li>
           </ol>
         </div>
         <div class="scene__ctl">
@@ -232,6 +242,23 @@
           emitir credenciais falsas e dizer que verificou quem não verificou. Com ela, o
           aplicativo só aceita credencial de quem está na lista.
         </p>
+      </div>
+      <div class="callout callout--info">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M12 11v5"></path>
+          <circle cx="12" cy="7.8" r=".9" fill="currentColor" stroke="none"></circle>
+        </svg>
+        <div>
+          <span class="callout__title">O selo tem idade</span>
+          <p class="mb-0">
+            A verificação não vale para sempre: quem reverifica de tempos em tempos carrega
+            um selo que muda de cor. <strong>Verde</strong> até um ano,
+            <strong>amarelo</strong> entre um e cinco, <strong>vermelho</strong> acima de
+            cinco. A cor não some nem esconde a conta — ela só mostra há quanto tempo
+            ninguém confere aquele documento. Quem decide o prazo é a AR.
+          </p>
+        </div>
       </div>
     </div>
   </section>

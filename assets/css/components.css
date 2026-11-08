@@ -1060,3 +1060,13 @@ table.data tbody tr:hover {
 .scene svg text {
   pointer-events: none;
 }
+
+/* Nota explicativa dentro de um passo de cena */
+
+.step-note {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--text-soft);
+}

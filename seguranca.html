@@ -149,10 +149,18 @@
         </div>
         <div class="scene__body">
           <ol class="scene-caps">
-            <li data-at="0"><b>1.</b> No verificador, a pessoa existe com nome e documento. É o único lugar que guarda isso.</li>
-            <li data-at="1600"><b>2.</b> Na rede, existe só uma conta com apelido e chave. Nenhum dado civil.</li>
-            <li data-at="3200"><b>3.</b> Entre as duas há uma parede. A conta não “aponta” para a pessoa em lugar nenhum.</li>
-            <li data-at="4800"><b>4.</b> O que liga as duas é um envelope lacrado, guardado num cofre. Ele existe — mas não pode ser lido por quem passa.</li>
+            <li data-at="0"><b>1.</b> No verificador, a pessoa existe com nome e documento. É o único lugar que guarda isso.
+              <span class="step-note">O registro de identidade vive aqui, cifrado, e não existe em nenhum outro ponto da rede.</span>
+            </li>
+            <li data-at="1600"><b>2.</b> Na rede, existe só uma conta com apelido e chave. Nenhum dado civil.
+              <span class="step-note">A conta é o que circula: apelido, chave e conteúdo. Nome e CPF nunca entram nela.</span>
+            </li>
+            <li data-at="3200"><b>3.</b> Entre as duas há uma parede. A conta não “aponta” para a pessoa em lugar nenhum.
+              <span class="step-note">Não há campo, índice nem referência ligando a conta ao registro. A parede é a ausência de caminho.</span>
+            </li>
+            <li data-at="4800"><b>4.</b> O que liga as duas é um envelope lacrado, guardado num cofre. Ele existe — mas não pode ser lido por quem passa.
+              <span class="step-note">O vínculo existe para poder ser aberto um dia, e é inútil para quem não tem a ordem.</span>
+            </li>
           </ol>
         </div>
         <div class="scene__ctl">
@@ -355,13 +363,27 @@
         </div>
         <div class="scene__body">
           <ol class="scene-caps">
-            <li data-at="0"><b>1.</b> A justiça quer saber quem está por trás da conta A.</li>
-            <li data-at="1500"><b>2.</b> O pedido vai ao <strong>primeiro cofre</strong>. Três das cinco instituições precisam cooperar — e cada uma valida a ordem por conta própria.</li>
-            <li data-at="3200"><b>3.</b> O cofre devolve <strong>um número</strong>: “a conta A pertence ao identificador 7f3c…”. Nada de nome, nada de CPF.</li>
-            <li data-at="4700"><b>4.</b> Esse número aponta para a <strong>AR que emitiu a credencial</strong>. É ela que confere o mandado.</li>
-            <li data-at="6000"><b>5.</b> A AR <strong>não entrega nada pela rede</strong>: ela encaminha o pedido a quem emitiu a credencial, por um canal fora da UPR.</li>
-            <li data-at="7400"><b>6.</b> Quem emitiu entrega <strong>só os campos pedidos</strong>: nome e documento. Não entrega endereço, não entrega histórico.</li>
-            <li data-at="9600"><b>7.</b> Cada etapa registra um <strong>recibo lacrado</strong>. O recibo prova que houve abertura, sem dizer para quem.</li>
+            <li data-at="0"><b>1.</b> A justiça quer saber quem está por trás da conta A.
+              <span class="step-note">Só a justiça inicia esse caminho. Não há atalho de suporte, de administração nem de emergência.</span>
+            </li>
+            <li data-at="1500"><b>2.</b> O pedido vai ao <strong>primeiro cofre</strong>. Três das cinco instituições precisam cooperar — e cada uma valida a ordem por conta própria.
+              <span class="step-note">Nenhuma instituição decide sozinha: cada uma valida o mandado por conta própria.</span>
+            </li>
+            <li data-at="3200"><b>3.</b> O cofre devolve <strong>um número</strong>: “a conta A pertence ao identificador 7f3c…”. Nada de nome, nada de CPF.
+              <span class="step-note">Um identificador aleatório, sem nome nem documento. Sozinho, ele não leva a ninguém.</span>
+            </li>
+            <li data-at="4700"><b>4.</b> Esse número aponta para a <strong>AR que emitiu a credencial</strong>. É ela que confere o mandado.
+              <span class="step-note">É a instituição que verificou a pessoa: ela reconhece o número e confere o mesmo mandado.</span>
+            </li>
+            <li data-at="6000"><b>5.</b> A AR <strong>não entrega nada pela rede</strong>: ela encaminha o pedido a quem emitiu a credencial, por um canal fora da UPR.
+              <span class="step-note">A resposta não trafega pelo UPR: sai por um canal institucional, fora da rede social.</span>
+            </li>
+            <li data-at="7400"><b>6.</b> Quem emitiu entrega <strong>só os campos pedidos</strong>: nome e documento. Não entrega endereço, não entrega histórico.
+              <span class="step-note">Só o que o mandado pede. Endereço, histórico e outros dados ficam de fora.</span>
+            </li>
+            <li data-at="9600"><b>7.</b> Cada etapa registra um <strong>recibo lacrado</strong>. O recibo prova que houve abertura, sem dizer para quem.
+              <span class="step-note">O recibo prova que houve abertura, sem dizer para quem. É o que permite auditar sem expor.</span>
+            </li>
           </ol>
         </div>
         <div class="scene__ctl">
@@ -512,11 +534,21 @@
         </div>
         <div class="scene__body">
           <ol class="scene-caps">
-            <li data-at="0"><b>1.</b> O livro é público: qualquer um pode baixar e guardar uma cópia.</li>
-            <li data-at="900"><b>2.</b> Cada linha é um código. Não tem nome, não tem conta, não tem CPF.</li>
-            <li data-at="2700"><b>3.</b> Quem tem a ordem judicial consegue conferir que a linha existe e corresponde ao caso.</li>
-            <li data-at="4500"><b>4.</b> Também há contadores: quantas aberturas por mês. Dá para perceber um uso fora do normal.</li>
-            <li data-at="6300"><b>5.</b> O conteúdo completo do livro fica com um órgão de controle, sob chave própria.</li>
+            <li data-at="0"><b>1.</b> O livro é público: qualquer um pode baixar e guardar uma cópia.
+              <span class="step-note">Público de verdade: a cópia que você baixou continua válida mesmo se a rede quiser reescrever.</span>
+            </li>
+            <li data-at="900"><b>2.</b> Cada linha é um código. Não tem nome, não tem conta, não tem CPF.
+              <span class="step-note">Um compromisso calculado a partir da ordem, da conta, da data e do resultado.</span>
+            </li>
+            <li data-at="2700"><b>3.</b> Quem tem a ordem judicial consegue conferir que a linha existe e corresponde ao caso.
+              <span class="step-note">Só quem já tem os dados consegue casar a linha com o caso. Para os outros, é ruído.</span>
+            </li>
+            <li data-at="4500"><b>4.</b> Também há contadores: quantas aberturas por mês. Dá para perceber um uso fora do normal.
+              <span class="step-note">Volume anômalo aparece. O contador não diz quem foi aberto.</span>
+            </li>
+            <li data-at="6300"><b>5.</b> O conteúdo completo do livro fica com um órgão de controle, sob chave própria.
+              <span class="step-note">Aqui o projeto depende de uma decisão ainda aberta (Q32): qual órgão, com que quórum.</span>
+            </li>
           </ol>
         </div>
         <div class="scene__ctl">

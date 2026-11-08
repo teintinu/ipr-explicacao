@@ -158,11 +158,21 @@
         </div>
         <div class="scene__body">
           <ol class="scene-caps">
-            <li data-at="0"><b>1.</b> Maria escreve “chego às 19h”.</li>
-            <li data-at="1800"><b>2.</b> O aplicativo tranca o texto com a chave de João. O que sai é um bloco ilegível.</li>
-            <li data-at="3600"><b>3.</b> O provedor guarda o bloco. Ele consegue entregar, mas não consegue ler.</li>
-            <li data-at="5400"><b>4.</b> João recebe e destranca com a chave dele.</li>
-            <li data-at="7200"><b>5.</b> Em nenhum momento o texto existiu fora dos dois aparelhos.</li>
+            <li data-at="0"><b>1.</b> Maria escreve “chego às 19h”.
+              <span class="step-note">O texto existe legível só no aparelho dela.</span>
+            </li>
+            <li data-at="1800"><b>2.</b> O aplicativo tranca o texto com a chave de João. O que sai é um bloco ilegível.
+              <span class="step-note">A chave é só de João; nem o aplicativo da Maria guarda uma cópia dela.</span>
+            </li>
+            <li data-at="3600"><b>3.</b> O provedor guarda o bloco. Ele consegue entregar, mas não consegue ler.
+              <span class="step-note">Vê um pacote endereçado, não o conteúdo.</span>
+            </li>
+            <li data-at="5400"><b>4.</b> João recebe e destranca com a chave dele.
+              <span class="step-note">Só o aparelho dele consegue abrir.</span>
+            </li>
+            <li data-at="7200"><b>5.</b> Em nenhum momento o texto existiu fora dos dois aparelhos.
+              <span class="step-note">Nem durante a entrega: o que viaja é sempre o embrulho.</span>
+            </li>
           </ol>
         </div>
         <div class="scene__ctl">
@@ -358,13 +368,27 @@
         </div>
         <div class="scene__body">
           <ol class="scene-caps">
-            <li data-at="0"><b>1.</b> O grupo tem chave e assinatura próprias — é como uma conta.</li>
-            <li data-at="1400"><b>2.</b> Cada membro usa essa chave para ler e escrever.</li>
-            <li data-at="3000"><b>3.</b> Todas as mensagens são trancadas com a chave do grupo.</li>
-            <li data-at="5000"><b>4.</b> Ana sai. Ela ainda tem a cópia antiga da chave.</li>
-            <li data-at="6400"><b>5.</b> O grupo troca a chave automaticamente. É a versão 2.</li>
-            <li data-at="8000"><b>6.</b> Ana não consegue ler nada do que vier depois da troca.</li>
-            <li data-at="9600"><b>7.</b> Eva entra depois: recebe a chave nova e não lê o que passou.</li>
+            <li data-at="0"><b>1.</b> O grupo tem chave e assinatura próprias — é como uma conta.
+              <span class="step-note">Não é uma lista de pessoas: é uma conta que assina em nome de todos.</span>
+            </li>
+            <li data-at="1400"><b>2.</b> Cada membro usa essa chave para ler e escrever.
+              <span class="step-note">Todos os membros compartilham a mesma chave do grupo.</span>
+            </li>
+            <li data-at="3000"><b>3.</b> Todas as mensagens são trancadas com a chave do grupo.
+              <span class="step-note">Uma mensagem, uma chave comum — não uma chave por par.</span>
+            </li>
+            <li data-at="5000"><b>4.</b> Ana sai. Ela ainda tem a cópia antiga da chave.
+              <span class="step-note">Sair não apaga o que ela já viu. Isso nenhum sistema resolve.</span>
+            </li>
+            <li data-at="6400"><b>5.</b> O grupo troca a chave automaticamente. É a versão 2.
+              <span class="step-note">A troca é um evento assinado, visível para quem ficou.</span>
+            </li>
+            <li data-at="8000"><b>6.</b> Ana não consegue ler nada do que vier depois da troca.
+              <span class="step-note">A chave velha não abre o que foi cifrado com a nova.</span>
+            </li>
+            <li data-at="9600"><b>7.</b> Eva entra depois: recebe a chave nova e não lê o que passou.
+              <span class="step-note">O histórico não vem junto com a entrada.</span>
+            </li>
           </ol>
         </div>
         <div class="scene__ctl">
