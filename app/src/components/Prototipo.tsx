@@ -12,7 +12,7 @@ import { PerfilNoApp } from "./prototipo/PerfilNoApp";
 import { ConversasNoApp } from "./prototipo/ConversasNoApp";
 import { fecharPip, usarPip } from "../lib/pip";
 import { feedPosts } from "../data/feed-posts";
-import { anaBeatriz, anaMaria, antonioJose, cafeAurora, ehRestrita, joaoPedro, mariaClara, personas, tetoPorIdade } from "../data/personas";
+import { anaBeatriz, anaMaria, antonioJose, byId, cafeAurora, ehRestrita, joaoPedro, mariaClara, personas, tetoPorIdade } from "../data/personas";
 import { definirLeitor, usarLeitor } from "../lib/conta";
 import { irPara, usarPerfil, usarTela } from "../lib/navegacao";
 import { definirLayout, usarLayout } from "../lib/exibicao";
@@ -98,6 +98,7 @@ export function Prototipo() {
         link: "como a conta restrita funciona",
         ancoras: ['[data-hotspot="perfil"]'],
         quando: restrita,
+        posicao: "topo",
         icone: (
           <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
             <rect x="4" y="10" width="16" height="10" rx="2.5" />
@@ -117,6 +118,22 @@ export function Prototipo() {
           <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
             <path d="M2.5 12S6 5.8 12 5.8 21.5 12 21.5 12 18 18.2 12 18.2 2.5 12 2.5 12Z" />
             <circle cx="12" cy="12" r="3" />
+          </svg>
+        ),
+      },
+      {
+        id: "autorizacao",
+        titulo: "Quem decide o contato de conta restrita é o responsável",
+        texto: leitor.guardian
+          ? `${byId(leitor.guardian).name} é o responsável por esta conta. Para ver o pedido do outro lado, escolha “Ver como” → ${byId(leitor.guardian).name}.`
+          : "O pedido que chega para uma conta restrita sobe para o responsável, que escolhe entre só conversar ou também acompanhar as postagens.",
+        href: "/identidade",
+        link: "como a conta restrita funciona",
+        ancoras: ['[data-hotspot="autorizacao"]', '[data-hotspot="responsavel"]'],
+        icone: (
+          <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 3 5 6v5c0 4.4 3 8.3 7 10 4-1.7 7-5.6 7-10V6Z" />
+            <path d="M9 12h6" />
           </svg>
         ),
       },
@@ -165,6 +182,21 @@ export function Prototipo() {
         ),
       },
       {
+        id: "particular",
+        titulo: "Conversa particular: a chave é dos dois aparelhos",
+        texto:
+          "A mensagem sai cifrada do seu aparelho e só abre no de quem recebe. O nó que transporta vê de onde veio e para onde vai — não tem a chave.",
+        href: "/conversas",
+        link: "como funciona a criptografia ponta a ponta",
+        ancoras: ['[data-hotspot="particular"]'],
+        icone: (
+          <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
+            <rect x="3" y="7" width="18" height="12" rx="2.5" />
+            <path d="m4 8 8 6 8-6" />
+          </svg>
+        ),
+      },
+      {
         id: "perfil",
         titulo: "O nome leva ao perfil",
         texto: "Tocar no nome abre o perfil dentro do app: seguir, bloquear, restringir story e post, e eleger para checagem.",
@@ -196,7 +228,7 @@ export function Prototipo() {
           Esta é a tela de uma conta comum.
         </h2>
         <p className="mt-2 max-w-3xl text-lg leading-relaxed text-text-soft">
-          Role o mural, troque a exibição, assista a um vídeo. As explicações à direita apontam para o
+          Role o mural, troque a exibição, assista a um vídeo, veja conversas particulares e em grupo. As explicações à direita apontam para o
           que está acontecendo — clique para entender o mecanismo por trás.
         </p>
 
@@ -210,14 +242,12 @@ export function Prototipo() {
               onChange={(e) => definirLeitor(e.target.value)}
               className="rounded-lg border border-line bg-surface px-2 py-1 text-[0.82rem] font-semibold text-text outline-none focus:border-brand"
             >
-              {personas
-                .filter((p) => p.kind === "personal")
-                .map((p) => (
-                  <option key={p.id} value={p.id}>
-                    {p.name}
-                    {ehRestrita(p) ? ` (${p.age} anos)` : ""}
-                  </option>
-                ))}
+              {personas.map((p) => (
+                <option key={p.id} value={p.id}>
+                  {p.name}
+                  {ehRestrita(p) ? ` (${p.age} anos)` : p.kind === "group" ? " — grupo" : p.kind === "business" ? " — empresa" : ""}
+                </option>
+              ))}
             </select>
           </div>
 

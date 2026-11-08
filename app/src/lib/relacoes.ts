@@ -14,6 +14,8 @@ export interface Relacao {
   bloqueado?: boolean;
   restringeStory?: boolean;
   restringePost?: boolean;
+  /** Alcance autorizado pelo responsável: só conversar, ou também acompanhar. */
+  alcance?: "conversas" | "conversas+posts";
 }
 
 type Mapa = Record<string, Relacao>;

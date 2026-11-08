@@ -55,6 +55,10 @@ export interface Persona {
   kind: AccountKind;
   /** Idade da pessoa. Ausente em conta de organização. */
   age?: number;
+  /** Conta do responsável legal, quando a conta é restrita. */
+  guardian?: string;
+  /** Perfil criado para receber denúncias (ouvidoria, Procon…). */
+  recebeDenuncias?: boolean;
   avatar: AvatarSpec;
   verification: Verification;
   /** Uma linha sobre o papel dela nos exemplos. */
@@ -111,6 +115,7 @@ export const anaBeatriz: Persona = {
   handle: "@anabeatriz",
   kind: "personal",
   age: 17,
+  guardian: "rafael-augusto",
   avatar: { kind: "photo", src: "/avatars/ana-beatriz.jpg" },
   verification: { state: "green", label: "essa pessoa foi verificada há 10 dias" },
   role: "estudante de jornalismo",
@@ -144,9 +149,21 @@ export const daviLuiz: Persona = {
   handle: "@daviluiz",
   kind: "personal",
   age: 11,
+  guardian: "juliana-rosa",
   avatar: { kind: "photo", src: "/avatars/davi-luiz.jpg" },
   verification: { state: "green", label: "verificada há 1 mês" },
   role: "conta restrita (11 anos), com responsável",
+};
+
+export const proconRegional: Persona = {
+  id: "procon-regional",
+  name: "Procon Regional",
+  handle: "@proconregional",
+  kind: "business",
+  recebeDenuncias: true,
+  avatar: { kind: "photo", src: "/avatars/procon.jpg" },
+  verification: { state: "green", label: "verificada há 2 meses" },
+  role: "ouvidoria criada para receber denúncias",
 };
 
 export const beatrizHelena: Persona = {
@@ -434,6 +451,7 @@ export const personas: Persona[] = [
   mariaClara,
   antonioJose,
   anaBeatriz,
+  proconRegional,
   daviLuiz,
   luisaFernanda,
   rafaelAugusto,

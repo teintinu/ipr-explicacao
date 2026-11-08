@@ -1,5 +1,11 @@
 import { Avatar } from "../Avatar";
-import { conversasDe, type Conversa } from "../../data/conversas";
+import { conversasDe, pedidosDe, type Conversa } from "../../data/conversas";
+import { contatosDe, gruposDe } from "../../data/conversas-geradas";
+import { ehRestrita, personas } from "../../data/personas";
+import { alternarRelacao, relacaoDe, usarVersaoRelacoes } from "../../lib/relacoes";
+import { autorizar, escopoDe, revogarAutorizacao, usarVersaoAutorizacoes } from "../../lib/autorizacoes";
+import { aceitar, rotuloCanais, usarVersaoContatos, vinculoDe } from "../../lib/contatos";
+import { denunciar, denunciasContra, encaminhar, ranking, usarVersaoDenuncias } from "../../lib/denuncias";
 import { byId } from "../../data/personas";
 import { usarLeitor } from "../../lib/conta";
 import { irPara, usarTela } from "../../lib/navegacao";
@@ -26,6 +32,7 @@ function tituloDa(conversa: Conversa, eu: string) {
 }
 
 function Lista({ minhas }: { minhas: Conversa[] }) {
+  const eu = usarLeitor();
   return (
     <div className="min-h-0 flex-1 overflow-y-auto bg-bg-alt">
       <div className="border-b border-line bg-surface px-3 py-2">
@@ -38,12 +45,22 @@ function Lista({ minhas }: { minhas: Conversa[] }) {
         </p>
       )}
 
+      <Pedidos />
+
+      <Autorizacoes />
+      <Ouvidoria />
+      <AvisoDeDenuncia />
+
       <ul>
         {minhas.map((c) => {
           const ultima = c.mensagens[c.mensagens.length - 1];
           const autor = byId(ultima.de);
+          // O avatar é do destinatário — não de quem mandou a última mensagem,
+          // que muitas vezes é a própria pessoa que está vendo.
+          const outroId = c.participantes.find((p) => p !== eu);
+          const retrato = outroId ? byId(outroId) : autor;
           return (
-            <li key={c.id}>
+            <li key={c.id} data-conversa={c.id}>
               <button
                 type="button"
                 onClick={() => irPara(c.id)}
@@ -57,7 +74,7 @@ function Lista({ minhas }: { minhas: Conversa[] }) {
                     {c.grupo.split(" ").filter((w) => w.length > 2).slice(0, 2).map((w) => w[0]).join("").toUpperCase()}
                   </span>
                 ) : (
-                  <Avatar persona={autor} size="sm" />
+                  <Avatar persona={retrato} size="sm" />
                 )}
                 <span className="min-w-0 flex-1">
                   <span className="flex items-center gap-1.5">
@@ -144,7 +161,10 @@ function Thread({ conversa, eu }: { conversa: Conversa; eu: string }) {
         })}
       </div>
 
-      <div className="border-t border-line bg-surface px-2 py-2">
+      <div
+        className="border-t border-line bg-surface px-2 py-2"
+        data-hotspot={conversa.grupo ? undefined : "particular"}
+      >
         <p className="rounded-full border border-line px-3 py-1.5 text-[0.78rem] text-text-faint">
           Escrever para {conversa.grupo ?? byId(conversa.participantes.find((p) => p !== eu) ?? eu).name.split(" ")[0]}…
         </p>
@@ -152,6 +172,313 @@ function Thread({ conversa, eu }: { conversa: Conversa; eu: string }) {
           {leitor.name} · demonstração, nada é enviado
         </p>
       </div>
+    </div>
+  );
+}
+
+/** Pedidos de mensagem: de quem ainda não é contato. */
+function Pedidos() {
+  usarVersaoRelacoes();
+  const leitor = byId(usarLeitor());
+  // Conta restrita não vê pedido nenhum: eles sobem para o responsável.
+  if (ehRestrita(leitor)) return null;
+  const pedidos = pedidosDe(leitor.id);
+  if (!pedidos.length) return null;
+
+  const restrita = ehRestrita(leitor);
+  const contatos = contatosDe(leitor.id, conversasDe(leitor.id));
+  const meusGrupos = gruposDe(leitor.id);
+
+  return (
+    <div className="border-b border-line bg-surface-2/60 px-3 py-2">
+      <p className="text-[0.62rem] font-extrabold tracking-[0.08em] text-text-faint uppercase">
+        Pedidos de mensagem · {pedidos.length}
+      </p>
+
+      <ul className="mt-2 space-y-2">
+        {pedidos.map((p) => {
+          const de = byId(p.de);
+          const rel = relacaoDe(p.de);
+          const emComum = gruposDe(p.de).filter((g) => meusGrupos.some((m) => m.id === g.id));
+          const gente = contatosDe(p.de, conversasDe(p.de)).filter((c) => contatos.includes(c));
+
+          if (rel.bloqueado) {
+            return (
+              <li key={p.id} className="rounded-xl border border-line bg-surface px-2.5 py-2 text-[0.74rem] text-text-faint">
+                {de.name} está bloqueada. Nada aparece.
+              </li>
+            );
+          }
+
+          return (
+            <li key={p.id} className="rounded-xl border border-line bg-surface p-2.5">
+              <div className="flex items-start gap-2">
+                <Avatar persona={de} size="sm" />
+                <div className="min-w-0 flex-1">
+                  <p className="text-[0.8rem] font-semibold">{de.name}</p>
+                  <p className="text-[0.76rem] leading-snug text-text-soft">{p.texto}</p>
+
+                  <p className="mt-1 text-[0.68rem] font-semibold text-text-soft">
+                    Quer te adicionar para {p.quer ? rotuloCanais(p.quer) : "conversas"}
+                  </p>
+
+                  {(vinculoDe(leitor.id, p.de).conversas || vinculoDe(leitor.id, p.de).mural) && (
+                    <p className="mt-1 text-[0.68rem] font-semibold text-brand">
+                      Autorizado:{" "}
+                      {vinculoDe(leitor.id, p.de).mural ? "conversas e postagens" : "apenas conversas"}
+                    </p>
+                  )}
+
+                  <p className="mt-0.5 text-[0.68rem] text-text-faint">
+                    {gente.length > 0
+                      ? `${gente.length} contato${gente.length > 1 ? "s" : ""} em comum: ${gente
+                          .slice(0, 2)
+                          .map((c) => byId(c).name.split(" ")[0])
+                          .join(", ")}`
+                      : "nenhum contato em comum"}
+                    {emComum.length > 0 && ` · ${emComum.map((g) => g.nome).join(", ")}`}
+                  </p>
+
+                  {restrita ? (
+                    <p
+                      data-hotspot="autorizacao"
+                      className="mt-1.5 rounded-md bg-warn-soft px-2 py-1 text-[0.7rem] font-semibold text-warn"
+                    >
+                      Conta restrita: quem autoriza esta conversa é o responsável.
+                    </p>
+                  ) : (
+                    <div className="mt-1.5 flex flex-wrap items-center gap-1.5">
+                      <AceitarCanais de={p.de} />
+                      <button
+                        type="button"
+                        onClick={() => alternarRelacao(p.de, "segue")}
+                        className="hidden"
+                      >
+                        aceitar
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => alternarRelacao(p.de, "bloqueado")}
+                        className="rounded-md border border-line px-2 py-1 text-[0.7rem] font-semibold text-text-soft"
+                      >
+                        Bloquear
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => denunciar(p.de, "procon-regional")}
+                        className="rounded-md border border-line px-2 py-1 text-[0.7rem] font-semibold text-danger"
+                      >
+                        Denunciar
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
+}
+
+/**
+ * O que o responsável vê: pedidos de contato que dependem da assinatura dele,
+ * e a escolha do alcance — só conversar, ou também acompanhar as postagens.
+ */
+function Autorizacoes() {
+  usarVersaoRelacoes();
+  usarVersaoAutorizacoes();
+  const leitor = byId(usarLeitor());
+  const tutelados = personas.filter((p) => p.guardian === leitor.id);
+  if (!tutelados.length) return null;
+
+  return (
+    <div className="border-b border-line bg-warn-soft/40 px-3 py-2">
+      <p
+        data-hotspot="responsavel"
+        className="text-[0.62rem] font-extrabold tracking-[0.08em] text-warn uppercase"
+      >
+        Autorizações pendentes · responsável
+      </p>
+
+      {tutelados.map((filho) => {
+        const pedidos = pedidosDe(filho.id);
+        if (!pedidos.length) return null;
+        return (
+          <div key={filho.id} className="mt-2 space-y-2">
+            <p className="text-[0.7rem] text-text-soft">
+              Pedidos para <strong className="text-text">{filho.name}</strong> ({filho.age} anos)
+            </p>
+
+            {pedidos.slice(0, 2).map((p) => {
+              const de = byId(p.de);
+              return (
+                <div key={p.id} className="rounded-xl border border-line bg-surface p-2.5">
+                  <div className="flex items-start gap-2">
+                    <Avatar persona={de} size="sm" />
+                    <div className="min-w-0 flex-1">
+                      <p className="text-[0.78rem] font-semibold">{de.name}</p>
+                      <p className="text-[0.74rem] leading-snug text-text-soft">{p.texto}</p>
+
+                      <p className="mt-1 text-[0.66rem] text-text-faint">
+                        {gruposDe(p.de).length > 0
+                          ? gruposDe(p.de).map((g) => g.nome).join(", ")
+                          : "sem grupo em comum"}
+                      </p>
+
+                      {escopoDe(filho.id, de.id) && (
+                        <p className="mt-1 text-[0.66rem] font-semibold text-brand">
+                          Autorizado:{" "}
+                          {escopoDe(filho.id, de.id) === "conversas" ? "só conversas" : "conversas + postagens"}
+                        </p>
+                      )}
+
+                      <div className="mt-1.5 flex flex-wrap gap-1.5">
+                        <button
+                          type="button"
+                          onClick={() => autorizar(filho.id, de.id, "conversas")}
+                          className="rounded-md bg-brand px-2 py-1 text-[0.68rem] font-bold text-white"
+                        >
+                          Autorizar só conversas
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => autorizar(filho.id, de.id, "conversas+postagens")}
+                          className="rounded-md border border-brand px-2 py-1 text-[0.68rem] font-bold text-brand"
+                        >
+                          Autorizar conversas e postagens
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => revogarAutorizacao(filho.id, de.id)}
+                          className="rounded-md border border-line px-2 py-1 text-[0.68rem] font-semibold text-danger"
+                        >
+                          Ignorar
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+/** Painel de quem recebe denúncias: ranking e encaminhamento à justiça. */
+function Ouvidoria() {
+  usarVersaoDenuncias();
+  const leitor = byId(usarLeitor());
+  if (!leitor.recebeDenuncias) return null;
+
+  const lista = ranking(leitor.id);
+  if (!lista.length) {
+    return (
+      <Pedaco titulo="Denúncias recebidas">
+        <p className="text-[0.76rem] text-text-soft">
+          Nenhuma denúncia ainda. Quem recebe é esta conta — as denúncias chegam aqui, não ao mural.
+        </p>
+      </Pedaco>
+    );
+  }
+
+  const pendentes = lista.reduce((n, r) => n + r.total, 0);
+
+  return (
+    <Pedaco titulo={`Denúncias recebidas · ${pendentes}`}>
+      <ul className="space-y-1">
+        {lista.map((r) => {
+          const alvo = byId(r.alvo);
+          return (
+            <li key={r.alvo} className="flex items-center gap-2 rounded-lg border border-line bg-surface px-2 py-1.5">
+              <Avatar persona={alvo} size="sm" />
+              <span className="min-w-0 flex-1 truncate text-[0.78rem] font-semibold">{alvo.name}</span>
+              <span className="rounded-full bg-danger-soft px-1.5 py-0.5 text-[0.64rem] font-extrabold text-danger">
+                {r.total}
+              </span>
+            </li>
+          );
+        })}
+      </ul>
+      <button
+        type="button"
+        onClick={() => encaminhar(leitor.id)}
+        className="mt-2 w-full rounded-lg bg-brand px-3 py-1.5 text-[0.76rem] font-bold text-white"
+      >
+        Encaminhar à justiça com a lista de denúncias
+      </button>
+    </Pedaco>
+  );
+}
+
+/** A conta denunciada recebe um aviso automático da ouvidoria. */
+function AvisoDeDenuncia() {
+  usarVersaoDenuncias();
+  const leitor = byId(usarLeitor());
+  const contra = denunciasContra(leitor.id);
+  if (!contra.length) return null;
+  const ouvidoria = byId(contra[0].ouvidoria);
+  return (
+    <Pedaco titulo="Aviso automático">
+      <div className="flex items-start gap-2">
+        <Avatar persona={ouvidoria} size="sm" />
+        <div className="min-w-0">
+          <p className="text-[0.78rem] font-semibold">{ouvidoria.name}</p>
+          <p className="text-[0.74rem] leading-snug text-text-soft">
+            Você recebeu {contra.length} denúncia{contra.length > 1 ? "s" : ""}: {contra[0].motivo.toLowerCase()}.
+            A ouvidoria guarda a lista e pode encaminhar à justiça.
+          </p>
+        </div>
+      </div>
+    </Pedaco>
+  );
+}
+
+function Pedaco({ titulo, children }: { titulo: string; children: React.ReactNode }) {
+  return (
+    <div className="border-b border-line bg-surface-2/60 px-3 py-2">
+      <p className="mb-1.5 text-[0.62rem] font-extrabold tracking-[0.08em] text-text-faint uppercase">
+        {titulo}
+      </p>
+      {children}
+    </div>
+  );
+}
+
+/** Quem aceita escolhe o alcance: só conversas, ou conversas e postagens. */
+function AceitarCanais({ de }: { de: string }) {
+  usarVersaoContatos();
+  const leitor = byId(usarLeitor());
+  const atual = vinculoDe(leitor.id, de);
+  const soConversas = !!atual.conversas && !atual.mural;
+  const osDois = !!atual.conversas && !!atual.mural;
+
+  return (
+    <div className="flex flex-wrap items-center gap-1">
+      <button
+        type="button"
+        onClick={() => aceitar(de, leitor.id, ["conversas"])}
+        aria-pressed={soConversas}
+        className={`rounded-md px-2 py-1 text-[0.68rem] font-bold ${
+          soConversas ? "bg-brand text-white" : "border border-brand/60 text-brand"
+        }`}
+      >
+        Autorizar apenas conversas
+      </button>
+      <button
+        type="button"
+        onClick={() => aceitar(de, leitor.id, ["conversas", "mural"])}
+        aria-pressed={osDois}
+        className={`rounded-md px-2 py-1 text-[0.68rem] font-bold ${
+          osDois ? "bg-brand text-white" : "border border-brand/60 text-brand"
+        }`}
+      >
+        Autorizar conversas e postagens
+      </button>
     </div>
   );
 }

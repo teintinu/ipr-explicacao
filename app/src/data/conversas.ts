@@ -1,4 +1,5 @@
 /** Conversas de demonstração. Nada aqui é real: são personas inventadas. */
+import { conversasGeradas, pedidosGerados } from "./conversas-geradas";
 export interface Mensagem {
   de: string;
   texto: string;
@@ -170,6 +171,39 @@ export const conversas: Conversa[] = [
   },
 ];
 
+// As conversas geradas completam a lista: cada pessoa tem pelo menos 20.
+conversas.push(...conversasGeradas);
+
 export function conversasDe(id: string): Conversa[] {
-  return conversas.filter((c) => c.participantes.includes(id));
+  const minhas = conversas.filter((c) => c.participantes.includes(id));
+  // Um destinatário (ou grupo) aparece uma vez só. A junção cria uma conversa
+  // nova: nunca escrever no array de origem, senão a cada render as mensagens
+  // se multiplicam.
+  const porChave = new Map<string, Conversa>();
+  for (const c of minhas) {
+    const chave = c.grupo ?? c.participantes.filter((p) => p !== id).sort().join("|");
+    const existente = porChave.get(chave);
+    porChave.set(
+      chave,
+      existente
+        ? { ...existente, mensagens: [...existente.mensagens, ...c.mensagens] }
+        : { ...c, mensagens: [...c.mensagens] },
+    );
+  }
+  return [...porChave.values()];
+}
+
+export interface Pedido {
+  id: string;
+  de: string;
+  para: string;
+  texto: string;
+  /** O que quem pediu quer: postagens, conversas, ou os dois. */
+  quer: Array<"mural" | "conversas">;
+}
+
+export const pedidos: Pedido[] = pedidosGerados as Pedido[];
+
+export function pedidosDe(id: string): Pedido[] {
+  return pedidos.filter((p) => p.para === id);
 }

@@ -47,7 +47,7 @@ export function LayoutSwitcher({
 }: {
   layout: FeedLayout;
   onChange: (l: FeedLayout) => void;
-  /** Nas conversas o grupo mostra só o botão de voltar para o mural. */
+  /** Nas conversas o botão de conversas vira "voltar ao mural" — a barra fica inteira. */
   emConversas?: boolean;
   aoAlternarConversas?: () => void;
   naoLidas?: number;
@@ -58,6 +58,7 @@ export function LayoutSwitcher({
       onClick={aoAlternarConversas}
       title={emConversas ? "Voltar ao mural" : "Abrir conversas"}
       aria-label={emConversas ? "Voltar ao mural" : "Abrir conversas"}
+      aria-pressed={emConversas}
       className={`relative grid h-7 w-7 place-items-center rounded-full transition ${
         emConversas ? "bg-surface text-brand shadow-sm" : "text-text-faint hover:text-text"
       }`}
@@ -75,24 +76,20 @@ export function LayoutSwitcher({
     </button>
   ) : null;
 
-  if (emConversas) {
-    return (
-      <div className="flex items-center gap-0.5 rounded-full border border-line bg-surface-2 p-0.5">
-        {botaoConversas}
-      </div>
-    );
-  }
-
   return (
     <div className="flex items-center gap-0.5 rounded-full border border-line bg-surface-2 p-0.5">
       {opcoes.map((o) => (
         <button
           key={o.id}
           type="button"
-          onClick={() => onChange(o.id)}
+          onClick={() => {
+            onChange(o.id);
+            // Escolher um modo dentro das conversas leva de volta ao mural.
+            if (emConversas) aoAlternarConversas?.();
+          }}
           title={`${o.titulo} — ${o.descricao}`}
           aria-label={`Modo ${o.titulo.toLowerCase()}: ${o.descricao}`}
-          aria-pressed={layout === o.id}
+          aria-pressed={!emConversas && layout === o.id}
           className={`grid h-7 w-7 place-items-center rounded-full transition ${
             layout === o.id ? "bg-surface text-brand shadow-sm" : "text-text-faint hover:text-text"
           }`}

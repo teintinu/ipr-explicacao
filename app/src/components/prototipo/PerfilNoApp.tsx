@@ -1,9 +1,10 @@
 import { Avatar, VerificationTag } from "../Avatar";
 import { feedPosts } from "../../data/feed-posts";
-import { byId, ehRestrita, tetoPorIdade } from "../../data/personas";
+import { byId, ehRestrita, personas, tetoPorIdade } from "../../data/personas";
 import { alternarEleicao, usarEleitos } from "../../lib/confianca";
 import { fecharPerfil } from "../../lib/navegacao";
 import { alternarRelacao, relacaoDe, usarVersaoRelacoes } from "../../lib/relacoes";
+import { alternarCanal, usarVersaoContatos, vinculoDe } from "../../lib/contatos";
 import { usarLeitor } from "../../lib/conta";
 import { useState } from "react";
 import { usarLayout } from "../../lib/exibicao";
@@ -14,12 +15,15 @@ export function PerfilNoApp({ id }: { id: string }) {
   const eleitos = usarEleitos();
   const leitor = byId(usarLeitor());
   const layout = usarLayout();
+  const tutelados = personas.filter((p) => p.guardian === persona.id);
   usarVersaoRelacoes();
   const [menu, setMenu] = useState(false);
   const [submenu, setSubmenu] = useState(false);
 
   const persona = byId(id);
   const rel = relacaoDe(persona.id);
+  usarVersaoContatos();
+  const contato = vinculoDe(leitor.id, persona.id);
   const eleita = eleitos.includes(persona.id);
   const restrita = ehRestrita(persona);
   const dela = feedPosts.filter((p) => p.authorId === persona.id);
@@ -72,9 +76,16 @@ export function PerfilNoApp({ id }: { id: string }) {
               className="absolute top-9 right-0 z-30 w-[292px] overflow-hidden rounded-xl border border-line bg-surface shadow-xl"
             >
               <ItemMenu
-                rotulo={rel.segue ? "Deixar de seguir" : "Seguir"}
-                ativo={!!rel.segue}
-                onClick={() => alternarRelacao(persona.id, "segue")}
+                rotulo="Ver no mural"
+                ativo={!!contato.mural}
+                comSwitch
+                onClick={() => alternarCanal(leitor.id, persona.id, "mural")}
+              />
+              <ItemMenu
+                rotulo="Conversas"
+                ativo={!!contato.conversas}
+                comSwitch
+                onClick={() => alternarCanal(leitor.id, persona.id, "conversas")}
               />
               <ItemMenu
                 rotulo={rel.bloqueado ? "Desbloquear" : "Bloquear"}
@@ -136,6 +147,21 @@ export function PerfilNoApp({ id }: { id: string }) {
         </div>
 
         <p className="mt-3 text-[0.84rem] leading-relaxed text-text-soft">{persona.role}</p>
+
+        {tutelados.length > 0 && (
+          <div className="mt-3 rounded-xl border border-warn/40 bg-warn-soft/50 p-2.5">
+            <p className="text-[0.62rem] font-extrabold tracking-[0.08em] text-warn uppercase">
+              Responsável por {tutelados.length === 1 ? "1 conta restrita" : `${tutelados.length} contas restritas`}
+            </p>
+            <ul className="mt-1 space-y-0.5">
+              {tutelados.map((t) => (
+                <li key={t.id} className="text-[0.76rem] text-text-soft">
+                  <strong className="text-text">{t.name}</strong> · {t.age} anos · cada vínculo novo passa por você
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
         <div className="mt-3 -mx-4 border-t border-line">
           {visiveis.map((p) => (

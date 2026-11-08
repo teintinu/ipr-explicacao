@@ -10,8 +10,26 @@ import { useSyncExternalStore } from "react";
 
 export type Tela = "mural" | "conversas" | string; // string = id de conversa aberta
 
+const CHAVE = "upr-tela";
+
+function lerTela(): Tela {
+  try {
+    return localStorage.getItem(CHAVE) || "mural";
+  } catch {
+    return "mural";
+  }
+}
+
 let atual: string | null = null;
-let tela: Tela = "mural";
+let tela: Tela = lerTela();
+
+function guardarTela(nova: Tela) {
+  try {
+    localStorage.setItem(CHAVE, nova);
+  } catch {
+    /* modo privado */
+  }
+}
 const ouvintes = new Set<() => void>();
 
 function assinar(cb: () => void) {
@@ -30,17 +48,20 @@ export function usarTela(): Tela {
 export function irPara(nova: Tela) {
   tela = nova;
   atual = null;
+  guardarTela(nova);
   ouvintes.forEach((cb) => cb());
 }
 
 export function voltar() {
   tela = "mural";
   atual = null;
+  guardarTela("mural");
   ouvintes.forEach((cb) => cb());
 }
 
 export function abrirPerfil(id: string) {
   tela = "mural";
+  guardarTela("mural");
   atual = id;
   ouvintes.forEach((cb) => cb());
 }

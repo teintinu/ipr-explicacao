@@ -60,31 +60,6 @@ export function Home() {
 
       <Prototipo />
 
-      <Section alt>
-        <Kicker>Conversas</Kicker>
-        <h2 className="text-2xl font-extrabold tracking-tight md:text-3xl">
-          E a tela onde você fala.
-        </h2>
-        <Lead>
-          Uma conversa entre duas pessoas: as bolhas saem trancadas do seu aparelho e só abrem no
-          aparelho de quem recebe.
-        </Lead>
-
-        <div className="mt-8">
-          <div className="relative mx-auto w-fit">
-          <div className="w-full max-w-[620px]">
-            <ChatWindow
-              person={joaoPedro}
-              status="conectado · cifrada de ponta a ponta"
-              messages={conversa}
-              height="min(400px,54vh)"
-            />
-          </div>
-          <Annotation label="abrir a conversa" href="/conversas" />
-          </div>
-        </div>
-      </Section>
-
       <Section>
         <h2 className="text-2xl font-extrabold tracking-tight md:text-3xl">
           Se quiser o caminho longo

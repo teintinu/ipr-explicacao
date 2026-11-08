@@ -17,6 +17,11 @@ export interface Explicacao {
   icone: ReactNode;
   ancoras: string[];
   quando?: boolean;
+  /**
+   * Onde a explicação entra na coluna: `topo` fica sempre em cima (antes das
+   * outras), `fim` é anexada conforme aparece. Padrão: `fim`.
+   */
+  posicao?: "topo" | "fim";
 }
 
 interface Ponto {
@@ -181,7 +186,12 @@ export function Explanations({
   }, [ativo, desenhar]);
 
   const porId = new Map(itens.map((i) => [i.id, i]));
-  const lista = Array.from(new Set([...ordem, ...saindo]));
+  const todos = Array.from(new Set([...ordem, ...saindo]));
+  // No topo ficam as explicações marcadas; o resto é anexado na ordem em que aparece.
+  const lista = [
+    ...todos.filter((id) => porId.get(id)?.posicao === "topo"),
+    ...todos.filter((id) => porId.get(id)?.posicao !== "topo"),
+  ];
 
   return (
     <div ref={caixa} data-explicacoes={ordem.join(',')} className="relative mt-10 lg:mt-0">

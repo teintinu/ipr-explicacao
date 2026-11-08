@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { feedPosts } from "../../data/feed-posts";
 import { byId, tetoPorIdade } from "../../data/personas";
 import { usarLeitor } from "../../lib/conta";
+import { usarAutorizacoes } from "../../lib/autorizacoes";
 import { FeedPostCard } from "./FeedPost";
 import type { FeedLayout } from "./LayoutSwitcher";
 
@@ -19,7 +20,14 @@ export function Feed({
 }) {
   const leitor = byId(usarLeitor());
   const teto = tetoPorIdade(leitor.age);
-  const permitidas = feedPosts.filter((p) => p.rating <= teto);
+  // Autorização "só conversas" tira as postagens daquele contato do mural.
+  const autorizacoes = usarAutorizacoes();
+  const soConversas = new Set(
+    Object.entries(autorizacoes[leitor.id] ?? {})
+      .filter(([, escopo]) => escopo === "conversas")
+      .map(([de]) => de),
+  );
+  const permitidas = feedPosts.filter((p) => p.rating <= teto && !soConversas.has(p.authorId));
 
   const [visiveis, setVisiveis] = useState(PASSO);
   const [carregando, setCarregando] = useState(false);
