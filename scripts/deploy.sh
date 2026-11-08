@@ -7,8 +7,13 @@
 #   - Ele nunca executa git (nem stage, nem commit, nem push).
 #   - Nada aqui é chamado automaticamente por outro processo.
 #
+# O QUE ELE FAZ
+#   Constrói o site (Vite) e publica o resultado. O build roda aqui, mas ele
+#   NÃO substitui a conferência local: rode `npm run dev` ou `npm run preview`
+#   e veja o que mudou antes de publicar (AGENTS.md §17, P6).
+#
 # Uso:
-#   ./scripts/deploy.sh              # empacota + envia + aplica + verifica
+#   ./scripts/deploy.sh              # constrói + empacota + envia + aplica + verifica
 #   ./scripts/deploy.sh --dry-run    # só empacota (não envia nada)
 #   ./scripts/deploy.sh --check      # só verifica o site publicado
 #   ./scripts/deploy.sh --skip-package  # reaproveita build/site.tgz
@@ -43,7 +48,7 @@ SSH_CONTAINER="${SSH_CONTAINER:-teintinu-net-app-1}"
 SSH_KEY="${SSH_KEY:-/data/ssh/id_ed25519}"
 MANIFEST="${MANIFEST:-deploy/kubernetes.yaml}"
 BUILD_DIR="${BUILD_DIR:-build}"
-MARKER="a rede explicada"
+MARKER="id=\"root\""
 
 dry_run=false
 check_only=false
@@ -156,7 +161,8 @@ log "Pré-requisitos"
 require tar
 [ -f "$MANIFEST" ] || fail "Manifesto não encontrado: $MANIFEST"
 [ -f "deploy/server.js" ] || fail "Servidor estático não encontrado: deploy/server.js"
-[ -f "index.html" ] || fail "index.html não encontrado; rode da raiz do site."
+[ -d "app" ] || fail "Projeto do site não encontrado: app/ (rode da raiz do site)."
+command -v npm >/dev/null 2>&1 || fail "npm não encontrado; o site é React + Vite e precisa ser construído."
 
 if [ "$SSH_MODE" = "container" ]; then
   require docker
@@ -171,12 +177,24 @@ fi
 # ---------------------------------------------------------------- empacotamento
 
 if [ "$skip_package" = false ]; then
+  log "Construindo o site (Vite)"
+  (
+    cd app
+    if [ -f package-lock.json ]; then
+      npm ci --no-audit --no-fund
+    else
+      npm install --no-audit --no-fund
+    fi
+    npm run build
+  ) || fail "Falha ao construir o site em app/. Nada foi enviado."
+
+  [ -f "app/dist/index.html" ] || fail "O build não gerou app/dist/index.html. Nada foi enviado."
+
   log "Empacotando o site"
   rm -rf "$BUILD_DIR/site"
   mkdir -p "$BUILD_DIR/site"
 
-  cp ./*.html "$BUILD_DIR/site/"
-  cp -R assets "$BUILD_DIR/site/"
+  cp -R app/dist/. "$BUILD_DIR/site/"
   cp deploy/server.js "$BUILD_DIR/site/server.js"
 
   # Nada de lixo no bundle.

@@ -1,8 +1,15 @@
 /**
- * Servidor estático mínimo para o site explicativo.
+ * Servidor estático mínimo para o site explicativo (React + Vite).
  *
  * Roda dentro do container (Bun) e serve os arquivos extraídos do bundle em /app.
  * Sem dependências, sem build, sem telemetria.
+ *
+ * Como o site é uma SPA (React Router), qualquer rota sem extensão devolve o
+ * index.html — o roteador decide o que mostrar. Arquivos com extensão que não
+ * existem continuam dando 404 de verdade.
+ *
+ * Os endereços antigos terminavam em .html; eles redirecionam para o caminho
+ * limpo, para que link salvo e busca não quebrem.
  *
  *   PORT       porta de escuta (padrão 8080)
  *   SITE_ROOT  raiz dos arquivos (padrão /app)
@@ -49,7 +56,6 @@ function resolvePath(pathname) {
   }
   if (path.includes("\0")) return null;
   if (path.endsWith("/")) path += "index.html";
-  if (!/\.[a-z0-9]+$/i.test(path)) path += ".html";
 
   const full = `${ROOT}${path}`;
   // Impede sair da raiz (../, //, etc.).
@@ -72,11 +78,29 @@ Bun.serve({
       return new Response("ok", { headers: { "content-type": "text/plain" } });
     }
 
+    // Endereço antigo (…/pagina.html) → caminho limpo, 301.
+    if (url.pathname.endsWith(".html") && url.pathname !== "/index.html") {
+      const clean = url.pathname.replace(/\.html$/, "");
+      return new Response(null, {
+        status: 301,
+        headers: { location: `${clean}${url.search}`, "cache-control": "public, max-age=3600" },
+      });
+    }
+
     const path = resolvePath(url.pathname);
     if (!path) return new Response(NOT_FOUND, { status: 404, headers: baseHeaders("text/html; charset=utf-8") });
 
     const file = Bun.file(path);
     if (!(await file.exists())) {
+      // Rota da SPA: devolve o index e deixa o roteador decidir.
+      if (!/\.[a-z0-9]+$/i.test(url.pathname)) {
+        const index = Bun.file(`${ROOT}/index.html`);
+        if (await index.exists()) {
+          return new Response(index, {
+            headers: { ...baseHeaders("text/html; charset=utf-8"), "cache-control": "no-cache" },
+          });
+        }
+      }
       return new Response(NOT_FOUND, { status: 404, headers: baseHeaders("text/html; charset=utf-8") });
     }
 

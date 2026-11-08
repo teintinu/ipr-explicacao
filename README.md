@@ -6,10 +6,33 @@ segurança e privacidade, mensagens, diário, chamadas e provedores.
 É material **educativo** — não é especificação, não é aconselhamento jurídico e não
 promete que tudo o que descreve já esteja implementado.
 
+## Rodar localmente — antes de publicar
+
+O site é React + Vite + Tailwind, em `app/`. O HTML antigo foi removido — a fonte é
+`app/src`, e o que vai ao ar é `app/dist`.
+
+```sh
+cd app
+npm install      # só na primeira vez
+npm run dev      # http://localhost:5173, recarrega sozinho
+npm run build    # gera dist/ e falha se o TypeScript reclamar
+npm run preview  # serve o dist/ em http://localhost:4173
+```
+
+**Regra:** nada é publicado sem ter rodado localmente e conferido as páginas afetadas —
+build limpo, página abrindo, e o que mudou visível na tela. Ver `AGENTS.md` §17 (P6).
+
+O deploy (`scripts/deploy.sh`) **constrói o site** (`npm ci` + `npm run build`) e publica
+o `app/dist` gerado. Se o build falhar, ele para e não envia nada — build quebrado nunca
+chega ao ar. Construir no deploy não substitui conferir localmente: rode antes.
+
+O servidor estático em `deploy/server.js` faz o fallback das rotas da SPA e redireciona
+os endereços antigos `*.html` (301) para o caminho limpo.
+
 ## Regra editorial
 
 O site fala de convivência: trocar ideias, aprender, se divertir. O mecanismo judicial
-existe, mas **só é detalhado em `seguranca.html`** — nas outras páginas, no máximo um
+existe, mas **só é detalhado em `/seguranca`** — nas outras páginas, no máximo um
 ponteiro para lá. Não use "juiz", "juíza" nem "juízo": diga **a justiça**, **mandado
 judicial** ou **determinação da justiça**. Evite masculinos genéricos ("o usuário",
 "o cidadão"); prefira "quem usa", "as pessoas".
@@ -20,84 +43,67 @@ comentou.
 
 ## Créditos de imagem
 
-- `assets/img/cerebro.jpg` — foto de um modelo anatômico de cérebro, **CC0** (domínio
-  público), via Wikimedia Commons: `The_Human_Brain_Model_01.jpg`. Redimensionada e
-  recortada em 3:2 para o exemplo do feed.
+- `app/public/cerebro.jpg` — modelo anatômico de cérebro, **CC0** (domínio público), via
+  Wikimedia Commons: `The_Human_Brain_Model_01.jpg`. Recortada em 3:2 para o post de
+  exemplo.
+- `app/public/avatars/*.jpg` — retratos das personas, de [pravatar.cc](https://pravatar.cc/),
+  livres para uso em protótipo.
+- `app/public/avatars/cafe-aurora.jpg` — xícara com latte art, de
+  [StockSnap](https://stocksnap.io/), **CC0**.
+- `app/public/avatars/banda-do-bairro.jpg` — guitarrista em apresentação, de
+  [StockSnap](https://stocksnap.io/), **CC0**.
 
-## Como abrir
+Todos os avatares foram recortados em quadrado e reduzidos para 192×192.
 
-Não tem build, não tem dependência, não tem `npm install`.
-
-**Opção 1 — direto:** abra `index.html` no navegador.
-
-**Opção 2 — servidor local** (recomendado, evita restrições de `file://` em alguns
-navegadores):
-
-```sh
-python3 -m http.server 8080
-# depois abra http://127.0.0.1:8080
-```
+> As personas são **fictícias**. Os retratos são de banco de imagens; nenhuma das
+> pessoas fotografadas tem relação com o projeto ou com o que as contas dizem.
 
 ## Estrutura
 
 ```
 .
-├── index.html          demonstração do feed, com elementos clicáveis
-├── por-dentro.html     sete animações dos bastidores (post, grupo, provedor…)
-├── identidade.html     verificador de identidade, certificadora e gov.br
-├── seguranca.html      cofre, ordem judicial, recibos, menores
-├── conversas.html      conversas privadas, grupos, chaves (com exemplo de grupo)
-├── diario.html         posts, comentários anônimos, jogo, lives, cortes
-├── chamadas.html       topologia, gravação, fila de fala
-├── confianca.html      remoção e conselhos de confiança
-├── provedores.html     armazenamento, navegador como ajudante, custos
-├── perguntas.html      perguntas frequentes
-├── glossario.html      termos, com âncoras usadas pelos tooltips
-└── assets/
-    ├── css/base.css         tokens, tipografia, layout, cabeçalho, rodapé
-    ├── css/components.css   cartões, cenas, tooltip, acordeão, tabelas
-    ├── css/app.css          moldura do aplicativo, feed, conversa, hotspots
-    ├── js/site.js           tema, menu, tooltips, alternadores, demonstrações
-    ├── js/scenes.js         motor de linha do tempo das cenas animadas
-    └── img/favicon.svg
+├── app/                    o site: React 19 + Vite + Tailwind 4
+│   ├── src/components/     Avatar, PostCard, ChatWindow, AppFrame, PageShell
+│   │   ├── app/            moldura do aplicativo, feed, conversa, anotação
+│   │   └── scene/          motor das cenas (Scene) e primitivas de SVG
+│   ├── src/data/           personas — Ana Maria e mais seis
+│   ├── src/pages/          as 11 rotas
+│   ├── src/styles.css      tokens de tema (claro/escuro) + primitivas das cenas
+│   └── public/             cerebro.jpg, favicon e avatares
+├── deploy/server.js        servidor estático (fallback da SPA e redirect dos .html)
+├── scripts/deploy.sh       build + empacotamento + envio
+└── README.md
 ```
-
-Cada página é autossuficiente em HTML: cabeçalho e rodapé são repetidos de propósito,
-para o site funcionar sem JavaScript e sem servidor.
 
 ## Três níveis de leitura
 
-O desenho editorial é deliberado:
-
-1. **Resumo** — o quadro `.tldr` no topo de cada página.
+1. **Resumo** — o componente `Tldr`: uma linha por ideia, com a explicação embaixo.
 2. **Explicação** — o corpo, com cenas animadas e exemplos.
-3. **Detalhe** — termos com sublinhado pontilhado (`.term` + `data-tip`) e blocos
-   `<details class="acc">` com o funcionamento técnico.
+3. **Detalhe** — a nota de cada passo (`.step-note`), as perguntas frequentes e o
+   glossário.
 
 Ao escrever, mantenha essa separação: nada de jargão no nível 2 sem uma explicação
 curta disponível.
 
 ## Como as cenas funcionam
 
-Uma cena é um `<figure class="scene" data-scene>` com três partes:
+Uma cena é o componente `Scene`, com duas coisas:
 
-- um SVG onde os elementos têm `data-at="<ms>"`;
-- uma lista `.scene-caps` cujos `<li>` também têm `data-at`;
-- controles `data-act="toggle"` e `data-act="replay"`.
+- uma lista de passos (`{ at, label, note }`), em milissegundos;
+- um SVG onde cada grupo tem `data-at="<ms>"`.
 
-O `scenes.js` revela os elementos conforme o tempo avança, destaca a legenda
-correspondente e permite clicar numa legenda para pular até aquele passo.
-
-Para criar uma cena nova, copie a estrutura de uma existente. Não é preciso escrever
-JavaScript: basta escolher os tempos.
+O motor revela o que já passou, destaca o passo atual e deixa clicar em qualquer passo
+para ir até ele. Para criar uma cena nova, basta montar o SVG com as primitivas (`Box`,
+`CircleNode`, `Arrow`, `Label`) e escolher os tempos — não há lógica de animação a
+escrever.
 
 ## Regras de acessibilidade
 
-- O site funciona sem JavaScript: as legendas e o texto permanecem legíveis.
-- `prefers-reduced-motion` desliga as animações e mostra o estado final.
+- `prefers-reduced-motion` desliga a animação e mostra o estado final, sem transição.
 - Todo SVG decorativo tem `aria-hidden`; os que explicam algo têm `role="img"` e
   `aria-label`.
-- Navegação por teclado: os tooltips abrem no foco e fecham com `Esc`.
+- Os passos são `<button>`: dá para pular para qualquer um pelo teclado.
+- Navegação com "pular para o conteúdo" no topo e foco visível em todos os controles.
 - Contraste conferido nos dois temas (claro e escuro).
 
 ## Publicação

@@ -1,0 +1,190 @@
+@import "tailwindcss";
+
+/* Tema por variável: o mapa do Tailwind aponta para as variáveis, e a troca de
+   tema só reescreve as variáveis. Assim `bg-surface` funciona nos dois temas. */
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+:root {
+  --upr-bg: #f7f8fc;
+  --upr-bg-alt: #eef1f8;
+  --upr-surface: #ffffff;
+  --upr-surface-2: #f0f3fa;
+  --upr-surface-3: #e6eaf5;
+  --upr-line: #dfe4f2;
+  --upr-line-strong: #c6cde3;
+  --upr-text: #10152b;
+  --upr-text-soft: #4a5473;
+  --upr-text-faint: #7a839f;
+  --upr-brand: #3b5bdb;
+  --upr-brand-ink: #1e3a8a;
+  --upr-brand-soft: #e8edff;
+  --upr-accent: #0d9488;
+  --upr-accent-soft: #d9f5f1;
+  --upr-warn: #b45309;
+  --upr-warn-soft: #fdf0dc;
+  --upr-danger: #b91c1c;
+  --upr-danger-soft: #fde8e8;
+}
+
+[data-theme="dark"] {
+  --upr-bg: #0b1020;
+  --upr-bg-alt: #0e1428;
+  --upr-surface: #131a30;
+  --upr-surface-2: #18203a;
+  --upr-surface-3: #1e2745;
+  --upr-line: #232c4a;
+  --upr-line-strong: #33405f;
+  --upr-text: #eef1fb;
+  --upr-text-soft: #b6c0dc;
+  --upr-text-faint: #8893b4;
+  --upr-brand: #6b8afd;
+  --upr-brand-ink: #cdd8ff;
+  --upr-brand-soft: #1b2650;
+  --upr-accent: #34d399;
+  --upr-accent-soft: #10322c;
+  --upr-warn: #f0b46a;
+  --upr-warn-soft: #3a2a12;
+  --upr-danger: #f87171;
+  --upr-danger-soft: #3a1414;
+}
+
+@theme inline {
+  --color-bg: var(--upr-bg);
+  --color-bg-alt: var(--upr-bg-alt);
+  --color-surface: var(--upr-surface);
+  --color-surface-2: var(--upr-surface-2);
+  --color-surface-3: var(--upr-surface-3);
+  --color-line: var(--upr-line);
+  --color-line-strong: var(--upr-line-strong);
+  --color-text: var(--upr-text);
+  --color-text-soft: var(--upr-text-soft);
+  --color-text-faint: var(--upr-text-faint);
+  --color-brand: var(--upr-brand);
+  --color-brand-ink: var(--upr-brand-ink);
+  --color-brand-soft: var(--upr-brand-soft);
+  --color-accent: var(--upr-accent);
+  --color-accent-soft: var(--upr-accent-soft);
+  --color-warn: var(--upr-warn);
+  --color-warn-soft: var(--upr-warn-soft);
+  --color-danger: var(--upr-danger);
+  --color-danger-soft: var(--upr-danger-soft);
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --radius-card: 1.25rem;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    @apply bg-bg text-text font-sans antialiased;
+  }
+
+  ::selection {
+    background: var(--upr-brand-soft);
+    color: var(--upr-brand-ink);
+  }
+}
+
+@layer components {
+  /* Nota explicativa: usada nos passos de cena e nos resumos. */
+  .step-note {
+    @apply mt-1.5 block text-[0.92rem] leading-relaxed text-text-soft;
+  }
+}
+
+/* ---------- Cenas: primitivas de SVG ---------- */
+
+@layer components {
+  .node {
+    fill: var(--upr-surface);
+    stroke: var(--upr-line-strong);
+    stroke-width: 1;
+  }
+
+  .node--brand {
+    fill: var(--upr-brand-soft);
+    stroke: color-mix(in srgb, var(--upr-brand) 45%, transparent);
+  }
+
+  .node--accent {
+    fill: var(--upr-accent-soft);
+    stroke: color-mix(in srgb, var(--upr-accent) 45%, transparent);
+  }
+
+  .node--warn {
+    fill: var(--upr-warn-soft);
+    stroke: color-mix(in srgb, var(--upr-warn) 45%, transparent);
+  }
+
+  .node--danger {
+    fill: var(--upr-danger-soft);
+    stroke: color-mix(in srgb, var(--upr-danger) 45%, transparent);
+  }
+
+  .lbl {
+    fill: var(--upr-text);
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .lbl-sm {
+    fill: var(--upr-text-soft);
+    font-size: 11px;
+  }
+
+  .lbl-mono {
+    fill: var(--upr-text-soft);
+    font-size: 11px;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  }
+
+  .edge {
+    fill: none;
+    stroke: var(--upr-line-strong);
+    stroke-width: 1.6;
+  }
+
+  .edge--brand {
+    stroke: color-mix(in srgb, var(--upr-brand) 70%, transparent);
+  }
+
+  .edge--accent {
+    stroke: color-mix(in srgb, var(--upr-accent) 70%, transparent);
+  }
+
+  .edge--warn {
+    stroke: color-mix(in srgb, var(--upr-warn) 60%, transparent);
+  }
+
+  .edge--danger {
+    stroke: color-mix(in srgb, var(--upr-danger) 60%, transparent);
+  }
+
+  .ghost {
+    opacity: 0.35;
+  }
+
+  /* Elementos da cena que entram por tempo. */
+  .scene [data-at] {
+    opacity: 0;
+    transition: opacity 420ms ease;
+  }
+
+  .scene [data-at].is-on {
+    opacity: 1;
+  }
+
+  /* Sem movimento: nada de transição, tudo aparece de uma vez. */
+  .scene.is-reduced [data-at] {
+    transition: none;
+  }
+
+  .scene [data-at].is-now {
+    opacity: 1;
+  }
+}
