@@ -48,7 +48,7 @@ export const anaMaria: Persona = {
   handle: "@anamaria",
   kind: "personal",
   avatar: { kind: "photo", src: "/avatars/ana-maria.jpg" },
-  verification: { state: "green", label: "verificada há 2 meses" },
+  verification: { state: "green", label: "essa pessoa foi verificada há 2 meses" },
   role: "é você nesta demonstração",
 };
 
@@ -58,7 +58,7 @@ export const joaoPedro: Persona = {
   handle: "@joaopedro",
   kind: "personal",
   avatar: { kind: "photo", src: "/avatars/joao-pedro.jpg" },
-  verification: { state: "green", label: "verificada há 8 meses" },
+  verification: { state: "green", label: "essa pessoa foi verificada há 8 meses" },
   role: "música, tecnologia, shows",
 };
 
@@ -68,7 +68,7 @@ export const mariaClara: Persona = {
   handle: "@mariaclara",
   kind: "personal",
   avatar: { kind: "photo", src: "/avatars/maria-clara.jpg" },
-  verification: { state: "yellow", label: "verificada há 2 anos" },
+  verification: { state: "yellow", label: "essa pessoa foi verificada há 2 anos" },
   role: "checagem de fatos e ciência",
 };
 
@@ -78,7 +78,7 @@ export const antonioJose: Persona = {
   handle: "@antoniojose",
   kind: "personal",
   avatar: { kind: "photo", src: "/avatars/antonio-jose.jpg" },
-  verification: { state: "red", label: "verificada há 6 anos" },
+  verification: { state: "red", label: "essa pessoa foi verificada há 6 anos" },
   role: "voltou depois de anos; opinião política",
 };
 
@@ -88,7 +88,7 @@ export const anaBeatriz: Persona = {
   handle: "@anabeatriz",
   kind: "personal",
   avatar: { kind: "photo", src: "/avatars/ana-beatriz.jpg" },
-  verification: { state: "green", label: "verificada há 10 dias" },
+  verification: { state: "green", label: "essa pessoa foi verificada há 10 dias" },
   role: "estudante de jornalismo",
 };
 
@@ -98,7 +98,7 @@ export const luisaFernanda: Persona = {
   handle: "@luisafernanda",
   kind: "personal",
   avatar: { kind: "photo", src: "/avatars/luisa-fernanda.jpg" },
-  verification: { state: "green", label: "verificada há 3 meses" },
+  verification: { state: "green", label: "essa pessoa foi verificada há 3 meses" },
   role: "fotógrafa de natureza",
 };
 
@@ -108,7 +108,7 @@ export const rafaelAugusto: Persona = {
   handle: "@rafaelaugusto",
   kind: "personal",
   avatar: { kind: "photo", src: "/avatars/rafael-augusto.jpg" },
-  verification: { state: "green", label: "verificada há 1 ano" },
+  verification: { state: "green", label: "essa pessoa foi verificada há 1 ano" },
   role: "ciclista urbano",
 };
 
@@ -118,7 +118,7 @@ export const beatrizHelena: Persona = {
   handle: "@beatrizhelena",
   kind: "personal",
   avatar: { kind: "photo", src: "/avatars/beatriz-helena.jpg" },
-  verification: { state: "green", label: "verificada há 5 meses" },
+  verification: { state: "green", label: "essa pessoa foi verificada há 5 meses" },
   role: "cozinha e cafés",
 };
 
@@ -128,7 +128,7 @@ export const carlosEduardo: Persona = {
   handle: "@carloseduardo",
   kind: "personal",
   avatar: { kind: "photo", src: "/avatars/carlos-eduardo.jpg" },
-  verification: { state: "yellow", label: "verificada há 3 anos" },
+  verification: { state: "yellow", label: "essa pessoa foi verificada há 3 anos" },
   role: "professor de história",
 };
 
@@ -138,7 +138,7 @@ export const fernandaLuisa: Persona = {
   handle: "@fernandaluisa",
   kind: "personal",
   avatar: { kind: "photo", src: "/avatars/fernanda-luisa.jpg" },
-  verification: { state: "green", label: "verificada há 7 meses" },
+  verification: { state: "green", label: "essa pessoa foi verificada há 7 meses" },
   role: "veterinária",
 };
 
@@ -148,7 +148,7 @@ export const gustavoHenrique: Persona = {
   handle: "@gustavohenrique",
   kind: "personal",
   avatar: { kind: "photo", src: "/avatars/gustavo-henrique.jpg" },
-  verification: { state: "green", label: "verificada há 2 meses" },
+  verification: { state: "green", label: "essa pessoa foi verificada há 2 meses" },
   role: "programador",
 };
 
@@ -158,7 +158,7 @@ export const helenaCristina: Persona = {
   handle: "@helenacristina",
   kind: "personal",
   avatar: { kind: "photo", src: "/avatars/helena-cristina.jpg" },
-  verification: { state: "green", label: "verificada há 9 meses" },
+  verification: { state: "green", label: "essa pessoa foi verificada há 9 meses" },
   role: "ceramista",
 };
 
@@ -168,7 +168,7 @@ export const igorMatheus: Persona = {
   handle: "@igormatheus",
   kind: "personal",
   avatar: { kind: "photo", src: "/avatars/igor-matheus.jpg" },
-  verification: { state: "green", label: "verificada há 4 meses" },
+  verification: { state: "green", label: "essa pessoa foi verificada há 4 meses" },
   role: "estudante de física",
 };
 
@@ -178,7 +178,7 @@ export const julianaRosa: Persona = {
   handle: "@julianarosa",
   kind: "personal",
   avatar: { kind: "photo", src: "/avatars/juliana-rosa.jpg" },
-  verification: { state: "yellow", label: "verificada há 1 ano e 6 meses" },
+  verification: { state: "yellow", label: "essa pessoa foi verificada há 1 ano e 6 meses" },
   role: "rotina de mãe e trabalho",
 };
 
@@ -188,7 +188,7 @@ export const kaiqueVinicius: Persona = {
   handle: "@kaiquevinicius",
   kind: "personal",
   avatar: { kind: "photo", src: "/avatars/kaique-vinicius.jpg" },
-  verification: { state: "green", label: "verificada há 6 meses" },
+  verification: { state: "green", label: "essa pessoa foi verificada há 6 meses" },
   role: "entregador, cidade e trânsito",
 };
 
@@ -198,7 +198,7 @@ export const larissaNaomi: Persona = {
   handle: "@larissanaomi",
   kind: "personal",
   avatar: { kind: "photo", src: "/avatars/larissa-naomi.jpg" },
-  verification: { state: "green", label: "verificada há 2 meses" },
+  verification: { state: "green", label: "essa pessoa foi verificada há 2 meses" },
   role: "ilustradora",
 };
 
@@ -208,7 +208,7 @@ export const marceloAntonio: Persona = {
   handle: "@marceloantonio",
   kind: "personal",
   avatar: { kind: "photo", src: "/avatars/marcelo-antonio.jpg" },
-  verification: { state: "red", label: "verificada há 5 anos" },
+  verification: { state: "red", label: "essa pessoa foi verificada há 5 anos" },
   role: "aposentado, pesca e mar",
 };
 
@@ -218,7 +218,7 @@ export const nataliaCristina: Persona = {
   handle: "@nataliacristina",
   kind: "personal",
   avatar: { kind: "photo", src: "/avatars/natalia-cristina.jpg" },
-  verification: { state: "green", label: "verificada há 8 meses" },
+  verification: { state: "green", label: "essa pessoa foi verificada há 8 meses" },
   role: "dançarina",
 };
 
@@ -228,7 +228,7 @@ export const otavioLuis: Persona = {
   handle: "@otavioluis",
   kind: "personal",
   avatar: { kind: "photo", src: "/avatars/otavio-luis.jpg" },
-  verification: { state: "green", label: "verificada há 1 mês" },
+  verification: { state: "green", label: "essa pessoa foi verificada há 1 mês" },
   role: "viajante e trilhas",
 };
 
@@ -238,7 +238,7 @@ export const patriciaElaine: Persona = {
   handle: "@patriciaelaine",
   kind: "personal",
   avatar: { kind: "photo", src: "/avatars/patricia-elaine.jpg" },
-  verification: { state: "green", label: "verificada há 1 ano" },
+  verification: { state: "green", label: "essa pessoa foi verificada há 1 ano" },
   role: "médica",
 };
 
@@ -248,7 +248,7 @@ export const rodrigoJose: Persona = {
   handle: "@rodrigojose",
   kind: "personal",
   avatar: { kind: "photo", src: "/avatars/rodrigo-jose.jpg" },
-  verification: { state: "green", label: "verificada há 5 meses" },
+  verification: { state: "green", label: "essa pessoa foi verificada há 5 meses" },
   role: "mecânico",
 };
 
@@ -258,7 +258,7 @@ export const sabrinaLuiza: Persona = {
   handle: "@sabrinaluiza",
   kind: "personal",
   avatar: { kind: "photo", src: "/avatars/sabrina-luiza.jpg" },
-  verification: { state: "green", label: "verificada há 3 meses" },
+  verification: { state: "green", label: "essa pessoa foi verificada há 3 meses" },
   role: "violão e composição",
 };
 
@@ -268,7 +268,7 @@ export const thiagoAndre: Persona = {
   handle: "@thiagoandre",
   kind: "personal",
   avatar: { kind: "photo", src: "/avatars/thiago-andre.jpg" },
-  verification: { state: "green", label: "verificada há 2 meses" },
+  verification: { state: "green", label: "essa pessoa foi verificada há 2 meses" },
   role: "jornalista de cidade",
 };
 
@@ -278,7 +278,7 @@ export const vanessaKelly: Persona = {
   handle: "@vanessakelly",
   kind: "personal",
   avatar: { kind: "photo", src: "/avatars/vanessa-kelly.jpg" },
-  verification: { state: "green", label: "verificada há 7 meses" },
+  verification: { state: "green", label: "essa pessoa foi verificada há 7 meses" },
   role: "estilista",
 };
 
@@ -288,7 +288,7 @@ export const wagnerLuis: Persona = {
   handle: "@wagnerluis",
   kind: "personal",
   avatar: { kind: "photo", src: "/avatars/wagner-luis.jpg" },
-  verification: { state: "yellow", label: "verificada há 4 anos" },
+  verification: { state: "yellow", label: "essa pessoa foi verificada há 4 anos" },
   role: "fotógrafo de rua",
 };
 
@@ -298,7 +298,7 @@ export const yaraBeatriz: Persona = {
   handle: "@yarabeatriz",
   kind: "personal",
   avatar: { kind: "photo", src: "/avatars/yara-beatriz.jpg" },
-  verification: { state: "green", label: "verificada há 2 meses" },
+  verification: { state: "green", label: "essa pessoa foi verificada há 2 meses" },
   role: "arquiteta",
 };
 
@@ -308,7 +308,7 @@ export const cafeAurora: Persona = {
   handle: "@cafeaurora",
   kind: "business",
   avatar: { kind: "photo", src: "/avatars/cafe-aurora.jpg" },
-  verification: { state: "green", label: "verificada há 4 meses" },
+  verification: { state: "green", label: "essa pessoa foi verificada há 4 meses" },
   role: "cafeteria do bairro",
 };
 
@@ -328,7 +328,7 @@ export const livrariaPaginaViva: Persona = {
   handle: "@paginaaviva",
   kind: "business",
   avatar: { kind: "photo", src: "/avatars/livraria-pagina-viva.jpg" },
-  verification: { state: "green", label: "verificada há 2 anos" },
+  verification: { state: "green", label: "essa pessoa foi verificada há 2 anos" },
   role: "livraria e clube de leitura",
 };
 
@@ -358,7 +358,7 @@ export const estudioFarol: Persona = {
   handle: "@estudiofarol",
   kind: "business",
   avatar: { kind: "photo", src: "/avatars/estudio-farol.jpg" },
-  verification: { state: "yellow", label: "verificada há 3 anos" },
+  verification: { state: "yellow", label: "essa pessoa foi verificada há 3 anos" },
   role: "fotografia e vídeo",
 };
 

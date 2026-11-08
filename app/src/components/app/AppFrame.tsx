@@ -31,7 +31,6 @@ export function AppFrame({
       <div className={`flex shrink-0 items-center gap-2 border-b border-line bg-surface ${compact ? "px-3 py-2" : "px-4 py-3"}`}>
         <span className={`inline-flex items-center gap-2 font-extrabold tracking-tight ${compact ? "text-[0.95rem]" : "text-[1.02rem]"}`}>
           <i className="h-5 w-5 rounded-lg bg-gradient-to-br from-brand to-accent" aria-hidden="true" />
-          UPR
         </span>
 
         {compact ? (

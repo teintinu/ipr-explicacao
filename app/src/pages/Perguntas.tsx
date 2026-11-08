@@ -7,15 +7,15 @@ const perguntas = [
   },
   {
     q: "Preciso entregar meu CPF para a rede?",
-    a: "Não para a rede. Você entrega o documento a um verificador de identidade — pode ser o gov.br, a sua operadora, o seu partido ou a empresa em que trabalha. Ele confere e devolve uma credencial. A rede só vê a credencial.",
+    a: "Não para a rede. Você entrega o documento a um verificador de identidade — pode ser o gov.br, a sua operadora de telefonia, o seu partido político, a empresa em que trabalha, etc. O importante é que alguém confira e devolva uma credencial anônima que garante que você é uma pessoa real. A rede só vê a credencial.",
   },
   {
     q: "Se ninguém vê meu nome, como alguém me encontra?",
-    a: "Só por ordem judicial, em duas etapas: o primeiro cofre devolve um identificador sem nome, e a instituição que verificou você entrega os campos pedidos. Nenhuma etapa acontece sem a mesma ordem.",
+    a: "Só por ordem judicial, em duas etapas: o primeiro cofre devolve um identificador sem nome, e a instituição que verificou você entrega os campos pedidos. Nenhuma etapa acontece sem a mesma ordem. Ou, claro, você pode se identificar voluntariamente. Você pode ter várias contas e se identificar apenas nas que você achar necessário.",
   },
   {
     q: "Posso ter mais de uma conta?",
-    a: "Sim, quantas quiser. Cada conta recebe a própria credencial, emitida numa conversa separada, e nada liga uma à outra — nem para quem emitiu.",
+    a: "Sim, quantas quiser. Cada conta recebe a própria credencial, emitida numa conversa separada, e nada liga uma à outra",
   },
   {
     q: "O que é o escudo no avatar?",
