@@ -7,7 +7,7 @@ import { Avatar } from "../Avatar";
  */
 export function StoryRow({ people, me }: { people: Persona[]; me: Persona }) {
   return (
-    <div className="flex gap-4 overflow-x-auto border-b border-line bg-surface px-4 py-3.5">
+    <div data-hotspot="momentos" className="flex gap-4 overflow-x-auto border-b border-line bg-surface px-4 py-3.5">
       <button className="grid w-16 shrink-0 justify-items-center gap-1.5" type="button">
         <span className="relative grid h-14 w-14 place-items-center rounded-full bg-line p-[3px]">
           <span className="grid h-12.5 w-12.5 place-items-center rounded-full bg-surface">

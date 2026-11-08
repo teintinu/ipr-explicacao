@@ -1,19 +1,9 @@
-import { Annotation } from "../components/app/Annotation";
-import { AppFrame } from "../components/app/AppFrame";
 import { ChatWindow, type Message } from "../components/app/ChatWindow";
-import { PostActions, PostCard } from "../components/app/PostCard";
-import { StoryRow } from "../components/app/StoryRow";
+import { Annotation } from "../components/app/Annotation";
 import { Avatar } from "../components/Avatar";
+import { Prototipo } from "../components/Prototipo";
 import { Callout, Kicker, Lead, Section } from "../components/ui";
-import {
-  anaBeatriz,
-  anaMaria,
-  bandaDoBairro,
-  cafeAurora,
-  joaoPedro,
-  antonioJose,
-  mariaClara,
-} from "../data/personas";
+import { anaMaria, joaoPedro } from "../data/personas";
 
 const conversa: Message[] = [
   { id: "1", from: "them", text: "conseguiu ver o vídeo que te mandei?", meta: "19:04 · cifrada" },
@@ -22,16 +12,6 @@ const conversa: Message[] = [
   { id: "4", from: "me", text: "manda o link de onde ele tirou isso", meta: "19:07 ✓✓" },
 ];
 
-const legenda = [
-  { n: 1, href: "/por-dentro", titulo: "Publicar um post", texto: "Assinatura, impressão digital e envio aos provedores." },
-  { n: 2, href: "/por-dentro", titulo: "Conta em que você confia", texto: "Por que o comentário dela aparece primeiro." },
-  { n: 3, href: "/por-dentro", titulo: "Comentários sem identificação", texto: "O autor do post escolheu não mostrar quem comenta." },
-  { n: 4, href: "/por-dentro", titulo: "Grupo", texto: "Como um grupo ganha identidade e chave própria." },
-  { n: 5, href: "/por-dentro", titulo: "Aprovação de membro", texto: "Pedido, votação e entrada registrada." },
-  { n: 6, href: "/conversas", titulo: "Conversas", texto: "Abra a tela de mensagens e clique numa bolha." },
-  { n: 7, href: "/identidade", titulo: "Identidade", texto: "Quem confirma que você existe — e como." },
-  { n: 8, href: "/por-dentro", titulo: "Provedores", texto: "Quem guarda os arquivos e por quê." },
-];
 
 const capitulos = [
   { href: "/identidade", titulo: "Identidade", texto: "Como a rede sabe que você existe sem nunca ver seu documento." },
@@ -78,119 +58,7 @@ export function Home() {
         </p>
       </Section>
 
-      <Section tight>
-        <Kicker>Experimente</Kicker>
-        <h2 className="text-2xl font-extrabold tracking-tight md:text-3xl">
-          Esta é a tela de uma conta comum.
-        </h2>
-        <Lead>
-          Passe o mouse e clique em qualquer elemento para ver, em animação, o que acontece nos
-          bastidores.
-        </Lead>
-
-        <div className="mt-8">
-          <div className="relative mx-auto w-fit">
-          <AppFrame width="max-w-[860px]">
-            <StoryRow
-              me={anaMaria}
-              people={[joaoPedro, mariaClara, antonioJose, anaBeatriz, cafeAurora]}
-            />
-
-            <div className="grid gap-3.5 bg-bg-alt p-3.5">
-              <PostCard
-                persona={joaoPedro}
-                time="há 12 minutos"
-                visibility="público"
-                text="Estudos mostram que a gente usa só 10% do cérebro. Se for verdade, é o maior desperdício do corpo humano — e ninguém sente falta do resto."
-                media={
-                  <img
-                    src="/cerebro.jpg"
-                    alt="Modelo anatômico de cérebro humano, visto de cima"
-                    className="h-56 w-full rounded-xl border border-line object-cover"
-                  />
-                }
-                highlight={
-                  <div className="rounded-r-xl border-l-[3px] border-brand bg-brand-soft/70 px-3.5 py-2.5 text-[0.9rem]">
-                    <span className="mr-1.5 text-brand-ink">⚖</span>
-                    <span className="font-semibold text-brand-ink">Maria Clara</span> — A frase vem
-                    de 1907 e falava de potencial, não de uso. Exames de imagem mostram atividade em
-                    todas as áreas do cérebro, inclusive dormindo. E não existe lesão que destrua 90%
-                    dele com a pessoa seguindo igual.
-                  </div>
-                }
-              >
-                <PostActions>
-                  <span>♥ 128</span>
-                  <span>💬 34</span>
-                  <a className="ml-auto font-bold text-brand hover:underline" href="/por-dentro">
-                    ver por dentro →
-                  </a>
-                </PostActions>
-              </PostCard>
-
-              <PostCard
-                persona={bandaDoBairro}
-                time="há 2 dias"
-                visibility="só membros"
-                text="Ensaio aberto sábado às 16h, no mesmo lugar de sempre. Levem cabo extra — o último queimou."
-                tags={[
-                  { tone: "group", label: "grupo" },
-                  { tone: "private", label: "só membros" },
-                ]}
-              >
-                <a
-                  className="block rounded-lg bg-surface-2 px-3 py-2 text-[0.86rem] hover:bg-surface-3"
-                  href="/por-dentro"
-                >
-                  <strong>Ana Maria entrou no grupo</strong> · aprovada por 3 membros
-                </a>
-                <PostActions>
-                  <span>14 respostas</span>
-                  <span>3 aguardando aprovação</span>
-                  <a className="ml-auto font-bold text-brand hover:underline" href="/por-dentro">
-                    ver por dentro →
-                  </a>
-                </PostActions>
-              </PostCard>
-
-              <PostCard
-                persona={antonioJose}
-                time="há 40 minutos"
-                visibility="público"
-                text="Voltei a usar a rede depois de anos. Alguém me explica o que mudou nesse tempo?"
-              >
-                <PostActions>
-                  <span>3 respostas</span>
-                  <a className="ml-auto font-bold text-brand hover:underline" href="/identidade">
-                    por que o selo dele está vermelho →
-                  </a>
-                </PostActions>
-              </PostCard>
-            </div>
-          </AppFrame>
-
-          <Annotation label="ver por dentro" href="/por-dentro" />
-          </div>
-        </div>
-
-        <div className="mt-6 grid gap-2.5 sm:grid-cols-2 lg:grid-cols-4">
-          {legenda.map((item) => (
-            <a
-              key={item.n}
-              href={item.href}
-              className="flex items-start gap-2.5 rounded-xl border border-line bg-surface p-3 transition hover:-translate-y-px hover:border-line-strong"
-            >
-              <span className="grid h-5.5 w-5.5 shrink-0 place-items-center rounded-full bg-brand-soft text-[0.72rem] font-extrabold text-brand-ink">
-                {item.n}
-              </span>
-              <span>
-                <strong className="block text-[0.9rem] leading-tight">{item.titulo}</strong>
-                <span className="text-[0.8rem] text-text-soft">{item.texto}</span>
-              </span>
-            </a>
-          ))}
-        </div>
-      </Section>
+      <Prototipo />
 
       <Section alt>
         <Kicker>Conversas</Kicker>

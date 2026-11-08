@@ -150,3 +150,9 @@ vite.config.ts.timestamp-*
 
 # Bundle de deploy (gerado por scripts/deploy.sh)
 /build/
+
+.DS_Store
+
+# Cache de geração do feed (frames e JSON dos agentes)
+.feed/
+app/.feed/

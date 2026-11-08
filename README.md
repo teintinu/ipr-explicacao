@@ -46,14 +46,20 @@ comentou.
 - `app/public/cerebro.jpg` — modelo anatômico de cérebro, **CC0** (domínio público), via
   Wikimedia Commons: `The_Human_Brain_Model_01.jpg`. Recortada em 3:2 para o post de
   exemplo.
-- `app/public/avatars/*.jpg` — retratos das personas, de [pravatar.cc](https://pravatar.cc/),
-  livres para uso em protótipo.
-- `app/public/avatars/cafe-aurora.jpg` — xícara com latte art, de
-  [StockSnap](https://stocksnap.io/), **CC0**.
-- `app/public/avatars/banda-do-bairro.jpg` — guitarrista em apresentação, de
-  [StockSnap](https://stocksnap.io/), **CC0**.
-
-Todos os avatares foram recortados em quadrado e reduzidos para 192×192.
+- **Avatares das personas** (as 33 contas: pessoas, grupos e empresas) —
+  [pravatar.cc](https://pravatar.cc/). São imagens de exemplo, livres para uso em
+  protótipo; cada uma foi recortada em quadrado e reduzida para 192×192.
+  *Exceção:* os dois avatares institucionais — `cafe-aurora.jpg` e
+  `banda-do-bairro.jpg` — vêm do [StockSnap](https://stocksnap.io/), **CC0**, porque
+  precisavam ser foto de objeto/cena, não retrato.
+- **Vídeos do feed de demonstração** — [pixabay.com/pt/videos](https://pixabay.com/pt/videos/).
+  Os arquivos originais ficam em `../raw/` e são recortados e transcodificados por
+  `scripts/build-feed.py`; o que vai para o site está em `app/public/media/`.
+- **Músicas dos vídeos** — [pixabay.com/pt/music/search/audio](https://pixabay.com/pt/music/search/audio).
+  São nove faixas em `../raw/*.mp3`. Cada clipe de 8 s recebe um trecho de uma delas:
+  a faixa se repete, o trecho não — `scripts/add-music.py` sorteia janelas de 8 s e só
+  repete uma janela depois de esgotar as outras daquela faixa. O resultado fica
+  registrado em `app/.feed/musica.json` (vídeo → faixa → segundo inicial).
 
 > As personas são **fictícias**. Os retratos são de banco de imagens; nenhuma das
 > pessoas fotografadas tem relação com o projeto ou com o que as contas dizem.
@@ -74,6 +80,34 @@ Todos os avatares foram recortados em quadrado e reduzidos para 192×192.
 ├── scripts/deploy.sh       build + empacotamento + envio
 └── README.md
 ```
+
+## O protótipo e o feed de demonstração
+
+A home tem um protótipo navegável: um celular com o aplicativo dentro, à esquerda, e
+explicações com seta à direita. O feed tem **100 posts** (68 com mídia, 32 de texto) e
+**33 personas**, e três layouts — clássico, resumido e focado.
+
+A mídia vem dos vídeos de `../raw/`
+([pixabay.com/pt/videos](https://pixabay.com/pt/videos/)), recortados e transcodificados
+por `scripts/build-feed.py`:
+
+```sh
+python3 scripts/build-feed.py            # recorta, transcodifica e gera o feed
+python3 scripts/build-feed.py --keep-raw # o mesmo, sem apagar os vídeos consumidos
+python3 scripts/add-music.py             # põe um trecho de música em cada clipe
+```
+
+O `add-music.py` roda **depois** do `build-feed.py` e precisa das faixas em `../raw/`.
+Ele copia o vídeo sem recodificar e só acrescenta o áudio (AAC, com fade de entrada e
+saída), então é rápido.
+
+O script lê os posts escritos em `app/.feed/out/` (JSON), grava `app/public/media/` e
+reescreve `app/src/data/feed-posts.ts`. Os vídeos consumidos saem de `raw/`.
+
+Para conferir um layout direto: `/?layout=resumido` ou `/?layout=focado`.
+
+> A mídia ocupa ~34 MB em `public/media` (68 vídeos de até 8 s + capas). É o custo de
+> ter um feed que se parece com um feed de verdade.
 
 ## Três níveis de leitura
 
