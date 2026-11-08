@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { usarSom } from "../../lib/som";
 
 /** Vídeo fixado: continua tocando num quadro flutuante enquanto o feed rola. */
 export function MiniPlayer({
@@ -13,14 +14,18 @@ export function MiniPlayer({
   onExpand: () => void;
 }) {
   const ref = useRef<HTMLVideoElement>(null);
+  const som = usarSom();
 
   useEffect(() => {
-    ref.current?.play().catch(() => {});
-  }, [src]);
+    const v = ref.current;
+    if (!v) return;
+    v.muted = !som;
+    v.play().catch(() => {});
+  }, [src, som]);
 
   return (
     <div className="absolute inset-x-3 bottom-3 z-30 overflow-hidden rounded-xl border border-line bg-black shadow-xl">
-      <video ref={ref} src={src} poster={poster} muted loop playsInline className="h-32 w-full object-cover" />
+      <video ref={ref} src={src} poster={poster} muted={!som} loop playsInline className="h-32 w-full object-cover" />
       <div className="absolute inset-x-0 bottom-0 flex items-center justify-between gap-2 bg-gradient-to-t from-black/70 to-transparent px-2 py-1.5">
         <button type="button" onClick={onExpand} className="rounded-full bg-white/15 px-2 py-0.5 text-[0.68rem] font-semibold text-white backdrop-blur">
           Ir para o post

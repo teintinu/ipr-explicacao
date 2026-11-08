@@ -106,6 +106,12 @@ reescreve `app/src/data/feed-posts.ts`. Os vídeos consumidos saem de `raw/`.
 
 Para conferir um layout direto: `/?layout=resumido` ou `/?layout=focado`.
 
+O som dos vídeos é uma preferência única, guardada em `localStorage` na chave
+`upr-som` (`1` ligado, `0` desligado) e **ligada por padrão**. Vale para todos os
+posts ao mesmo tempo: o botão de alto-falante no cabeçalho do celular e o de cada
+vídeo mexem no mesmo estado. Como o navegador não deixa um vídeo começar com som sem
+um gesto, o primeiro vídeo mostra "toque para ouvir" — o clique libera o áudio.
+
 > A mídia ocupa ~34 MB em `public/media` (68 vídeos de até 8 s + capas). É o custo de
 > ter um feed que se parece com um feed de verdade.
 

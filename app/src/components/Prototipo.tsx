@@ -7,6 +7,7 @@ import { Explanations, type Hotspot } from "./prototipo/Explanations";
 import { LayoutSwitcher, type FeedLayout } from "./prototipo/LayoutSwitcher";
 import { MiniPlayer } from "./prototipo/MiniPlayer";
 import { PhoneShell } from "./prototipo/PhoneShell";
+import { SoundButton } from "./prototipo/SoundButton";
 import { feedPosts } from "../data/feed-posts";
 import { anaBeatriz, anaMaria, antonioJose, cafeAurora, joaoPedro, mariaClara } from "../data/personas";
 
@@ -167,9 +168,12 @@ export function Prototipo() {
                 bare
                 compact
                 extra={
-                  <span data-hotspot="layout">
-                    <LayoutSwitcher layout={layout} onChange={setLayout} />
-                  </span>
+                  <>
+                    <span data-hotspot="layout">
+                      <LayoutSwitcher layout={layout} onChange={setLayout} />
+                    </span>
+                    <SoundButton />
+                  </>
                 }
               >
                 <StoryRow me={anaMaria} people={stories} />
