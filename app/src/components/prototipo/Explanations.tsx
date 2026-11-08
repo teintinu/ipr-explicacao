@@ -232,6 +232,21 @@ export function Explanations({
                 setAtivo(id);
                 desenhar(id);
               }}
+              onPointerDown={(ev) => {
+                // Toque (ou clique segurado) também abre a ligação.
+                if (ev.pointerType === "mouse" && ev.button !== 0) return;
+                setAtivo(id);
+                desenhar(id);
+              }}
+              onPointerUp={() => {
+                setAtivo(null);
+                setLinhas([]);
+              }}
+              onPointerCancel={() => {
+                setAtivo(null);
+                setLinhas([]);
+              }}
+              onContextMenu={(ev) => ev.preventDefault()}
               onMouseLeave={() => {
                 setAtivo(null);
                 setLinhas([]);
@@ -244,7 +259,7 @@ export function Explanations({
                 setAtivo(null);
                 setLinhas([]);
               }}
-              className={`block rounded-2xl border bg-surface p-4 shadow-sm transition-colors ${
+              className={`block touch-manipulation rounded-2xl border bg-surface p-4 shadow-sm transition-colors ${
                 indo ? "upr-explica-sai pointer-events-none" : "upr-explica-entra"
               } ${ativo === id ? "border-brand/50" : "border-line"}`}
             >

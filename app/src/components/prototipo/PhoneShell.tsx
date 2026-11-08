@@ -6,7 +6,7 @@ import type { ReactNode } from "react";
  */
 export function PhoneShell({ children, overlay }: { children: ReactNode; overlay?: ReactNode }) {
   return (
-    <div className="relative mx-auto w-full max-w-[372px]">
+    <div className="relative mx-auto w-full max-w-[372px] min-[380px]:max-w-[372px]">
       <div className="rounded-[46px] border-[9px] border-[#171d2c] bg-[#171d2c] shadow-[0_30px_70px_-30px_rgba(16,21,43,.55)]">
         <div className="relative overflow-hidden rounded-[37px] bg-surface">
           <div className="pointer-events-none absolute inset-x-0 top-0 z-30 flex justify-center">
@@ -21,7 +21,7 @@ export function PhoneShell({ children, overlay }: { children: ReactNode; overlay
             </span>
           </div>
 
-          <div className="relative flex h-[690px] flex-col pt-6">{children}{overlay}</div>
+          <div className="relative flex h-[min(690px,72vh)] flex-col pt-6 sm:h-[690px]">{children}{overlay}</div>
         </div>
       </div>
     </div>

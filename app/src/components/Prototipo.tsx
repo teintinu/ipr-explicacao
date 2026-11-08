@@ -1,5 +1,6 @@
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { AppFrame } from "./app/AppFrame";
+import { Avatar } from "./Avatar";
 import { StoryRow } from "./app/StoryRow";
 import { Kicker, Section } from "./ui";
 import { Feed } from "./prototipo/Feed";
@@ -24,6 +25,8 @@ export function Prototipo() {
   const layout = usarLayout();
   const trocarLayout = definirLayout;
   const [pinnedId, setPinnedId] = useState<string | null>(null);
+  const [cheio, setCheio] = useState(false);
+  const [escolhendo, setEscolhendo] = useState(false);
   const pip = usarPip();
   const leitorId = usarLeitor();
   const perfilId = usarPerfil();
@@ -220,6 +223,51 @@ export function Prototipo() {
   );
 
 
+  /** Abrir empurra uma entrada no histórico, para o back fechar o protótipo. */
+  const abrirCheio = () => {
+    setCheio(true);
+    window.history.pushState({ prototipo: true }, "");
+  };
+
+  useEffect(() => {
+    const aoVoltar = () => setCheio(false);
+    window.addEventListener("popstate", aoVoltar);
+    return () => window.removeEventListener("popstate", aoVoltar);
+  }, []);
+
+  const app = (compacto: boolean) => (
+    <AppFrame
+      bare
+      compact={compacto}
+      extra={
+        !perfilId ? (
+          <LayoutSwitcher
+            layout={layout}
+            onChange={trocarLayout}
+            emConversas={tela !== "mural"}
+            aoAlternarConversas={() => irPara(tela === "mural" ? "conversas" : "mural")}
+            naoLidas={2}
+          />
+        ) : undefined
+      }
+    >
+      {perfilId ? (
+        <PerfilNoApp id={perfilId} />
+      ) : tela !== "mural" ? (
+        <ConversasNoApp />
+      ) : (
+        <>
+          <StoryRow me={leitor} people={stories} />
+          <Feed
+            layout={layout}
+            pinnedId={pinnedId}
+            onPin={(id) => setPinnedId((atual) => (atual === id ? null : id))}
+          />
+        </>
+      )}
+    </AppFrame>
+  );
+
   return (
     <Section id="prototipo" tight>
       <div>
@@ -232,9 +280,19 @@ export function Prototipo() {
           que está acontecendo — clique para entender o mecanismo por trás.
         </p>
 
-        <div ref={raiz} className="mt-8 grid items-start gap-10 lg:grid-cols-[minmax(0,372px)_minmax(0,1fr)] lg:gap-16">
+        <div className="mt-6 lg:hidden">
+          <button
+            type="button"
+            onClick={() => setEscolhendo(true)}
+            className="w-full rounded-xl bg-brand px-4 py-3.5 text-[0.95rem] font-bold text-white shadow-sm active:scale-[0.99]"
+          >
+            Abrir o Protótipo
+          </button>
+        </div>
+
+        <div ref={raiz} className="mt-8 hidden items-start gap-10 lg:grid lg:grid-cols-[minmax(0,372px)_minmax(0,1fr)] lg:gap-16">
           <div>
-          <div className="mb-3 flex items-center justify-center gap-2 text-[0.8rem] text-text-soft">
+          <div className="mb-3 hidden items-center justify-center gap-2 text-[0.8rem] text-text-soft lg:flex">
             <label htmlFor="ver-como">Ver como</label>
             <select
               id="ver-como"
@@ -257,47 +315,17 @@ export function Prototipo() {
                 <>
                   {pip && <PipWindow video={pip} onIrPara={() => irParaPostagem(pip.id)} />}
                   {pinned?.media ? (
-                  <MiniPlayer
-                    src={pinned.media.src}
-                    poster={pinned.media.poster}
-                    onClose={() => setPinnedId(null)}
-                    onExpand={() => setPinnedId(null)}
-                  />
-                ) : null}
+                    <MiniPlayer
+                      src={pinned.media.src}
+                      poster={pinned.media.poster}
+                      onClose={() => setPinnedId(null)}
+                      onExpand={() => setPinnedId(null)}
+                    />
+                  ) : null}
                 </>
               }
             >
-              <AppFrame
-                bare
-                compact
-                extra={
-                  // O grupo traz a exibição do mural e a porta das conversas.
-                  !perfilId ? (
-                    <LayoutSwitcher
-                      layout={layout}
-                      onChange={trocarLayout}
-                      emConversas={tela !== "mural"}
-                      aoAlternarConversas={() => irPara(tela === "mural" ? "conversas" : "mural")}
-                      naoLidas={2}
-                    />
-                  ) : undefined
-                }
-              >
-                {perfilId ? (
-                  <PerfilNoApp id={perfilId} />
-                ) : tela !== "mural" ? (
-                  <ConversasNoApp />
-                ) : (
-                  <>
-                    <StoryRow me={leitor} people={stories} />
-                    <Feed
-                      layout={layout}
-                      pinnedId={pinnedId}
-                      onPin={(id) => setPinnedId((atual) => (atual === id ? null : id))}
-                    />
-                  </>
-                )}
-              </AppFrame>
+              {app(true)}
             </PhoneShell>
 
             <p className="mt-3 text-center text-[0.76rem] text-text-faint">
@@ -306,11 +334,77 @@ export function Prototipo() {
           </div>
           </div>
 
-          <div className="lg:pt-2">
+          <div className="hidden lg:block lg:pt-2">
             <Explanations itens={explicacoes} raiz={raiz} telefone={telefone} />
           </div>
         </div>
       </div>
+
+      {escolhendo && (
+        <div className="fixed inset-0 z-[60] flex flex-col justify-end bg-black/40 lg:hidden" onClick={() => setEscolhendo(false)}>
+          <div
+            className="max-h-[80vh] overflow-y-auto rounded-t-2xl bg-surface p-3"
+            onClick={(ev) => ev.stopPropagation()}
+          >
+            <p className="px-1 pb-2 text-[0.7rem] font-extrabold tracking-[0.08em] text-text-faint uppercase">
+              Ver como quem?
+            </p>
+            <ul className="space-y-1">
+              {personas.map((p) => (
+                <li key={p.id}>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      definirLeitor(p.id);
+                      setEscolhendo(false);
+                      abrirCheio();
+                    }}
+                    className="flex w-full items-center gap-2.5 rounded-xl border border-line bg-surface px-2.5 py-2 text-left active:bg-surface-2"
+                  >
+                    <Avatar persona={p} size="sm" />
+                    <span className="min-w-0 flex-1">
+                      <span className="block truncate text-[0.86rem] font-semibold">{p.name}</span>
+                      <span className="block truncate text-[0.72rem] text-text-faint">
+                        {p.kind === "group" ? "grupo" : p.kind === "business" ? "empresa" : "pessoa"}
+                        {ehRestrita(p) ? ` · ${p.age} anos · conta restrita` : ""}
+                      </span>
+                    </span>
+                    {p.recebeDenuncias && (
+                      <span className="rounded bg-warn-soft px-1.5 py-0.5 text-[0.6rem] font-extrabold text-warn uppercase">
+                        ouvidoria
+                      </span>
+                    )}
+                  </button>
+                </li>
+              ))}
+            </ul>
+            <button
+              type="button"
+              onClick={() => setEscolhendo(false)}
+              className="mt-2 w-full rounded-xl border border-line px-3 py-2.5 text-[0.85rem] font-bold text-text-soft"
+            >
+              Cancelar
+            </button>
+          </div>
+        </div>
+      )}
+
+      {cheio && (
+        <div className="fixed inset-0 z-50 flex flex-col bg-bg lg:hidden">
+          <div className="relative flex min-h-0 flex-1 flex-col">
+            {app(false)}
+            {pip && <PipWindow video={pip} onIrPara={() => irParaPostagem(pip.id)} />}
+            {pinned?.media ? (
+              <MiniPlayer
+                src={pinned.media.src}
+                poster={pinned.media.poster}
+                onClose={() => setPinnedId(null)}
+                onExpand={() => setPinnedId(null)}
+              />
+            ) : null}
+          </div>
+        </div>
+      )}
     </Section>
   );
 }

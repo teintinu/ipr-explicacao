@@ -1,16 +1,8 @@
-import { ChatWindow, type Message } from "../components/app/ChatWindow";
-import { Annotation } from "../components/app/Annotation";
 import { Avatar } from "../components/Avatar";
 import { Prototipo } from "../components/Prototipo";
 import { Callout, Kicker, Lead, Section } from "../components/ui";
-import { anaMaria, joaoPedro } from "../data/personas";
+import { anaMaria } from "../data/personas";
 
-const conversa: Message[] = [
-  { id: "1", from: "them", text: "conseguiu ver o vídeo que te mandei?", meta: "19:04 · cifrada" },
-  { id: "2", from: "me", text: "vi. o trecho dos 10% é o que mais me pegou", meta: "19:05 ✓✓" },
-  { id: "3", from: "them", text: "mandei pro meu irmão também, ele jurou que era verdade", meta: "19:06 · cifrada" },
-  { id: "4", from: "me", text: "manda o link de onde ele tirou isso", meta: "19:07 ✓✓" },
-];
 
 
 const capitulos = [
