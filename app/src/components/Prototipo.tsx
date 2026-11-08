@@ -307,6 +307,15 @@ export function Prototipo() {
           >
             Abrir o Protótipo
           </button>
+
+          <p className="mt-2.5 flex items-start gap-1.5 px-1 text-[0.78rem] leading-snug text-text-faint">
+            <svg viewBox="0 0 24 24" className="mt-0.5 h-4 w-4 shrink-0" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="12" rx="2" />
+              <path d="M8 20h8M12 16v4" />
+            </svg>
+            No computador fica mais fácil entender: as explicações aparecem ao lado do protótipo e
+            apontam para cada elemento da tela.
+          </p>
         </div>
 
         <div ref={raiz} className="mt-8 hidden items-start gap-10 lg:grid lg:grid-cols-[minmax(0,372px)_minmax(0,1fr)] lg:gap-16">
