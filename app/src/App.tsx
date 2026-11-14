@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { PageShell } from "./components/PageShell";
 import { Home } from "./pages/Home";
 import { PorDentro } from "./pages/PorDentro";
+import { Soberania } from "./pages/Soberania";
 import { Seguranca } from "./pages/Seguranca";
 import { Conversas } from "./pages/Conversas";
 import { Diario } from "./pages/Diario";
@@ -20,6 +21,7 @@ function Shell() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/por-dentro" element={<PorDentro />} />
+        <Route path="/soberania" element={<Soberania />} />
         <Route path="/seguranca" element={<Seguranca />} />
         <Route path="/conversas" element={<Conversas />} />
         <Route path="/diario" element={<Diario />} />

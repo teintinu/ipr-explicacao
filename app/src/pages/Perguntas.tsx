@@ -2,6 +2,14 @@ import { Kicker, Lead, Section } from "../components/ui";
 
 const perguntas = [
   {
+    q: "Se eu quiser sair, perco o que publiquei?",
+    a: "Não. O que você publicou é assinado pela sua conta e vive em cópias: sair de um aplicativo não apaga o acervo. O que ainda falta é um endereço estável, para quem te segue continuar te encontrando do outro lado.",
+  },
+  {
+    q: "Alguém pode reduzir o alcance do que eu publico?",
+    a: "Não há alcance para reduzir. O mural mostra o que os seus contatos publicaram, em ordem de tempo — não existe ranking, impulso pago nem conteúdo recomendado escolhendo quem aparece.",
+  },
+  {
     q: "Como sei que um conteúdo é para a minha idade?",
     a: "Cada postagem tem uma classificação: L, 10, 12, 14, 16 ou 18. Quem publica não escolhe a nota — responde o que a postagem contém (violência, drogas, nudez, linguagem imprópria…) e a nota sai do item mais alto marcado. A conta restrita só recebe o que está dentro do teto da idade dela.",
   },

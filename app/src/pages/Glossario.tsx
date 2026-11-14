@@ -8,6 +8,14 @@ interface Termo {
 }
 
 const termos: Termo[] = [
+  { termo: "Hiperescala", grupo: "conteúdo", def: "Concentrar processamento, água e energia num lugar só para treinar e servir tudo. É uma escolha de engenharia, não a única forma possível — rede federada resolve sem isso." },
+  { termo: "Colonialismo de dados", grupo: "conteúdo", def: "Extrair dados e decisões de um lugar para decidir em outro, sem que quem forneceu os dados saiba como eles são usados. Quem guarda os dados é quem manda neles." },
+  { termo: "Publicidade", grupo: "conteúdo", def: "Anúncio servido por um provedor, nunca pela rede. Cada provedor decide se mostra, quanto mostra e quais anúncios serve — e responde por isso." },
+  { termo: "Ignorar provedor", grupo: "conteúdo", def: "Some tudo o que aquele provedor serve, inclusive as postagens. É escolha sua, local, e pode ser desfeita." },
+  { termo: "Assinar provedor", grupo: "conteúdo", def: "Você continua vendo as postagens e deixa de ver a publicidade daquele provedor." },
+  { termo: "Endereço de conta", grupo: "identidade", def: "O nome estável pelo qual a conta é encontrada fora do aplicativo. Aponta para a chave e para as cópias — nunca para uma pessoa." },
+  { termo: "Portabilidade", grupo: "identidade", def: "Trocar de aplicativo sem perder o endereço nem quem te segue. Como levar o número de celular para outra operadora." },
+  { termo: "Alcance", grupo: "conteúdo", def: "Quantas pessoas uma plataforma decide mostrar o seu conteúdo. Aqui não existe: o mural é o que os contatos publicaram, em ordem de tempo." },
   { termo: "Classificação indicativa", grupo: "conteúdo", def: "A nota de idade de uma postagem: L, 10, 12, 14, 16 ou 18. É calculada a partir do que a postagem contém — nunca digitada por quem publica." },
   { termo: "Descritor", grupo: "conteúdo", def: "Item da lista que descreve o conteúdo: violência, drogas, nudez, linguagem imprópria, medo, temas sensíveis. A nota é o maior descritor marcado." },
   { termo: "Teto de classificação", grupo: "conteúdo", def: "A maior nota que uma conta pode ver, tirada da idade dela. Quem tem 11 anos vê até 10; quem tem 17 vê até 16." },

@@ -10,6 +10,7 @@ const nav = [
   { href: "/chamadas", label: "Chamadas" },
   { href: "/confianca", label: "Confiança" },
   { href: "/provedores", label: "Provedores" },
+  { href: "/soberania", label: "Soberania" },
 ];
 
 const footerEntender = [
@@ -24,6 +25,7 @@ const footerAjuda = [
   { href: "/chamadas", label: "Chamadas" },
   { href: "/confianca", label: "Confiança e remoção" },
   { href: "/provedores", label: "Provedores" },
+  { href: "/soberania", label: "Soberania digital" },
   { href: "/perguntas", label: "Perguntas frequentes" },
   { href: "/glossario", label: "Glossário" },
 ];
